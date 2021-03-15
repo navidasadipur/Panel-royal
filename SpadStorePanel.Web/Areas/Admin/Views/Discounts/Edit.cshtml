@@ -1,0 +1,239 @@
+﻿@model SpadStorePanel.Web.ViewModels.DiscountFormViewModel
+@{
+    ViewBag.Title = "تخفیف ها";
+}
+<input type="hidden" id="nav_active" value="offers_and_discounts">
+<input type="hidden" id="nav_item_active" value="discounts">
+@{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            <strong>خطا!</strong> @ViewBag.Message
+        </div>
+    }
+}
+<div class="col-lg-12">
+    <div class="card card-custom gutter-b">
+        <div class="card-header">
+            <h3 class="card-title">
+                افزودن تخفیف
+            </h3>
+        </div>
+        @using (Html.BeginForm("Create", "Discounts", FormMethod.Post, new { id = "form", enctype = "multipart/form-data" }))
+        {
+
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.GroupIdentifier)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title, new { })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>نوع تخفیف</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="DiscountType" name="DiscountType">
+                                    <option @(Model.DiscountType == 1 ? "selected=''selected'" : "") value="1">درصد</option>
+                                    <option @(Model.DiscountType == 2 ? "selected=''selected'" : "") value="2">مقدار</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Amount, new { })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "form-text text-danger" })
+                                <span style="color: red; display: none" id="AmountValidation"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-sm-6 col-form-label">تخفیف پیشنهاد</label>
+                            <div class="col-6">
+                                <span class="switch">
+                                    <label>
+                                        <input @(Model.OfferId != null ? "checked=''checked'" : "") type="checkbox" name="isOffer" id="isOffer" />
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="offerContainer" style="@(Model.OfferId == null ? "display: none" : "")" >
+                            <label class="col--md-2 col-form-label">پیشنهاد ها</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="Offer" name="Offer">
+                                    @foreach (var offer in ViewBag.Offers)
+                                    {
+                                        <option @(Model.OfferId == offer.Id ? "selected=''selected'" : "") value="@offer.Id">@offer.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="">دسته ها</label>
+                            <div class="col-md-10">
+                                <select class="form-control select2" id="ProductGroups" name="ProductGroups" multiple="multiple">
+                                    @foreach (var item in ViewBag.ProductGroups)
+                                    {
+                                        <option @(Model.PreviousDiscounts.Where(p => p.ProductGroupId == item.Id).Any() ? "selected=''selected'" : "") value="@item.Id">@item.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="">برند ها</label>
+                            <div class="col-md-10">
+                                <select class="form-control select2" id="Brands" name="Brands" multiple="multiple">
+                                    @foreach (var brand in ViewBag.Brands)
+                                    {
+                                        <option @(Model.PreviousDiscounts.Where(p => p.BrandId == brand.Id).Any() ? "selected=''selected'" : "") value="@brand.Id">@brand.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="">محصولات</label>
+                            <div class="col-md-10">
+                                <select class="form-control select2" id="Products" name="Products" multiple="multiple">
+                                    @foreach (var item in ViewBag.Products)
+                                    {
+                                        <option @(Model.PreviousDiscounts.Where(p => p.ProductId == item.Id).Any() ? "selected=''selected'" : "") value="@item.Id">@item.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-right: 40px">
+                <span style="color: red" id="DuplicateDiscountValidation"></span>
+            </div>
+            <div class="card-footer">
+                <a href="@Url.Action("Index")" class="btn btn-secondary">انصراف</a>
+                <input type="submit" value="ثبت" class="btn btn-primary mr-2" />
+            </div>
+        }
+    </div>
+</div>
+<style>
+    .image-input .image-input-wrapper {
+        width: 200px;
+    }
+</style>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <!--end::Page Scripts-->
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $('#Brands').select2({
+            placeholder: "برند هایی که شامل تخفیف میشوند را انتخاب کنید"
+        });
+        $('#ProductGroups').select2({
+            placeholder: "دسته هایی که شامل تخفیف میشوند را انتخاب کنید"
+        });
+        $('#Products').select2({
+            placeholder: "محصولاتی که شامل تخفیف میشوند را انتخاب کنید"
+        });
+        $("#isOffer").change(function () {
+            if ($(this).prop("checked") === true) {
+                $('#offerContainer').show();
+            } else {
+                $('#offerContainer').hide();
+            }
+        });
+    </script>
+    <script>
+        $("#form").submit(function (e) {
+            e.preventDefault();
+            if ($("#form").valid()) {
+                var Title = $("#Title").val();
+                var GroupIdentifier = $("#GroupIdentifier").val();
+                var DiscountType = parseInt($("#DiscountType").val());
+                var Amount = parseInt($("#Amount").val());
+                if (DiscountType === 1 && Amount > 100) {
+                    $('#AmountValidation').text("میزان وارد شده معتبر نیست");
+                    $('#AmountValidation').show();
+                }
+                else if (Amount <= 0 || Amount == null || isNaN(Amount)) {
+                    console.log('error');
+                    $('#AmountValidation').text("لطفا میزان تخفیف را وارد کنید");
+                    $('#AmountValidation').show();
+                }
+                else {
+                    $('#AmountValidation').text("");
+                    $('#AmountValidation').hide();
+                    var BrandIds = [];
+                    $('#Brands').select2('data').map(function (i) { BrandIds.push(parseInt(i.id)) });
+                    var ProductGroupIds = [];
+                    $('#ProductGroups').select2('data').map(function (i) { ProductGroupIds.push(parseInt(i.id)) });
+                    var ProductIds = [];
+                    $('#Products').select2('data').map(function (i) { ProductIds.push(parseInt(i.id)) });
+                    var IsOffer = $('#isOffer').prop('checked');
+                    var OfferId = null;
+                    if (IsOffer) {
+                        OfferId = $('#Offer').find(":selected").val();
+                    }
+                    var newDiscount = {
+                        Title: Title,
+                        DiscountType: DiscountType,
+                        Amount: Amount,
+                        BrandIds: BrandIds,
+                        ProductGroupIds: ProductGroupIds,
+                        ProductIds: ProductIds,
+                        IsOffer: IsOffer,
+                        OfferId: OfferId,
+                        GroupIdentifier: GroupIdentifier
+                    }
+                    // Checking for Duplicate Items
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Admin/Discounts/ValidateDuplicateDiscount",
+                        data: { newDiscount, groupIdentifier: GroupIdentifier },
+                        success: function (data) {
+                            if (data !== "valid") {
+                                $('#DuplicateDiscountValidation').text(data);
+                                $('#DuplicateDiscountValidation').show();
+                            } else {
+                                $('#DuplicateDiscountValidation').text("");
+                                $('#DuplicateDiscountValidation').hide();
+                                console.log(data)
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "/Admin/Discounts/Edit",
+                                    data: newDiscount,
+                                    success: function (data) {
+                                        console.log("success");
+                                        location.href = "/Admin/Discounts";
+                                    },
+                                    error: function (data) {
+                                        console.log("error");
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                            console.log("success");
+                            //location.href = "/Admin/Discounts";
+                        },
+                        error: function (data) {
+                            console.log("error");
+                            console.log(data);
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}
