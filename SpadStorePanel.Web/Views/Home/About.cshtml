@@ -1,7 +1,38 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model SpadStorePanel.Web.ViewModels.AboutViewModel
 
-<p>Use this area to provide additional information.</p>
+@{
+    ViewBag.Title = "درباره ما";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@Html.Action("CompanyHistory","Home")
+    @Html.Action("Testimonials","Home")
+    @Html.Action("LatestArticlesSection","Blog")*@
+
+<div style="background-image: url(../Content/client/wp-content/themes/uniqo/img/2-2.jpg);background-size: cover;background-position: center;height: 100%">
+    <div class="rtl">
+
+
+        <div class="custome-bc">
+            درباره ما
+        </div>
+        <svg version="1.1" id="about_svg" class="about_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1920px" height="174.017px" viewBox="0 0 1920 174.017" enable-background="new 0 0 1920 174.017" xml:space="preserve" style="margin-top: 387.6px;">
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="#025F6E" opacity="0.7" d="M2071.035,166.824c291.186,231.863,3.589,647.038-264.284,824.885
+        c-274.333,182.135-748.858,376.056-1218.97,201.561C37.478,989.012-389.261,397.365-190.357,164.664
+        c250.658-293.256,783.904-4.246,1159.274-21.051C1344.288,126.81,1761.647-79.532,2071.035,166.824z"></path>
+
+
+        </svg>
+        <div class="about_content_box" id="about_content_box" style="margin-top: -24px; top: 0px;">
+            <div class="content_container" style="min-height: 33vh">
+                <div class="about_txt" dir="rtl" >
+                    <p style="font-family: 'Vazir'!important;">
+                        @Model.AboutDescription
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

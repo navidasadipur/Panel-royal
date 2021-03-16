@@ -7,6 +7,11 @@ using SpadStorePanel.Core.Models;
 
 namespace SpadStorePanel.Web.ViewModels
 {
+    public class ProductViewModel
+    {
+        public List<Product> Products { get; set; }
+    }
+
     public class NewProductViewModel
     {
         public int? ProductId { get; set; }

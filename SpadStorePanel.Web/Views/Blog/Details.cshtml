@@ -1,0 +1,345 @@
+﻿@model SpadStorePanel.Web.ViewModels.ArticleDetailsViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+    <div id="parent-page" class="parent-page">
+
+        <div class="container rtl">
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="home/index">خانه</a></li>
+                    <li class="breadcrumb-item"><a href="/blog">بلاگ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+                </ol>
+            </nav>
+
+
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <div class="blog-details">
+                        <figure class="blog-img">
+                            <a href="blog-details.html">
+                                <img src="/Files/ArticleImages/Image/@Model.Image" alt="@Model.Title" style="width:100%">
+                            </a>
+                        </figure>
+                        <div class="blog-details-body">
+
+                            <h1 class="blog-details-title">@Model.Title</h1>
+                            <p class="blog-details-txt">
+                                @Model.ShortDescription
+                            </p>
+                            @*<h2 class="blog-details-title">جزئیات بلاگ به صورت لیستی</h2>
+                            <ul>
+
+                                <li>زینو جم</li>
+                                <li>زینو جم</li>
+                                <li>زینو جم</li>
+                                <li>زینو جم</li>
+                                <li>زینو جم</li>
+                                <li>زینو جم</li>
+                            </ul>*@
+                            <h1 class="blog-details-title">@Model.Title</h1>
+                            <p class="blog-details-txt">
+                                @Html.Raw(Model.Description)
+                            </p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    @*<div class="blog-meta mb-xl-20">
+                                        <h2 class="blog-title text-light-black">@Model.Title</h2>
+                                        <h6 class="text-light-white fs-14">@Model.PersianDate</h6>
+                                        <p class="text-light-white">
+                                            @Model.ShortDescription
+                                        </p>
+                                    </div>
+                                    <div class="blog-meta mb-xl-20">
+                                        <p class="text-light-white">
+                                            @Html.Raw(Model.Description)
+                                        </p>
+                                    </div>*@
+                                    <div class="comment-box">
+                                        <div class="section-header-left">
+                                            <h3 class="text-light-black header-title">نظرات</h3>
+                                        </div>
+                                        @foreach (var item in Model.ArticleComments.Where(c => c.ParentId == null))
+                                        {
+                                            <div class="review-box">
+                                                <div class="review-user">
+                                                    <div class="review-user-img">
+                                                        <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@item.Name">
+                                                        <div class="reviewer-name">
+                                                            <p class="text-light-black fw-600">
+                                                                @item.Name
+                                                            </p><a onclick="AnswerComment(@item.Id,'@item.Name')" style="cursor: pointer" class="text-light-black"><i class="fas fa-reply text-black"></i> پاسخ دادن  </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-date">
+                                                        <span class="text-light-white">@item.AddedDate</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-light-black">@item.Message</p>
+                                            </div>
+                                            foreach (var child in Model.ArticleComments.Where(c => c.ParentId == item.Id))
+                                            {
+                                                <div class="review-box comment-reply">
+                                                    <div class="review-user">
+                                                        <div class="review-user-img">
+                                                            <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@child.Name">
+                                                            <div class="reviewer-name">
+                                                                <p class="text-light-black fw-600">
+                                                                    @child.Name
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-date">
+                                                            <span class="text-light-white">@child.AddedDate</span>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-light-black">@child.Message</p>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="comment-form">
+                                        <div class="section-header-left">
+                                            <h3 id="answerPerson" class="text-light-black header-title">نظر بدهید</h3>
+                                        </div>
+                                        @using (Html.BeginForm("PostComment", "Blog", FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
+                                        {
+                                            <input type="hidden" id="ArticleId" name="ArticleId" value="@Model.Id">
+                                            <input type="hidden" id="ParentId" name="ParentId" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-light-black fw-600">نام و نام خانوادگی</label>
+                                                        <input type="text" name="Name" id="Name" class="form-control form-control-submit"
+                                                               placeholder="نام و نام خانوادگی">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-light-black fw-600">ایمیل</label>
+                                                        <input type="email" name="Email" id="Email"
+                                                               class="form-control form-control-submit"
+                                                               placeholder="ایمیل">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="text-light-black fw-600">نظر شما</label>
+                                                        <textarea class="form-control form-control-submit" name="Message" id="Message" rows="6"
+                                                                  placeholder="نظر شما"></textarea>
+                                                    </div>
+                                                    <button type="submit"
+                                                            class="btn-second btn-submit full-width">
+                                                        ارسال
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="blog-left">
+                        @Html.Action("ArticleCategoriesSection", "Blog")
+                        @Html.Action("LatestArticlesSection", "Blog")
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+@*<section class="our-articles bg-light-theme section-padding pt-0">
+    <div class="blog-page-banner"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-lg-3">
+                <div class="side-bar section-padding pb-0 mb-md-40">
+                    @html.action("toparticlessection", "blog")
+                    <div class="main-box padding-20 blog-tags mb-xl-20">
+                        <h4 class="text-light-black">برچسب ها</h4>
+                        @foreach (var item in model.tags)
+                        {
+                            <a href="/blog?searchstring=@item.title">#@item.title</a>
+                        }
+                    </div>
+                    @html.action("articlecategoriessection", "blog")
+                </div>
+            </aside>
+            <div class="col-lg-9 blog-inner clearfix">
+                <div class="main-box padding-20 full-width">
+                    <div class="breadcrumb-wrpr">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/" class="text-light-black">خانه</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/blog" class="text-light-black">بلاگ</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">@Model.title</li>
+                        </ul>
+                    </div>
+                    <div class="post-wrapper mb-xl-20">
+                        <img src="/files/articleimages/image/@Model.image" class="img-fluid full-width" alt="@Model.title">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="blog-meta mb-xl-20">
+                                <h2 class="blog-title text-light-black">@Model.title</h2>
+                                <h6 class="text-light-white fs-14">@Model.persiandate</h6>
+                                <p class="text-light-white">
+                                    @Model.shortdescription
+                                </p>
+                            </div>
+                            <div class="blog-meta mb-xl-20">
+                                <p class="text-light-white">
+                                    @html.raw(model.description)
+                                </p>
+                            </div>
+                            <div class="comment-box">
+                                <div class="section-header-left">
+                                    <h3 class="text-light-black header-title">نظرات</h3>
+                                </div>
+                                @foreach (var item in model.articlecomments.where(c => c.parentid == null))
+                                {
+                                    <div class="review-box">
+                                        <div class="review-user">
+                                            <div class="review-user-img">
+                                                <img src="/files/useravatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@item.name">
+                                                <div class="reviewer-name">
+                                                    <p class="text-light-black fw-600">
+                                                        @item.name
+                                                    </p><a onclick="answercomment(@item.id,'@item.name')" style="cursor: pointer" class="text-light-black"><i class="fas fa-reply text-black"></i> پاسخ دادن  </a>
+                                                </div>
+                                            </div>
+                                            <div class="review-date">
+                                                <span class="text-light-white">@item.addeddate</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-light-black">@item.message</p>
+                                    </div>
+                                    foreach (var child in model.articlecomments.where(c => c.parentid == item.id))
+                                    {
+                                        <div class="review-box comment-reply">
+                                            <div class="review-user">
+                                                <div class="review-user-img">
+                                                    <img src="/files/useravatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@child.name">
+                                                    <div class="reviewer-name">
+                                                        <p class="text-light-black fw-600">
+                                                            @child.name
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="review-date">
+                                                    <span class="text-light-white">@child.addeddate</span>
+                                                </div>
+                                            </div>
+                                            <p class="text-light-black">@child.message</p>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="comment-form">
+                                <div class="section-header-left">
+                                    <h3 id="answerperson" class="text-light-black header-title">نظر بدهید</h3>
+                                </div>
+                                @using (html.beginform("postcomment", "blog", formmethod.post, new { id = "commentform", @class = "comment-form" }))
+                                {
+                                    <input type="hidden" id="articleid" name="articleid" value="@Model.id">
+                                    <input type="hidden" id="parentid" name="parentid" value="">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="text-light-black fw-600">نام و نام خانوادگی</label>
+                                                <input type="text" name="name" id="name" class="form-control form-control-submit"
+                                                       placeholder="نام و نام خانوادگی">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="text-light-black fw-600">ایمیل</label>
+                                                <input type="email" name="email" id="email"
+                                                       class="form-control form-control-submit"
+                                                       placeholder="ایمیل">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-light-black fw-600">نظر شما</label>
+                                                <textarea class="form-control form-control-submit" name="message" id="message" rows="6"
+                                                          placeholder="نظر شما"></textarea>
+                                            </div>
+                                            <button type="submit"
+                                                    class="btn-second btn-submit full-width">
+                                                ارسال
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<style>
+    .my-error-class {
+        color: #FF0000; /* red */
+    }
+</style>
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script>
+        $("#commentform").validate({
+            errorClass: "my-error-class",
+            rules: {
+                Name: "required",
+                Message: "required",
+                Email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                Name: "نام خود را وارد کنید",
+                Message: "پیام خود را وارد کنید",
+                Email: {
+                    required: "ایمیل خود را وارد کنید",
+                    email: "ایمیل وارد شده معتبر نیست"
+                },
+            }
+        });
+    </script>
+    <script>
+        function AnswerComment(parentId, parentName) {
+            $('#answerPerson').html("پاسخ دادن به   " + parentName +"<a class='btn btn-submit text-white' style='margin-right:10px;cursor:pointer' onclick='removePerson()'>حذف</a>");
+            $('#ParentId').val(parentId);
+        }
+        function removePerson() {
+            $('#answerPerson').html("نظر بدهید");
+            $('#ParentId').val("");
+        }
+    </script>
+}

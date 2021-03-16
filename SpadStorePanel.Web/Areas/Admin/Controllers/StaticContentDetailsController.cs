@@ -18,20 +18,21 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
     [Authorize]
     public class StaticContentDetailsController : Controller
     {
-        private readonly StaticContentDetailsRepository _repo;
+        private readonly StaticContentDetailsRepository _detailsRepo;
+        private readonly StaticContentTypesRepository _typesRepo;
         public StaticContentDetailsController(StaticContentDetailsRepository repo)
         {
-            _repo = repo;
+            _detailsRepo = repo;
         }
         // GET: Admin/StaticContentDetails
         public ActionResult Index()
         {
-            return View(_repo.GetStaticContentDetails());
+            return View(_detailsRepo.GetStaticContentDetails());
         }
         // GET: Admin/StaticContentDetails/Create
         public ActionResult Create()
         {
-            ViewBag.StaticContentTypeId = new SelectList(_repo.GetStaticContentTypes(), "Id", "Name");
+            ViewBag.StaticContentTypeId = new SelectList(_typesRepo.GetStaticContentTypes(), "Id", "Name");
             return View();
         }
 
@@ -55,11 +56,11 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 }
                 #endregion
 
-                _repo.Add(staticContentDetail);
+                _detailsRepo.Add(staticContentDetail);
 
                 return RedirectToAction("Index");
             }
-            ViewBag.StaticContentTypeId = new SelectList(_repo.GetStaticContentTypes(), "Id", "Name", staticContentDetail.StaticContentTypeId);
+            ViewBag.StaticContentTypeId = new SelectList(_typesRepo.GetStaticContentTypes(), "Id", "Name", staticContentDetail.StaticContentTypeId);
             return View(staticContentDetail);
         }
 
@@ -70,12 +71,12 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StaticContentDetail staticContentDetail = _repo.GetStaticContentDetail(id.Value);
+            StaticContentDetail staticContentDetail = _detailsRepo.GetStaticContentDetail(id.Value);
             if (staticContentDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StaticContentTypeId = new SelectList(_repo.GetStaticContentTypes(), "Id", "Name", staticContentDetail.StaticContentTypeId);
+            ViewBag.StaticContentTypeId = new SelectList(_typesRepo.GetStaticContentTypes(), "Id", "Name", staticContentDetail.StaticContentTypeId);
             return View(staticContentDetail);
         }
 
@@ -103,10 +104,10 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 }
                 #endregion
 
-                _repo.Update(staticContentDetail);
+                _detailsRepo.Update(staticContentDetail);
                 return RedirectToAction("Index");
             }
-            ViewBag.StaticContentTypeId = new SelectList(_repo.GetStaticContentTypes(), "Id", "Name", staticContentDetail.StaticContentTypeId);
+            ViewBag.StaticContentTypeId = new SelectList(_typesRepo.GetStaticContentTypes(), "Id", "Name", staticContentDetail.StaticContentTypeId);
             return View(staticContentDetail);
         }
         // GET: Admin/StaticContentDetails/Delete/5
@@ -116,7 +117,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StaticContentDetail staticContentDetail = _repo.GetStaticContentDetail(id.Value);
+            StaticContentDetail staticContentDetail = _detailsRepo.GetStaticContentDetail(id.Value);
             if (staticContentDetail == null)
             {
                 return HttpNotFound();
@@ -129,7 +130,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var staticContentDetail = _repo.Get(id);
+            var staticContentDetail = _detailsRepo.Get(id);
 
             //#region Delete StaticContentDetail Image
             //if (staticContentDetail.Image != null)
@@ -142,7 +143,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             //}
             //#endregion
 
-            _repo.Delete(id);
+            _detailsRepo.Delete(id);
             return RedirectToAction("Index");
         }
     }

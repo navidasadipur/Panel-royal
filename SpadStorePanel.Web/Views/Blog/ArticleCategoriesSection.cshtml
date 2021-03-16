@@ -1,0 +1,60 @@
+﻿@model List<SpadStorePanel.Web.ViewModels.ArticleCategoriesViewModel>
+
+<div class="blog-left-title">
+    دسته بندی
+</div>
+@if (Model.Any())
+{
+    <ul class="blog-category">
+        @foreach (var category in Model)
+        {
+            <li>
+                <a href="/Blog/@category.Id/@category.Title.Replace(" ","-")">
+                    @category.Title
+                </a>
+            </li>
+        }
+    </ul>
+}
+@*<li>
+        <a href="#">
+
+            درباره ما بیشتر بدانید
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            بهترین محصولات بهداشتی با زینو جم
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            درباره ما بیشتر بدانید
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            بهترین محصولات بهداشتی با زینو جم
+        </a>
+    </li>*@
+
+
+
+
+
+
+@*<div class="main-box padding-20 برترین-blog-cat mb-xl-20">
+        <h4 class="text-light-black">دسته بندی</h4>
+        <ul>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <li class="@(i < Model.Count-1 ? "pb-xl-20 mb-xl-20 u-line": "")">
+                    <a href="/Blog/@Model[i].Id/@Model[i].Title.Replace(" ","-")"
+                       class="text-light-black fw-600">
+                        @Model[i].Title<span class="text-light-white fw-400">(@Model[i].ArticleCount)</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>*@
+

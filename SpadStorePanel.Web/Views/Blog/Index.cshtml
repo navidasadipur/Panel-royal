@@ -1,0 +1,245 @@
+﻿@model List<SpadStorePanel.Web.ViewModels.ArticleListViewModel>
+@{
+    ViewBag.Title = "بلاگ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div id="parent-page" class="parent-page">
+
+        <div class="container rtl">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">خانه</a></li>
+                    @if (ViewBag.BreadCrumb != null)
+                    {
+                        <li class="breadcrumb-item" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ViewBag.BreadCrumb</li>
+                    }
+                    else
+                    {    
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
+                    }
+
+                </ol>
+            </nav>
+
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="blog-post">
+                            <figure class="blog-img">
+                                <a href="/Blog/Post/@item.Id">
+                                    <img src="/Files/ArticleImages/Thumb/@item.Image" alt="@item.Title" style="width:100%">
+                                </a>
+                            </figure>
+                            <div class="blog-body">
+                                <p class="blog-date">
+                                    <span>
+                                        @item.PersianDate
+                                    </span>
+                                    |
+                                    <span>
+                                        نظرات @item.CommentCounter
+                                    </span>
+                                </p>
+                                <h2 class="blog-title">
+                                    <a href="/Blog/Post/@item.Id">
+                                        @item.Title
+                                    </a>
+                                </h2>
+                                <p class="margin-top-17">
+                                    @item.ShortDescription
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+
+
+                    @*<div class="blog-post">
+
+                        <figure class="blog-img">
+                            <a href="/">
+                                <img src="~/Content/client/wp-content/themes/uniqo/img/blog3.jpg" alt="blog-img" style="width:100%">
+                            </a>
+                        </figure>
+                        <div class="blog-body">
+                            <p class="blog-date">
+                                <span>
+                                    4 بهمن 1399
+                                </span>
+                                |
+                                <span>
+                                    نظرات 0
+                                </span>
+                            </p>
+                            <h2 class="blog-title">
+                                <a href="/details">
+                                    هر آنچه باید درباره ما بدانید
+                                </a>
+                            </h2>
+                            <p class="margin-top-17">
+                                هر آنچه باید درباره زینو جم بدانید را در این مقاله بخوانید
+                            </p>
+                        </div>
+                    </div>
+                    <div class="blog-post">
+                        <figure>
+                            <a href="/details">
+                                <img src="~/Content/client/wp-content/themes/uniqo/img/blog.jpg" alt="Trulli" style="width:100%">
+                            </a>
+                        </figure>
+                        <div class="blog-body">
+                            <p class="blog-date">
+                                <span>
+                                    4 بهمن 1399
+                                </span>
+                                |
+                                <span>
+                                    نظرات 0
+                                </span>
+                            </p>
+                            <h2 class="blog-title">
+                                <a href="/details">
+                                    هر آنچه باید درباره ما بدانید
+                                </a>
+                            </h2>
+                            <p class="margin-top-17">
+                                هر آنچه باید درباره زینو جم بدانید را در این مقاله بخوانید
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="blog-post">
+                        <figure>
+                            <a href="/details">
+                                <img src="~/Content/client/wp-content/themes/uniqo/img/blog2.jpg" alt="blog-img" style="width:100%">
+                            </a>
+                        </figure>
+                        <div class="blog-body">
+                            <p class="blog-date">
+                                <span>
+                                    4 بهمن 1399
+                                </span>
+                                |
+                                <span>
+                                    نظرات 0
+                                </span>
+                            </p>
+                            <h2 class="blog-title">
+                                <a href="/details">
+                                    هر آنچه باید درباره ما بدانید
+                                </a>
+                            </h2>
+                            <p class="margin-top-17">
+                                هر آنچه باید درباره زینو جم بدانید را در این مقاله بخوانید
+                            </p>
+                        </div>
+
+                    </div>*@
+
+
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="blog-left">
+                        @Html.Action("ArticleCategoriesSection", "Blog")
+                        @Html.Action("LatestArticlesSection", "Blog")
+                        
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+        @*<section class="our-articles bg-light-theme section-padding pt-0">
+            <div class="blog-page-banner" style="background-image: url(/Files/StaticContentImages/Image/@ViewBag.BlogImage)"></div>
+            <div class="container-fluid">
+                <div class="row">
+                    <aside class="col-lg-3">
+                        <div class="side-bar section-padding pb-0 mb-md-40">
+                            @Html.Action("TopArticlesSection", "Blog")
+                            @Html.Action("ArticleCategoriesSection", "Blog")
+                        </div>
+                    </aside>
+                    <div class="col-lg-9 blog-inner clearfix">
+                        <div class="main-box padding-20 full-width">
+                            <div class="breadcrumb-wrpr">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="/" class="text-light-black">خانه</a>
+                                    </li>
+                                    @if (ViewBag.BreadCrumb == null)
+                                    {
+                                        <li class="breadcrumb-item active" aria-current="page">بلاگ</li>
+                                    }
+                                    else
+                                    {
+                                        <li class="breadcrumb-item">
+                                            <a href="/Blog" class="text-light-black">بلاگ</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">@ViewBag.BreadCrumb</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-xl-6 col-lg-12 col-sm-6">
+                                        <article class="blog-services-wrapper main-box mb-xl-20">
+                                            <div class="post-img">
+                                                <a href="/Blog/Post/@item.Id/@item.Title.Replace(" ", "-")">
+                                                    <img src="/Files/ArticleImages/Thumb/@item.Image" class="img-fluid full-width"
+                                                         alt="@item.Title">
+                                                </a>
+                                            </div>
+                                            <div class="post-meta">
+                                                <div class="author-img" style="width: 50px">
+                                                    <img src="/Files/UserAvatars/@item.AuthorAvatar" class="rounded-circle" alt="image">
+                                                </div>
+                                                <div class="author-meta">
+                                                    <h6 class="no-margin"><span class="text-light-black">@item.Author</span></h6>
+                                                    <p class="no-margin text-light-white">
+                                                        <span class="text-light-white">@item.Role</span> |
+                                                        @item.PersianDate
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="post-content padding-20">
+                                                <h5>
+                                                    <a href="/Blog/Post/@item.Id/@item.Title.Replace(" ", "-")" class="text-light-black">
+                                                        @item.Title
+                                                    </a>
+                                                </h5>
+                                                <p>
+                                                    @item.ShortDescription
+                                                </p>
+                                                <div class="blog-link-wrap">
+                                                    <a href="/Blog/Post/@item.Id/@item.Title.Replace(" ", "-")" class="btn-first white-btn">
+                                                        بیشتر
+                                                        بخوانید
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@

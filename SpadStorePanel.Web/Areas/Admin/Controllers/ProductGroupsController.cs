@@ -41,7 +41,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         {
             ViewBag.Features = _repo.GetFeatures();
             ViewBag.Brands = _repo.GetBrands();
-            ViewBag.ProductGroups = _repo.GetProductGroups();
+            ViewBag.ProductGroups = _repo.GetAllProductGroups();
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
 
             ViewBag.Features = _repo.GetFeatures();
             ViewBag.Brands = _repo.GetBrands();
-            ViewBag.ProductGroups = _repo.GetProductGroups();
+            ViewBag.ProductGroups = _repo.GetAllProductGroups();
             return View(productGroup);
         }
 

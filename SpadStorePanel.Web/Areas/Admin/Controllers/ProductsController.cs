@@ -15,15 +15,15 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly ProductsRepository _repo;
-        private readonly ProductGroupsRepository _pgRepo;
+        private readonly ProductsRepository _productRepo;
+        private readonly ProductGroupsRepository _productGroupRepo;
         private readonly ProductFeatureValuesRepository _featureRepo;
         private readonly ProductMainFeaturesRepository _mainFeatureRepo;
 
-        public ProductsController(ProductsRepository repo, ProductGroupsRepository pgRepo, ProductFeatureValuesRepository featureRepo, ProductMainFeaturesRepository mainFeatureRepo)
+        public ProductsController(ProductsRepository productRepo, ProductGroupsRepository groupRepo, ProductFeatureValuesRepository featureRepo, ProductMainFeaturesRepository mainFeatureRepo)
         {
-            _repo = repo;
-            _pgRepo = pgRepo;
+            _productRepo = productRepo;
+            _productGroupRepo = groupRepo;
             _featureRepo = featureRepo;
             _mainFeatureRepo = mainFeatureRepo;
         }
@@ -31,11 +31,11 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            return View(_repo.GetProducts());
+            return View(_productRepo.GetAllProducts());
         }
         public ActionResult Create()
         {
-            ViewBag.ProductGroups = _pgRepo.GetProductGroups();
+            ViewBag.ProductGroups = _productGroupRepo.GetAllProductGroups();
             return View();
         }
         [HttpPost]
@@ -50,7 +50,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             prod.ProductGroupId = product.ProductGroup;
             prod.Rate = product.Rate;
             prod.ShortDescription = product.ShortDescription;
-            var addProduct = _repo.Add(prod);
+            var addProduct = _productRepo.Add(prod);
             #region Adding Product Features
 
             foreach (var feature in product.ProductFeatures)
@@ -64,7 +64,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     model.Value = feature.Value;
                     model.Quantity = feature.Quantity??0;
                     model.Price = feature.Price ?? 0;
-                    _repo.AddProductMainFeature(model);
+                    _productRepo.AddProductMainFeature(model);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     model.FeatureId = feature.FeatureId;
                     model.SubFeatureId = feature.SubFeatureId;
                     model.Value = feature.Value;
-                    _repo.AddProductFeature(model);
+                    _productRepo.AddProductFeature(model);
                 }
             }
             #endregion
@@ -82,28 +82,28 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         }
         public ActionResult Edit(int id)
         {
-            ViewBag.ProductGroups = _pgRepo.GetProductGroups();
-            var product = _repo.GetProduct(id);
+            ViewBag.ProductGroups = _productGroupRepo.GetAllProductGroups();
+            var product = _productRepo.GetProduct(id);
             return View(product);
         }
         [HttpPost]
         public int? Edit(NewProductViewModel product)
         {
             if (!ModelState.IsValid) return null;
-            var prod = _repo.Get(product.ProductId.Value);
+            var prod = _productRepo.Get(product.ProductId.Value);
             prod.Title = product.Title;
             prod.ShortDescription = product.ShortDescription;
             prod.Description = HttpUtility.UrlDecode(product.Description, System.Text.Encoding.Default);
             prod.BrandId = product.Brand;
             prod.ProductGroupId = product.ProductGroup;
             prod.Rate = product.Rate;
-            var updateProduct = _repo.Update(prod);
+            var updateProduct = _productRepo.Update(prod);
             #region Removing Previous Product Features
-            var productMainFeatures = _repo.GetProductMainFeatures(updateProduct.Id);
+            var productMainFeatures = _productRepo.GetProductMainFeatures(updateProduct.Id);
             foreach (var mainFeature in productMainFeatures)
                 _mainFeatureRepo.Delete(mainFeature.Id);
 
-            var productFeatures = _repo.GetProductFeatures(updateProduct.Id);
+            var productFeatures = _productRepo.GetProductFeatures(updateProduct.Id);
             foreach (var feature in productFeatures)
                 _featureRepo.Delete(feature.Id);
             #endregion
@@ -121,7 +121,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     model.Value = feature.Value;
                     model.Quantity = feature.Quantity ?? 0;
                     model.Price = feature.Price ?? 0;
-                    _repo.AddProductMainFeature(model);
+                    _productRepo.AddProductMainFeature(model);
                 }
                 else
                 {
@@ -130,7 +130,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     model.FeatureId = feature.FeatureId;
                     model.SubFeatureId = feature.SubFeatureId;
                     model.Value = feature.Value;
-                    _repo.AddProductFeature(model);
+                    _productRepo.AddProductFeature(model);
                 }
             }
             #endregion
@@ -143,7 +143,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             #region Upload Image
             if (File != null)
             {
-                var product = _repo.Get(id);
+                var product = _productRepo.Get(id);
                 if (product.Image != null)
                 {
                     if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Image/" + product.Image)))
@@ -167,7 +167,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 // Deleting Temp Image
                 System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Temp/" + newFileName));
                 product.Image = newFileName;
-                _repo.Update(product);
+                _productRepo.Update(product);
                 return true;
 
             }
@@ -177,14 +177,14 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         }
         public JsonResult GetProductGroupFeatures(int id)
         {
-            var features = _pgRepo.GetProductGroupFeatures(id);
+            var features = _productGroupRepo.GetProductGroupFeatures(id);
             var obj = features.Select(item => new FeaturesObjViewModel() {Id = item.Id, Title = item.Title}).ToList();
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetProductFeatures(int id)
         {
-            var mainFeatures = _repo.GetProductMainFeatures(id);
-            var features = _repo.GetProductFeatures(id);
+            var mainFeatures = _productRepo.GetProductMainFeatures(id);
+            var features = _productRepo.GetProductFeatures(id);
             var obj = mainFeatures.Select(mainFeature => new ProductFeaturesViewModel()
                 {
                     ProductId = mainFeature.ProductId,
@@ -209,13 +209,13 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         }
         public JsonResult GetProductGroupBrands(int id)
         {
-            var brands = _pgRepo.GetProductGroupBrands(id);
+            var brands = _productGroupRepo.GetProductGroupBrands(id);
             var obj = brands.Select(item => new BrandsObjViewModel() { Id = item.Id, Name = item.Name }).ToList();
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetFeatureSubFeatures(int id)
         {
-            var subFeatures = _repo.GetSubFeaturesByFeatureId(id);
+            var subFeatures = _productRepo.GetSubFeaturesByFeatureId(id);
             var obj = subFeatures.Select(item => new SubFeaturesObjViewModel() {Id = item.Id, Value = item.Value}).ToList();
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
@@ -225,7 +225,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var product = _repo.Get(id.Value);
+            var product = _productRepo.Get(id.Value);
             if (product == null)
             {
                 return HttpNotFound();
@@ -236,17 +236,17 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var product = _repo.Get(id);
+            var product = _productRepo.Get(id);
             #region Deleting Product Features
-            var productMainFeatures = _repo.GetProductMainFeatures(product.Id);
+            var productMainFeatures = _productRepo.GetProductMainFeatures(product.Id);
             foreach (var mainFeature in productMainFeatures)
                 _mainFeatureRepo.Delete(mainFeature.Id);
 
-            var productFeatures = _repo.GetProductFeatures(product.Id);
+            var productFeatures = _productRepo.GetProductFeatures(product.Id);
             foreach (var feature in productFeatures)
                 _featureRepo.Delete(feature.Id);
             #endregion
-            _repo.Delete(id);
+            _productRepo.Delete(id);
             return RedirectToAction("Index");
         }
     }

@@ -54,7 +54,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.Brands.Where(f => f.IsDeleted == false).ToList();
         }
-        public List<ProductGroup> GetProductGroups()
+        public List<ProductGroup> GetAllProductGroups()
         {
             return _context.ProductGroups.Where(f => f.IsDeleted == false).Include(p => p.Children).OrderByDescending(p=>p.InsertDate).ToList();
         }

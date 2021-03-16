@@ -18,7 +18,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetAllProducts()
         {
             return _context.Products.Where(p => p.IsDeleted == false).Include(a => a.ProductGroup).ToList();
         }
@@ -65,6 +65,15 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
             _logger.LogEvent(feature.GetType().Name, feature.Id, "Add");
             return feature;
+        }
+
+        public List<Product> getProductsByGroupId(int id)
+        {
+            var allProducts = _context.Products.Where(g => g.IsDeleted == false).Include(g => g.ProductGroup);
+
+            var ProductIdCategory = allProducts.Where(g => g.ProductGroup.Id == id).OrderByDescending(g => g.Id).ToList();
+
+            return ProductIdCategory;
         }
     }
 }
