@@ -1,0 +1,250 @@
+﻿@model SpadStorePanel.Web.ViewModels.ContactUsViewModel
+
+@{
+    ViewBag.Title = "تماس با ما";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="banner-wrapper has_background">
+    <img src="~/Content/client/images/23.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title">تماس با ما</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="~/home"><span>خانه</span></a></li>
+                <li class="trail-item trail-end active">
+                    <span>@ViewBag.Title</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="site-main main-container no-sidebar main-contentblog">
+    <div class="section-041">
+        <div class="container">
+            <div class="google-map">
+                <iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="section-042">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 offset-xl-1 col-xl-10 col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="az_custom_heading">تشک روبال</h4>
+
+                            <p>
+                                نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰ فروشگاه مرکزی بازار مبل یافت آباد<br> جنوب به شمال آیت الله سعیدی<br>
+                                تلفن:۶۶۲۲۳۴۳۱ ۶۶۲۲۳۴۳۱
+                            </p>
+                            <h4 class="az_custom_heading">ساعت کار</h4>
+                            <p>
+                                شنبه تا پنجشنبه<br>
+                            </p>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div role="form" class="wpcf7">
+                                <form class="wpcf7-form">
+                                    <p>
+                                        <label>
+                                            نام *<br>
+                                            <span class="wpcf7-form-control-wrap your-name">
+                                                <input name="your-name" value="" size="40"
+                                                       class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                       type="text">
+                                            </span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            ایمیل *<br>
+                                            <span class="wpcf7-form-control-wrap your-email">
+                                                <input name="your-email" value="" size="40"
+                                                       class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                       type="email">
+                                            </span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            پیام شما *<br>
+                                            <span class="wpcf7-form-control-wrap your-message">
+                                                <textarea name="your-message"
+                                                          cols="40" rows="10"
+                                                          class="wpcf7-form-control wpcf7-textarea"></textarea>
+                                            </span>
+                                        </label>
+                                    </p>
+                                    <p><input value="ثبت" class="wpcf7-form-control wpcf7-submit" type="submit"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form" }))
+    {
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "text-light-black fw-600" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-submit", placeholder = "نام و نام خانوادگی" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "text-light-black fw-600" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-submit", placeholder = "ایمیل" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "text-light-black fw-600" })
+                        @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control form-control-submit", placeholder = "پیام" } })
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit"
+                            class="btn-second btn-submit full-width">
+                        ارسال
+                    </button>
+                </div>
+            </div>
+        </form>
+    }*@
+
+@*<div id="parent-page" class="parent-page">
+
+    <div class="container rtl">
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+            </ol>
+        </nav>
+        <h1 class="page-title">@ViewBag.Title</h1>*@
+@*<div class="mapouter" style="margin-bottom:50px ">
+        <div class="gmap_canvas">
+            <iframe width="100%" height="500" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=Tehran&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                    scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <a href="https://putlocker-is.org"></a><br>
+            <style>
+                .mapouter {
+                    position: relative;
+                    text-align: right;
+                    height: 400px;
+                    width: 100%;
+                }
+            </style>
+            <a href="https://www.embedgooglemap.net"></a>
+            <style>
+                .gmap_canvas {
+                    overflow: hidden;
+                    background: none !important;
+                    height: 400px;
+                    width: 100%;
+                }
+            </style>
+        </div>
+    </div>*@
+@*@Html.Raw(Model.Map.Description)
+
+        <div class="contact-details">
+
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div>
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span class="contact-txt">
+                            ‌@Model.Address.ShortDescription
+                        </span>
+                    </div>
+                    <div>
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <span class="contact-txt">
+                            @Model.Phone.ShortDescription
+                        </span>
+                    </div>
+                    <div>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope-open"></i>
+                        </div>
+                        <span class="contact-txt">
+                            @Model.Email.ShortDescription
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+
+                </div>
+                <div class="col-md-12">
+                    <h2 style="color: #c4161c;
+                            margin-bottom: 20px;
+                            font-weight: bold;">
+                        ارسال پیام برای ما
+                    </h2>
+                    @using (Html.BeginForm("contactUsForm", "home", FormMethod.Post, new { id = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class=" row form-inline">
+                            <div class="form-group col-md-12">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "custom-inpt inpt-50", placeholder = "نام و نام خانوادگی" } })
+                                    </div>
+                                    <div class="row">
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger " })
+                                    </div>
+                                </div>
+                                <div class="fol-md-6">
+                                    @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "custom-inpt inpt-50", placeholder = "ایمیل خود را وارد کنید" } })
+
+                                    @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger " })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(model => model.Message, new { placeholder = "متن مورد نظر را وارد کنید", rows = "5", @class = "contact-textarea" })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" value="تایید" class="contact-submit">
+
+                    }
+                    </>
+                </div>
+            </div>
+
+
+        </div>
+    </div>*@
+
+@*<script>
+        $.validator.unobtrusive.parse("#form");
+    </script>*@
+

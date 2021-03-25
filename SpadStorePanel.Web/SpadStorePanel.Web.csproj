@@ -216,6 +216,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4944,16 +4945,20 @@
     <Content Include="Views\Blog\LatestArticlesSection.cshtml" />
     <Content Include="Views\Blog\TopArticlesSection.cshtml" />
     <Content Include="Views\Home\About-old.cshtml" />
-    <Content Include="Views\Home\ContactUsForm.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\ContactUsSummary.cshtml" />
     <Content Include="Views\Home\Index-old.cshtml" />
     <Content Include="Views\Home\IndexPartOne.cshtml" />
     <Content Include="Views\Home\IndexPartThree.cshtml" />
     <Content Include="Views\Home\IndexPartTwo.cshtml" />
-    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Home\SocialSection.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
+    <Content Include="Views\Blog\SocialSection.cshtml" />
+    <Content Include="Views\Blog\InstagramSection.cshtml" />
+    <Content Include="Views\Blog\TagsSection.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202012210945109_Initial.Designer.cs">
       <DependentUpon>202012210945109_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103161036309_changesInRepositories.firstRoyalSpecificMigration.cs" />
+    <Compile Include="Migrations\202103161036309_changesInRepositories.firstRoyalSpecificMigration.Designer.cs">
+      <DependentUpon>202103161036309_changesInRepositories.firstRoyalSpecificMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012210945109_Initial.resx">
       <DependentUpon>202012210945109_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103161036309_changesInRepositories.firstRoyalSpecificMigration.resx">
+      <DependentUpon>202103161036309_changesInRepositories.firstRoyalSpecificMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

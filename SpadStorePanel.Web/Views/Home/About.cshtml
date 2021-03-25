@@ -8,7 +8,7 @@
     @Html.Action("Testimonials","Home")
     @Html.Action("LatestArticlesSection","Blog")*@
 
-<div style="background-image: url(../Content/client/wp-content/themes/uniqo/img/2-2.jpg);background-size: cover;background-position: center;height: 100%">
+@*<div style="background-image: url(../Content/client/wp-content/themes/uniqo/img/2-2.jpg);background-size: cover;background-position: center;height: 100%">
     <div class="rtl">
 
 
@@ -24,7 +24,7 @@
         </svg>
         <div class="about_content_box" id="about_content_box" style="margin-top: -24px; top: 0px;">
             <div class="content_container" style="min-height: 33vh">
-                <div class="about_txt" dir="rtl" >
+                <div class="about_txt" dir="rtl">
                     <p style="font-family: 'Vazir'!important;">
                         @Model.AboutDescription
                     </p>
@@ -35,4 +35,943 @@
 
 
     </div>
+</div>*@
+
+
+@*<header id="header" class="header style-04 header-transparent header-sticky">
+    <div class="header-middle">
+        <div class="header-middle-inner">
+            <div class="header-search-mid">
+                <div class="header-search">
+                    <div class="block-search">
+                        <form role="search" method="get"
+                              class="form-search block-search-form lynessa-live-search-form">
+                            <div class="form-content search-box results-search">
+                                <div class="inner">
+                                    <input autocomplete="off" class="searchfield txt-livesearch input" name="s"
+                                           value="" placeholder="جستجو .." type="text">
+                                </div>
+                            </div>
+                            <input name="post_type" value="product" type="hidden">
+                            <input name="taxonomy" value="product_cat" type="hidden">
+
+                            <button type="submit" class="btn-submit">
+                                <span class="pe-7s-search"></span>
+                            </button>
+                        </form> block search 
+                    </div>
+                </div>
+            </div>
+            <div class="header-logo-menu">
+                <div class="block-menu-bar">
+                    <a class="menu-bar menu-toggle" href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="header-control">
+                <div class="header-control-inner">
+                    <div class="meta-dreaming">
+                        <div class="menu-item block-user block-dreaming lynessa-dropdown">
+                            <a class="block-link" href="my-account.html">
+                                <span class="pe-7s-user"></span>
+                            </a>
+
+                        </div>
+                        <div class="block-minicart block-dreaming lynessa-mini-cart lynessa-dropdown">
+                            <div class="shopcart-dropdown block-cart-link" data-lynessa="lynessa-dropdown">
+                                <a class="block-link link-dropdown" href="cart.html">
+                                    <span class="pe-7s-shopbag"></span>
+                                    <span class="count">3</span>
+                                </a>
+                            </div>
+                            <div class="widget lynessa widget_shopping_cart">
+                                <div class="closingbtn" style="width: 50px ; height: 50px ; position: absolute; right: 0 ; top:  0;">
+                                    <i class="fa fa-close" style="font-size: 45px;"></i>
+
+                                </div>
+                                <div class="widget_shopping_cart_content">
+                                    <h3 class="minicart-title">
+                                        حساب شما<span class="minicart-number-items">3</span>
+                                    </h3>
+                                    <ul class="lynessa-mini-cart cart_list product_list_widget">
+                                        <li class="lynessa-mini-cart-item mini_cart_item">
+                                            <a href="#" class="remove remove_from_cart_button">×</a>
+                                            <a href="#">
+                                                <img src="~/Content/client/images/13.jpg"
+                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                     alt="img" width="600" height="300px">رویال دو ویژه
+                                            </a>
+                                            <span class="quantity">
+                                                1 × <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">$</span>150.00
+                                                </span>
+                                            </span>
+                                        </li>
+                                        <li class="lynessa-mini-cart-item mini_cart_item">
+                                            <a href="#" class="remove remove_from_cart_button">×</a>
+                                            <a href="#">
+                                                <img src="~/Content/client/images/14.jpg"
+                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                     alt="img" width="600" height="300px"> محصول
+                                            </a>
+                                            <span class="quantity">
+                                                1 × <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">$</span>129.00
+                                                </span>
+                                            </span>
+                                        </li>
+                                        <li class="lynessa-mini-cart-item mini_cart_item">
+                                            <a href="#" class="remove remove_from_cart_button">×</a>
+                                            <a href="#">
+                                                <img src="~/Content/client/images/12.jpg"
+                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                     alt="img" width="600" height="300px"> محصول
+                                            </a>
+                                            <span class="quantity">
+                                                1 × <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">$</span>139.00
+                                                </span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                    <p class="lynessa-mini-cart__total total">
+                                        <strong>جمع کل</strong>
+                                        <span class="lynessa-Price-amount amount">
+                                            <span class="lynessa-Price-currencySymbol">$</span>418.00
+                                        </span>
+                                    </p>
+                                    <p class="lynessa-mini-cart__buttons buttons">
+                                        <a href="cart.html" class="button lynessa-forward">مشاهده سبد خرید</a>
+                                        <a href="#"
+                                           class="button checkout lynessa-forward">تسویه حساب </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="header-wrap-stick" style="position: relative; top: 30px;">
+        <div class="header-position">
+            <div class="header-nav">
+                <div class="container">
+                    <div class="lynessa-menu-wapper"></div>
+                    <div class="header-nav-inner">
+                        <div class="box-header-nav menu-nocenter" style="position: relative;">
+
+                            <div class="header-logo">
+                                <a href="#">
+                                    <img alt="Lynessa" src="~/Content/client/images/mainlogo3.png" class="logo">
+                                </a>
+                            </div>
+
+
+
+                            <ul id="menu-primary-menu"
+                                class="clone-main-menu lynessa-clone-mobile-menu lynessa-nav main-menu">
+                                <li id="menu-item-230"
+                                    class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-230 parent parent-megamenu item-megamenu ">
+                                    <a class="lynessa-menu-item-title" title="صفحه اصلی" href="index.html">صفحه اصلی</a>
+
+
+                                </li>
+                                <li id="menu-item-228"
+                                    class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-228 parent parent-megamenu item-megamenu menu-item-has-children">
+                                    <a class="lynessa-menu-item-title" title="محصولات"
+                                       href="shop.html">محصولات</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="submenu megamenu megamenu-elements">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="lynessa-listitem style-01">
+                                                    <div class="listitem-inner">
+                                                        <h4 class="title">محصول </h4>
+                                                        <ul class="listitem-list">
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">محصول </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">محصول </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="lynessa-listitem style-01">
+                                                    <div class="listitem-inner">
+                                                        <h4 class="title">
+                                                            محصول
+                                                        </h4>
+                                                        <ul class="listitem-list">
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    محصول
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="lynessa-listitem style-01">
+                                                    <div class="listitem-inner">
+                                                        <h4 class="title">
+                                                            محصول
+                                                        </h4>
+                                                        <ul class="listitem-list">
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    اینستاگرام
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    خبرنامه
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   target="_self">
+                                                                    تست
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                                <li id="menu-item-996"
+                                    class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-996 parent parent-megamenu item-megamenu">
+                                    <a class="lynessa-menu-item-title" title="بلاگ"
+                                       href="blog.html">بلاگ</a>
+
+
+                                </li>
+                                <li id="menu-item-237"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-237 parent">
+                                    <a class="lynessa-menu-item-title" title="درباره ما" href="about.html">درباره ما</a>
+
+
+                                </li>
+                                <li id="menu-item-237"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-237 parent">
+                                    <a class="lynessa-menu-item-title" title="تماس با ما" href="contact.html">تماس با ما</a>
+
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-mobile">
+        <div class="header-mobile-left">
+            <div class="block-menu-bar">
+                <a class="menu-bar menu-toggle" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="header-search lynessa-dropdown">
+                <div class="header-search-inner" data-lynessa="lynessa-dropdown">
+                    <a href="#" class="link-dropdown block-link">
+                        <span class="pe-7s-search"></span>
+                    </a>
+                </div>
+                <div class="block-search">
+                    <form role="search" method="get"
+                          class="form-search block-search-form lynessa-live-search-form">
+                        <div class="form-content search-box results-search">
+                            <div class="inner">
+                                <input autocomplete="off" class="searchfield txt-livesearch input" name="s" value=""
+                                       placeholder="جستجو..." type="text">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <span class="pe-7s-search"></span>
+                        </button>
+                    </form> block search 
+                </div>
+            </div>
+
+        </div>
+
+        <div class="header-mobile-right">
+            <div class="header-control-inner">
+                <div class="meta-dreaming">
+                    <div class="menu-item block-user block-dreaming lynessa-dropdown">
+                        <a class="block-link" href="my-account.html">
+                            <span class="pe-7s-user"></span>
+                        </a>
+
+                    </div>
+                    <div class="block-minicart block-dreaming lynessa-mini-cart lynessa-dropdown">
+                        <div class="shopcart-dropdown block-cart-link" data-lynessa="lynessa-dropdown">
+                            <a class="block-link link-dropdown" href="#">
+                                <span class="pe-7s-shopbag"></span>
+                                <span class="count">3</span>
+                            </a>
+                        </div>
+                        <div class="widget lynessa widget_shopping_cart">
+                            <div class="closingbtn" style="width: 50px ; height: 50px ; position: absolute; right: 0 ; top:  0;">
+                                <i class="fa fa-close" style="font-size: 45px;"></i>
+
+                            </div>
+                            <div class="widget_shopping_cart_content">
+                                <h3 class="minicart-title">حساب شما<span class="minicart-number-items">3</span></h3>
+                                <ul class="lynessa-mini-cart cart_list product_list_widget">
+                                    <li class="lynessa-mini-cart-item mini_cart_item">
+                                        <a href="#" class="remove remove_from_cart_button">×</a>
+                                        <a href="#">
+                                            <img src="~/Content/client/images/13.jpg"
+                                                 class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                 alt="img" width="600" height="300px">رویال دو ویژه
+                                        </a>
+                                        <span class="quantity">
+                                            1 × <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>150.00
+                                            </span>
+                                        </span>
+                                    </li>
+                                    <li class="lynessa-mini-cart-item mini_cart_item">
+                                        <a href="#" class="remove remove_from_cart_button">×</a>
+                                        <a href="#">
+                                            <img src="~/Content/client/images/14.jpg"
+                                                 class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                 alt="img" width="600" height="300px">نام محصولات
+                                        </a>
+                                        <span class="quantity">
+                                            1 × <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>129.00
+                                            </span>
+                                        </span>
+                                    </li>
+                                    <li class="lynessa-mini-cart-item mini_cart_item">
+                                        <a href="#" class="remove remove_from_cart_button">×</a>
+                                        <a href="#">
+                                            <img src="~/Content/client/images/13.jpg"
+                                                 class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                 alt="img" width="600" height="300px">نام محصولات
+                                        </a>
+                                        <span class="quantity">
+                                            1 × <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>139.00
+                                            </span>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <p class="lynessa-mini-cart__total total">
+                                    <strong>مجموع</strong>
+                                    <span class="lynessa-Price-amount amount">
+                                        <span class="lynessa-Price-currencySymbol">$</span>418.00
+                                    </span>
+                                </p>
+                                <p class="lynessa-mini-cart__buttons buttons">
+                                    <a href="cart.html" class="button lynessa-forward">مشاهده سبد خرید</a>
+                                    <a href="#" class="button checkout lynessa-forward">تسویه حساب</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>*@
+<div class="banner-wrapper has_background">
+    <img src="~/Content/client/images/23.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title">  درباره ما</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="#"><span>خانه</span></a></li>
+                <li class="trail-item trail-end active">
+                    <span> درباره ما </span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+<div class="site-main  main-container no-sidebar">
+    <div class="section-037">
+        <div class="container">
+            <div class="lynessa-popupvideo style-01">
+                <div class="popupvideo-inner">
+                    <div class="icon">
+                        <img src="~/Content/client/images/2.jpg"
+                             class="attachment-full size-full" alt="img">
+                        <div class="product-video-button">
+                            <a class="buttonvideo" href="#" data-videosite="#" data-videoid="158800043" tabindex="0">
+                                <div class="videobox_animation circle_1"></div>
+                                <div class="videobox_animation circle_2"></div>
+                                <div class="videobox_animation circle_3"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="popupvideo-wrap">
+                        <h4 class="title">
+                            درباره ما
+                        </h4>
+                        <p class="desc text-justify">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p class=" text-justify">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-001">
+        <div class="container">
+            <div class="lynessa-heading style-01">
+                <div class="heading-inner">
+                    <h3 class="title">
+                        تیم ما
+                    </h3>
+
+                </div>
+            </div>
+            <div class="lynessa-slide">
+                <div class="owl-slick equal-container better-height"
+                     data-slick="{&quot;arrows&quot;:true,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:3,&quot;rows&quot;:1}"
+                     data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
+                    <div class="lynessa-team style-01">
+                        <div class="team-inner">
+                            <div class="thumb-avatar">
+                                <a href="#" target="_self" tabindex="0">
+                                    <img src="~/Content/client/images/team-img1.jpg"
+                                         class="attachment-full size-full" alt="img">
+                                </a>
+                                <div class="list-social">
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-facebook"></i></a>
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-twitter"></i></a>
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="content-team">
+                                <h3 class="name">
+                                    <a href="#" target="_self" tabindex="0">
+                                        نام  فامیلی
+                                    </a>
+                                </h3>
+                                <p class="positions">مدیر</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lynessa-team style-01">
+                        <div class="team-inner">
+                            <div class="thumb-avatar">
+                                <a href="#" target="_self" tabindex="0">
+                                    <img src="~/Content/client/images/team-img2.jpg"
+                                         class="attachment-full size-full" alt="img">
+                                </a>
+                                <div class="list-social">
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-facebook"></i></a>
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-twitter"></i></a>
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="content-team">
+                                <h3 class="name">
+                                    <a href="#" target="_self" tabindex="0">
+                                        نام فامیلی
+                                    </a>
+                                </h3>
+                                <p class="positions"> فروش</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lynessa-team style-01">
+                        <div class="team-inner">
+                            <div class="thumb-avatar">
+                                <a href="#" target="_self" tabindex="0">
+                                    <img src="~/Content/client/images/team-img3.jpg"
+                                         class="attachment-full size-full" alt="img">
+                                </a>
+                                <div class="list-social">
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-facebook"></i></a>
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-twitter"></i></a>
+                                    <a href="#" tabindex="0"><i class="az_tta-icon fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="content-team">
+                                <h3 class="name">
+                                    <a href="#" target="_self" tabindex="0">
+                                        نام فامیلی
+                                    </a>
+                                </h3>
+                                <p class="positions">مدیر وبسایت</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lynessa-team style-01">
+                        <div class="team-inner">
+                            <div class="thumb-avatar">
+                                <a href="#" target="_self" tabindex="-1">
+                                    <img src="~/Content/client/images/team-img4.jpg"
+                                         class="attachment-full size-full" alt="img">
+                                </a>
+                                <div class="list-social">
+                                    <a href="#" tabindex="-1"><i class="az_tta-icon fa fa-facebook"></i></a>
+                                    <a href="#" tabindex="-1"><i class="az_tta-icon fa fa-twitter"></i></a>
+                                    <a href="#" tabindex="-1"><i class="az_tta-icon fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="content-team">
+                                <h3 class="name">
+                                    <a href="#" target="_self" tabindex="-1">
+                                        نام فامیلی
+                                    </a>
+                                </h3>
+                                <p class="positions">نام بخش</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-040">
+        <div class="lynessa-heading style-01">
+            <div class="heading-inner">
+                <h3 class="title">
+                    مارا دنبال کنید
+                </h3>
+                <div class="subtitle">
+                    @@instaid
+                </div>
+            </div>
+        </div>
+        <div class="lynessa-instagram style-01">
+            <div class="instagram-owl owl-slick"
+                 data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:0,&quot;dots&quot;:false,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:6,&quot;rows&quot;:1}"
+                 data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:5,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:6,&quot;slidesMargin&quot;:&quot;0&quot;}}]">
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta1.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta2.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta3.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta4.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta5.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta6.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta7.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="rows-space-0">
+                    <a href="#" class="item">
+                        <img class="img-responsive" src="~/Content/client/images/insta8.jpg" alt="About">
+                        <span class="instagram-info">
+                            <span class="social-wrap">
+                                <span class="social-info">
+                                    1                                                <i class="flaticon-chat"></i>
+                                </span>
+                                <span class="social-info">
+                                    0                                                <i class="flaticon-heart-shape-outline"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<footer id="footer" class="footer style-04">
+    <div class="section-001 section-009">
+        <div class="container">
+            <div class="lynessa-newsletter style-01">
+                <div class="newsletter-inner">
+                    <div class="newsletter-info">
+                        <div class="newsletter-wrap">
+                            <h3 class="title">خبرنامه<span></span></h3>
+                            <h4 class="subtitle">30% تخفیف</h4>
+                            <p class="desc">
+                                توضیحات تخفیفات
+                            </p>
+                        </div>
+                    </div>
+                    <div class="newsletter-form-wrap">
+                        <div class="newsletter-form-inner">
+                            <input class="email email-newsletter" name="email" placeholder="ایمیل خود را وارد کنید..."
+                                   type="email">
+                            <a href="#" class="button btn-submit submit-newsletter">
+                                <span class="text">ارسال</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-025">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 d-lg-none">
+                    <div class="logo-footer">
+                        <img src="~/Content/client/images/mainlogo.png"
+                             class="az_single_image-img attachment-full" alt="img">
+                    </div>
+                    <div class="footer-desc">
+                        جنوب به شمال آیت الله سعیدی<br />
+                        نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰
+                        <br>
+                        <p> ۶۶۲۲۳۴۳۱-۶۶۲۰۱۶۲۲:تلفن</p>
+                    </div>
+                    <div class="lynessa-socials style-01">
+                        <div class="content-socials">
+                            <ul class="socials-list">
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-pinterest-p"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="lynessa-listitem style-04">
+                        <div class="listitem-inner">
+                            <h4 class="title">خدمات </h4>
+                            <ul class="listitem-list">
+                                <li>
+                                    <a href="#" target=" _blank">
+                                        خرید انلاین
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        امنیت خرید
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        گارانتی تعویض
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        ارسال به شهرستان
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="logo-footer">
+                        <img src="~/Content/client/images/mainlogo.png"
+                             class="az_single_image-img attachment-full" alt="img">
+                    </div>
+                    <div class="footer-desc">
+                        جنوب به شمال آیت الله سعیدی <br />
+
+                        نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰
+                        فروشگاه مرکزی بازار مبل یافت آباد
+                        <br>
+                        <p> ۶۶۲۲۳۴۳۱-۶۶۲۰۱۶۲۲:تلفن</p>
+                    </div>
+                    <div class="lynessa-socials style-01">
+                        <div class="content-socials">
+                            <ul class="socials-list">
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-pinterest-p"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="lynessa-listitem style-04">
+                        <div class="listitem-inner">
+                            <h4 class="title">
+                                اطلاعات تماس
+                            </h4>
+                            <ul class="listitem-list">
+                                <li>
+                                    <a href="#" target="_self">
+                                        صفحه اصلی
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        خدمات
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        درباره ما
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-016">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>     می باشد  <a href="#">royalmattressorg</a> کلیه حق و حقوق متعلق به </p>
+                    <p>    طراحی و پیاده سازی توسط   <a href="https://www.spad.co/" target="_blank" rel=”nofollow”>اسپاد</a>  </p>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="payment">
+                        <img src="~/Content/client/images/payment.png"
+                             class="az_single_image-img attachment-full" alt="img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="footer-device-mobile">
+    <div class="wapper">
+        <div class="footer-device-mobile-item device-home">
+            <a href="index.html">
+                <span class="icon">
+                    <span class="pe-7s-home"></span>
+                </span>
+                خانه
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-wishlist">
+            <a href="wishlist.html">
+                <span class="icon">
+                    <span class="pe-7s-like"></span>
+                </span>
+                علاقه مندی ها
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-cart">
+            <a href="#">
+                <span class="icon">
+                    <span class="pe-7s-shopbag"></span>
+                    <span class="count-icon">
+                        0
+                    </span>
+                </span>
+                <span class="text">سبد خرید</span>
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-user">
+            <a href="my-account.html">
+                <span class="icon">
+                    <span class="pe-7s-user"></span>
+                </span>
+                حساب کاربری
+            </a>
+        </div>
+    </div>
+</div>*@
+<a href="#" class="backtotop active">
+    <i class="fa fa-angle-up"></i>
+</a>
+<script src="~/Content/client/js/jquery-1.12.4.min.js"></script>
+<script src="~/Content/client/js/bootstrap.min.js"></script>
+<script src="~/Content/client/js/chosen.min.js"></script>
+<script src="~/Content/client/js/countdown.min.js"></script>
+<script src="~/Content/client/js/jquery.scrollbar.min.js"></script>
+<script src="~/Content/client/js/lightbox.min.js"></script>
+<script src="~/Content/client/js/magnific-popup.min.js"></script>
+<script src="~/Content/client/js/slick.js"></script>
+<script src="~/Content/client/js/jquery.zoom.min.js"></script>
+<script src="~/Content/client/js/threesixty.min.js"></script>
+<script src="~/Content/client/js/jquery-ui.min.js"></script>
+<script src="~/Content/client/js/mobilemenu.js"></script>
+<script src="~/Content/client/js/mylightbox.js"></script>
+<script src="~/Content/client/js/functions.js"></script>

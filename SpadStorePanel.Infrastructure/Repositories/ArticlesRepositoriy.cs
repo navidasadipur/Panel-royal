@@ -25,14 +25,18 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.Articles.Include(a=>a.User).Include(a=>a.ArticleCategory).Include(a=>a.ArticleHeadLines).FirstOrDefault(a=>a.Id == id);
         }
+
         public List<Article> GetArticles()
         {
-            return _context.Articles.Where(a=>a.IsDeleted == false).Include(a => a.User).Include(a=>a.ArticleCategory).OrderBy(a=>a.InsertDate).ToList();
+            return _context.Articles.Where(a => a.IsDeleted == false).Include(a => a.User).Include(a => a.ArticleTags).Include(a => a.ArticleCategory).Include(a => a.ArticleComments).OrderByDescending(a => a.AddedDate).ToList();
         }
+
         public List<ArticleCategory> GetArticleCategories()
         {
             return _context.ArticleCategories.Where(a => a.IsDeleted == false).ToList();
         }
+
+
         public void AddArticle(Article article)
         {
             var user = GetCurrentUser();
@@ -44,12 +48,14 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _context.SaveChanges();
             _logger.LogEvent(article.GetType().Name, article.Id, "Add");
         }
+
         public string GetArticleTagsStr(int articleId)
         {
             var articleTags = _context.ArticleTags.Where(t => t.ArticleId == articleId && t.IsDeleted == false).Select(t=>t.Title).ToList();
             var tagsStr = string.Join("-", articleTags.ToList());
             return tagsStr;
         }
+
         public void AddArticleTags(int articleId, string articleTags)
         {
             if (string.IsNullOrEmpty(articleTags))
@@ -72,6 +78,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
                 _context.SaveChanges();
             }
         }
+
         public void AddArticleHeadLine(ArticleHeadLine headLine)
         {
             var user = GetCurrentUser();
@@ -81,6 +88,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _context.SaveChanges();
             _logger.LogEvent(headLine.GetType().Name, headLine.Id, "Add");
         }
+
         //public Article DeleteArticle(int articleId)
         //{
         //    var article = _context.Articles.Find(articleId);
@@ -89,5 +97,60 @@ namespace SpadStorePanel.Infrastructure.Repositories
         //    var articleTags = _context.ArticleTags.Where(t => t.ArticleId == articleId).ToList();
         //    var articeheadLines = _context.
         //}
+
+        public List<Article> GetTopArticles(int? take = null)
+        {
+            return take != null ? _context.Articles.Where(a => a.IsDeleted == false).OrderByDescending(a => a.ViewCount).Take(take.Value).ToList() : _context.Articles.OrderByDescending(a => a.ViewCount).ToList();
+        }
+        public List<Article> GetArticlesByCategory(int categoryId)
+        {
+            return _context.Articles.Where(a => a.IsDeleted == false && a.ArticleCategoryId == categoryId).Include(a => a.User).Include(a => a.ArticleCategory).Include(a => a.ArticleComments).OrderByDescending(a => a.AddedDate).ToList();
+        }
+
+        public string GetAuthorRole(string userId)
+        {
+            var userRole = _context.UserRoles.FirstOrDefault(ur => ur.UserId == userId);
+            var role = _context.Role.FirstOrDefault(r => r.Id == userRole.RoleId);
+            return role.RoleNameLocal;
+        }
+
+        public int GetArticlesCount(int? categoryId = null)
+        {
+            if (categoryId == null)
+                return _context.Articles.Count(a => a.IsDeleted == false);
+            else
+                return _context.Articles
+                    .Count(a => a.IsDeleted == false && a.ArticleCategoryId == categoryId.Value);
+        }
+
+        public ArticleCategory GetCategory(int id)
+        {
+            return _context.ArticleCategories.Find(id);
+        }
+        public List<ArticleComment> GetArticleComments(int articleId)
+        {
+            return _context.ArticleComments.Where(c => c.IsDeleted == false && c.ArticleId == articleId).ToList();
+        }
+        public List<ArticleTag> GetArticleTags(int articleId)
+        {
+            return _context.ArticleTags.Where(c => c.IsDeleted == false && c.ArticleId == articleId).ToList();
+        }
+        public void AddComment(ArticleComment comment)
+        {
+            _context.ArticleComments.Add(comment);
+            _context.SaveChanges();
+        }
+
+        public void UpdateArticleViewCount(int articleId)
+        {
+            var article = _context.Articles.Find(articleId);
+            article.ViewCount++;
+            _context.Entry(article).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+        public List<Article> GetLatestArticles(int? take = null)
+        {
+            return take != null ? _context.Articles.Where(a => a.IsDeleted == false).OrderByDescending(a => a.AddedDate).Take(take.Value).ToList() : _context.Articles.OrderByDescending(a => a.AddedDate).ToList();
+        }
     }
 }

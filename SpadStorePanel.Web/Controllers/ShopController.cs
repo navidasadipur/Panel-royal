@@ -11,7 +11,7 @@ using SpadStorePanel.Web.ViewModels;
 
 namespace SpadCompanyPanel.Web.Controllers
 {
-    public class HomeController : Controller
+    public class ShopController : Controller
     {
         private readonly StaticContentDetailsRepository _contentDetailsRepo;
         private readonly ProductGalleriesRepository _productGalleryRepo;
@@ -21,7 +21,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ProductGroupsRepository _prodectGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
 
-        public HomeController(StaticContentDetailsRepository contentRepo,
+        public ShopController(StaticContentDetailsRepository contentRepo,
             ProductGalleriesRepository productGalleryRepo,
             ProductsRepository productRepo,
             ContactFormsRepository contactFormRepo,
@@ -39,26 +39,10 @@ namespace SpadCompanyPanel.Web.Controllers
             this._prodectGroupsRepo = productGroupRepo;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
         }
-        public ActionResult Index()
-        {
-            //return Redirect("/Admin/Dashboard");
-            //ViewBag.Instagram = _contentDetailsRepo.GetContentByTypeId(3);
 
-            return View();
-        }
-        public ActionResult Navbar()
-        {
-            //ViewBag.Phone = _contentDetailsRepo.GetStaticContentDetail((int) StaticContents.Phone).ShortDescription;
-
-            var viewModel = new NavbarViewModel
-            {
-                ProductCategories = _prodectGroupsRepo.GetAllProductGroups()
-            };
-
-            return PartialView(viewModel);
-        }
-
-        public ActionResult Shop(int? id)
+        [Route("Shop")]
+        [Route("Shop/{id}")]
+        public ActionResult Index(int? id)
         {
             var viewModel = new ProductViewModel();
 

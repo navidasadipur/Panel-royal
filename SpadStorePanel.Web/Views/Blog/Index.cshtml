@@ -6,240 +6,609 @@
 
 
 
-    <div id="parent-page" class="parent-page">
+@*<div id="parent-page" class="parent-page">
 
-        <div class="container rtl">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">خانه</a></li>
-                    @if (ViewBag.BreadCrumb != null)
-                    {
-                        <li class="breadcrumb-item" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">@ViewBag.BreadCrumb</li>
-                    }
-                    else
-                    {    
-                        <li class="breadcrumb-item active" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
-                    }
+    <div class="container rtl">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">خانه</a></li>
+                @if (ViewBag.BreadCrumb != null)
+                {
+                    <li class="breadcrumb-item" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@ViewBag.BreadCrumb</li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
+                }
 
-                </ol>
-            </nav>
+            </ol>
+        </nav>
 
-            <div class="row">
-                <div class="col-md-8 col-xs-12">
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
 
-                    @foreach (var item in Model)
-                    {
-                        <div class="blog-post">
-                            <figure class="blog-img">
-                                <a href="/Blog/Post/@item.Id">
-                                    <img src="/Files/ArticleImages/Thumb/@item.Image" alt="@item.Title" style="width:100%">
-                                </a>
-                            </figure>
-                            <div class="blog-body">
-                                <p class="blog-date">
-                                    <span>
-                                        @item.PersianDate
-                                    </span>
-                                    |
-                                    <span>
-                                        نظرات @item.CommentCounter
-                                    </span>
-                                </p>
-                                <h2 class="blog-title">
-                                    <a href="/Blog/Post/@item.Id">
-                                        @item.Title
-                                    </a>
-                                </h2>
-                                <p class="margin-top-17">
-                                    @item.ShortDescription
-                                </p>
-                            </div>
-                        </div>
-                    }
-
-
-
-                    @*<div class="blog-post">
-
+                @foreach (var item in Model)
+                {
+                    <div class="blog-post">
                         <figure class="blog-img">
-                            <a href="/">
-                                <img src="~/Content/client/wp-content/themes/uniqo/img/blog3.jpg" alt="blog-img" style="width:100%">
+                            <a href="/Blog/Post/@item.Id">
+                                <img src="/Files/ArticleImages/Thumb/@item.Image" alt="@item.Title" style="width:100%">
                             </a>
                         </figure>
                         <div class="blog-body">
                             <p class="blog-date">
                                 <span>
-                                    4 بهمن 1399
+                                    @item.PersianDate
                                 </span>
                                 |
                                 <span>
-                                    نظرات 0
+                                    نظرات @item.CommentCounter
                                 </span>
                             </p>
                             <h2 class="blog-title">
-                                <a href="/details">
-                                    هر آنچه باید درباره ما بدانید
+                                <a href="/Blog/Post/@item.Id">
+                                    @item.Title
                                 </a>
                             </h2>
                             <p class="margin-top-17">
-                                هر آنچه باید درباره زینو جم بدانید را در این مقاله بخوانید
+                                @item.ShortDescription
                             </p>
                         </div>
                     </div>
-                    <div class="blog-post">
-                        <figure>
-                            <a href="/details">
-                                <img src="~/Content/client/wp-content/themes/uniqo/img/blog.jpg" alt="Trulli" style="width:100%">
-                            </a>
-                        </figure>
-                        <div class="blog-body">
-                            <p class="blog-date">
-                                <span>
-                                    4 بهمن 1399
-                                </span>
-                                |
-                                <span>
-                                    نظرات 0
-                                </span>
-                            </p>
-                            <h2 class="blog-title">
-                                <a href="/details">
-                                    هر آنچه باید درباره ما بدانید
-                                </a>
-                            </h2>
-                            <p class="margin-top-17">
-                                هر آنچه باید درباره زینو جم بدانید را در این مقاله بخوانید
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="blog-post">
-                        <figure>
-                            <a href="/details">
-                                <img src="~/Content/client/wp-content/themes/uniqo/img/blog2.jpg" alt="blog-img" style="width:100%">
-                            </a>
-                        </figure>
-                        <div class="blog-body">
-                            <p class="blog-date">
-                                <span>
-                                    4 بهمن 1399
-                                </span>
-                                |
-                                <span>
-                                    نظرات 0
-                                </span>
-                            </p>
-                            <h2 class="blog-title">
-                                <a href="/details">
-                                    هر آنچه باید درباره ما بدانید
-                                </a>
-                            </h2>
-                            <p class="margin-top-17">
-                                هر آنچه باید درباره زینو جم بدانید را در این مقاله بخوانید
-                            </p>
-                        </div>
-
-                    </div>*@
+                }
 
 
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <div class="blog-left">
-                        @Html.Action("ArticleCategoriesSection", "Blog")
-                        @Html.Action("LatestArticlesSection", "Blog")
-                        
-
-
-                    </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="blog-left">
+                    @Html.Action("ArticleCategoriesSection", "Blog")
+                    @Html.Action("LatestArticlesSection", "Blog")
+                    @Html.Action("SocialsSection", "Blog")
+                    @Html.Action("InstagramsSection", "Blog")
+                    @Html.Action("TagsSection", "Blog")
                 </div>
             </div>
+        </div>
 
 
+    </div>
+</div>*@
+
+
+
+
+
+<div class="banner-wrapper has_background">
+    <img src="~/Content/client/images/23.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title">بلاگ</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="#"><span>خانه</span></a></li>
+                <li class="trail-item trail-end active">
+                    <span>بلاگ</span>
+                </li>
+            </ul>
         </div>
     </div>
-
-
-
-
-
-
-        @*<section class="our-articles bg-light-theme section-padding pt-0">
-            <div class="blog-page-banner" style="background-image: url(/Files/StaticContentImages/Image/@ViewBag.BlogImage)"></div>
-            <div class="container-fluid">
-                <div class="row">
-                    <aside class="col-lg-3">
-                        <div class="side-bar section-padding pb-0 mb-md-40">
-                            @Html.Action("TopArticlesSection", "Blog")
-                            @Html.Action("ArticleCategoriesSection", "Blog")
+</div>
+<div class="main-container right-sidebar has-sidebar">
+    <!-- POST LAYOUT -->
+    <div class="container">
+        <div class="row">
+            <div class="main-content main-contentblog col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                <div class="blog-standard content-post">
+                    <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                        <div class="post-thumb">
+                            <a href="#">
+                                <img src="~/Content/client/images/1.jpg"
+                                     class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
+                                     height="768">
+                            </a>
                         </div>
-                    </aside>
-                    <div class="col-lg-9 blog-inner clearfix">
-                        <div class="main-box padding-20 full-width">
-                            <div class="breadcrumb-wrpr">
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="/" class="text-light-black">خانه</a>
-                                    </li>
-                                    @if (ViewBag.BreadCrumb == null)
-                                    {
-                                        <li class="breadcrumb-item active" aria-current="page">بلاگ</li>
-                                    }
-                                    else
-                                    {
-                                        <li class="breadcrumb-item">
-                                            <a href="/Blog" class="text-light-black">بلاگ</a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">@ViewBag.BreadCrumb</li>
-                                    }
-                                </ul>
+                        <div class="post-info">
+                            <h2 class="post-title"><a href="#">عنوان پست</a></h2>
+                            <div class="post-meta">
+                                <div class="date">
+                                    <a href="#">
+                                        خرداد 19, 1399
+                                    </a>
+                                </div>
+                                <div class="post-author">
+                                    نویسنده:<a href="#">
+                                        نیما
+                                    </a>
+                                </div>
                             </div>
-                            <div class="row">
-                                @foreach (var item in Model)
-                                {
-                                    <div class="col-xl-6 col-lg-12 col-sm-6">
-                                        <article class="blog-services-wrapper main-box mb-xl-20">
-                                            <div class="post-img">
-                                                <a href="/Blog/Post/@item.Id/@item.Title.Replace(" ", "-")">
-                                                    <img src="/Files/ArticleImages/Thumb/@item.Image" class="img-fluid full-width"
-                                                         alt="@item.Title">
-                                                </a>
-                                            </div>
-                                            <div class="post-meta">
-                                                <div class="author-img" style="width: 50px">
-                                                    <img src="/Files/UserAvatars/@item.AuthorAvatar" class="rounded-circle" alt="image">
-                                                </div>
-                                                <div class="author-meta">
-                                                    <h6 class="no-margin"><span class="text-light-black">@item.Author</span></h6>
-                                                    <p class="no-margin text-light-white">
-                                                        <span class="text-light-white">@item.Role</span> |
-                                                        @item.PersianDate
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="post-content padding-20">
-                                                <h5>
-                                                    <a href="/Blog/Post/@item.Id/@item.Title.Replace(" ", "-")" class="text-light-black">
-                                                        @item.Title
-                                                    </a>
-                                                </h5>
-                                                <p>
-                                                    @item.ShortDescription
-                                                </p>
-                                                <div class="blog-link-wrap">
-                                                    <a href="/Blog/Post/@item.Id/@item.Title.Replace(" ", "-")" class="btn-first white-btn">
-                                                        بیشتر
-                                                        بخوانید
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
+                        </div>
+                        <div class="post-content">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                        </div>
+                        <a href="single-post.html" class="readmore">
+                            ادامه ..
+                        </a>
+                    </article>
+                    <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                        <div class="post-thumb">
+                            <a href="#">
+                                <img src="~/Content/client/images/1.jpg"
+                                     class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
+                                     height="768">
+                            </a>
+                        </div>
+                        <div class="post-info">
+                            <h2 class="post-title"><a href="#">عنوان پست</a></h2>
+                            <div class="post-meta">
+                                <div class="date">
+                                    <a href="#">
+                                        خرداد 19, 1399
+                                    </a>
+                                </div>
+                                <div class="post-author">
+                                    نویسنده:<a href="#">
+                                        نیما
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                        </div>
+                        <a href="single-post.html" class="readmore">
+                            ادامه ..
+                        </a>
+                    </article>
+                    <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                        <div class="post-thumb">
+                            <a href="#">
+                                <img src="~/Content/client/images/1.jpg"
+                                     class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
+                                     height="768">
+                            </a>
+                        </div>
+                        <div class="post-info">
+                            <h2 class="post-title"><a href="#">عنوان پست</a></h2>
+                            <div class="post-meta">
+                                <div class="date">
+                                    <a href="#">
+                                        خرداد 19, 1399
+                                    </a>
+                                </div>
+                                <div class="post-author">
+                                    نویسنده:<a href="#">
+                                        نیما
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                        </div>
+                        <a href="single-post.html" class="readmore">
+                            ادامه ..
+                        </a>
+                    </article>
 
-                                }
-                            </div>
+
+                </div>
+                <nav class="navigation pagination">
+                    <div class="nav-links">
+                        <span class="page-numbers current">1</span>
+                        <a class="page-numbers" href="#">2</a>
+                        <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                </nav>
+            </div>
+            <div class="sidebar lynessa_sidebar col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <div id="widget-area" class="widget-area sidebar-blog">
+                    <div id="search-3" class="widget widget_search">
+                        <form role="search" method="get" class="search-form">
+                            <input class="search-field" placeholder="جستجو.." value="" name="s" type="search">
+                            <button type="submit" class="search-submit">
+                                <span class="fa fa-search"
+                                      aria-hidden="true"></span>
+                            </button>
+                            <input name="lang" value="en" type="hidden">
+                        </form>
+                    </div>
+                    <div id="categories-3" class="widget widget_categories">
+                        <h2 class="widgettitle">
+                            دسته بندی ها<span class="arrow"></span>
+                        </h2>
+                        <ul>
+                            <li class="cat-item cat-item-51">
+                                <a href="#"> دسته 1</a>
+                            </li>
+                            <li class="cat-item cat-item-49">
+                                <a href="#">دسته 2</a>
+                            </li>
+                            <li class="cat-item cat-item-52">
+                                <a href="#"> دسته 3</a>
+                            </li>
+                            <li class="cat-item cat-item-53">
+                                <a href="#"> دسته 4</a>
+                            </li>
+                            <li class="cat-item cat-item-50">
+                                <a href="#">
+                                    دسته 5
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="widget_lynessa_post-2" class="widget widget-lynessa-post">
+                        <h2 class="widgettitle">
+                            پست های اخیر
+                            <span class="arrow"></span>
+                        </h2>
+                        <div class="lynessa-posts">
+                            <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                                <div class="post-item-inner">
+                                    <div class="post-thumb">
+                                        <a href="#">
+                                            <img src="~/Content/client/images/2.jpg"
+                                                 class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                                                 height="83">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <div class="block-title">
+                                            <h2 class="post-title">
+                                                <a href="#">عنوان پست</a>
+                                            </h2>
+                                        </div>
+                                        <div class="date">آبان 19, 139</div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                                <div class="post-item-inner">
+                                    <div class="post-thumb">
+                                        <a href="#">
+                                            <img src="~/Content/client/images/5.jpg"
+                                                 class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                                                 height="83">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <div class="block-title">
+                                            <h2 class="post-title">
+                                                <a href="#">عنوان پست</a>
+                                            </h2>
+                                        </div>
+                                        <div class="date">آبان 19, 139</div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                                <div class="post-item-inner">
+                                    <div class="post-thumb">
+                                        <a href="#">
+                                            <img src="~/Content/client/images/4.jpg"
+                                                 class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                                                 height="83">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <div class="block-title">
+                                            <h2 class="post-title">
+                                                <a href="#">عنوان پست</a>
+                                            </h2>
+                                        </div>
+                                        <div class="date">آبان 19, 139</div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                                <div class="post-item-inner">
+                                    <div class="post-thumb">
+                                        <a href="#">
+                                            <img src="~/Content/client/images/2.jpg"
+                                                 class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                                                 height="83">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <div class="block-title">
+                                            <h2 class="post-title">
+                                                <a href="#">عنوان پست</a>
+                                            </h2>
+                                        </div>
+                                        <div class="date">آبان 19, 139</div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div id="widget_lynessa_socials-2" class="widget widget-lynessa-socials">
+                        <h2 class="widgettitle"> شبکه های اجتماعی<span class="arrow"></span></h2>
+                        <div class="content-socials">
+                            <ul class="socials-list">
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <span class="fa fa-facebook"></span>
+                                        Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <span class="fa fa-instagram"></span>
+                                        Instagram
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <span class="fa fa-twitter"></span>
+                                        Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <span class="fa fa-pinterest-p"></span>
+                                        Pinterest
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="widget_lynessa_instagram-3" class="widget widget-lynessa-instagram">
+                        <h2 class="widgettitle">
+                            اینستاگرام<span class="arrow"></span>
+                        </h2>
+                        <div class="content-instagram">
+                            <a target="_blank" href="#" class="item">
+                                <img class="img-responsive" src="~/Content/client/images/insta1.jpg"
+                                     alt="Not your ordinary multi service.">
+                            </a>
+                            <a target="_blank" href="#" class="item">
+                                <img class="img-responsive" src="~/Content/client/images/insta2.jpg"
+                                     alt="Not your ordinary multi service.">
+                            </a>
+                            <a target="_blank" href="#" class="item">
+                                <img class="img-responsive" src="~/Content/client/images/insta3.jpg"
+                                     alt="Not your ordinary multi service.">
+                            </a>
+                            <a target="_blank" href="#" class="item">
+                                <img class="img-responsive" src="~/Content/client/images/insta4.jpg"
+                                     alt="Not your ordinary multi service.">
+                            </a>
+                            <a target="_blank" href="#" class="item">
+                                <img class="img-responsive" src="~/Content/client/images/insta5.jpg"
+                                     alt="Not your ordinary multi service.">
+                            </a>
+                            <a target="_blank" href="#" class="item">
+                                <img class="img-responsive" src="~/Content/client/images/insta6.jpg"
+                                     alt="Not your ordinary multi service.">
+                            </a>
+                        </div>
+                    </div>
+                    <div id="tag_cloud-3" class="widget widget_tag_cloud">
+                        <h2 class="widgettitle">
+                            برچسب ها<span class="arrow"></span>
+                        </h2>
+                        <div class="tagcloud">
+                            <a href="#" class="tag-cloud-link tag-link-46 tag-link-position-1" aria-label="Just In (4 items)"> تگ 1</a>
+                            <a href="#"
+                               class="tag-cloud-link tag-link-43 tag-link-position-2"
+                               aria-label="Fashion (5 items)">تگ 2</a>
+                            <a href="#"
+                               class="tag-cloud-link tag-link-47 tag-link-position-3"
+                               aria-label="Dresses (4 items)">تگ 3</a>
+                            <a href="#"
+                               class="tag-cloud-link tag-link-48 tag-link-position-4"
+                               aria-label="Collection (4 items)">تگ 4</a>
+                            <a href="#"
+                               class="tag-cloud-link tag-link-45 tag-link-position-5"
+                               aria-label="Life Style (7 items)"> تگ 5</a>
+                        </div>
+                    </div>
+                </div><!-- .widget-area -->
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer" class="footer style-04">
+    <div class="section-001 section-009">
+        <div class="container">
+            <div class="lynessa-newsletter style-01">
+                <div class="newsletter-inner">
+                    <div class="newsletter-info">
+                        <div class="newsletter-wrap">
+                            <h3 class="title">خبرنامه<span></span></h3>
+                            <h4 class="subtitle">30% تخفیف</h4>
+                            <p class="desc">
+                                توضیحات تخفیفات
+                            </p>
+                        </div>
+                    </div>
+                    <div class="newsletter-form-wrap">
+                        <div class="newsletter-form-inner">
+                            <input class="email email-newsletter" name="email" placeholder="ایمیل خود را وارد کنید..."
+                                   type="email">
+                            <a href="#" class="button btn-submit submit-newsletter">
+                                <span class="text">ارسال</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>*@
+        </div>
+    </div>
+    <div class="section-025">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 d-lg-none">
+                    <div class="logo-footer">
+                        <img src="~/Content/client/images/mainlogo.png"
+                             class="az_single_image-img attachment-full" alt="img">
+                    </div>
+                    <div class="footer-desc">
+                        جنوب به شمال آیت الله سعیدی<br />
+                        نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰
+                        <br>
+                        <p> ۶۶۲۲۳۴۳۱-۶۶۲۰۱۶۲۲:تلفن</p>
+                    </div>
+                    <div class="lynessa-socials style-01">
+                        <div class="content-socials">
+                            <ul class="socials-list">
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-pinterest-p"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="lynessa-listitem style-04">
+                        <div class="listitem-inner">
+                            <h4 class="title">خدمات </h4>
+                            <ul class="listitem-list">
+                                <li>
+                                    <a href="#" target=" _blank">
+                                        خرید انلاین
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        امنیت خرید
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        گارانتی تعویض
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        ارسال به شهرستان
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="logo-footer">
+                        <img src="~/Content/client/images/mainlogo.png"
+                             class="az_single_image-img attachment-full" alt="img">
+                    </div>
+                    <div class="footer-desc">
+                        جنوب به شمال آیت الله سعیدی <br />
+
+                        نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰
+                        فروشگاه مرکزی بازار مبل یافت آباد
+                        <br>
+                        <p> ۶۶۲۲۳۴۳۱-۶۶۲۰۱۶۲۲:تلفن</p>
+                    </div>
+                    <div class="lynessa-socials style-01">
+                        <div class="content-socials">
+                            <ul class="socials-list">
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="fa fa-pinterest-p"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="lynessa-listitem style-04">
+                        <div class="listitem-inner">
+                            <h4 class="title">
+                                اطلاعات تماس
+                            </h4>
+                            <ul class="listitem-list">
+                                <li>
+                                    <a href="#" target="_self">
+                                        صفحه اصلی
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        خدمات
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_self">
+                                        درباره ما
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-016">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>     می باشد  <a href="#">royalmattressorg</a> کلیه حق و حقوق متعلق به </p>
+                    <p>    طراحی و پیاده سازی توسط   <a href="https://www.spad.co/" target="_blank" rel=”nofollow”>اسپاد</a>  </p>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="payment">
+                        <img src="~/Content/client/images/payment.png"
+                             class="az_single_image-img attachment-full" alt="img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="~/Content/client/js/jquery-1.12.4.min.js"></script>
+<script src="~/Content/client/js/bootstrap.min.js"></script>
+<script src="~/Content/client/js/chosen.min.js"></script>
+<script src="~/Content/client/js/countdown.min.js"></script>
+<script src="~/Content/client/js/jquery.scrollbar.min.js"></script>
+<script src="~/Content/client/js/lightbox.min.js"></script>
+<script src="~/Content/client/js/magnific-popup.min.js"></script>
+<script src="~/Content/client/js/slick.js"></script>
+<script src="~/Content/client/js/jquery.zoom.min.js"></script>
+<script src="~/Content/client/js/threesixty.min.js"></script>
+<script src="~/Content/client/js/jquery-ui.min.js"></script>
+<script src="~/Content/client/js/mobilemenu.js"></script>
+<script src="~/Content/client/js/mylightbox.js"></script>
+<script src="~/Content/client/js/functions.js"></script>
