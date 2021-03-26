@@ -83,20 +83,24 @@ namespace SpadStorePanel.Web.Controllers
             return PartialView(articleCategoriesVm);
         }
         [Route("Blog/Post/{id}")]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            _articlesRepo.UpdateArticleViewCount(id);
-            var article = _articlesRepo.GetArticle(id);
+            //if (id == null)
+            //{
+            //    id = 1;
+            //}
+            //_articlesRepo.UpdateArticleViewCount(id.Value);
+            var article = _articlesRepo.GetArticle(id.Value);
             var articleDetailsVm = new ArticleDetailsViewModel(article);
-            var articleComments = _articlesRepo.GetArticleComments(id);
-            var articleCommentsVm = new List<ArticleCommentViewModel>();
+            //var articleComments = _articlesRepo.GetArticleComments(id.Value);
+            //var articleCommentsVm = new List<ArticleCommentViewModel>();
 
-            foreach (var item in articleComments)
-                articleCommentsVm.Add(new ArticleCommentViewModel(item));
+            //foreach (var item in articleComments)
+            //    articleCommentsVm.Add(new ArticleCommentViewModel(item));
 
-            articleDetailsVm.ArticleComments = articleCommentsVm;
-            var articleTags = _articlesRepo.GetArticleTags(id);
-            articleDetailsVm.Tags = articleTags;
+            //articleDetailsVm.ArticleComments = articleCommentsVm;
+            //var articleTags = _articlesRepo.GetArticleTags(id.Value);
+            //articleDetailsVm.Tags = articleTags;
             return View(articleDetailsVm);
         }
         [HttpPost]
