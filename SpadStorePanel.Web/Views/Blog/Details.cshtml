@@ -1,6 +1,6 @@
 ﻿@model SpadStorePanel.Web.ViewModels.ArticleDetailsViewModel
 @{
-    ViewBag.Title = Model.Title;
+    //ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -255,30 +255,35 @@
                             <input name="lang" value="en" type="hidden">
                         </form>
                     </div>
-                    <div id="categories-3" class="widget widget_categories">
-                        <h2 class="widgettitle">
-                            دسته بندی ها<span class="arrow"></span>
-                        </h2>
-                        <ul>
-                            <li class="cat-item cat-item-51">
-                                <a href="#"> دسته 1</a>
-                            </li>
-                            <li class="cat-item cat-item-49">
-                                <a href="#">دسته 2</a>
-                            </li>
-                            <li class="cat-item cat-item-52">
-                                <a href="#"> دسته 3</a>
-                            </li>
-                            <li class="cat-item cat-item-53">
-                                <a href="#"> دسته 4</a>
-                            </li>
-                            <li class="cat-item cat-item-50">
-                                <a href="#">
-                                    دسته 5
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    @Html.Action("ArticleCategoriesSection", "Blog")
+                    @Html.Action("LatestArticlesSection", "Blog")
+                    @Html.Action("SocialsSection", "Blog")
+                    @Html.Action("InstagramsSection", "Blog")
+                    @Html.Action("TagsSection", "Blog")
+                    @*<div id="categories-3" class="widget widget_categories">
+            <h2 class="widgettitle">
+                دسته بندی ها<span class="arrow"></span>
+            </h2>
+            <ul>
+                <li class="cat-item cat-item-51">
+                    <a href="#"> دسته 1</a>
+                </li>
+                <li class="cat-item cat-item-49">
+                    <a href="#">دسته 2</a>
+                </li>
+                <li class="cat-item cat-item-52">
+                    <a href="#"> دسته 3</a>
+                </li>
+                <li class="cat-item cat-item-53">
+                    <a href="#"> دسته 4</a>
+                </li>
+                <li class="cat-item cat-item-50">
+                    <a href="#">
+                        دسته 5
+                    </a>
+                </li>
+            </ul>
+        </div>
                     <div id="widget_lynessa_post-2" class="widget widget-lynessa-post">
                         <h2 class="widgettitle">
                             پست های اخیر
@@ -442,9 +447,9 @@
                                aria-label="Collection (4 items)">تگ 4</a>
                             <a href="#"
                                class="tag-cloud-link tag-link-45 tag-link-position-5"
-                               aria-label="Life Style (7 items)"> تگ 5</a>
+                               aria-label="Life Style (7 items)">تگ 5</a>
                         </div>
-                    </div>
+                    </div>*@
                 </div><!-- .widget-area -->
             </div>
         </div>
