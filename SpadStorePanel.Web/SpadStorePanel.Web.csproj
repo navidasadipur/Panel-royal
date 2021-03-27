@@ -4952,13 +4952,19 @@
     <Content Include="Views\Home\IndexPartThree.cshtml" />
     <Content Include="Views\Home\IndexPartTwo.cshtml" />
     <Content Include="Views\Home\Shop.cshtml" />
-    <Content Include="Views\Home\SocialSection.cshtml" />
+    <Content Include="Views\Home\SocialsSection.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
-    <Content Include="Views\Blog\SocialSection.cshtml" />
+    <Content Include="Views\Blog\SocialsSection.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Blog\InstagramSection.cshtml" />
     <Content Include="Views\Blog\TagsSection.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Blog\InstagramsSection.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

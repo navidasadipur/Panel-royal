@@ -15,10 +15,12 @@ namespace SpadStorePanel.Web.Controllers
         private readonly ArticlesRepository _articlesRepo;
         private readonly StaticContentDetailsRepository _contentRepo;
 
-        public BlogController(ArticlesRepository articlesRepo, StaticContentDetailsRepository contentRepo)
+        public StaticContentDetailsRepository _staticContentDetailsRepo { get; }
+
+        public BlogController(ArticlesRepository articlesRepo, StaticContentDetailsRepository staticContentDetailsRepo)
         {
             _articlesRepo = articlesRepo;
-            _contentRepo = contentRepo;
+            this._staticContentDetailsRepo = staticContentDetailsRepo;
         }
 
         // GET: Blog
@@ -136,5 +138,36 @@ namespace SpadStorePanel.Web.Controllers
             }
             return PartialView(vm);
         }
+
+        public ActionResult SocialsSection()
+        {
+            SocialViewModel model = new SocialViewModel();
+
+            //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
+            //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
+
+            return PartialView(model);
+        }
+
+        public ActionResult InstagramsSection()
+        {
+            //SocialViewModel model = new SocialViewModel();
+
+            //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
+            //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
+
+            return PartialView();
+        }
+
+        public ActionResult TagsSection()
+        {
+            //SocialViewModel model = new SocialViewModel();
+
+            //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
+            //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
+
+            return PartialView();
+        }
+
     }
 }

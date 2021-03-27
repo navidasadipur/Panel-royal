@@ -1,5 +1,6 @@
 ﻿@model List<SpadStorePanel.Web.ViewModels.LatestArticlesViewModel>
-@if (Model.Any())
+
+@*@if (Model.Any())
 {
 
     <div class="blog-left-title">
@@ -14,12 +15,14 @@
     {
         <div class="latest-blog">
             <div class="d-inline-block">
-                <a href="/Blog/Post/@Model[i].Id">                  @*/@Model[i].Title.Replace(" ","-")*@
-                                <img src="/Files/ArticleImages/Image/@Model[i].Image" alt="@Model[i].Title" class="latest-blog-img">
-                            </a>
+                <a href="/Blog/Post/@Model[i].Id">
+
+                    <img src="/Files/ArticleImages/Image/@Model[i].Image" alt="@Model[i].Title" class="latest-blog-img">
+                </a>
             </div>
             <div class="latest-blog-title">
-                <a href="/Blog/Post/@Model[i].Id">                    @*/@Model[i].Title.Replace(" ", "-")*@
+                <a href="/Blog/Post/@Model[i].Id">
+
                     <p>@Model[i].Title</p>
                 </a>
                 <span>
@@ -28,150 +31,91 @@
             </div>
         </div>
     }
-}
+}*@
+@*/@Model[i].Title.Replace(" ","-")*@
+@*/@Model[i].Title.Replace(" ", "-")*@
 
-    <!-- article 1 -->
-
-
-
-    @*<div class="latest-blog">
-            <div class="d-inline-block">
-                <a href="blog-details.html">
-                    <img src="~/Content/client/wp-content/themes/uniqo/img/LatestBlog1.jpg" class="latest-blog-img" alt="">
-                </a>
-            </div>
-            <div class="latest-blog-title">
-                <a href="blog-details.html">
-                    <p>هر آنچه باید درباره ما بدانید</p>
-                </a>
-                <span>
-                    4 بهمن 1399
-                </span>
-            </div>
-        </div>
-        <div class="latest-blog">
-            <div class="d-inline-block">
-                <a href="blog-details.html">
-                    <img src="~/Content/client/wp-content/themes/uniqo/img/LatestBlog2.jpg" class="latest-blog-img" alt="">
-                </a>
-            </div>
-            <div class="latest-blog-title">
-                <a href="blog-details.html">
-                    <p>هر آنچه باید درباره ما بدانید</p>
-                </a>
-                <span>
-                    4 بهمن 1399
-                </span>
-            </div>
-        </div>
-        <div class="latest-blog">
-            <div class="d-inline-block">
-                <a href="blog-details.html">
-                    <img src="~/Content/client/wp-content/themes/uniqo/img/LatestBlog3.jpg" class="latest-blog-img" alt="">
-                </a>
-            </div>
-            <div class="latest-blog-title">
-                <a href="blog-details.html">
-                    <p>هر آنچه باید درباره ما بدانید</p>
-                </a>
-                <span>
-                    4 بهمن 1399
-                </span>
-            </div>
-        </div>
-        <div class="latest-blog">
-            <div class="d-inline-block">
-                <a href="blog-details.html">
-                    <img src="~/Content/client/wp-content/themes/uniqo/img/LatestBlog4.jpg" class="latest-blog-img" alt="">
-                </a>
-            </div>
-            <div class="latest-blog-title">
-                <a href="blog-details.html">
-                    <p>هر آنچه باید درباره ما بدانید</p>
-                </a>
-                <span>
-                    4 بهمن 1399
-                </span>
-            </div>
-        </div>*@
-
-
-
-
-    @*<section class="section-padding our-blog restaurent-ad">
-        <div class="container">
-            <div class="section-header-style-2">
-                <h6 class="text-light-green sub-title">بلاگ ما</h6>
-                <h3 class="text-light-black header-title">آخرین مطالب</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="blog-box mb-xl-20">
-                        @if (0 < Model.Count)
-                        {
-
-                        }
-                        <!-- article 1 -->
-                        <article class="post">
-                            <div class="blog-img p-relative">
-                                <a href="/Blog/Post/@Model[0].Id/@Model[0].Title.Replace(" ","-")">
-                                    <img src="/Files/ArticleImages/Image/@Model[0].Image" alt="@Model[0].Title">
-                                </a>
-                                <div class="overlay padding-20">
-                                    <div class="blog-meta">
-                                        <h4 class="text-custom-white mb-2 fw-600">
-                                            @Model[0].Title
-                                        </h4>
-                                        <a href="/Blog/Post/@Model[0].Id/@Model[0].Title.Replace(" ","-")" class="text-custom-white fw-700 fs-18">بیشتر بخوانید</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <!-- article 1 -->
-                        <div class="side-blog">
-                            <div class="blog-list padding-tb-10">
-                                @for (int i = 1; i < Model.Count - 1; i++)
-                                {
-                                    if (i < Model.Count)
-                                    {
-                                        <article class="side-post padding-20 @(i < 3? "u-line": "")">
-                                            <div class="content-wrap">
-                                                <div class="entry-meta-content">
-                                                    <div class="entry-tye">
-                                                        <span class="text-light-green fw-600">@Model[i].PersianDate</span>
-                                                    </div>
-                                                </div>
-                                                <h6 class="entry-title no-margin">
-                                                    <a href="/Blog/Post/@Model[i].Id/@Model[i].Title.Replace(" ","-")" class="text-light-black">@Model[i].Title</a>
-                                                </h6>
-                                            </div>
-                                            <div class="thumb-img">
-                                                <a href="/Blog/Post/@Model[i].Id/@Model[i].Title.Replace(" ","-")">
-                                                    <img src="/Files/ArticleImages/Thumb/@Model[i].Image" alt="@Model[i].Title">
-                                                </a>
-                                            </div>
-                                        </article>
-
-                                    }
-                                }
-                            </div>
-                        </div>
+<div id="widget_lynessa_post-2" class="widget widget-lynessa-post">
+    <h2 class="widgettitle">
+        پست های اخیر
+        <span class="arrow"></span>
+    </h2>
+    <div class="lynessa-posts">
+        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+            <div class="post-item-inner">
+                <div class="post-thumb">
+                    <a href="#">
+                        <img src="~/Content/client/images/2.jpg"
+                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                             height="83">
+                    </a>
+                </div>
+                <div class="post-info">
+                    <div class="block-title">
+                        <h2 class="post-title">
+                            <a href="#">عنوان پست</a>
+                        </h2>
                     </div>
-                    @if (4 < Model.Count)
-                    {
-                        <div class="ad-img p-relative">
-                            <img src="/Files/ArticleImages/Image/@Model[4].Image" class="img-fluid full-width" alt="@Model[4].Title">
-                            <div class="overlay">
-                                <div class="content-box transform-center">
-                                    <h3 class="text-custom-white mb-1">@Model[4].Title</h3>
-                                    <a href="/Blog/Post/@Model[4].Id/@Model[4].Title.Replace(" ","-")" class="btn-first white-btn">بیشتر بخوانید</a>
-                                </div>
-                            </div>
-                            <div class="overlay overlay-bg"></div>
-                        </div>
-                    }
+                    <div class="date">آبان 19, 139</div>
                 </div>
             </div>
-        </div>
-    </section>*@
-
+        </article>
+        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+            <div class="post-item-inner">
+                <div class="post-thumb">
+                    <a href="#">
+                        <img src="~/Content/client/images/5.jpg"
+                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                             height="83">
+                    </a>
+                </div>
+                <div class="post-info">
+                    <div class="block-title">
+                        <h2 class="post-title">
+                            <a href="#">عنوان پست</a>
+                        </h2>
+                    </div>
+                    <div class="date">آبان 19, 139</div>
+                </div>
+            </div>
+        </article>
+        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+            <div class="post-item-inner">
+                <div class="post-thumb">
+                    <a href="#">
+                        <img src="~/Content/client/images/4.jpg"
+                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                             height="83">
+                    </a>
+                </div>
+                <div class="post-info">
+                    <div class="block-title">
+                        <h2 class="post-title">
+                            <a href="#">عنوان پست</a>
+                        </h2>
+                    </div>
+                    <div class="date">آبان 19, 139</div>
+                </div>
+            </div>
+        </article>
+        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+            <div class="post-item-inner">
+                <div class="post-thumb">
+                    <a href="#">
+                        <img src="~/Content/client/images/2.jpg"
+                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
+                             height="83">
+                    </a>
+                </div>
+                <div class="post-info">
+                    <div class="block-title">
+                        <h2 class="post-title">
+                            <a href="#">عنوان پست</a>
+                        </h2>
+                    </div>
+                    <div class="date">آبان 19, 139</div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

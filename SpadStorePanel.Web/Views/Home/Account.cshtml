@@ -1,0 +1,201 @@
+﻿@model SpadStorePanel.Web.ViewModels.ContactUsViewModel
+
+@{
+    ViewBag.Title = "ثبت نام و ورود";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="banner-wrapper has_background">
+        <img src="~/Content/client/images/23.jpg"
+             class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
+        <div class="banner-wrapper-inner">
+            <h1 class="page-title">تماس با ما</h1>
+            <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+                <ul class="trail-items breadcrumb">
+                    <li class="trail-item trail-begin"><a href="~/home"><span>خانه</span></a></li>
+                    <li class="trail-item trail-end active">
+                        <span>@ViewBag.Title</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="site-main main-container no-sidebar main-contentblog">
+        <div class="section-041">
+            <div class="container">
+                <div class="google-map">
+                    <iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="section-042">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 offset-xl-1 col-xl-10 col-lg-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="az_custom_heading">تشک روبال</h4>
+
+                                <p>
+                                    نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰ فروشگاه مرکزی بازار مبل یافت آباد<br> جنوب به شمال آیت الله سعیدی<br>
+                                    تلفن:۶۶۲۲۳۴۳۱ ۶۶۲۲۳۴۳۱
+                                </p>
+                                <h4 class="az_custom_heading">ساعت کار</h4>
+                                <p>
+                                    شنبه تا پنجشنبه<br>
+                                </p>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div role="form" class="wpcf7">
+                                    <form class="wpcf7-form">
+                                        <p>
+                                            <label>
+                                                نام *<br>
+                                                <span class="wpcf7-form-control-wrap your-name">
+                                                    <input name="your-name" value="" size="40"
+                                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                           type="text">
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label>
+                                                ایمیل *<br>
+                                                <span class="wpcf7-form-control-wrap your-email">
+                                                    <input name="your-email" value="" size="40"
+                                                           class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                           type="email">
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label>
+                                                پیام شما *<br>
+                                                <span class="wpcf7-form-control-wrap your-message">
+                                                    <textarea name="your-message"
+                                                              cols="40" rows="10"
+                                                              class="wpcf7-form-control wpcf7-textarea"></textarea>
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p><input value="ثبت" class="wpcf7-form-control wpcf7-submit" type="submit"></p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+<div class="banner-wrapper has_background">
+    <img src="~/Content/client/images/23.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title" style="font-size: 20px;">  ثبت نام و ورود</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="#"><span>خانه</span></a></li>
+                <li class="trail-item trail-end active">
+                    <span>   ثبت نام و ورود</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<main class="site-main  main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <div class="lynessa">
+                        <div class="lynessa-notices-wrapper"></div>
+                        <div class="u-columns col2-set" id="customer_login">
+                            <div class="u-column1 col-1">
+                                <h2>ورود</h2>
+                                <form class="lynessa-form lynessa-form-login login" method="post">
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                                        <label for="username">
+                                            نام کاربری یا ایمیل:&nbsp;<span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="lynessa-Input lynessa-Input--text input-text"
+                                               name="username" id="username" autocomplete="username" value="">
+                                    </p>
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                                        <label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
+                                        <input class="lynessa-Input lynessa-Input--text input-text"
+                                               type="password" name="password" id="password"
+                                               autocomplete="current-password">
+                                    </p>
+                                    <p class="form-row">
+                                        <input type="hidden" id="lynessa-login-nonce" name="lynessa-login-nonce"
+                                               value="832993cb93"><input type="hidden" name="_wp_http_referer"
+                                                                         value="/lynessa/my-account/">
+                                        <button type="submit" class="lynessa-Button button" name="login"
+                                                value="Log in">
+                                            ورود
+                                        </button>
+                                        <label class="lynessa-form__label lynessa-form__label-for-checkbox inline">
+                                            <input class="lynessa-form__input lynessa-form__input-checkbox"
+                                                   name="rememberme" type="checkbox" id="rememberme" value="forever">
+                                            <span> مرا به خاطر بسپار</span>
+                                        </label>
+                                    </p>
+                                    <p class="lynessa-LostPassword lost_password">
+                                        <a href="#">فراموشی رمز عبور</a>
+                                    </p>
+
+                                </form>
+                            </div>
+                            <div class="u-column2 col-2">
+                                <h2>ثبت نام</h2>
+                                <form method="post" class="lynessa-form lynessa-form-register register">
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                                        <label for="reg_email">
+                                            ایمبل&nbsp;<span class="required">*</span>
+                                        </label>
+                                        <input type="email" class="lynessa-Input lynessa-Input--text input-text"
+                                               name="email" id="reg_email" autocomplete="email" value="">
+                                    </p>
+
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                                        <label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
+                                        <input class="lynessa-Input lynessa-Input--text input-text"
+                                               type="password" name="password" id="password"
+                                               autocomplete="current-password">
+                                    </p>
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                                        <label for="password">تکرار رمز عبور:&nbsp;<span class="required">*</span></label>
+                                        <input class="lynessa-Input lynessa-Input--text input-text"
+                                               type="password" name="password" id="password"
+                                               autocomplete="current-password">
+                                    </p>
+
+                                    <p class="lynessa-FormRow form-row">
+                                        <input type="hidden" id="lynessa-register-nonce"
+                                               name="lynessa-register-nonce" value="45fae70a87"><input type="hidden"
+                                                                                                       name="_wp_http_referer"
+                                                                                                       value="/lynessa/my-account/">
+                                        <button type="submit" class="lynessa-Button button" name="register"
+                                                value="Register">
+                                            ثبت نام
+                                        </button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+

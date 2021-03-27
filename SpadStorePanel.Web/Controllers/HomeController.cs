@@ -13,7 +13,6 @@ namespace SpadCompanyPanel.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly StaticContentDetailsRepository _contentDetailsRepo;
         private readonly ProductGalleriesRepository _productGalleryRepo;
         //private readonly GalleryVideosRepository _galleryVideosRepo;
         private readonly ProductsRepository _productRepo;
@@ -21,7 +20,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ProductGroupsRepository _prodectGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
 
-        public HomeController(StaticContentDetailsRepository contentRepo,
+        public HomeController(
             ProductGalleriesRepository productGalleryRepo,
             ProductsRepository productRepo,
             ContactFormsRepository contactFormRepo,
@@ -31,7 +30,6 @@ namespace SpadCompanyPanel.Web.Controllers
             StaticContentDetailsRepository staticContentDetailsRepo
             )
         {
-            _contentDetailsRepo = contentRepo;
             _productGalleryRepo = productGalleryRepo;
             _productRepo = productRepo;
             _contactFormRepo = contactFormRepo;
@@ -102,16 +100,16 @@ namespace SpadCompanyPanel.Web.Controllers
         public ActionResult ContactUs()
         {
             var contactUsContent = new ContactUsViewModel();
-            contactUsContent.ContactInfo = _contentDetailsRepo.Get((int)StaticContents.ContactInfo);
-            contactUsContent.Email = _contentDetailsRepo.Get((int)StaticContents.Email);
-            contactUsContent.Address = _contentDetailsRepo.Get((int)StaticContents.Address);
-            contactUsContent.Phone = _contentDetailsRepo.Get((int)StaticContents.Phone);
-            contactUsContent.Youtube = _contentDetailsRepo.Get((int)StaticContents.Youtube);
-            contactUsContent.Instagram = _contentDetailsRepo.Get((int)StaticContents.Instagram);
-            contactUsContent.Twitter = _contentDetailsRepo.Get((int)StaticContents.Twitter);
-            contactUsContent.Pinterest = _contentDetailsRepo.Get((int)StaticContents.Pinterest);
-            contactUsContent.Facebook = _contentDetailsRepo.Get((int)StaticContents.Facebook);
-            contactUsContent.Map = _contentDetailsRepo.Get((int)StaticContents.Map);
+            contactUsContent.ContactInfo = _staticContentDetailsRepo.Get((int)StaticContents.ContactInfo);
+            contactUsContent.Email = _staticContentDetailsRepo.Get((int)StaticContents.Email);
+            contactUsContent.Address = _staticContentDetailsRepo.Get((int)StaticContents.Address);
+            contactUsContent.Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone);
+            contactUsContent.Youtube = _staticContentDetailsRepo.Get((int)StaticContents.Youtube);
+            contactUsContent.Instagram = _staticContentDetailsRepo.Get((int)StaticContents.Instagram);
+            contactUsContent.Twitter = _staticContentDetailsRepo.Get((int)StaticContents.Twitter);
+            contactUsContent.Pinterest = _staticContentDetailsRepo.Get((int)StaticContents.Pinterest);
+            contactUsContent.Facebook = _staticContentDetailsRepo.Get((int)StaticContents.Facebook);
+            contactUsContent.Map = _staticContentDetailsRepo.Get((int)StaticContents.Map);
             //return View(contactUsContent);
 
             return PartialView(contactUsContent);
@@ -147,16 +145,16 @@ namespace SpadCompanyPanel.Web.Controllers
         {
 
             var footerContent = new FooterViewModel();
-            footerContent.ShortDescription = _contentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault();
-            footerContent.Email = _contentDetailsRepo.Get((int) StaticContents.Email);
-            footerContent.Address = _contentDetailsRepo.Get((int) StaticContents.Address);
-            footerContent.Phone = _contentDetailsRepo.Get((int) StaticContents.Phone);
-            footerContent.SupportPhone = _contentDetailsRepo.Get((int)StaticContents.SupportPhone);
-            footerContent.Youtube = _contentDetailsRepo.Get((int) StaticContents.Youtube);
-            footerContent.Instagram = _contentDetailsRepo.Get((int) StaticContents.Instagram);
-            footerContent.Twitter = _contentDetailsRepo.Get((int) StaticContents.Twitter);
-            footerContent.Pinterest = _contentDetailsRepo.Get((int) StaticContents.Pinterest);
-            footerContent.Facebook = _contentDetailsRepo.Get((int) StaticContents.Facebook);
+            footerContent.ShortDescription = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault();
+            footerContent.Email = _staticContentDetailsRepo.Get((int) StaticContents.Email);
+            footerContent.Address = _staticContentDetailsRepo.Get((int) StaticContents.Address);
+            footerContent.Phone = _staticContentDetailsRepo.Get((int) StaticContents.Phone);
+            footerContent.SupportPhone = _staticContentDetailsRepo.Get((int)StaticContents.SupportPhone);
+            footerContent.Youtube = _staticContentDetailsRepo.Get((int) StaticContents.Youtube);
+            footerContent.Instagram = _staticContentDetailsRepo.Get((int) StaticContents.Instagram);
+            footerContent.Twitter = _staticContentDetailsRepo.Get((int) StaticContents.Twitter);
+            footerContent.Pinterest = _staticContentDetailsRepo.Get((int) StaticContents.Pinterest);
+            footerContent.Facebook = _staticContentDetailsRepo.Get((int) StaticContents.Facebook);
             return PartialView(footerContent);
         }
         [Route("Gallery")]
@@ -283,7 +281,7 @@ namespace SpadCompanyPanel.Web.Controllers
         //    return PartialView(model);
         //}
 
-        //public ActionResult SocialSection()
+        //public ActionResult SocialsSection()
         //{
         //    SocialViewModel model = new SocialViewModel();
 
@@ -292,5 +290,15 @@ namespace SpadCompanyPanel.Web.Controllers
 
         //    return PartialView(model);
         //}
+
+        public ActionResult Account()
+        {
+            //SocialViewModel model = new SocialViewModel();
+
+            //model.Instagram = _contentDetailsRepo.GetStaticContentDetail(1009).Link;
+            //model.Aparat = _contentDetailsRepo.GetStaticContentDetail(1012).Link;
+
+            return View();
+        }
     }
 }
