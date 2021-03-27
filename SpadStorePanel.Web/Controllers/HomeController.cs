@@ -100,19 +100,19 @@ namespace SpadCompanyPanel.Web.Controllers
         public ActionResult ContactUs()
         {
             var contactUsContent = new ContactUsViewModel();
-            contactUsContent.ContactInfo = _staticContentDetailsRepo.Get((int)StaticContents.ContactInfo);
-            contactUsContent.Email = _staticContentDetailsRepo.Get((int)StaticContents.Email);
-            contactUsContent.Address = _staticContentDetailsRepo.Get((int)StaticContents.Address);
-            contactUsContent.Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone);
-            contactUsContent.Youtube = _staticContentDetailsRepo.Get((int)StaticContents.Youtube);
-            contactUsContent.Instagram = _staticContentDetailsRepo.Get((int)StaticContents.Instagram);
-            contactUsContent.Twitter = _staticContentDetailsRepo.Get((int)StaticContents.Twitter);
-            contactUsContent.Pinterest = _staticContentDetailsRepo.Get((int)StaticContents.Pinterest);
-            contactUsContent.Facebook = _staticContentDetailsRepo.Get((int)StaticContents.Facebook);
-            contactUsContent.Map = _staticContentDetailsRepo.Get((int)StaticContents.Map);
-            //return View(contactUsContent);
-
-            return PartialView(contactUsContent);
+            contactUsContent.ContactInfo = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.ContactInfo);
+            contactUsContent.Email = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Email);
+            contactUsContent.Address = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Address);
+            contactUsContent.WorkingHours = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.WorkingHours);
+            contactUsContent.Phone = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Phone);
+            //contactUsContent.Youtube = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Youtube);
+            contactUsContent.Instagram = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Instagram);
+            contactUsContent.Twitter = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Twitter);
+            contactUsContent.Pinterest = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Pinterest);
+            contactUsContent.Facebook = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Facebook);
+            contactUsContent.Map = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Map);
+            
+            return View(contactUsContent);
         }
 
         [HttpPost]
@@ -150,7 +150,7 @@ namespace SpadCompanyPanel.Web.Controllers
             footerContent.Address = _staticContentDetailsRepo.Get((int) StaticContents.Address);
             footerContent.Phone = _staticContentDetailsRepo.Get((int) StaticContents.Phone);
             footerContent.SupportPhone = _staticContentDetailsRepo.Get((int)StaticContents.SupportPhone);
-            footerContent.Youtube = _staticContentDetailsRepo.Get((int) StaticContents.Youtube);
+            //footerContent.Youtube = _staticContentDetailsRepo.Get((int) StaticContents.Youtube);
             footerContent.Instagram = _staticContentDetailsRepo.Get((int) StaticContents.Instagram);
             footerContent.Twitter = _staticContentDetailsRepo.Get((int) StaticContents.Twitter);
             footerContent.Pinterest = _staticContentDetailsRepo.Get((int) StaticContents.Pinterest);

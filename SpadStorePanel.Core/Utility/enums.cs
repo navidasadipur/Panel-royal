@@ -20,11 +20,12 @@ namespace SpadStorePanel.Core.Utility
 
     public enum StaticContents
     {
-        Phone = 1002,
+        Phone = 1005,
         Map = 1007,
-        Address = 1001,
+        Address = 6,
+        WorkingHours = 1008,
         Email = 1003,
-        Youtube = 1008,
+        //Youtube = 1008,
         Instagram = 1009,
         Twitter = 1011,
         Pinterest = 1012,

@@ -23,7 +23,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
         }
         public StaticContentDetail GetStaticContentDetail(int id)
         {
-            return _context.StaticContentDetails.Include(a => a.StaticContentType).FirstOrDefault(a => a.Id == id);
+            return _context.StaticContentDetails.Where(a => a.IsDeleted == false).Include(a => a.StaticContentType).SingleOrDefault();
         }
         public List<StaticContentDetail> GetStaticContentDetails()
         {

@@ -65,6 +65,7 @@ namespace SpadStorePanel.Web.ViewModels
         public StaticContentDetail Phone { get; set; }
         public StaticContentDetail Email { get; set; }
         public StaticContentDetail Address { get; set; }
+        public StaticContentDetail WorkingHours { get; set; }
         public StaticContentDetail Youtube { get; set; }
         public StaticContentDetail Instagram { get; set; }
         public StaticContentDetail Twitter { get; set; }

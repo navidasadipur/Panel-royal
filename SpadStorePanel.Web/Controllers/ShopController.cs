@@ -90,7 +90,7 @@ namespace SpadCompanyPanel.Web.Controllers
             contactUsContent.Email = _contentDetailsRepo.Get((int)StaticContents.Email);
             contactUsContent.Address = _contentDetailsRepo.Get((int)StaticContents.Address);
             contactUsContent.Phone = _contentDetailsRepo.Get((int)StaticContents.Phone);
-            contactUsContent.Youtube = _contentDetailsRepo.Get((int)StaticContents.Youtube);
+            //contactUsContent.Youtube = _contentDetailsRepo.Get((int)StaticContents.Youtube);
             contactUsContent.Instagram = _contentDetailsRepo.Get((int)StaticContents.Instagram);
             contactUsContent.Twitter = _contentDetailsRepo.Get((int)StaticContents.Twitter);
             contactUsContent.Pinterest = _contentDetailsRepo.Get((int)StaticContents.Pinterest);
@@ -136,7 +136,7 @@ namespace SpadCompanyPanel.Web.Controllers
             footerContent.Address = _contentDetailsRepo.Get((int) StaticContents.Address);
             footerContent.Phone = _contentDetailsRepo.Get((int) StaticContents.Phone);
             footerContent.SupportPhone = _contentDetailsRepo.Get((int)StaticContents.SupportPhone);
-            footerContent.Youtube = _contentDetailsRepo.Get((int) StaticContents.Youtube);
+            //footerContent.Youtube = _contentDetailsRepo.Get((int) StaticContents.Youtube);
             footerContent.Instagram = _contentDetailsRepo.Get((int) StaticContents.Instagram);
             footerContent.Twitter = _contentDetailsRepo.Get((int) StaticContents.Twitter);
             footerContent.Pinterest = _contentDetailsRepo.Get((int) StaticContents.Pinterest);
