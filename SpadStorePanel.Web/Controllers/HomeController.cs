@@ -180,6 +180,13 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(aboutViewModel);
         }
 
+        public ActionResult OurTeamsSection()
+        {
+
+
+            return PartialView()
+        }
+
         public ActionResult InstaGalleriesSection()
         {
             var model = new InstaGalleryViewModel()

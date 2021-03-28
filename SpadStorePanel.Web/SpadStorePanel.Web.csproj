@@ -4966,6 +4966,7 @@
     </Content>
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\InstaGalleriesSection.cshtml" />
+    <Content Include="Views\Home\OurTeamSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
