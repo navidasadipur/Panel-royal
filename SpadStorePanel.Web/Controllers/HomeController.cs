@@ -180,6 +180,16 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(aboutViewModel);
         }
 
+        public ActionResult InstaGalleriesSection()
+        {
+            var model = new InstaGalleryViewModel()
+            {
+                Images = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.InstagramImages)
+            };
+
+            return PartialView(model);
+        }
+
         public ActionResult UploadImage(HttpPostedFileBase upload, string CKEditorFuncNum, string CKEditor, string langCode)
         {
             string vImagePath = String.Empty;

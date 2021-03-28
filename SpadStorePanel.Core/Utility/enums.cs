@@ -21,15 +21,15 @@ namespace SpadStorePanel.Core.Utility
     public enum StaticContents
     {
         Phone = 1005,
-        Map = 1007,
+        Map = 2005,
         Address = 6,
         WorkingHours = 1008,
-        Email = 1003,
-        //Youtube = 1008,
-        Instagram = 1009,
-        Twitter = 1011,
-        Pinterest = 1012,
-        Facebook = 1010,
+        Email = 2,
+        Youtube = 2007,
+        Instagram = 2012,
+        Twitter = 2013,
+        Pinterest = 2014,
+        Facebook = 2015,
         BlogImage = 1013,
         ContactInfo = 1014,
         SupportPhone = 2014
@@ -37,6 +37,10 @@ namespace SpadStorePanel.Core.Utility
 
     public enum StaticContentTypes
     {
+        About = 1,
+        Socials = 2,
+        InstagramImages = 3,
+
         Slider = 1001,
         CompanyHistory = 2,
         BlogImage = 1004

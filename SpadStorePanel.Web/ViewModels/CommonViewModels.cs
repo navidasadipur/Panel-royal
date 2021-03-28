@@ -95,4 +95,10 @@ namespace SpadStorePanel.Web.ViewModels
         //public List<ProductGalleryVideo> Videos { get; set; }
     }
 
+    public class InstaGalleryViewModel
+    {
+        public List<StaticContentDetail> Images { get; set; }
+        //public List<ProductGalleryVideo> Videos { get; set; }
+    }
+
 }

@@ -20,9 +20,10 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
     {
         private readonly StaticContentDetailsRepository _detailsRepo;
         private readonly StaticContentTypesRepository _typesRepo;
-        public StaticContentDetailsController(StaticContentDetailsRepository repo)
+        public StaticContentDetailsController(StaticContentDetailsRepository detailsrepo, StaticContentTypesRepository typesRepo)
         {
-            _detailsRepo = repo;
+            _detailsRepo = detailsrepo;
+            _typesRepo = typesRepo;
         }
         // GET: Admin/StaticContentDetails
         public ActionResult Index()
