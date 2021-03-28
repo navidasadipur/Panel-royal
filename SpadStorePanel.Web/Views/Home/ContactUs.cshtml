@@ -37,20 +37,54 @@
                             <h4 class="az_custom_heading">تشک روبال</h4>
 
                             <p>
-                                @Model.Address.ShortDescription
-                                نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰ فروشگاه مرکزی بازار مبل یافت آباد<br> جنوب به شمال آیت الله سعیدی<br>
-                                @Model.Phone.ShortDescription
-                                تلفن:۶۶۲۲۳۴۳۱ ۶۶۲۲۳۴۳۱
+                                @Html.Raw(Model.Address.ShortDescription)
+                                @*نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰ فروشگاه مرکزی بازار مبل یافت آباد<br> جنوب به شمال آیت الله سعیدی<br>*@
+                                @Html.Raw(Model.Phone.ShortDescription)
+                                @*تلفن:۶۶۲۲۳۴۳۱ ۶۶۲۲۳۴۳۱*@
                             </p>
-                            @Model.WorkingHours.ShortDescription
-                            <h4 class="az_custom_heading">ساعت کار</h4>
-                            <p>
-                                شنبه تا پنجشنبه<br>
-                            </p>
+                            @Html.Raw(Model.WorkingHours.ShortDescription)
+                            @*<h4 class="az_custom_heading">ساعت کار</h4>
+            <p>
+                شنبه تا پنجشنبه<br>
+            </p>*@
 
                         </div>
                         <div class="col-md-6">
                             <div role="form" class="wpcf7">
+                                @*<form class="wpcf7-form">*@
+                                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form", @class = "wpcf7-form" }))
+                                {
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.AntiForgeryToken()
+                                    <p>
+                                        <label>
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @Name = "your-name", @size = "40" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "wpcf7-form-control-wrap your-name" })
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            @Html.LabelFor(model => model.CustomerEmail, htmlAttributes: new { @class = "" })
+                                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email", @Name = "your-email", @size = "40" } })
+                                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "wpcf7-form-control-wrap your-email" })
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "" })
+                                            @Html.TextAreaFor(model => model.Message, new { cols = "40", rows = "10", @class = "wpcf7-form-control wpcf7-textarea", @Name = "your-message" })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "wpcf7-form-control-wrap your-message" })
+                                        </label>
+                                    </p>
+                                    <p><input value="ثبت" class="wpcf7-form-control wpcf7-submit" type="submit"></p>
+                                }
+                                @*</form>*@
+                            </div>
+                        </div>
+                        @*<div class="col-md-6">
+                            <div role="form" class="wpcf7">
+
                                 <form class="wpcf7-form">
                                     <p>
                                         <label>
@@ -85,7 +119,7 @@
                                     <p><input value="ثبت" class="wpcf7-form-control wpcf7-submit" type="submit"></p>
                                 </form>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
@@ -170,6 +204,7 @@
             </style>
         </div>
     </div>*@
+
 @*@Html.Raw(Model.Map.Description)
 
         <div class="contact-details">

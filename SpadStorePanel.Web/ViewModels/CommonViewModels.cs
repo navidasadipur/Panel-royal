@@ -73,17 +73,17 @@ namespace SpadStorePanel.Web.ViewModels
         public StaticContentDetail Pinterest { get; set; }
 
         [MaxLength(600)]
-        [Display(Name = "نام و نام خانوادگی")]
+        [Display(Name = "نام *")]
         [Required(ErrorMessage = "لطفا {0} خود را وارد کنید")]
         public string Name { get; set; }
 
-        [Display(Name = "ایمیل")]
+        [Display(Name = "ایمیل *")]
         [Required(ErrorMessage = "لطفا {0} خود را وارد کنید")]
         [EmailAddress(ErrorMessage = "{0} وارد شده معتبر نیست")]
         [MaxLength(600)]
         public string CustomerEmail { get; set; }
 
-        [Display(Name = "متن")]
+        [Display(Name = "پیام شما *")]
         [Required(ErrorMessage = "لطفا {0} خود را وارد کنید")]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }

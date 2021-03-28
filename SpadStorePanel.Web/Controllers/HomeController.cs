@@ -100,6 +100,7 @@ namespace SpadCompanyPanel.Web.Controllers
         public ActionResult ContactUs()
         {
             var contactUsContent = new ContactUsViewModel();
+
             contactUsContent.ContactInfo = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.ContactInfo);
             contactUsContent.Email = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Email);
             contactUsContent.Address = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Address);
