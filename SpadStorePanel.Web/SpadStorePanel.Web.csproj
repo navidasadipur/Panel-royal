@@ -204,6 +204,7 @@
     <Compile Include="Areas\Admin\Controllers\GridController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Admin\Controllers\OffersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OurTeamController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGalleriesController.cs" />
@@ -2771,6 +2772,10 @@
     <Content Include="Content\client\fonts\Pe-icon-7-stroked41d.eot" />
     <Content Include="Content\client\font\spadRohanRound-Regular .ttf" />
     <Content Include="Content\client\font\spadRohanRound-Regular.woff2" />
+    <Content Include="Areas\Admin\Views\OurTeam\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OurTeam\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OurTeam\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OurTeam\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -4966,7 +4971,7 @@
     </Content>
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\InstaGalleriesSection.cshtml" />
-    <Content Include="Views\Home\OurTeamSection.cshtml" />
+    <Content Include="Views\Home\OurTeamsSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,6 +76,10 @@
     <Compile Include="Migrations\202103161036309_changesInRepositories.firstRoyalSpecificMigration.Designer.cs">
       <DependentUpon>202103161036309_changesInRepositories.firstRoyalSpecificMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103300843165_OurTeamModelAndRepositoryAdded.cs" />
+    <Compile Include="Migrations\202103300843165_OurTeamModelAndRepositoryAdded.Designer.cs">
+      <DependentUpon>202103300843165_OurTeamModelAndRepositoryAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Repositories\InvoicesRepository.cs" />
     <Compile Include="Repositories\LogsRepository.cs" />
     <Compile Include="Repositories\OffersRepository.cs" />
+    <Compile Include="Repositories\OurTeamRepository.cs" />
     <Compile Include="Repositories\ProductCommentsRepository.cs" />
     <Compile Include="Repositories\ProductFeatureValuesRepository.cs" />
     <Compile Include="Repositories\ProductGalleriesRepository.cs" />
@@ -122,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103161036309_changesInRepositories.firstRoyalSpecificMigration.resx">
       <DependentUpon>202103161036309_changesInRepositories.firstRoyalSpecificMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103300843165_OurTeamModelAndRepositoryAdded.resx">
+      <DependentUpon>202103300843165_OurTeamModelAndRepositoryAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

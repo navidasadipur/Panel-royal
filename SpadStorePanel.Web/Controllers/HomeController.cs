@@ -184,7 +184,7 @@ namespace SpadCompanyPanel.Web.Controllers
         {
 
 
-            return PartialView()
+            return PartialView();
         }
 
         public ActionResult InstaGalleriesSection()
