@@ -62,10 +62,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Description, new { })
+                    @Html.LabelFor(model => model.FaceBookLink, new { })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control " } })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form-text text-danger" })
+                        @Html.EditorFor(model => model.FaceBookLink, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.FaceBookLink, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TwitterLink, new { })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.TwitterLink, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.TwitterLink, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InstagramLink, new { })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.InstagramLink, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.InstagramLink, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
             </div>
