@@ -4963,10 +4963,9 @@
     <Content Include="Views\Blog\SocialsSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Blog\InstagramSection.cshtml" />
     <Content Include="Views\Blog\TagsSection.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\Blog\InstagramsSection.cshtml">
+    <Content Include="Views\Blog\InstaGalleriesSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Home\Account.cshtml" />

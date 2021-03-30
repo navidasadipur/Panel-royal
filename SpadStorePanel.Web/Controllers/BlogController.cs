@@ -149,14 +149,14 @@ namespace SpadStorePanel.Web.Controllers
             return PartialView(model);
         }
 
-        public ActionResult InstagramsSection()
+        public ActionResult InstaGalleriesSection()
         {
-            //SocialViewModel model = new SocialViewModel();
+            var model = new InstaGalleryViewModel()
+            {
+                Images = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.InstagramImages)
+            };
 
-            //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
-            //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
-
-            return PartialView();
+            return PartialView(model);
         }
 
         public ActionResult TagsSection()
@@ -165,8 +165,9 @@ namespace SpadStorePanel.Web.Controllers
 
             //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
             //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
+            var tagsModel = _articlesRepo.GetAll();
 
-            return PartialView();
+            return PartialView(tagsModel);
         }
 
     }

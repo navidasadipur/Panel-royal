@@ -21,23 +21,12 @@
             دسته بندی ها<span class="arrow"></span>
         </h2>
         <ul>
-            <li class="cat-item cat-item-51">
-                <a href="#"> دسته 1</a>
-            </li>
-            <li class="cat-item cat-item-49">
-                <a href="#">دسته 2</a>
-            </li>
-            <li class="cat-item cat-item-52">
-                <a href="#"> دسته 3</a>
-            </li>
-            <li class="cat-item cat-item-53">
-                <a href="#"> دسته 4</a>
-            </li>
-            <li class="cat-item cat-item-50">
-                <a href="#">
-                    دسته 5
-                </a>
-            </li>
+            @foreach (var item in Model)
+            {
+                <li class="cat-item cat-item-51">
+                    <a href="#">@item.Title</a>
+                </li>
+            }
         </ul>
     </div>
 

@@ -1,5 +1,8 @@
-﻿@model SpadStorePanel.Web.ViewModels.SocialViewModel
+﻿@model List<SpadStorePanel.Core.Models.ArticleTag>
 
+@{ 
+
+}
 @*<div class="social_logo_item social_logo_instagram ">
         <a target="_blank" href="//@Model.Instagram">
             <div class="home_instagram center_absolute"></div>
@@ -16,7 +19,16 @@
         برچسب ها<span class="arrow"></span>
     </h2>
     <div class="tagcloud">
-        <a href="#" class="tag-cloud-link tag-link-46 tag-link-position-1" aria-label="Just In (4 items)"> تگ 1</a>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <a href="#"
+               class="tag-cloud-link tag-link-42 tag-link-position-@(i+1)"
+               aria-label="Just In (@(i+1) items)">@Model[i].Title</a>
+
+        }
+        <a href="#"
+           class="tag-cloud-link tag-link-46 tag-link-position-1"
+           aria-label="Just In (4 items)">تگ 1</a>
         <a href="#"
            class="tag-cloud-link tag-link-43 tag-link-position-2"
            aria-label="Fashion (5 items)">تگ 2</a>
