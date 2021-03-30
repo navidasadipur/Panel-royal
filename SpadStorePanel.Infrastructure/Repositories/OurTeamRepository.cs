@@ -1,4 +1,4 @@
-﻿using SpadCompanyPanel.Core.Models;
+﻿using SpadStorePanel.Core.Models;
 using SpadStorePanel.Infrastructure;
 using SpadStorePanel.Infrastructure.Repositories;
 using System;

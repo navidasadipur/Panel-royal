@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202103300843165_OurTeamModelAndRepositoryAdded.Designer.cs">
       <DependentUpon>202103300843165_OurTeamModelAndRepositoryAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103301121309_OurTeamModified.cs" />
+    <Compile Include="Migrations\202103301121309_OurTeamModified.Designer.cs">
+      <DependentUpon>202103301121309_OurTeamModified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103300843165_OurTeamModelAndRepositoryAdded.resx">
       <DependentUpon>202103300843165_OurTeamModelAndRepositoryAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103301121309_OurTeamModified.resx">
+      <DependentUpon>202103301121309_OurTeamModified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

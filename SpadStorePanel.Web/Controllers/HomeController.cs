@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SpadCompanyPanel.Infrastructure.Repositories;
 using SpadStorePanel.Core.Models;
 using SpadStorePanel.Core.Utility;
 using SpadStorePanel.Infrastructure.Repositories;
@@ -19,6 +20,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ContactFormsRepository _contactFormRepo;
         private readonly ProductGroupsRepository _prodectGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
+        private readonly OurTeamRepository _ourTeamRepo;
 
         public HomeController(
             ProductGalleriesRepository productGalleryRepo,
@@ -27,7 +29,8 @@ namespace SpadCompanyPanel.Web.Controllers
             //GalleryVideosRepository galleryVideosRepo,
             ProductGroupsRepository productGroupRepo,
             Product product,
-            StaticContentDetailsRepository staticContentDetailsRepo
+            StaticContentDetailsRepository staticContentDetailsRepo,
+            OurTeamRepository ourTeamRepo
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -36,6 +39,7 @@ namespace SpadCompanyPanel.Web.Controllers
             //_galleryVideosRepo = galleryVideosRepo;
             this._prodectGroupsRepo = productGroupRepo;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
+            this._ourTeamRepo = ourTeamRepo;
         }
         public ActionResult Index()
         {
@@ -182,9 +186,9 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult OurTeamsSection()
         {
+            var ourTeam = _ourTeamRepo.GetAll();
 
-
-            return PartialView();
+            return PartialView(ourTeam);
         }
 
         public ActionResult InstaGalleriesSection()
@@ -318,5 +322,6 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return View();
         }
+
     }
 }

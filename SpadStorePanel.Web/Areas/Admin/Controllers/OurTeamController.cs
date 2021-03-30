@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Net;
 using System.Web.Mvc;
-using SpadCompanyPanel.Core.Models;
+using SpadStorePanel.Core.Models;
 using SpadCompanyPanel.Infrastructure.Repositories;
 using System.Web;
 using System.IO;
 using SpadStorePanel.Infrastructure.Helpers;
 
-namespace SpadCompanyPanel.Web.Areas.Admin.Controllers
+namespace SpadStorePanel.Web.Areas.Admin.Controllers
 {
     [Authorize]
     public class OurTeamController : Controller
