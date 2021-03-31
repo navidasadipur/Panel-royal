@@ -4981,7 +4981,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shop\TagsSection.cshtml" />
-    <Content Include="Views\Shop\TopGroupSection.cshtml" />
+    <Content Include="Views\Shop\TopProductGroupSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

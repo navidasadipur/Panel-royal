@@ -44,8 +44,8 @@
 
     </div>*@
 
-
-<div class="banner-wrapper has_background">
+@Html.Action("TopProductGroupSection", "Shop")
+@*<div class="banner-wrapper has_background">
     <img src="~/Content/client/images/23.jpg "
          class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
     <div class="banner-wrapper-inner">
@@ -159,7 +159,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <h1 class="page-title">محصولات</h1>
 <div class="main-container shop-page right-sidebar">
     <div class="container">
@@ -1315,47 +1315,7 @@
 
                         </ul>
                     </div>
-                    <div id="lynessa_product_categories-3" class="widget lynessa widget_product_categories">
-                        <h2 class="widgettitle">
-                            بر اساس نوع<span class="arrow"></span>
-                        </h2>
-                        <ul class="product-categories">
-                            <li class="cat-item cat-item-22">
-                                <label>
-                                    <input type="checkbox"
-                                           name="cate"><span>رویال دو ویژه</span>
-                                    <span class="count">(11)</span>
-                                </label>
-                            </li>
-                            <li class="cat-item cat-item-16">
-                                <label>
-                                    <input type="checkbox"
-                                           name="cate"><span>پارچه ژاکارد پنبه دوز شده</span>
-                                    <span class="count">(9)</span>
-                                </label>
-                            </li>
-                            <li class="cat-item cat-item-24">
-                                <label>
-                                    <input type="checkbox"
-                                           name="cate"><span>سوپاپ تخلیه هوا</span>
-                                    <span class="count">(6)</span>
-                                </label>
-                            </li>
-                            <li class="cat-item cat-item-27">
-                                <label>
-                                    <input type="checkbox"
-                                           name="cate"><span>قاب اسفنجی</span> <span class="count">(6)</span>
-                                </label>
-                            </li>
-                            <li class="cat-item cat-item-19">
-                                <label>
-                                    <input type="checkbox" name="cate"><span>فنر منفصل (پاکتی)</span>
-                                    <span class="count">(7)</span>
-                                </label>
-                            </li>
-
-                        </ul>
-                    </div>
+                    @Html.Action("ProductGroupSection", "Shop")
                 </div><!-- .widget-area -->
             </div>
         </div>

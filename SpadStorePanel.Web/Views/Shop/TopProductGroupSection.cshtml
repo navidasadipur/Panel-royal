@@ -1,0 +1,167 @@
+﻿@model List<SpadStorePanel.Web.ViewModels.ProductCategoriesViewModel>
+
+@*<div class="blog-left-title">
+        دسته بندی
+    </div>
+    @if (Model.Any())
+    {
+        <ul class="blog-category">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a href="/Blog/@category.Id/@category.Title.Replace(" ","-")">
+                        @category.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    }*@
+@*<div id="categories-3" class="widget widget_categories">
+    <h2 class="widgettitle">
+        دسته بندی ها<span class="arrow"></span>
+    </h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="cat-item cat-item-51">
+                <a href="#">@item.Title</a>
+            </li>
+        }
+    </ul>
+</div>*@
+
+
+<div class="banner-wrapper has_background">
+    <img src="~/Content/client/images/23.jpg "
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
+    <div class="banner-wrapper-inner">
+        <div class="container lynessa-categories style-02">
+            <div class="categories-list-owl owl-slick equal-container better-height"
+                 data-slick="{&quot;arrows&quot;:true,&quot;slidesMargin&quot;:60,&quot;dots&quot;:false,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:6,&quot;rows&quot;:1}"
+                 data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:5,&quot;slidesMargin&quot;:&quot;30&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:6,&quot;slidesMargin&quot;:&quot;40&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:6,&quot;slidesMargin&quot;:&quot;50&quot;}}]">
+                @foreach (var item in Model)
+                {
+                    <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                        <div class="categories-inner">
+                            <figure class="categories-thumb">
+                                <a href="#" tabindex="-1">
+                                    <img src="~/Files/ProductGroupImages/Image/@item.Image"
+                                         class="img-responsive attachment-370x370 size-370x370" alt="@item.Title">
+                                </a>
+                            </figure>
+                            <h3 class="title">
+                                <a href="#" tabindex="-1">
+                                    @item.Title
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                }
+                @*<div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="-1">
+                                <img src="~/Content/client/images/cat1.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="-1">
+                                رویال1
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="-1">
+                                <img src="~/Content/client/images/cat2.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="-1"> رویال </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="0">
+                                <img src="~/Content/client/images/cat3.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="0">
+                                رویال 2
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="0">
+                                <img src="~/Content/client/images/cat4.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="0">
+                                رویال3
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="0">
+                                <img src="~/Content/client/images/cat5.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="0">
+                                رویال4
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="0">
+                                <img src="~/Content/client/images/cat6.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="0">
+                                رویال5
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="categories-item rows-space-0 post-740 page type-page status-publish hentry">
+                    <div class="categories-inner">
+                        <figure class="categories-thumb">
+                            <a href="#" tabindex="0">
+                                <img src="~/Content/client/images/cat7.jpg"
+                                     class="img-responsive attachment-370x370 size-370x370" alt="img">
+                            </a>
+                        </figure>
+                        <h3 class="title">
+                            <a href="#" tabindex="0">
+                                رویال6
+                            </a>
+                        </h3>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+

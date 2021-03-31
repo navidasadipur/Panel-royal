@@ -112,14 +112,14 @@ namespace SpadStorePanel.Web.ViewModels
 
         }
 
-        public ProductInfoViewModel(Article article)
+        public ProductInfoViewModel(Article product)
         {
-            this.Id = article.Id;
-            this.Title = article.Title;
-            this.Author = article.User != null ? $"{article.User.FirstName} {article.User.LastName}" : "-";
-            this.ArticleCategory = article.ArticleCategory != null ? article.ArticleCategory.Title : "-";
-            this.PersianAddedDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString() : "-";
-            this.AddedDate = article.AddedDate;
+            this.Id = product.Id;
+            this.Title = product.Title;
+            this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
+            this.ArticleCategory = product.ArticleCategory != null ? product.ArticleCategory.Title : "-";
+            this.PersianAddedDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString() : "-";
+            this.AddedDate = product.AddedDate;
         }
         public int Id { get; set; }
         [Display(Name = "عنوان")]
@@ -141,12 +141,12 @@ namespace SpadStorePanel.Web.ViewModels
         {
         }
 
-        public TopProductsViewModel(Article article)
+        public TopProductsViewModel(Article product)
         {
-            this.Id = article.Id;
-            this.Title = article.Title;
-            this.Image = article.Image;
-            this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
+            this.Id = product.Id;
+            this.Title = product.Title;
+            this.Image = product.Image;
+            this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
@@ -184,6 +184,7 @@ namespace SpadStorePanel.Web.ViewModels
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Image { get; set; }
         public int ProductCount { get; set; }
     }
 
@@ -193,15 +194,15 @@ namespace SpadStorePanel.Web.ViewModels
         {
 
         }
-        public ProductDetailsViewModel(Product article)
+        public ProductDetailsViewModel(Product product)
         {
-            this.Id = article.Id;
-            this.Title = article.Title;
-            this.Image = article.Image;
-            this.ShortDescription = article.ShortDescription;
-            this.Description = article.Description;
-            //this.Author = article.User != null ? $"{article.User.FirstName} {article.User.LastName}" : "-";
-            //this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
+            this.Id = product.Id;
+            this.Title = product.Title;
+            this.Image = product.Image;
+            this.ShortDescription = product.ShortDescription;
+            this.Description = product.Description;
+            //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
+            //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
@@ -266,12 +267,12 @@ namespace SpadStorePanel.Web.ViewModels
         {
         }
 
-        public LatestProductsViewModel(Article article)
+        public LatestProductsViewModel(Article product)
         {
-            this.Id = article.Id;
-            this.Title = article.Title;
-            this.Image = article.Image;
-            this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
+            this.Id = product.Id;
+            this.Title = product.Title;
+            this.Image = product.Image;
+            this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }

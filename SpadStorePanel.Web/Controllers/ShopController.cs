@@ -13,7 +13,6 @@ namespace SpadCompanyPanel.Web.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly StaticContentDetailsRepository _contentDetailsRepo;
         private readonly ProductGalleriesRepository _productGalleryRepo;
         //private readonly GalleryVideosRepository _galleryVideosRepo;
         private readonly ProductsRepository _productRepo;
@@ -21,7 +20,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ProductGroupsRepository _prodectGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
 
-        public ShopController(StaticContentDetailsRepository contentRepo,
+        public ShopController(
             ProductGalleriesRepository productGalleryRepo,
             ProductsRepository productRepo,
             ContactFormsRepository contactFormRepo,
@@ -31,7 +30,6 @@ namespace SpadCompanyPanel.Web.Controllers
             StaticContentDetailsRepository staticContentDetailsRepo
             )
         {
-            _contentDetailsRepo = contentRepo;
             _productGalleryRepo = productGalleryRepo;
             _productRepo = productRepo;
             _contactFormRepo = contactFormRepo;
@@ -83,23 +81,23 @@ namespace SpadCompanyPanel.Web.Controllers
         //}
 
         
-        public ActionResult ContactUs()
-        {
-            var contactUsContent = new ContactUsViewModel();
-            contactUsContent.ContactInfo = _contentDetailsRepo.Get((int)StaticContents.ContactInfo);
-            contactUsContent.Email = _contentDetailsRepo.Get((int)StaticContents.Email);
-            contactUsContent.Address = _contentDetailsRepo.Get((int)StaticContents.Address);
-            contactUsContent.Phone = _contentDetailsRepo.Get((int)StaticContents.Phone);
-            //contactUsContent.Youtube = _contentDetailsRepo.Get((int)StaticContents.Youtube);
-            contactUsContent.Instagram = _contentDetailsRepo.Get((int)StaticContents.Instagram);
-            contactUsContent.Twitter = _contentDetailsRepo.Get((int)StaticContents.Twitter);
-            contactUsContent.Pinterest = _contentDetailsRepo.Get((int)StaticContents.Pinterest);
-            contactUsContent.Facebook = _contentDetailsRepo.Get((int)StaticContents.Facebook);
-            contactUsContent.Map = _contentDetailsRepo.Get((int)StaticContents.Map);
-            //return View(contactUsContent);
+        //public ActionResult ContactUs()
+        //{
+        //    var contactUsContent = new ContactUsViewModel();
+        //    contactUsContent.ContactInfo = _contentDetailsRepo.Get((int)StaticContents.ContactInfo);
+        //    contactUsContent.Email = _contentDetailsRepo.Get((int)StaticContents.Email);
+        //    contactUsContent.Address = _contentDetailsRepo.Get((int)StaticContents.Address);
+        //    contactUsContent.Phone = _contentDetailsRepo.Get((int)StaticContents.Phone);
+        //    //contactUsContent.Youtube = _contentDetailsRepo.Get((int)StaticContents.Youtube);
+        //    contactUsContent.Instagram = _contentDetailsRepo.Get((int)StaticContents.Instagram);
+        //    contactUsContent.Twitter = _contentDetailsRepo.Get((int)StaticContents.Twitter);
+        //    contactUsContent.Pinterest = _contentDetailsRepo.Get((int)StaticContents.Pinterest);
+        //    contactUsContent.Facebook = _contentDetailsRepo.Get((int)StaticContents.Facebook);
+        //    contactUsContent.Map = _contentDetailsRepo.Get((int)StaticContents.Map);
+        //    //return View(contactUsContent);
 
-            return PartialView(contactUsContent);
-        }
+        //    return PartialView(contactUsContent);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -259,5 +257,36 @@ namespace SpadCompanyPanel.Web.Controllers
 
         //    return PartialView(model);
         //}
+
+        public ActionResult ProductGroupSection()
+        {
+            var categories = _prodectGroupsRepo.GetAllProductGroups();
+            var articleCategoriesVm = new List<ProductCategoriesViewModel>();
+            foreach (var item in categories)
+            {
+                var vm = new ProductCategoriesViewModel();
+                vm.Id = item.Id;
+                vm.Title = item.Title;
+                vm.ProductCount = _productRepo.getProductsByGroupId(item.Id).Count();
+                articleCategoriesVm.Add(vm);
+            }
+            return PartialView(articleCategoriesVm);
+        }
+
+        public ActionResult TopProductGroupSection()
+        {
+            var categories = _prodectGroupsRepo.GetAllProductGroups();
+            var articleCategoriesVm = new List<ProductCategoriesViewModel>();
+            foreach (var item in categories)
+            {
+                var vm = new ProductCategoriesViewModel();
+                vm.Id = item.Id;
+                vm.Title = item.Title;
+                vm.Image = item.Image;
+                vm.ProductCount = _productRepo.getProductsByGroupId(item.Id).Count();
+                articleCategoriesVm.Add(vm);
+            }
+            return PartialView(articleCategoriesVm);
+        }
     }
 }
