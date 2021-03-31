@@ -4956,7 +4956,6 @@
     <Content Include="Views\Home\IndexPartOne.cshtml" />
     <Content Include="Views\Home\IndexPartThree.cshtml" />
     <Content Include="Views\Home\IndexPartTwo.cshtml" />
-    <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Home\SocialsSection.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
@@ -4971,6 +4970,18 @@
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\InstaGalleriesSection.cshtml" />
     <Content Include="Views\Home\OurTeamsSection.cshtml" />
+    <Content Include="Views\Shop\InstaGalleriesSection.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shop\LatestArticlesSection.cshtml" />
+    <Content Include="Views\Shop\ProductDetails.cshtml" />
+    <Content Include="Views\Shop\ProductGroupSection.cshtml" />
+    <Content Include="Views\Shop\Shop.cshtml" />
+    <Content Include="Views\Shop\SocialsSection.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shop\TagsSection.cshtml" />
+    <Content Include="Views\Shop\TopGroupSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

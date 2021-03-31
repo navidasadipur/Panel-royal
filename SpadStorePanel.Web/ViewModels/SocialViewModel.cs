@@ -7,9 +7,13 @@ namespace SpadStorePanel.Web.ViewModels
 {
     public class SocialViewModel
     {
-        public string Instagram { get; set; }
+        public string Facebook { get; set; }
 
-        public string Aparat { get; set; }
+        public string Twitter { get; set; }
+
+        public string Pinterest { get; set; }
+
+        public string Instagram { get; set; }
 
     }
 }

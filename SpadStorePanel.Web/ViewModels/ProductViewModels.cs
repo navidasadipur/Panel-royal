@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using SpadStorePanel.Core.Models;
 
 namespace SpadStorePanel.Web.ViewModels
@@ -47,6 +48,234 @@ namespace SpadStorePanel.Web.ViewModels
         }
         public ProductComment Comment { get; set; }
         [Display(Name = "تاریخ ثبت")]
+        public string PersianDate { get; set; }
+    }
+
+
+    public class NewProductGroupViewModel
+    {
+        public string Title { get; set; }
+        public List<int> BrandIds { get; set; }
+        public int ParentGroupId { get; set; }
+        public List<int> ProductGroupFeatureIds { get; set; }
+    }
+    public class UpdateProductGroupViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public List<int> BrandIds { get; set; }
+        public int ParentGroupId { get; set; }
+        public List<int> ProductGroupFeatureIds { get; set; }
+    }
+
+    public class FeaturesObjViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+    }
+    public class BrandsObjViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class SubFeaturesObjViewModel
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
+    }
+
+
+
+    public class ProductFormViewModel
+    {
+        public int Id { get; set; }
+        [Display(Name = "عنوان مقاله")]
+        [MaxLength(600, ErrorMessage = "{0} باید از 600 کارکتر کمتر باشد")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public string Title { get; set; }
+
+        [Display(Name = "توضیح")]
+        [DataType(DataType.MultilineText)]
+        [AllowHtml]
+        public string Description { get; set; }
+        public int ArticleCategoryId { get; set; }
+        public HttpPostedFileBase ArticleImage { get; set; }
+
+        public List<ArticleHeadLineViewModel> ArticleHeadLines { get; set; }
+    }
+
+
+    public class ProductInfoViewModel
+    {
+        public ProductInfoViewModel()
+        {
+
+        }
+
+        public ProductInfoViewModel(Article article)
+        {
+            this.Id = article.Id;
+            this.Title = article.Title;
+            this.Author = article.User != null ? $"{article.User.FirstName} {article.User.LastName}" : "-";
+            this.ArticleCategory = article.ArticleCategory != null ? article.ArticleCategory.Title : "-";
+            this.PersianAddedDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString() : "-";
+            this.AddedDate = article.AddedDate;
+        }
+        public int Id { get; set; }
+        [Display(Name = "عنوان")]
+        public string Title { get; set; }
+        [Display(Name = "نویسنده")]
+        public string Author { get; set; }
+        [Display(Name = "دسته بندی")]
+        public string ArticleCategory { get; set; }
+        [Display(Name = "تاریخ ثبت")]
+        public string PersianAddedDate { get; set; }
+        public DateTime? AddedDate { get; set; }
+    }
+
+
+
+    public class TopProductsViewModel
+    {
+        public TopProductsViewModel()
+        {
+        }
+
+        public TopProductsViewModel(Article article)
+        {
+            this.Id = article.Id;
+            this.Title = article.Title;
+            this.Image = article.Image;
+            this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
+        }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Image { get; set; }
+        public string PersianDate { get; set; }
+    }
+    public class ProductListViewModel
+    {
+        public ProductListViewModel()
+        {
+        }
+
+        public ProductListViewModel(Product product)
+        {
+            this.Id = product.Id;
+            this.Title = product.Title;
+            this.ShortDescription = product.ShortDescription;
+            //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
+            this.Image = product.Image;
+            //this.AuthorAvatar = product.User.Avatar ?? "user-avatar.png";
+            //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
+        }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string ShortDescription { get; set; }
+        public string Image { get; set; }
+        public string PersianDate { get; set; }
+        public string Author { get; set; }
+        //public string AuthorAvatar { get; set; }
+        public string Role { get; set; }
+        public int CommentCounter { get; set; }
+    }
+
+    public class ProductCategoriesViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public int ProductCount { get; set; }
+    }
+
+    public class ProductDetailsViewModel
+    {
+        public ProductDetailsViewModel()
+        {
+
+        }
+        public ProductDetailsViewModel(Product article)
+        {
+            this.Id = article.Id;
+            this.Title = article.Title;
+            this.Image = article.Image;
+            this.ShortDescription = article.ShortDescription;
+            this.Description = article.Description;
+            //this.Author = article.User != null ? $"{article.User.FirstName} {article.User.LastName}" : "-";
+            //this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
+        }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Image { get; set; }
+        public string ShortDescription { get; set; }
+        public string Description { get; set; }
+        public string Author { get; set; }
+        public string PersianDate { get; set; }
+        public string SubTitles { get; set; }
+        public List<ArticleTag> Tags { get; set; }
+        public List<ProductCommentViewModel> ProductComments { get; set; }
+        public CommentFormViewModel CommentForm { get; set; }
+    }
+
+    public class ProductCommentViewModel
+    {
+        public ProductCommentViewModel()
+        {
+
+        }
+
+        public ProductCommentViewModel(ProductComment comment)
+        {
+            this.Id = comment.Id;
+            this.ParentId = comment.ParentId;
+            this.Name = comment.Name;
+            this.Email = comment.Email;
+            this.Message = comment.Message;
+            this.AddedDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
+        }
+        public int Id { get; set; }
+        public int? ParentId { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
+        public string AddedDate { get; set; }
+    }
+
+    public class ProductCommentFormViewModel
+    {
+        public int? ParentId { get; set; }
+        public int ArticleId { get; set; }
+        [Display(Name = "نام")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(300, ErrorMessage = "{0} باید کمتر از 300 کارکتر باشد")]
+        public string Name { get; set; }
+        [Display(Name = "ایمیل")]
+        [EmailAddress(ErrorMessage = "ایمیل نا معتبر")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(400, ErrorMessage = "{0} باید کمتر از 400 کارکتر باشد")]
+        public string Email { get; set; }
+        [Display(Name = "پیام")]
+        [DataType(DataType.MultilineText)]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(800, ErrorMessage = "{0} باید کمتر از 800 کارکتر باشد")]
+        public string Message { get; set; }
+    }
+
+    public class LatestProductsViewModel
+    {
+        public LatestProductsViewModel()
+        {
+        }
+
+        public LatestProductsViewModel(Article article)
+        {
+            this.Id = article.Id;
+            this.Title = article.Title;
+            this.Image = article.Image;
+            this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
+        }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Image { get; set; }
         public string PersianDate { get; set; }
     }
 }

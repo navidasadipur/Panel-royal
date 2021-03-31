@@ -147,10 +147,13 @@ namespace SpadStorePanel.Web.Controllers
 
         public ActionResult SocialsSection()
         {
-            SocialViewModel model = new SocialViewModel();
-
-            //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
-            //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
+            SocialViewModel model = new SocialViewModel()
+            {
+                Facebook = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Facebook).Link,
+                Instagram = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Instagram).Link,
+                Twitter = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Twitter).Link,
+                Pinterest = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Pinterest).Link,
+            };
 
             return PartialView(model);
         }
