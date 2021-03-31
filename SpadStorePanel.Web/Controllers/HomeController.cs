@@ -148,18 +148,24 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult Footer()
         {
+            var footerContent = new FooterViewModel()
+            {
+                Address = _staticContentDetailsRepo.Get((int)StaticContents.Address),
+                Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone),
+                //Youtube = _staticContentDetailsRepo.Get((int)StaticContents.Youtube),
+                Instagram = _staticContentDetailsRepo.Get((int)StaticContents.Instagram),
+                Twitter = _staticContentDetailsRepo.Get((int)StaticContents.Twitter),
+                Pinterest = _staticContentDetailsRepo.Get((int)StaticContents.Pinterest),
+                Facebook = _staticContentDetailsRepo.Get((int)StaticContents.Facebook),
+                CopyRightShortDescrioption = _staticContentDetailsRepo.Get((int)StaticContents.CopyRight),
+                ImplementationShortDescription = _staticContentDetailsRepo.Get((int)StaticContents.implementaitonService),
+                CompanyServices = _staticContentDetailsRepo.Get((int)StaticContents.companyServices)
+            };
 
-            var footerContent = new FooterViewModel();
-            footerContent.ShortDescription = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault();
-            footerContent.Email = _staticContentDetailsRepo.Get((int) StaticContents.Email);
-            footerContent.Address = _staticContentDetailsRepo.Get((int) StaticContents.Address);
-            footerContent.Phone = _staticContentDetailsRepo.Get((int) StaticContents.Phone);
-            footerContent.SupportPhone = _staticContentDetailsRepo.Get((int)StaticContents.SupportPhone);
-            //footerContent.Youtube = _staticContentDetailsRepo.Get((int) StaticContents.Youtube);
-            footerContent.Instagram = _staticContentDetailsRepo.Get((int) StaticContents.Instagram);
-            footerContent.Twitter = _staticContentDetailsRepo.Get((int) StaticContents.Twitter);
-            footerContent.Pinterest = _staticContentDetailsRepo.Get((int) StaticContents.Pinterest);
-            footerContent.Facebook = _staticContentDetailsRepo.Get((int) StaticContents.Facebook);
+            // getting and making ready company services(list of text);
+            //var companyServices = _staticContentDetailsRepo.Get((int)StaticContents.companyServices);
+            //footerContent.CompanyServices = companyServices.ShortDescription.Split('-').ToList();
+
             return PartialView(footerContent);
         }
         [Route("Gallery")]

@@ -15,6 +15,7 @@ namespace SpadStorePanel.Core.Models
         public string Title { get; set; }
         [Display(Name = "توضیح کوتاه")]
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string ShortDescription { get; set; }
         [Display(Name = "توضیح")]
         [DataType(DataType.MultilineText)]

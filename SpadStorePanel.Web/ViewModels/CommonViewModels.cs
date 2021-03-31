@@ -47,7 +47,7 @@ namespace SpadStorePanel.Web.ViewModels
     public class FooterViewModel
     {
         public StaticContentDetail Phone { get; set; }
-        public StaticContentDetail Email { get; set; }
+        //public StaticContentDetail Email { get; set; }
         public StaticContentDetail Address { get; set; }
         public StaticContentDetail Youtube { get; set; }
         public StaticContentDetail Instagram { get; set; }
@@ -55,8 +55,9 @@ namespace SpadStorePanel.Web.ViewModels
         public StaticContentDetail Facebook { get; set; }
         public StaticContentDetail Pinterest { get; set; }
         public StaticContentDetail SiteTitle { get; set; }
-        public StaticContentDetail ShortDescription { get; set; }
-        public StaticContentDetail SupportPhone { get; set; }
+        public StaticContentDetail CopyRightShortDescrioption { get; set; }
+        public StaticContentDetail ImplementationShortDescription { get; set; }
+        public StaticContentDetail CompanyServices { get; set; }
     }
     public class ContactUsViewModel
     {

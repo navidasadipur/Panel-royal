@@ -38,6 +38,7 @@
         .Columns(columns =>
         {
             columns.Bound(model => model.Title);
+            columns.Bound(model => model.StaticContentType.Name).Title("نوع محتوا");
             columns.Bound(model => model.ShortDescription);
             columns.Bound(item => @item.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
                 @<text>

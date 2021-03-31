@@ -1,5 +1,8 @@
 ﻿@model SpadStorePanel.Web.ViewModels.FooterViewModel
 
+@{
+    var servicesList = Model.CompanyServices.ShortDescription.Split('-').ToList();
+}
 
 <footer id="footer" class="footer style-04">
     <div class="section-001 section-009">
@@ -37,31 +40,29 @@
                              class="az_single_image-img attachment-full" alt="img">
                     </div>
                     <div class="footer-desc">
-                        جنوب به شمال آیت الله سعیدی<br />
-                        نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰
-                        <br>
-                        <p> ۶۶۲۲۳۴۳۱-۶۶۲۰۱۶۲۲:تلفن</p>
+                        @Html.Raw(Model.Address.ShortDescription)
+                        <p>@Html.Raw(Model.Phone.ShortDescription)</p>
                     </div>
                     <div class="lynessa-socials style-01">
                         <div class="content-socials">
                             <ul class="socials-list">
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Facebook.Link" target="_blank">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Instagram.Link" target="_blank">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Twitter.Link" target="_blank">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Pinterest.Link" target="_blank">
                                         <i class="fa fa-pinterest-p"></i>
                                     </a>
                                 </li>
@@ -72,28 +73,16 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="lynessa-listitem style-04">
                         <div class="listitem-inner">
-                            <h4 class="title">خدمات </h4>
+                            <h4 class="title">@Html.Raw(Model.CompanyServices.Title)</h4>
                             <ul class="listitem-list">
-                                <li>
-                                    <a href="#" target=" _blank">
-                                        خرید انلاین
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_self">
-                                        امنیت خرید
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_self">
-                                        گارانتی تعویض
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_self">
-                                        ارسال به شهرستان
-                                    </a>
-                                </li>
+                                @foreach (var service in servicesList)
+                                {
+                                    <li>
+                                        <a href="#" target=" _blank">
+                                            @service
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -104,33 +93,29 @@
                              class="az_single_image-img attachment-full" alt="img">
                     </div>
                     <div class="footer-desc">
-                        جنوب به شمال آیت الله سعیدی <br />
-
-                        نرسیده به چهارراه یافت آباد ، خیابان تقی زاده ،پلاک ۲۸ و ۳۰
-                        فروشگاه مرکزی بازار مبل یافت آباد
-                        <br>
-                        <p> ۶۶۲۲۳۴۳۱-۶۶۲۰۱۶۲۲:تلفن</p>
+                        @Html.Raw(Model.Address.ShortDescription)
+                        <p>@Html.Raw(Model.Phone.ShortDescription)</p>
                     </div>
                     <div class="lynessa-socials style-01">
                         <div class="content-socials">
                             <ul class="socials-list">
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Facebook.Link" target="_blank">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Instagram.Link" target="_blank">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Twitter.Link" target="_blank">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="@Model.Pinterest.Link" target="_blank">
                                         <i class="fa fa-pinterest-p"></i>
                                     </a>
                                 </li>
@@ -146,12 +131,12 @@
                             </h4>
                             <ul class="listitem-list">
                                 <li>
-                                    <a href="#" target="_self">
+                                    <a href="~/home" target="_self">
                                         صفحه اصلی
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_self">
+                                    <a href="~/home/contactUs" target="_self">
                                         تماس با ما
                                     </a>
                                 </li>
@@ -161,7 +146,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_self">
+                                    <a href="~/home/about" target="_self">
                                         درباره ما
                                     </a>
                                 </li>
@@ -176,9 +161,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>     می باشد  <a href="#">royalmattressorg</a> کلیه حق و حقوق متعلق به </p>
-                    <p>    طراحی و پیاده سازی توسط   <a href="https://www.spad.co/" target="_blank" rel=”nofollow”>اسپاد</a>  </p>
-
+                    <p>@Html.Raw(Model.CopyRightShortDescrioption.ShortDescription)</p>
+                    <p>@Html.Raw(Model.ImplementationShortDescription.ShortDescription)</p>
                 </div>
                 <div class="col-md-6">
                     <div class="payment">
@@ -193,7 +177,7 @@
 <div class="footer-device-mobile">
     <div class="wapper">
         <div class="footer-device-mobile-item device-home">
-            <a href="index.html">
+            <a href="~/home">
                 <span class="icon">
                     <span class="pe-7s-home"></span>
                 </span>

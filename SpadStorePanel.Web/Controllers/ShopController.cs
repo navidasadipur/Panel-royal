@@ -126,23 +126,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return View();
         }
 
-
-        public ActionResult Footer()
-        {
-
-            var footerContent = new FooterViewModel();
-            footerContent.ShortDescription = _contentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault();
-            footerContent.Email = _contentDetailsRepo.Get((int) StaticContents.Email);
-            footerContent.Address = _contentDetailsRepo.Get((int) StaticContents.Address);
-            footerContent.Phone = _contentDetailsRepo.Get((int) StaticContents.Phone);
-            footerContent.SupportPhone = _contentDetailsRepo.Get((int)StaticContents.SupportPhone);
-            //footerContent.Youtube = _contentDetailsRepo.Get((int) StaticContents.Youtube);
-            footerContent.Instagram = _contentDetailsRepo.Get((int) StaticContents.Instagram);
-            footerContent.Twitter = _contentDetailsRepo.Get((int) StaticContents.Twitter);
-            footerContent.Pinterest = _contentDetailsRepo.Get((int) StaticContents.Pinterest);
-            footerContent.Facebook = _contentDetailsRepo.Get((int) StaticContents.Facebook);
-            return PartialView(footerContent);
-        }
         [Route("Gallery")]
         public ActionResult GalleryPage()
         {

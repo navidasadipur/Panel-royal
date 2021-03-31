@@ -32,7 +32,9 @@ namespace SpadStorePanel.Core.Utility
         Facebook = 2015,
         BlogImage = 1013,
         ContactInfo = 1014,
-        SupportPhone = 2014
+        companyServices = 3003,
+        CopyRight = 3004,
+        implementaitonService = 3005
     }
 
     public enum StaticContentTypes
