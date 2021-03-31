@@ -10,38 +10,42 @@ using System.Data.Entity;
 
 namespace SpadStorePanel.Infrastructure.Repositories
 {
-    public class ArticleCommentsRepository : BaseRepository<ArticleComment, MyDbContext>
+    public class ArticleTagsRepository : BaseRepository<ArticleTag, MyDbContext>
     {
         private readonly MyDbContext _context;
         private readonly LogsRepository _logger;
-        public ArticleCommentsRepository(MyDbContext context, LogsRepository logger) : base(context, logger)
+        public ArticleTagsRepository(MyDbContext context, LogsRepository logger) : base(context, logger)
         {
             _context = context;
             _logger = logger;
         }
-        public List<ArticleComment> GetArticleComments(int articleId)
+
+        public List<ArticleTag> GetArticleTags(int articleId)
         {
-            return _context.ArticleComments.Where(h => h.ArticleId == articleId & h.IsDeleted == false).ToList();
+            return _context.ArticleTags.Where(h => h.ArticleId == articleId & h.IsDeleted == false).ToList();
         }
+
         public string GetArticleName(int articleId)
         {
             return _context.Articles.Find(articleId).Title;
         }
-        public ArticleComment DeleteComment(int id)
+
+        public ArticleTag DeleteTag(int id)
         {
-            var comment = _context.ArticleComments.Find(id);
-            var children = _context.ArticleComments.Where(c=>c.ParentId == id).ToList();
-            foreach (var child in children)
-            {
-                child.IsDeleted = true;
-                _context.Entry(child).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
-            comment.IsDeleted = true;
-            _context.Entry(comment).State = EntityState.Modified;
+            var tag = _context.ArticleTags.Find(id);
+            
+            //foreach (var child in children)
+            //{
+            //    child.IsDeleted = true;
+            //    _context.Entry(child).State = EntityState.Modified;
+            //    _context.SaveChanges();
+            //}
+
+            tag.IsDeleted = true;
+            _context.Entry(tag).State = EntityState.Modified;
             _context.SaveChanges();
-            _logger.LogEvent(comment.GetType().Name, comment.Id, "Delete");
-            return comment;
+            _logger.LogEvent(tag.GetType().Name, tag.Id, "Delete");
+            return tag;
         }
     }
 }

@@ -44,6 +44,5 @@ namespace SpadStorePanel.Infrastructure
         public DbSet<EPaymentLog> EPaymentLogs { get; set; }
         public DbSet<GeoDivision> GeoDivisions { get; set; }
         public DbSet<OurTeam> OurTeams { get; set; }
-
     }
 }

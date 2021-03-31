@@ -13,13 +13,19 @@ namespace SpadStorePanel.Web.Controllers
     public class BlogController : Controller
     {
         private readonly ArticlesRepository _articlesRepo;
+        private readonly ArticleTagsRepository _articleTagsRepository;
         private readonly StaticContentDetailsRepository _contentRepo;
 
         public StaticContentDetailsRepository _staticContentDetailsRepo { get; }
 
-        public BlogController(ArticlesRepository articlesRepo, StaticContentDetailsRepository staticContentDetailsRepo)
+        public BlogController(
+            ArticlesRepository articlesRepo,
+            ArticleTagsRepository articleTagsRepository,
+            StaticContentDetailsRepository staticContentDetailsRepo
+            )
         {
             _articlesRepo = articlesRepo;
+            this._articleTagsRepository = articleTagsRepository;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
         }
 
@@ -165,9 +171,10 @@ namespace SpadStorePanel.Web.Controllers
 
             //model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail(1009).Link;
             //model.Aparat = _staticContentDetailsRepo.GetStaticContentDetail(1012).Link;
-            var tagsModel = _articlesRepo.GetAll();
 
-            return PartialView(tagsModel);
+            var tags = _articleTagsRepository.GetAll();
+
+            return PartialView(tags);
         }
 
     }
