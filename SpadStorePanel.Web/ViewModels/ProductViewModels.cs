@@ -187,6 +187,10 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class ProductFeaturesSearchViewModel
     {
+        public ProductFeaturesSearchViewModel()
+        {
+            SubFeatures = new List<SubFeatureViewModel>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public ICollection<SubFeatureViewModel> SubFeatures { get; set; }

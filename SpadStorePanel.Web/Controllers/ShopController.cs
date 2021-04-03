@@ -271,10 +271,9 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult ProductFeatureSearchSection()
         {
+            var model = new List<ProductFeaturesSearchViewModel>();
+
             var allFeaturesWithSubFeatures = _featuresRepo.GetAllFeaturesWithSubFeatures();
-
-
-            
 
             foreach (var feature in allFeaturesWithSubFeatures)
             {
@@ -291,14 +290,18 @@ namespace SpadCompanyPanel.Web.Controllers
                         Id = subFeature.Id,
                         Value = subFeature.Value,
                         OtherInfo = subFeature.OtherInfo,
-                        //ProductCount = _productFeatureValuesRepo.
+                        ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(subFeature.Id)
                     };
 
+                    featureViewModel.SubFeatures.Add(subFeatureViewModel);
                 }
+
+                model.Add(featureViewModel);
             }
 
-            return PartialView(allFeaturesWithSubFeatures);
+            return PartialView(model);
         }
+
 
         public ActionResult ProductGroupSection()
         {
