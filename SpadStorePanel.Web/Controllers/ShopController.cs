@@ -269,34 +269,45 @@ namespace SpadCompanyPanel.Web.Controllers
         //    return PartialView(model);
         //}
 
-        public ActionResult ProductFeatureSearchSection()
+        public ActionResult ColorSearchSection()
         {
-            var model = new List<ProductFeaturesSearchViewModel>();
+            var model = new List<Color_SizeSearchViewModel>();
 
-            var allFeaturesWithSubFeatures = _featuresRepo.GetAllFeaturesWithSubFeatures();
+            var subFeatures = _productRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Color);
 
-            foreach (var feature in allFeaturesWithSubFeatures)
+            foreach (var item in subFeatures)
             {
-                var featureViewModel = new ProductFeaturesSearchViewModel()
+                var ViewModel = new Color_SizeSearchViewModel()
                 {
-                    Id = feature.Id,
-                    Title = feature.Title,
+                    Id = item.Id,
+                    Value = item.Value,
+                    OtherInfo = item.OtherInfo,
+                    ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
                 };
 
-                foreach (var subFeature in feature.SubFeatures)
+                model.Add(ViewModel);
+            }
+
+            return PartialView(model);
+        }
+
+        public ActionResult SizeSearchSection()
+        {
+            var model = new List<Color_SizeSearchViewModel>();
+
+            var subFeatures = _productRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Size);
+
+            foreach (var item in subFeatures)
+            {
+                var viewModel = new Color_SizeSearchViewModel()
                 {
-                    var subFeatureViewModel = new SubFeatureViewModel()
-                    {
-                        Id = subFeature.Id,
-                        Value = subFeature.Value,
-                        OtherInfo = subFeature.OtherInfo,
-                        ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(subFeature.Id)
-                    };
+                    Id = item.Id,
+                    Value = item.Value,
+                    OtherInfo = item.OtherInfo,
+                    ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
+                };
 
-                    featureViewModel.SubFeatures.Add(subFeatureViewModel);
-                }
-
-                model.Add(featureViewModel);
+                model.Add(viewModel);
             }
 
             return PartialView(model);

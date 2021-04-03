@@ -18,6 +18,12 @@ namespace SpadStorePanel.Core.Utility
         City = 2,
     }
 
+    public enum ProductFeatures
+    {
+        Color = 1002,
+        Size = 1003,
+    }
+
     public enum StaticContents
     {
         Phone = 1005,

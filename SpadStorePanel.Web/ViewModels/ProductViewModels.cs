@@ -185,24 +185,24 @@ namespace SpadStorePanel.Web.ViewModels
         public int ProductCount { get; set; }
     }
 
-    public class ProductFeaturesSearchViewModel
-    {
-        public ProductFeaturesSearchViewModel()
-        {
-            SubFeatures = new List<SubFeatureViewModel>();
-        }
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public ICollection<SubFeatureViewModel> SubFeatures { get; set; }
-    }
-    public class SubFeatureViewModel
+    //public class ProductFeaturesSearchViewModel
+    //{
+    //    public ProductFeaturesSearchViewModel()
+    //    {
+    //        SubFeatures = new List<SubFeatureViewModel>();
+    //    }
+    //    public int Id { get; set; }
+    //    public string Title { get; set; }
+    //    public ICollection<SubFeatureViewModel> SubFeatures { get; set; }
+    //}
+
+    public class Color_SizeSearchViewModel
     {
         public int Id { get; set; }
         public string Value { get; set; }
         public string OtherInfo { get; set; }
         public int ProductCount { get; set; }
     }
-
 
     public class ProductDetailsViewModel
     {

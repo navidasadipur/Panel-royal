@@ -1,0 +1,54 @@
+﻿@model List<SpadStorePanel.Web.ViewModels.Color_SizeSearchViewModel>
+@*@model List<SpadStorePanel.Web.ViewModels.ProductCategoriesViewModel>*@
+
+
+@*<div class="blog-left-title">
+        دسته بندی
+    </div>
+    @if (Model.Any())
+    {
+        <ul class="blog-category">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a href="/Blog/@category.Id/@category.Title.Replace(" ","-")">
+                        @category.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    }*@
+@*<div id="categories-3" class="widget widget_categories">
+        <h2 class="widgettitle">
+            دسته بندی ها<span class="arrow"></span>
+        </h2>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="cat-item cat-item-51">
+                    <a href="#">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </div>*@
+
+
+<div id="lynessa_layered_nav-6"
+     class="widget lynessa widget_layered_nav lynessa-widget-layered-nav">
+    <h2 class="widgettitle">
+        جستجو بر اساس سایز<span class="arrow"></span>
+    </h2>
+    <ul class="lynessa-widget-layered-nav-list">
+        @foreach (var subFeature in Model)
+        {
+            <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
+                <label>
+                    <input type="checkbox" name="size">
+                    <span>@subFeature.Value</span>
+                    <span class="count">(@subFeature.ProductCount)</span>
+                </label>
+            </li>
+        }
+    </ul>
+</div>
+
