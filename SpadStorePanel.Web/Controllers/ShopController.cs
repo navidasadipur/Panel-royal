@@ -271,31 +271,23 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult ColorSearchSection()
         {
-            var model = new List<Color_SizeSearchViewModel>();
-
-            var subFeatures = _productRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Color);
-
-            foreach (var item in subFeatures)
-            {
-                var ViewModel = new Color_SizeSearchViewModel()
-                {
-                    Id = item.Id,
-                    Value = item.Value,
-                    OtherInfo = item.OtherInfo,
-                    ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
-                };
-
-                model.Add(ViewModel);
-            }
+            var model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Color);
 
             return PartialView(model);
         }
 
         public ActionResult SizeSearchSection()
         {
+            var model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Size);
+
+            return PartialView(model);
+        }
+
+        private List<Color_SizeSearchViewModel> CreatingColor_SizeSearchViewModel(int featureId)
+        {
             var model = new List<Color_SizeSearchViewModel>();
 
-            var subFeatures = _productRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Size);
+            var subFeatures = _productRepo.GetSubFeaturesByFeatureId(featureId);
 
             foreach (var item in subFeatures)
             {
@@ -310,9 +302,8 @@ namespace SpadCompanyPanel.Web.Controllers
                 model.Add(viewModel);
             }
 
-            return PartialView(model);
+            return model;
         }
-
 
         public ActionResult ProductGroupSection()
         {
