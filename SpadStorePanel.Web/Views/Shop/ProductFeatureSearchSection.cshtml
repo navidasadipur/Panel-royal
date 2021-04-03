@@ -1,0 +1,199 @@
+﻿@model List<SpadStorePanel.Web.ViewModels.ProductFeaturesSearchViewModel>
+@*@model List<SpadStorePanel.Web.ViewModels.ProductCategoriesViewModel>*@
+
+
+@*<div class="blog-left-title">
+        دسته بندی
+    </div>
+    @if (Model.Any())
+    {
+        <ul class="blog-category">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a href="/Blog/@category.Id/@category.Title.Replace(" ","-")">
+                        @category.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    }*@
+@*<div id="categories-3" class="widget widget_categories">
+        <h2 class="widgettitle">
+            دسته بندی ها<span class="arrow"></span>
+        </h2>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="cat-item cat-item-51">
+                    <a href="#">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </div>*@
+
+@foreach (var feature in Model)
+{
+    <div id="lynessa_lynessa_layered_nav-4"
+         class="widget lynessa_widget_layered_nav widget_layered_nav">
+        <h2 class="widgettitle">جستجو بر اساس @feature.Title<span class="arrow"></span></h2>
+        <form class="color-group">
+            @foreach (var subFeature in feature.SubFeatures)
+            {
+                <label class="term-color">
+                    <input type="checkbox" name="term-color">
+                    <i style="color: @subFeature.OtherInfo"></i>
+                    <span class="term-name">@subFeature.Value</span>
+                    <span class="count">(4)@subFeature</span>
+                </label>
+            }
+            <label class="term-color">
+                <input type="checkbox" name="term-color">
+                <i style="color: #000000"></i>
+                <span class="term-name">مشکی</span>
+                <span class="count">(4)</span>
+            </label>
+            <label class="term-color ">
+                <input type="checkbox" name="term-color">
+                <i style="color: #337fdd"></i>
+                <span class="term-name">آبی</span>
+                <span class="count">(3)</span>
+            </label>
+            <label class="term-color ">
+                <input type="checkbox" name="term-color">
+                <i style="color: #ffe59e"></i>
+                <span class="term-name">روشن</span>
+                <span class="count">(1)</span>
+            </label>
+            <label class="term-color ">
+                <input type="checkbox" name="term-color">
+                <i style="color: #b6b8ba"></i>
+                <span class="term-name">طوسی</span>
+                <span class="count">(3)</span>
+            </label>
+            <label class="term-color ">
+                <input type="checkbox" name="term-color">
+                <i style="color: #52b745"></i>
+                <span class="term-name">سبز</span>
+                <span class="count">(1)</span>
+            </label>
+            <label class="term-color ">
+                <input type="checkbox" name="term-color">
+                <i style="color: #cc7b4a"></i>
+                <span class="term-name">قهوه ای</span>
+                <span class="count">(5)</span>
+            </label>
+            <label class="term-color ">
+                <input type="checkbox" name="term-color">
+                <i style="color: #dd333f"></i>
+                <span class="term-name">قرمز</span>
+                <span class="count">(2)</span>
+            </label>
+            <label class="term-color">
+                <input type="checkbox" name="term-color">
+                <i style="color: #e8e120"></i>
+                <span class="term-name">زرد</span>
+                <span class="count">(2)</span>
+            </label>
+        </form>
+    </div>
+}
+@*<div id="lynessa_lynessa_layered_nav-4"
+     class="widget lynessa_widget_layered_nav widget_layered_nav">
+    <h2 class="widgettitle">جستجو بر اساس رنگ<span class="arrow"></span></h2>
+    <form class="color-group">
+        <label class="term-color">
+            <input type="checkbox" name="term-color">
+            <i style="color: #000000"></i>
+            <span class="term-name">مشکی</span>
+            <span class="count">(4)</span>
+        </label>
+        <label class="term-color ">
+            <input type="checkbox" name="term-color">
+            <i style="color: #337fdd"></i>
+            <span class="term-name">آبی</span>
+            <span class="count">(3)</span>
+        </label>
+        <label class="term-color ">
+            <input type="checkbox" name="term-color">
+            <i style="color: #ffe59e"></i>
+            <span class="term-name">روشن</span>
+            <span class="count">(1)</span>
+        </label>
+        <label class="term-color ">
+            <input type="checkbox" name="term-color">
+            <i style="color: #b6b8ba"></i>
+            <span class="term-name">طوسی</span>
+            <span class="count">(3)</span>
+        </label>
+        <label class="term-color ">
+            <input type="checkbox" name="term-color">
+            <i style="color: #52b745"></i>
+            <span class="term-name">سبز</span>
+            <span class="count">(1)</span>
+        </label>
+        <label class="term-color ">
+            <input type="checkbox" name="term-color">
+            <i style="color: #cc7b4a"></i>
+            <span class="term-name">قهوه ای</span>
+            <span class="count">(5)</span>
+        </label>
+        <label class="term-color ">
+            <input type="checkbox" name="term-color">
+            <i style="color: #dd333f"></i>
+            <span class="term-name">قرمز</span>
+            <span class="count">(2)</span>
+        </label>
+        <label class="term-color">
+            <input type="checkbox" name="term-color">
+            <i style="color: #e8e120"></i>
+            <span class="term-name">زرد</span>
+            <span class="count">(2)</span>
+        </label>
+    </form>
+</div>*@
+<div id="lynessa_layered_nav-6"
+     class="widget lynessa widget_layered_nav lynessa-widget-layered-nav">
+    <h2 class="widgettitle">
+        جستجو بر اساس سایز<span class="arrow"></span>
+    </h2>
+    <ul class="lynessa-widget-layered-nav-list">
+        <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
+            <label>
+                <input type="checkbox" name="size">
+                <span>سایز1</span>
+                <span class="count">(1)</span>
+            </label>
+        </li>
+        <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
+            <label>
+                <input type="checkbox" name="size">
+                <span>سایز1</span>
+                <span class="count">(4)</span>
+            </label>
+        </li>
+        <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
+            <label>
+                <input type="checkbox" name="size">
+                <span>سایز2</span>
+                <span class="count">(2)</span>
+            </label>
+        </li>
+        <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
+            <label>
+                <input type="checkbox" name="size">
+                <span>2  نفره</span>
+                <span class="count">(3)</span>
+            </label>
+        </li>
+        <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
+            <label>
+                <input type="checkbox" name="size">
+                <span>تک نفره</span>
+                <span class="count">(1)</span>
+            </label>
+        </li>
+
+    </ul>
+</div>
+

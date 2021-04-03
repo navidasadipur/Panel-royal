@@ -34,10 +34,12 @@ namespace SpadStorePanel.Infrastructure.Repositories
             pg.ProductGroupFeatures = pg.ProductGroupFeatures.Where(b => b.IsDeleted == false).ToList();
             return pg;
         }
+
         public List<Feature> GetFeatures()
         {
             return _context.Features.Where(f => f.IsDeleted == false).ToList();
         }
+
         public List<Feature> GetProductGroupFeatures(int id)
         {
             var pgFeatures = _context.ProductGroupFeatures.Where(f => f.IsDeleted == false && f.ProductGroupId == id)

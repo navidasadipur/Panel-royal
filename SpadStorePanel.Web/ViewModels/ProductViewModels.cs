@@ -85,7 +85,6 @@ namespace SpadStorePanel.Web.ViewModels
     }
 
 
-
     public class ProductFormViewModel
     {
         public int Id { get; set; }
@@ -103,7 +102,6 @@ namespace SpadStorePanel.Web.ViewModels
 
         public List<ArticleHeadLineViewModel> ArticleHeadLines { get; set; }
     }
-
 
     public class ProductInfoViewModel
     {
@@ -133,8 +131,6 @@ namespace SpadStorePanel.Web.ViewModels
         public DateTime? AddedDate { get; set; }
     }
 
-
-
     public class TopProductsViewModel
     {
         public TopProductsViewModel()
@@ -153,6 +149,7 @@ namespace SpadStorePanel.Web.ViewModels
         public string Image { get; set; }
         public string PersianDate { get; set; }
     }
+
     public class ProductListViewModel
     {
         public ProductListViewModel()
@@ -187,6 +184,21 @@ namespace SpadStorePanel.Web.ViewModels
         public string Image { get; set; }
         public int ProductCount { get; set; }
     }
+
+    public class ProductFeaturesSearchViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public ICollection<SubFeatureViewModel> SubFeatures { get; set; }
+    }
+    public class SubFeatureViewModel
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
+        public string OtherInfo { get; set; }
+        public int ProductCount { get; set; }
+    }
+
 
     public class ProductDetailsViewModel
     {

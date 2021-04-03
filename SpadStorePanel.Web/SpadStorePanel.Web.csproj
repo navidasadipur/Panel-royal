@@ -4982,6 +4982,7 @@
     </Content>
     <Content Include="Views\Shop\TagsSection.cshtml" />
     <Content Include="Views\Shop\TopProductGroupSection.cshtml" />
+    <Content Include="Views\Shop\ProductFeatureSearchSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

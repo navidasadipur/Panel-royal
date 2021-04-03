@@ -16,5 +16,20 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _context = context;
             _logger = logger;
         }
+
+        public List<Feature> GetAllFeaturesWithSubFeatures()
+        {
+            var allFeatures = _context.Features.Where(f => f.IsDeleted == false).ToList();
+
+            foreach (var feature in allFeatures)
+            {
+                 
+                var subFeatures = _context.SubFeatures.Where(fv => fv.IsDeleted == false && fv.FeatureId == feature.Id).ToList();
+
+                feature.SubFeatures = subFeatures;
+            }
+
+            return allFeatures;
+        }
     }
 }

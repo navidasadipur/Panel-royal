@@ -16,25 +16,36 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ProductGalleriesRepository _productGalleryRepo;
         //private readonly GalleryVideosRepository _galleryVideosRepo;
         private readonly ProductsRepository _productRepo;
+        private readonly FeaturesRepository _featuresRepo;
+        private readonly SubFeaturesRepository _subFeaturesRepo;
+        private readonly ProductMainFeaturesRepository _productMainFeaturesRepo;
+        private readonly ProductFeatureValuesRepository _productFeatureValuesRepo;
         private readonly ContactFormsRepository _contactFormRepo;
-        private readonly ProductGroupsRepository _prodectGroupsRepo;
+        private readonly ProductGroupsRepository _productGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
 
         public ShopController(
             ProductGalleriesRepository productGalleryRepo,
-            ProductsRepository productRepo,
+            ProductsRepository productsRepo,
+            FeaturesRepository featuresRepo,
+            SubFeaturesRepository subFeatureRepo,
+            ProductMainFeaturesRepository productMainFeaturesRepo,
+            ProductFeatureValuesRepository productFeatureValuesRepo,
             ContactFormsRepository contactFormRepo,
             //GalleryVideosRepository galleryVideosRepo,
             ProductGroupsRepository productGroupRepo,
-            Product product,
             StaticContentDetailsRepository staticContentDetailsRepo
             )
         {
             _productGalleryRepo = productGalleryRepo;
-            _productRepo = productRepo;
+            _productRepo = productsRepo;
+            this._featuresRepo = featuresRepo;
+            this._subFeaturesRepo = subFeatureRepo;
+            this._productMainFeaturesRepo = productMainFeaturesRepo;
+            this._productFeatureValuesRepo = productFeatureValuesRepo;
             _contactFormRepo = contactFormRepo;
             //_galleryVideosRepo = galleryVideosRepo;
-            this._prodectGroupsRepo = productGroupRepo;
+            this._productGroupsRepo = productGroupRepo;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
         }
 
@@ -53,7 +64,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
             viewModel.Products = _productRepo.getProductsByGroupId(id.Value);
 
-            ViewBag.CategoryTitle = _prodectGroupsRepo.Get(id.Value).Title;
+            ViewBag.CategoryTitle = _productGroupsRepo.Get(id.Value).Title;
 
             return PartialView(viewModel);
         }
@@ -258,9 +269,40 @@ namespace SpadCompanyPanel.Web.Controllers
         //    return PartialView(model);
         //}
 
+        public ActionResult ProductFeatureSearchSection()
+        {
+            var allFeaturesWithSubFeatures = _featuresRepo.GetAllFeaturesWithSubFeatures();
+
+
+            
+
+            foreach (var feature in allFeaturesWithSubFeatures)
+            {
+                var featureViewModel = new ProductFeaturesSearchViewModel()
+                {
+                    Id = feature.Id,
+                    Title = feature.Title,
+                };
+
+                foreach (var subFeature in feature.SubFeatures)
+                {
+                    var subFeatureViewModel = new SubFeatureViewModel()
+                    {
+                        Id = subFeature.Id,
+                        Value = subFeature.Value,
+                        OtherInfo = subFeature.OtherInfo,
+                        //ProductCount = _productFeatureValuesRepo.
+                    };
+
+                }
+            }
+
+            return PartialView(allFeaturesWithSubFeatures);
+        }
+
         public ActionResult ProductGroupSection()
         {
-            var categories = _prodectGroupsRepo.GetAllProductGroups();
+            var categories = _productGroupsRepo.GetProductGroupTable();
             var articleCategoriesVm = new List<ProductCategoriesViewModel>();
             foreach (var item in categories)
             {
@@ -275,7 +317,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult TopProductGroupSection()
         {
-            var categories = _prodectGroupsRepo.GetAllProductGroups();
+            var categories = _productGroupsRepo.GetProductGroupTable();
             var articleCategoriesVm = new List<ProductCategoriesViewModel>();
             foreach (var item in categories)
             {
