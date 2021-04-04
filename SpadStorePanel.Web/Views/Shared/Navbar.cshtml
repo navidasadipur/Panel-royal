@@ -153,7 +153,26 @@
                                     <span class="toggle-submenu"></span>
                                     <div class="submenu megamenu megamenu-elements">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            @foreach (var group in Model.ProductCategories)
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="lynessa-listitem style-01">
+                                                        <div class="listitem-inner">
+                                                            <h4 class="title">@group.Title </h4>
+                                                            <ul class="listitem-list">
+                                                                @foreach (var product in group.Products)
+                                                                {
+                                                                    <li>
+                                                                        <a href="#"
+                                                                           target="_self">@product.Title</a>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @*<div class="col-md-4">
                                                 <div class="lynessa-listitem style-01">
                                                     <div class="listitem-inner">
                                                         <h4 class="title">محصول </h4>
@@ -251,7 +270,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
 

@@ -54,7 +54,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
             var viewModel = new NavbarViewModel
             {
-                ProductCategories = _prodectGroupsRepo.GetAllProductGroups()
+                ProductCategories = _prodectGroupsRepo.GetAllProductGroupsWithProducts()
             };
 
             return PartialView(viewModel);
