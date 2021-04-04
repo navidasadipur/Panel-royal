@@ -141,12 +141,12 @@ namespace SpadStorePanel.Web.ViewModels
         {
             this.Id = product.Id;
             this.Title = product.Title;
-            this.Image = product.Image;
+            this.MainImage = product.MainImage;
             this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string MainImage { get; set; }
         public string PersianDate { get; set; }
     }
 
@@ -287,12 +287,12 @@ namespace SpadStorePanel.Web.ViewModels
         {
             this.Id = product.Id;
             this.Title = product.Title;
-            this.Image = product.Image;
+            this.MainImage = product.MainImage;
             this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string MainImage { get; set; }
         public string PersianDate { get; set; }
     }
 }

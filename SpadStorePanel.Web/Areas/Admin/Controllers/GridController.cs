@@ -31,7 +31,9 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 Title = article.Title,
                 Description = article.Description,
                 ViewCount = article.ViewCount,
-                Image = article.Image,
+                MainImage = article.MainImage,
+                RightImage = article.RightImage,
+                LeftImage = article.LeftImage,
                 AddedDate = article.AddedDate,
                 ArticleCategory = article.ArticleCategory
             });
@@ -49,7 +51,9 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     Title = article.Title,
                     Description = article.Description,
                     ViewCount = article.ViewCount,
-                    Image = article.Image,
+                    MainImage = article.MainImage,
+                    RightImage = article.RightImage,
+                    LeftImage = article.LeftImage,
                     AddedDate = article.AddedDate,
                 };
 
@@ -72,7 +76,9 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     Title = article.Title,
                     Description = article.Description,
                     ViewCount = article.ViewCount,
-                    Image = article.Image,
+                    MainImage = article.MainImage,
+                    RightImage = article.RightImage,
+                    LeftImage = article.LeftImage,
                     AddedDate = article.AddedDate,
                 };
 
@@ -95,7 +101,9 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     Title = article.Title,
                     Description = article.Description,
                     ViewCount = article.ViewCount,
-                    Image = article.Image,
+                    MainImage = article.MainImage,
+                    RightImage = article.RightImage,
+                    LeftImage = article.LeftImage,
                     AddedDate = article.AddedDate,
                 };
 

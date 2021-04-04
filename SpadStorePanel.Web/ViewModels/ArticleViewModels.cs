@@ -94,12 +94,12 @@ namespace SpadStorePanel.Web.ViewModels
         {
             this.Id = article.Id;
             this.Title = article.Title;
-            this.Image = article.Image;
+            this.MainImage = article.MainImage;
             this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string MainImage { get; set; }
         public string PersianDate { get; set; }
     }
     public class ArticleListViewModel
@@ -114,14 +114,14 @@ namespace SpadStorePanel.Web.ViewModels
             this.Title = article.Title;
             this.ShortDescription = article.ShortDescription;
             this.Author = article.User != null ? $"{article.User.FirstName} {article.User.LastName}" : "-";
-            this.Image = article.Image;
+            this.MainImage = article.MainImage;
             //this.AuthorAvatar = article.User.Avatar ?? "user-avatar.png";
             this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
-        public string Image { get; set; }
+        public string MainImage { get; set; }
         public string PersianDate { get; set; }
         public string Author { get; set; }
         //public string AuthorAvatar { get; set; }
@@ -146,7 +146,9 @@ namespace SpadStorePanel.Web.ViewModels
         {
             this.Id = article.Id;
             this.Title = article.Title;
-            this.Image = article.Image;
+            this.MainImage = article.MainImage;
+            this.RightImage = article.RightImage;
+            this.LeftImage = article.LeftImage;
             this.ShortDescription = article.ShortDescription;
             this.Description = article.Description;
             this.Author = article.User != null ? $"{article.User.FirstName} {article.User.LastName}" : "-";
@@ -154,7 +156,9 @@ namespace SpadStorePanel.Web.ViewModels
         }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string MainImage { get; set; }
+        public string RightImage { get; set; }
+        public string LeftImage { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
         public string Author { get; set; }
@@ -218,12 +222,12 @@ namespace SpadStorePanel.Web.ViewModels
         {
             this.Id = article.Id;
             this.Title = article.Title;
-            this.Image = article.Image;
+            this.MainImage = article.MainImage;
             this.PersianDate = article.AddedDate != null ? new PersianDateTime(article.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string MainImage { get; set; }
         public string PersianDate { get; set; }
     }
 

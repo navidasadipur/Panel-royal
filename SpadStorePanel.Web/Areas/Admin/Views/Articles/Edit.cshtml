@@ -24,62 +24,100 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="card-body">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.AddedDate)
-            @Html.HiddenFor(model => model.UserId)
-            @Html.HiddenFor(model => model.ViewCount)
-            @Html.HiddenFor(model => model.Image)
-            @Html.HiddenFor(model => model.InsertDate)
-            @Html.HiddenFor(model => model.InsertUser)
-            <div class="form-group">
-                @Html.LabelFor(model => model.Title, new { })
-                <div class="col-md-5">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control " } })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "form-text text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.ArticleCategoryId, "دسته بندی", new { })
-                <div class="col-md-5">
-                    @Html.DropDownList("ArticleCategoryId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ArticleCategoryId, "", new { @class = "form-text text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-label">تصویر</label>
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="image-input image-input-outline" id="article-image">
-                        <div class="image-input-wrapper" style="background-image: url(/Files/ArticleImages/Thumb/@Model.Image)"></div>
-
-                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
-                            <i class="fa fa-pen icon-sm text-muted"></i>
-                            <input type="file" name="ArticleImage" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="article_image_remove" />
-                        </label>
-
-                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
-                            <i class="ki ki-bold-close icon-xs text-muted"></i>
-                        </span>
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.AddedDate)
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.ViewCount)
+                @Html.HiddenFor(model => model.MainImage)
+                @Html.HiddenFor(model => model.RightImage)
+                @Html.HiddenFor(model => model.LeftImage)
+                @Html.HiddenFor(model => model.InsertDate)
+                @Html.HiddenFor(model => model.InsertUser)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, new { })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ArticleCategoryId, "دسته بندی", new { })
+                    <div class="col-md-5">
+                        @Html.DropDownList("ArticleCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ArticleCategoryId, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-label">تصویر</label>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="image-input image-input-outline" id="article-main-image">
+                            <div class="image-input-wrapper" style="background-image: url(/Files/ArticleImages/Thumb/@Model.MainImage)"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="ArticleMainImage" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="article_image_remove" />
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShortDescription, new { })
+                    @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form-text text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, new { })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form-text text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-label">تصویر راست</label>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="image-input image-input-outline" id="article-right-image">
+                            <div class="image-input-wrapper" style="background-image: url(/Files/ArticleImages/Thumb/@Model.RightImage)"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="ArticleRightImage" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="article_image_remove" />
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-label">تصویر چپ</label>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="image-input image-input-outline" id="article-left-image">
+                            <div class="image-input-wrapper" style="background-image: url(/Files/ArticleImages/Thumb/@Model.LeftImage)"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="ArticleLeftImage" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="article_image_remove" />
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ArticleTags">برچسب ها</label>
+                    <input type="text" name="Tags" id="Tags" value="@ViewBag.Tags" placeholder="لطفا برچسب ها را با - از هم جدا کنید" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.ShortDescription, new { })
-                @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control " } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form-text text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, new { })
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control " } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form-text text-danger" })
-            </div>
-            <div class="form-group">
-                <label for="ArticleTags">برچسب ها</label>
-                <input type="text" name="Tags" id="Tags" value="@ViewBag.Tags" placeholder="لطفا برچسب ها را با - از هم جدا کنید" class="form-control" />
-            </div>
-        </div>
             <div class="card-footer">
                 <a href="@Url.Action("Index")" class="btn btn-secondary">انصراف</a>
                 <input type="submit" value="ثبت" class="btn btn-primary mr-2" />
@@ -101,6 +139,20 @@
             $('#Description').ckeditor();
 
         });
-        var avatar1 = new KTImageInput('article-image');
+        var avatar1 = new KTImageInput('article-main-image');
+    </script>
+    <script>
+        $(function () {
+            $('#Description').ckeditor();
+
+        });
+        var avatar1 = new KTImageInput('article-right-image');
+    </script>
+    <script>
+        $(function () {
+            $('#Description').ckeditor();
+
+        });
+        var avatar1 = new KTImageInput('article-left-image');
     </script>
 }

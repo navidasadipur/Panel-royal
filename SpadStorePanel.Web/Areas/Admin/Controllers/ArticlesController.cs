@@ -44,7 +44,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Article article, HttpPostedFileBase ArticleImage, string Tags)
+        public ActionResult Create(Article article, HttpPostedFileBase ArticleMainImage, HttpPostedFileBase ArticleRightImage, HttpPostedFileBase ArticleLeftImage, string Tags)
         {
             if (ModelState.IsValid)
             {
@@ -56,17 +56,45 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 }
 
 
-                #region Upload Image
-                if (ArticleImage != null)
+                #region Upload Main Image
+                if (ArticleMainImage != null)
                 {
-                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleImage.FileName);
-                    ArticleImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
+                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleMainImage.FileName);
+                    ArticleMainImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
 
                     ImageResizer thumb = new ImageResizer();
                     thumb.Resize(Server.MapPath("/Files/ArticleImages/Image/" + newFileName),
                         Server.MapPath("/Files/ArticleImages/Thumb/" + newFileName));
 
-                    article.Image = newFileName;
+                    article.MainImage = newFileName;
+                }
+                #endregion
+
+                #region Upload Right Image
+                if (ArticleRightImage != null)
+                {
+                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleRightImage.FileName);
+                    ArticleRightImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
+
+                    ImageResizer thumb = new ImageResizer();
+                    thumb.Resize(Server.MapPath("/Files/ArticleImages/Image/" + newFileName),
+                        Server.MapPath("/Files/ArticleImages/Thumb/" + newFileName));
+
+                    article.RightImage = newFileName;
+                }
+                #endregion
+
+                #region Upload Left Image
+                if (ArticleLeftImage != null)
+                {
+                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleLeftImage.FileName);
+                    ArticleLeftImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
+
+                    ImageResizer thumb = new ImageResizer();
+                    thumb.Resize(Server.MapPath("/Files/ArticleImages/Image/" + newFileName),
+                        Server.MapPath("/Files/ArticleImages/Thumb/" + newFileName));
+
+                    article.LeftImage = newFileName;
                 }
                 #endregion
 
@@ -101,25 +129,61 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Article article, HttpPostedFileBase ArticleImage, string Tags)
+        public ActionResult Edit(Article article, HttpPostedFileBase ArticleMainImage, HttpPostedFileBase ArticleRightImage, HttpPostedFileBase ArticleLeftImage, string Tags)
         {
             if (ModelState.IsValid)
             {
-                #region Upload Image
-                if (ArticleImage != null)
+                #region Upload Main Image
+                if (ArticleMainImage != null)
                 {
-                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Image/" + article.Image)))
-                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Image/" + article.Image));
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Image/" + article.MainImage)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Image/" + article.MainImage));
 
-                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Thumb/" + article.Image)))
-                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Thumb/" + article.Image));
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Thumb/" + article.MainImage)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Thumb/" + article.MainImage));
 
-                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleImage.FileName);
-                    ArticleImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
+                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleMainImage.FileName);
+                    ArticleMainImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
 
                     ImageResizer thumb = new ImageResizer();
                     thumb.Resize(Server.MapPath("/Files/ArticleImages/Image/" + newFileName), Server.MapPath("/Files/ArticleImages/Thumb/" + newFileName));
-                    article.Image = newFileName;
+                    article.MainImage = newFileName;
+                }
+                #endregion
+
+                #region Upload Right Image
+                if (ArticleRightImage != null)
+                {
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Image/" + article. RightImage)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Image/" + article.RightImage));
+
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Thumb/" + article.RightImage)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Thumb/" + article.RightImage));
+
+                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleRightImage.FileName);
+                    ArticleRightImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
+
+                    ImageResizer thumb = new ImageResizer();
+                    thumb.Resize(Server.MapPath("/Files/ArticleImages/Image/" + newFileName), Server.MapPath("/Files/ArticleImages/Thumb/" + newFileName));
+                    article.RightImage = newFileName;
+                }
+                #endregion
+
+                #region Upload Left Image
+                if (ArticleLeftImage != null)
+                {
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Image/" + article.LeftImage)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Image/" + article.LeftImage));
+
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ArticleImages/Thumb/" + article.LeftImage)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ArticleImages/Thumb/" + article.LeftImage));
+
+                    var newFileName = Guid.NewGuid() + Path.GetExtension(ArticleLeftImage.FileName);
+                    ArticleLeftImage.SaveAs(Server.MapPath("/Files/ArticleImages/Image/" + newFileName));
+
+                    ImageResizer thumb = new ImageResizer();
+                    thumb.Resize(Server.MapPath("/Files/ArticleImages/Image/" + newFileName), Server.MapPath("/Files/ArticleImages/Thumb/" + newFileName));
+                    article.LeftImage = newFileName;
                 }
                 #endregion
 

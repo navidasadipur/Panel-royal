@@ -23,8 +23,12 @@ namespace SpadStorePanel.Core.Models
         [AllowHtml]
         public string Description { get; set; }
         public int ViewCount { get; set; }
-        [Display(Name = "تصویر")]
-        public string Image { get; set; }
+        [Display(Name = "تصویر اصلی")]
+        public string MainImage { get; set; }
+        [Display(Name = "تصویر راست")]
+        public string RightImage { get; set; }
+        [Display(Name = "تصویر چپ")]
+        public string LeftImage { get; set; }
         public DateTime? AddedDate { get; set; }
 
         public int? ArticleCategoryId { get; set; }
