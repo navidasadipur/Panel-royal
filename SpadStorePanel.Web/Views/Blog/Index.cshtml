@@ -83,12 +83,12 @@
     <img src="~/Content/client/images/23.jpg"
          class="img-responsive attachment-1920x447 size-1920x447" alt="img" style="opacity: 0.3;">
     <div class="banner-wrapper-inner">
-        <h1 class="page-title">بلاگ</h1>
+        <h1 class="page-title">@ViewBag.Title</h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
                 <li class="trail-item trail-begin"><a href="#"><span>خانه</span></a></li>
                 <li class="trail-item trail-end active">
-                    <span>بلاگ</span>
+                    <span>@ViewBag.Title</span>
                 </li>
             </ul>
         </div>
@@ -100,97 +100,39 @@
         <div class="row">
             <div class="main-content main-contentblog col-xl-9 col-lg-8 col-md-12 col-sm-12">
                 <div class="blog-standard content-post">
-                    <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-                        <div class="post-thumb">
-                            <a href="#">
-                                <img src="~/Content/client/images/1.jpg"
-                                     class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
-                                     height="768">
-                            </a>
-                        </div>
-                        <div class="post-info">
-                            <h2 class="post-title"><a href="#">عنوان پست</a></h2>
-                            <div class="post-meta">
-                                <div class="date">
-                                    <a href="#">
-                                        خرداد 19, 1399
-                                    </a>
-                                </div>
-                                <div class="post-author">
-                                    نویسنده:<a href="#">
-                                        نیما
-                                    </a>
+                    @foreach (var post in Model)
+                    {
+                        <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                            <div class="post-thumb">
+                                <a href="/Blog/Details/@post.Id">
+                                    <img src="~/Files/ArticleImages/Image/@post.MainImage"
+                                         class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
+                                         height="768">
+                                </a>
+                            </div>
+                            <div class="post-info">
+                                <h2 class="post-title"><a href="/Blog/Details/@post.Id"> @post.Title </a></h2>
+                                <div class="post-meta">
+                                    <div class="date">
+                                        <a href="#">
+                                            @post.PersianDate
+                                        </a>
+                                    </div>
+                                    <div class="post-author">
+                                        نویسنده:<a href="#">
+                                        @post.Author
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="post-content">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </div>
-                        <a href="/Blog/Post/1@*@item.Id*@" class="readmore">
-                            ادامه ..
-                        </a>
-                    </article>
-                    <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-                        <div class="post-thumb">
-                            <a href="#">
-                                <img src="~/Content/client/images/1.jpg"
-                                     class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
-                                     height="768">
-                            </a>
-                        </div>
-                        <div class="post-info">
-                            <h2 class="post-title"><a href="#">عنوان پست</a></h2>
-                            <div class="post-meta">
-                                <div class="date">
-                                    <a href="#">
-                                        خرداد 19, 1399
-                                    </a>
-                                </div>
-                                <div class="post-author">
-                                    نویسنده:<a href="#">
-                                        نیما
-                                    </a>
-                                </div>
+                            <div class="post-content">
+                                @post.ShortDescription
                             </div>
-                        </div>
-                        <div class="post-content">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </div>
-                        <a href="single-post.html" class="readmore">
-                            ادامه ..
-                        </a>
-                    </article>
-                    <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-                        <div class="post-thumb">
-                            <a href="#">
-                                <img src="~/Content/client/images/1.jpg"
-                                     class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
-                                     height="768">
+                            <a href="/Blog/Details/@post.Id" class="readmore">
+                                ادامه ..
                             </a>
-                        </div>
-                        <div class="post-info">
-                            <h2 class="post-title"><a href="#">عنوان پست</a></h2>
-                            <div class="post-meta">
-                                <div class="date">
-                                    <a href="#">
-                                        خرداد 19, 1399
-                                    </a>
-                                </div>
-                                <div class="post-author">
-                                    نویسنده:<a href="#">
-                                        نیما
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </div>
-                        <a href="single-post.html" class="readmore">
-                            ادامه ..
-                        </a>
-                    </article>
-
+                        </article>
+                    }
 
                 </div>
                 <nav class="navigation pagination">
