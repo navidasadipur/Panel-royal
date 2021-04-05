@@ -15,8 +15,7 @@ namespace SpadStorePanel.Web.Controllers
         private readonly ArticlesRepository _articlesRepo;
         private readonly ArticleTagsRepository _articleTagsRepository;
         private readonly StaticContentDetailsRepository _contentRepo;
-
-        public StaticContentDetailsRepository _staticContentDetailsRepo { get; }
+        private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
 
         public BlogController(
             ArticlesRepository articlesRepo,
@@ -34,7 +33,7 @@ namespace SpadStorePanel.Web.Controllers
         [Route("Blog/{id}/{title}")]
         public ActionResult Index(int? id = null, string searchString = null)
         {
-            ViewBag.BlogImage = _contentRepo.GetStaticContentDetail((int)StaticContents.BlogImage).Image;
+            //ViewBag.BlogImage = _contentRepo.GetStaticContentDetail((int)StaticContents.BlogImage).Image; 
             var articles = new List<Article>();
             if (id == null)
             {
@@ -90,27 +89,24 @@ namespace SpadStorePanel.Web.Controllers
             return PartialView(articleCategoriesVm);
         }
 
-        [Route("Blog/Post/{id}")]
+        [Route("Blog/Details/{id}")]
         public ActionResult Details(int id)
         {
-            //if (id == null)
-            //{
-            //    id = 1;
-            //}
-            //_articlesRepo.UpdateArticleViewCount(id.Value);
-            //var article = _articlesRepo.GetArticle(id);
-            //var articleDetailsVm = new ArticleDetailsViewModel(article);
-            //var articleComments = _articlesRepo.GetArticleComments(id.Value);
-            //var articleCommentsVm = new List<ArticleCommentViewModel>();
+            _articlesRepo.UpdateArticleViewCount(id);
+            var article = _articlesRepo.GetArticle(id);
+            var articleDetailsVm = new ArticleDetailsViewModel(article);
+            var articleComments = _articlesRepo.GetArticleComments(id);
+            var articleCommentsVm = new List<ArticleCommentViewModel>();
 
-            //foreach (var item in articleComments)
-            //    articleCommentsVm.Add(new ArticleCommentViewModel(item));
+            foreach (var item in articleComments)
+                articleCommentsVm.Add(new ArticleCommentViewModel(item));
 
-            //articleDetailsVm.ArticleComments = articleCommentsVm;
-            //var articleTags = _articlesRepo.GetArticleTags(id.Value);
-            //articleDetailsVm.Tags = articleTags;
-            return View(/*articleDetailsVm*/);
+            articleDetailsVm.ArticleComments = articleCommentsVm;
+            var articleTags = _articlesRepo.GetArticleTags(id);
+            articleDetailsVm.Tags = articleTags;
+            return View(articleDetailsVm);
         }
+
         [HttpPost]
         public ActionResult PostComment(CommentFormViewModel form)
         {
@@ -131,7 +127,7 @@ namespace SpadStorePanel.Web.Controllers
 
             var postTitle = _articlesRepo.Get(form.ArticleId).Title;
 
-            return RedirectToAction("Post", new { id = form.ArticleId });
+            return RedirectToAction("Details", new { id = form.ArticleId });
         }
 
         public ActionResult LatestArticlesSection()

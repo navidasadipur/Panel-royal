@@ -206,7 +206,7 @@ namespace SpadStorePanel.Web.ViewModels
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(400, ErrorMessage = "{0} باید کمتر از 400 کارکتر باشد")]
         public string Email { get; set; }
-        [Display(Name = "پیام")]
+        [Display(Name = "کامنت")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(800, ErrorMessage = "{0} باید کمتر از 800 کارکتر باشد")]

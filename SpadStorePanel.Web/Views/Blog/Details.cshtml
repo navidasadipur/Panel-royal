@@ -143,9 +143,13 @@
 </div>*@
 
 
-<div class="banner-wrapper no_background">
-
-</div>
+    <div class="banner-wrapper no_background">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
 <div class="main-container right-sidebar has-sidebar">
     <!-- POST LAYOUT -->
     <div class="container">
@@ -154,36 +158,35 @@
                 <article class="post-item post-single post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
                     <div class="single-post-thumb">
                         <div class="post-thumb">
-                            <img src="~/Content/client/images/1.jpg"
+                            <img src="~/Files/ArticleImages/Image/@Model.MainImage"
                                  class="attachment-full size-full wp-post-image" alt="img">
                         </div>
                     </div>
                     <div class="single-post-info">
                         <h2 class="post-title">
                             <a href="#">
-                                عنوان
+                                @Model.Title 
                             </a>
                         </h2>
                         <div class="post-meta">
                             <div class="date">
-                                <a href="#">آبان 19, 1399 </a>
+                                <a href="#"> @Model.PersianDate </a>
                             </div>
                             <div class="post-author">
-                                نویسنده:<a href="#"> نیما </a>
+                                نویسنده:<a href="#"> @Model.Author </a>
                             </div>
                         </div>
                     </div>
                     <div class="post-content">
                         <div id="output">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-
+                            @Html.Raw(Model.Description)
                         </div>
                         <p>&nbsp;</p>
                         <div id="gallery-1" class="gallery galleryid-195 gallery-columns-2 gallery-size-full">
                             <figure class="gallery-item">
                                 <div class="gallery-icon landscape">
                                     <a href="#">
-                                        <img src="~/Content/client/images/6.jpg"
+                                        <img src="~/Files/ArticleImages/Image/@Model.LeftImage"
                                              class="attachment-full size-full" alt="img">
                                     </a>
                                 </div>
@@ -191,7 +194,7 @@
                             <figure class="gallery-item">
                                 <div class="gallery-icon landscape">
                                     <a href="#">
-                                        <img src="~/Content/client/images/6.jpg"
+                                        <img src="~/Files/ArticleImages/Image/@Model.RightImage"
                                              class="attachment-full size-full" alt="img">
                                     </a>
                                 </div>
@@ -199,7 +202,10 @@
                         </div>
                     </div>
                     <div class="tags">
-                        <a href="#" rel="tag"> تگ 1</a>, <a href="#" rel="tag"> تگ 2</a>
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <a href="#" rel="tag"> @tag.Title </a>
+                        }
                     </div>
                     <div class="post-footer">
                         <div class="lynessa-share-socials">
@@ -220,18 +226,23 @@
                 <div id="comments" class="comments-area">
                     <div id="respond" class="comment-respond">
                         <h3 id="reply-title" class="comment-reply-title"> کامنت </h3>
-                        <form id="commentform" class="comment-form">
+                        @using (Html.BeginForm("PostComment", "Blog", FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
 
+                            <input type="hidden" id="ArticleId" name="ArticleId" value="@Model.Id">
+                            <input type="hidden" id="ParentId" name="ParentId" value="">
                             <p class="comment-reply-content">
-                                <input name="author" id="name" class="input-form name"
+                                <input name="Name" id="name" class="input-form name form-control form-control-submit"
                                        placeholder="نام*" type="text">
                             </p>
                             <p class="comment-reply-content">
-                                <input name="email" id="email" class="input-form email"
+                                <input name="Email" id="email" class="input-form email"
                                        placeholder="ایمیل*" type="text">
                             </p>
                             <p class="comment-form-comment">
-                                <textarea class="input-form" id="comment" name="comment"
+                                <textarea class="input-form" id="comment" name="Message"
                                           cols="45" rows="6" aria-required="true"
                                           placeholder="کامنت را وارد کنید ...."></textarea>
                             </p><input name="wpml_language_code" value="en" type="hidden">
@@ -239,7 +250,7 @@
                                 <input name="submit" id="submit" class="submit"
                                        value=" ثبت " type="submit">
                             </p>
-                        </form>
+                        }
                     </div><!-- #respond -->
                 </div><!-- #comments -->
             </div>
@@ -258,8 +269,10 @@
                     @Html.Action("ArticleCategoriesSection", "Blog")
                     @Html.Action("LatestArticlesSection", "Blog")
                     @Html.Action("SocialsSection", "Blog")
-                    @Html.Action("InstagramsSection", "Blog")
+                    @Html.Action("InstaGalleriesSection", "Blog")
                     @Html.Action("TagsSection", "Blog")
+
+
                     @*<div id="categories-3" class="widget widget_categories">
             <h2 class="widgettitle">
                 دسته بندی ها<span class="arrow"></span>
