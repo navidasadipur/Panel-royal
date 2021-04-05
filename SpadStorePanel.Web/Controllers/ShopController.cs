@@ -74,17 +74,17 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             //_productsRepo.UpdateProductViewCount(id);
 
-            var product = _productsRepo.GetProduct(id);
-            var productDetailsVm = new ProductDetailsViewModel(product);
+            var product = _productsRepo.GetProduct(id);            var productDetailsVm = new ProductDetailsViewModel(product);
             var productComments = _productsRepo.GetProductComments(id);
-            var productCommentsVm = new List<ProductCommentViewModel>();
 
+            var productCommentsVm = new List<ProductCommentViewModel>();
             foreach (var item in productComments)
                 productCommentsVm.Add(new ProductCommentViewModel(item));
-
             productDetailsVm.ProductComments = productCommentsVm;
+
             var productTags = _productsRepo.GetProductTags(id);
             productDetailsVm.Tags = productTags;
+
             return View(productDetailsVm);
         }
 
@@ -353,6 +353,34 @@ namespace SpadCompanyPanel.Web.Controllers
                 articleCategoriesVm.Add(vm);
             }
             return PartialView(articleCategoriesVm);
+        }
+
+        public ActionResult ProductDescriptionSection(int productId)
+        {
+            var model = new List<ProductDescriptionViewModel>();
+
+            var allDescrioptions = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId(productId);
+
+            foreach (var item in allDescrioptions)
+            {
+                var descriptionVM = new ProductDescriptionViewModel
+                {
+                    ShortDescriptionTitle = item.Title,
+                    Descrription = item.Description,
+                    Image = item.Image
+                };
+
+                model.Add(descriptionVM);
+            }
+
+            return PartialView(model);
+        }
+
+        public ActionResult ProductGallerySection(int productId)
+        {
+            var model = _productGalleryRepo.GetProductGalleries(productId);
+
+            return PartialView(model);
         }
     }
 }

@@ -259,8 +259,8 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class ProductCommentFormViewModel
     {
-        public int? ParentId { get; set; }
-        public int ArticleId { get; set; }
+        public int? ProductGroupId { get; set; }
+        public int ProductId { get; set; }
         [Display(Name = "نام")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "{0} باید کمتر از 300 کارکتر باشد")]
@@ -294,5 +294,12 @@ namespace SpadStorePanel.Web.ViewModels
         public string Title { get; set; }
         public string MainImage { get; set; }
         public string PersianDate { get; set; }
+    }
+
+    public class ProductDescriptionViewModel
+    {
+        public string ShortDescriptionTitle { get; set; }
+        public string Descrription { get; set; }
+        public string Image { get; set; }
     }
 }

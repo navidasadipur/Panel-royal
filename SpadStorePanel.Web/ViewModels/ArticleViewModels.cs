@@ -185,6 +185,7 @@ namespace SpadStorePanel.Web.ViewModels
             this.Message = comment.Message;
             this.AddedDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
         }
+
         public int Id { get; set; }
         public int? ParentId { get; set; }
         public string Name { get; set; }
@@ -211,6 +212,7 @@ namespace SpadStorePanel.Web.ViewModels
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(800, ErrorMessage = "{0} باید کمتر از 800 کارکتر باشد")]
         public string Message { get; set; }
+
     }
     public class LatestArticlesViewModel
     {
