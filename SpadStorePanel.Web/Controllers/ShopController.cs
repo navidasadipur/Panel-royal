@@ -15,7 +15,7 @@ namespace SpadCompanyPanel.Web.Controllers
     {
         private readonly ProductGalleriesRepository _productGalleryRepo;
         //private readonly GalleryVideosRepository _galleryVideosRepo;
-        private readonly ProductsRepository _productRepo;
+        private readonly ProductsRepository _productsRepo;
         private readonly FeaturesRepository _featuresRepo;
         private readonly SubFeaturesRepository _subFeaturesRepo;
         private readonly ProductMainFeaturesRepository _productMainFeaturesRepo;
@@ -38,7 +38,7 @@ namespace SpadCompanyPanel.Web.Controllers
             )
         {
             _productGalleryRepo = productGalleryRepo;
-            _productRepo = productsRepo;
+            _productsRepo = productsRepo;
             this._featuresRepo = featuresRepo;
             this._subFeaturesRepo = subFeatureRepo;
             this._productMainFeaturesRepo = productMainFeaturesRepo;
@@ -57,16 +57,35 @@ namespace SpadCompanyPanel.Web.Controllers
 
             if (id == null)
             {
-                viewModel.Products = _productRepo.GetAllProducts();
+                viewModel.Products = _productsRepo.GetAllProducts();
 
                 return PartialView(viewModel);
             }
 
-            viewModel.Products = _productRepo.getProductsByGroupId(id.Value);
+            viewModel.Products = _productsRepo.getProductsByGroupId(id.Value);
 
             ViewBag.CategoryTitle = _productGroupsRepo.Get(id.Value).Title;
 
             return PartialView(viewModel);
+        }
+
+        [Route("Shop/Details/{id}")]
+        public ActionResult Details(int id)
+        {
+            //_productsRepo.UpdateProductViewCount(id);
+
+            var product = _productsRepo.GetProduct(id);
+            var productDetailsVm = new ProductDetailsViewModel(product);
+            var productComments = _productsRepo.GetProductComments(id);
+            var productCommentsVm = new List<ProductCommentViewModel>();
+
+            foreach (var item in productComments)
+                productCommentsVm.Add(new ProductCommentViewModel(item));
+
+            productDetailsVm.ProductComments = productCommentsVm;
+            var productTags = _productsRepo.GetProductTags(id);
+            productDetailsVm.Tags = productTags;
+            return View(productDetailsVm);
         }
 
         //public ActionResult HomeSlider()
@@ -91,7 +110,7 @@ namespace SpadCompanyPanel.Web.Controllers
         //    return PartialView(galleryContent);
         //}
 
-        
+
         //public ActionResult ContactUs()
         //{
         //    var contactUsContent = new ContactUsViewModel();
@@ -287,7 +306,7 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             var model = new List<Color_SizeSearchViewModel>();
 
-            var subFeatures = _productRepo.GetSubFeaturesByFeatureId(featureId);
+            var subFeatures = _productsRepo.GetSubFeaturesByFeatureId(featureId);
 
             foreach (var item in subFeatures)
             {
@@ -314,7 +333,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 var vm = new ProductCategoriesViewModel();
                 vm.Id = item.Id;
                 vm.Title = item.Title;
-                vm.ProductCount = _productRepo.getProductsByGroupId(item.Id).Count();
+                vm.ProductCount = _productsRepo.getProductsByGroupId(item.Id).Count();
                 articleCategoriesVm.Add(vm);
             }
             return PartialView(articleCategoriesVm);
@@ -330,7 +349,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 vm.Id = item.Id;
                 vm.Title = item.Title;
                 vm.Image = item.Image;
-                vm.ProductCount = _productRepo.getProductsByGroupId(item.Id).Count();
+                vm.ProductCount = _productsRepo.getProductsByGroupId(item.Id).Count();
                 articleCategoriesVm.Add(vm);
             }
             return PartialView(articleCategoriesVm);

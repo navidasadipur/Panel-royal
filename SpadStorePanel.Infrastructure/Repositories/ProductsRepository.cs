@@ -75,5 +75,23 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
             return ProductIdCategory;
         }
+
+        //public void UpdateProductViewCount(int productId)
+        //{
+        //    var product = _context.Products.Find(productId);
+        //    product. ViewCount++;
+        //    _context.Entry(product).State = EntityState.Modified;
+        //    _context.SaveChanges();
+        //}
+
+        public List<ProductComment> GetProductComments(int productId)
+        {
+            return _context.ProductComments.Where(c => c.IsDeleted == false && c.ProductId == productId).ToList();
+        }
+
+        public List<ProductTag> GetProductTags(int productId)
+        {
+            return _context.ProductTags.Where(c => c.IsDeleted == false && c.ProductId == productId).ToList();
+        }
     }
 }

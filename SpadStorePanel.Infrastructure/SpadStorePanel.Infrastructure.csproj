@@ -88,10 +88,19 @@
     <Compile Include="Migrations\202104040858022_articleModelChanged.Designer.cs">
       <DependentUpon>202104040858022_articleModelChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104050817074_ProductTagModelAdded.cs" />
+    <Compile Include="Migrations\202104050817074_ProductTagModelAdded.Designer.cs">
+      <DependentUpon>202104050817074_ProductTagModelAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104050936421_MyDbContextHasChanged.ProductTagAdded.cs" />
+    <Compile Include="Migrations\202104050936421_MyDbContextHasChanged.ProductTagAdded.Designer.cs">
+      <DependentUpon>202104050936421_MyDbContextHasChanged.ProductTagAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArticleCategoriesRepository.cs" />
+    <Compile Include="Repositories\ProductTagsRepository.cs" />
     <Compile Include="Repositories\ArticleTagsRepository.cs" />
     <Compile Include="Repositories\ArticleCommentsRepository.cs" />
     <Compile Include="Repositories\ArticleHeadLinesRepository.cs" />
@@ -145,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104040858022_articleModelChanged.resx">
       <DependentUpon>202104040858022_articleModelChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104050817074_ProductTagModelAdded.resx">
+      <DependentUpon>202104050817074_ProductTagModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104050936421_MyDbContextHasChanged.ProductTagAdded.resx">
+      <DependentUpon>202104050936421_MyDbContextHasChanged.ProductTagAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -32,6 +32,7 @@ namespace SpadStorePanel.Infrastructure
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<ProductFeatureValue> ProductFeatureValues { get; set; }
         public DbSet<ProductGallery> ProductGalleries { get; set; }
         public DbSet<ProductGroup> ProductGroups { get; set; }
