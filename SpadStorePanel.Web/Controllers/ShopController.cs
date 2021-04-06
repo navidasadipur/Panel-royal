@@ -359,7 +359,7 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(articleCategoriesVm);
         }
 
-        public ActionResult ProductDescriptionSection(int productId)
+        public ActionResult ProductDescriptionsSection(int productId)
         {
             var model = new List<ProductDescriptionViewModel>();
 
@@ -375,6 +375,30 @@ namespace SpadCompanyPanel.Web.Controllers
                 };
 
                 model.Add(descriptionVM);
+            }
+
+            return PartialView(model);
+        }
+
+        public ActionResult ProductFeaturesSection(int productId)
+        {
+            var model = new List<ProductFeatures_SubFeaturesViewModel>();
+
+            var allFeatures = _featuresRepo.GetFeaturesWithSubFeaturesByProductId(productId);
+
+            foreach (var item in allFeatures)
+            {
+                var FeaturesVM = new ProductFeatures_SubFeaturesViewModel
+                {
+                    Title = item.Title,
+                };
+
+                foreach (var subFeature in item.SubFeatures)
+                {
+                    FeaturesVM.SubFeatures.Add(subFeature.Value);
+                }
+
+                model.Add(FeaturesVM);
             }
 
             return PartialView(model);

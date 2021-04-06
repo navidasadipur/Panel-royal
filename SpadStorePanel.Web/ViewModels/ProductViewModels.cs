@@ -26,6 +26,17 @@ namespace SpadStorePanel.Web.ViewModels
 
     }
 
+    public class ProductFeatures_SubFeaturesViewModel
+    {
+        public ProductFeatures_SubFeaturesViewModel()
+        {
+            this.SubFeatures = new List<string>();
+        }
+
+        public string Title { get; set; }
+        public List<string> SubFeatures { get; set; }
+    }
+
     public class ProductFeaturesViewModel
     {
         public int? ProductId { get; set; }
@@ -303,5 +314,11 @@ namespace SpadStorePanel.Web.ViewModels
         public string ShortDescriptionTitle { get; set; }
         public string Descrription { get; set; }
         public string Image { get; set; }
+    }
+
+    public class ProductFeatureViewModel
+    {
+        public string FeatureTitle { get; set; }
+        public List<string> FeatureValues { get; set; }
     }
 }

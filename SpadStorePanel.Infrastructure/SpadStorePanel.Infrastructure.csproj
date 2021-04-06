@@ -96,6 +96,10 @@
     <Compile Include="Migrations\202104050936421_MyDbContextHasChanged.ProductTagAdded.Designer.cs">
       <DependentUpon>202104050936421_MyDbContextHasChanged.ProductTagAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104060724464_subfeatureModelChanged.cs" />
+    <Compile Include="Migrations\202104060724464_subfeatureModelChanged.Designer.cs">
+      <DependentUpon>202104060724464_subfeatureModelChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104050936421_MyDbContextHasChanged.ProductTagAdded.resx">
       <DependentUpon>202104050936421_MyDbContextHasChanged.ProductTagAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104060724464_subfeatureModelChanged.resx">
+      <DependentUpon>202104060724464_subfeatureModelChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

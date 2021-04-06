@@ -275,10 +275,17 @@
                                         </span>
                                         <span class="tagged_as">
                                             برچسب ها:
-                                            @foreach (var tag in Model.Tags)
-                                            {
-                                                <a href="#" rel="tag">@tag.Title ,</a> 
-                                                 
+                                            @{
+                                                var allTags = new List<string>();
+
+                                                foreach (var tag in Model.Tags)
+                                                {
+                                                    allTags.Add(tag.Title);
+                                                }
+
+                                                string alltagStr = string.Join("، ", allTags);
+
+                                                <a href="#" rel="tag"> @alltagStr </a>
                                             }
                                         </span>
                                     </div>
@@ -301,23 +308,9 @@
                                     <a href="#tab-reviews">نظرات (0)</a>
                                 </li>
                             </ul>
-                            @Html.Action("ProductDescriptionSection", "Shop", new { productId = Model.Id })
-                            
-                            <div class="lynessa-Tabs-panel lynessa-Tabs-panel--additional_information panel entry-content lynessa-tab"
-                                 id="tab-additional_information" role="tabpanel"
-                                 aria-labelledby="tab-title-additional_information">
-                                <h2>مشحصات</h2>
-                                <table class="shop_attributes">
-                                    <tbody>
-                                        <tr>
-                                            <th>رنگ ها</th>
-                                            <td>
-                                                <p>آبی, صورتی, قرمز, زرد</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            @Html.Action("ProductDescriptionsSection", "Shop", new { productId = Model.Id })
+
+                            @Html.Action("ProductFeaturesSection", "Shop", new { productId = Model.Id })
                             <div class="lynessa-Tabs-panel lynessa-Tabs-panel--reviews panel entry-content lynessa-tab"
                                  id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
                                 <div id="reviews" class="lynessa-Reviews">

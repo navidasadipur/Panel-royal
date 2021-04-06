@@ -1,0 +1,58 @@
+﻿@model List<SpadStorePanel.Web.ViewModels.ProductFeatures_SubFeaturesViewModel>
+@*@model List<SpadStorePanel.Web.ViewModels.ProductCategoriesViewModel>*@
+
+
+@*<div class="blog-left-title">
+        دسته بندی
+    </div>
+    @if (Model.Any())
+    {
+        <ul class="blog-category">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a href="/Blog/@category.Id/@category.Title.Replace(" ","-")">
+                        @category.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    }*@
+@*<div id="categories-3" class="widget widget_categories">
+        <h2 class="widgettitle">
+            دسته بندی ها<span class="arrow"></span>
+        </h2>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="cat-item cat-item-51">
+                    <a href="#">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </div>*@
+
+<div class="lynessa-Tabs-panel lynessa-Tabs-panel--additional_information panel entry-content lynessa-tab"
+     id="tab-additional_information" role="tabpanel"
+     aria-labelledby="tab-title-additional_information">
+    <h2>مشحصات</h2>
+    <table class="shop_attributes">
+        <tbody>
+            @foreach (var feature in Model)
+            {
+                <tr>
+                    <th> @feature.Title </th>
+                    <td>
+                        <p>
+                            @{ string test = string.Join("، ", feature.SubFeatures);
+                                @test
+                            }
+                        </p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
