@@ -29,6 +29,29 @@ namespace SpadStorePanel.Core.Models
 
         [Display(Name = "امتیاز محصول")]
         public int Rate { get; set; }
+
+        [Display(Name = "عنوان توضح محصول")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
+        public string DescriptionOneTitle { get; set; }
+        [Display(Name = "متن کوتاه توضیح محصول")]
+        [DataType(DataType.MultilineText)]
+        [MaxLength(2000, ErrorMessage = "{0} باید کمتر از 2000 کارکتر باشد")]
+        public string DescriptionOneShortDescription { get; set; }
+        [Display(Name = "تصویر محصول ")]
+        public string DescriptionOneImage { get; set; }
+
+        [Display(Name = "عنوان توضیح محصول")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
+        public string DescriptionTwoTitle { get; set; }
+        [Display(Name = "متن کوتاه توضیح محصول")]
+        [DataType(DataType.MultilineText)]
+        [MaxLength(2000, ErrorMessage = "{0} باید کمتر از 2000 کارکتر باشد")]
+        public string DescriptionTwoShortDescription { get; set; }
+        [Display(Name = "تصویر محصول")]
+        public string DescriptionTwoImage { get; set; }
+
         public int? ProductGroupId { get; set; }
         public ProductGroup ProductGroup { get; set; }
         public int? BrandId { get; set; }

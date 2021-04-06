@@ -51,6 +51,13 @@ namespace SpadStorePanel.Core.Utility
 
         Slider = 1001,
         CompanyHistory = 2,
-        BlogImage = 1004
+        BlogImage = 1004,
+
+        DescriptionProduct1 = 4,
+        DescriptionProduct2 = 5,
+        DescriptionProduct3 = 6,
+        DescriptionProduct4 = 7,
+        DescriptionProduct5 = 8,
+        DescriptionProduct6 = 9
     }
 }

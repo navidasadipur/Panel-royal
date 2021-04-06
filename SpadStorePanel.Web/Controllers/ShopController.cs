@@ -363,7 +363,7 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             var model = new List<ProductDescriptionViewModel>();
 
-            var allDescrioptions = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId(productId);
+            var allDescrioptions = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.DescriptionProduct1);
 
             foreach (var item in allDescrioptions)
             {
