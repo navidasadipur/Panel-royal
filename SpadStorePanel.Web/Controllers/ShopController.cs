@@ -74,7 +74,9 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             //_productsRepo.UpdateProductViewCount(id);
 
-            var product = _productsRepo.GetProduct(id);            var productDetailsVm = new ProductDetailsViewModel(product);
+            var product = _productsRepo.GetProduct(id);
+
+            var productDetailsVm = new ProductDetailsViewModel(product);
             var productComments = _productsRepo.GetProductComments(id);
 
             var productCommentsVm = new List<ProductCommentViewModel>();
@@ -278,15 +280,17 @@ namespace SpadCompanyPanel.Web.Controllers
         //    return PartialView(model);
         //}
 
-        //public ActionResult SocialSection()
-        //{
-        //    SocialViewModel model = new SocialViewModel();
+        public ActionResult SocialsSection()
+        {
+            SocialViewModel model = new SocialViewModel();
 
-        //    model.Instagram= _contentDetailsRepo.GetStaticContentDetail(1009).Link;
-        //    model.Aparat = _contentDetailsRepo.GetStaticContentDetail(1012).Link;
+            model.Facebook = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Facebook).Link;
+            model.Twitter = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Twitter).Link;
+            model.Pinterest = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Pinterest).Link;
+            model.Instagram = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Instagram).Link;
 
-        //    return PartialView(model);
-        //}
+            return PartialView(model);
+        }
 
         public ActionResult ColorSearchSection()
         {

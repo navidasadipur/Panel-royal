@@ -25,7 +25,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         public Product GetProduct(int id)
         {
-            var product = _context.Products.Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues)
+            var product = _context.Products.Include(p => p.ProductGroup).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues)
                 .FirstOrDefault(p => p.Id == id);
             product.ProductMainFeatures = product.ProductMainFeatures.Where(f => f.IsDeleted == false).ToList();
             product.ProductFeatureValues = product.ProductFeatureValues.Where(f => f.IsDeleted == false).ToList();

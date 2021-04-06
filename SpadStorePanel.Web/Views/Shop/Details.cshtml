@@ -161,7 +161,7 @@
                                     <div class="flash">
                                         <span class="onnew"><span class="text">جدید</span></span>
                                     </div>
-                                    <h1 class="product_title entry-title">رویال دو پددار</h1>
+                                    <h1 class="product_title entry-title">رویال دو پددار @Model.Title</h1>
                                     <p class="price">
                                         <span class="lynessa-Price-amount amount">
                                             <span class="lynessa-Price-currencySymbol">$</span>146.00
@@ -173,12 +173,13 @@
                                         موجودی <span> موجود </span>
                                     </p>
                                     <div class="lynessa-product-details__short-description">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                        @Html.Raw(Model.Description)
+                                        @*<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
                                         <ul>
                                             <li>پارچه ژاکارد پنبه دوز شده</li>
                                             <li>دارای ساپورت سرتاسری در حد فاصل فنرها</li>
                                             <li>پارچه ژاکارد پنبه دوز شده</li>
-                                        </ul>
+                                        </ul>*@
                                     </div>
                                     <form class="variations_form cart">
                                         <table class="variations">
@@ -269,32 +270,20 @@
                                         </div>
 
                                         <span class="posted_in">
-                                            دسته بندی: <a href="#"
-                                                          rel="tag">پنبه دوز شده</a>, <a href="#" rel="tag">پارچه ژاکارد</a>, <a href="#" rel="tag">پارچه ژاکارد</a>
+                                            دسته بندی:
+                                            <a href="#" rel="tag">@Model.ProductGroup.Title</a>
                                         </span>
                                         <span class="tagged_as">
-                                            Tags: <a href="#"
-                                                     rel="tag">پارچه ژاکارد</a>, <a href="#" rel="tag">پارچه ژاکارد</a>
+                                            برچسب ها:
+                                            @foreach (var tag in Model.Tags)
+                                            {
+                                                <a href="#" rel="tag">@tag.Title ,</a> 
+                                                 
+                                            }
                                         </span>
                                     </div>
-                                    <div class="lynessa-share-socials">
-                                        <h5 class="social-heading">Share: </h5>
-                                        <a target="_blank" class="facebook" href="#">
-                                            <i class="fa fa-facebook-f"></i>
-                                        </a>
-                                        <a target="_blank" class="twitter"
-                                           href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                        <a target="_blank" class="pinterest"
-                                           href="#">
-                                            <i class="fa fa-pinterest"></i>
-                                        </a>
-                                        <a target="_blank" class="googleplus"
-                                           href="#">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </div>
+                                    @Html.Action("SocialsSection", "Shop")
+
                                 </div>
                             </div>
                         </div>
@@ -312,7 +301,7 @@
                                     <a href="#tab-reviews">نظرات (0)</a>
                                 </li>
                             </ul>
-                            @Html.Action("ProductDescriptionSection", "Shop", new { productId = "14" })
+                            @Html.Action("ProductDescriptionSection", "Shop", new { productId = Model.Id })
                             
                             <div class="lynessa-Tabs-panel lynessa-Tabs-panel--additional_information panel entry-content lynessa-tab"
                                  id="tab-additional_information" role="tabpanel"
