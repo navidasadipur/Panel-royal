@@ -315,9 +315,13 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class ProductDescriptionViewModel
     {
-        public string ShortDescriptionTitle { get; set; }
-        public string Descrription { get; set; }
-        public string Image { get; set; }
+        public string DescriptionOneTitle { get; set; }
+        public string DescrriptionOneShortDescription { get; set; }
+        public string DescrriptionOneImage { get; set; }
+
+        public string DescriptionTwoTitle { get; set; }
+        public string DescrriptionTwoShortDescription { get; set; }
+        public string DescrriptionTwoImage { get; set; }
     }
 
     public class ProductFeatureViewModel

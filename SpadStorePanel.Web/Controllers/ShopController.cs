@@ -361,23 +361,19 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult ProductDescriptionsSection(int productId)
         {
-            var model = new List<ProductDescriptionViewModel>();
+            var product = _productsRepo.GetProduct(productId);
 
-            var allDescrioptions = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.DescriptionProduct1);
-
-            foreach (var item in allDescrioptions)
-            {
                 var descriptionVM = new ProductDescriptionViewModel
                 {
-                    ShortDescriptionTitle = item.Title,
-                    Descrription = item.Description,
-                    Image = item.Image
+                    DescriptionOneTitle = product.DescriptionOneTitle,
+                    DescriptionTwoTitle = product.DescriptionTwoTitle,
+                    DescrriptionOneShortDescription = product.DescriptionOneShortDescription,
+                    DescrriptionTwoShortDescription = product.DescriptionTwoShortDescription,
+                    DescrriptionOneImage = product.DescriptionOneImage,
+                    DescrriptionTwoImage = product.DescriptionTwoImage
                 };
 
-                model.Add(descriptionVM);
-            }
-
-            return PartialView(model);
+            return PartialView(descriptionVM);
         }
 
         public ActionResult ProductFeaturesSection(int productId)
