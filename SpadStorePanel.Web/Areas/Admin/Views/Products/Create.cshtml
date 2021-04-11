@@ -116,6 +116,72 @@
             </div>
         </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescriptionOneTitle, new { })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DescriptionOneTitle, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.DescriptionOneTitle, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescriptionOneShortDescription, new { })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DescriptionOneShortDescription, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.DescriptionOneShortDescription, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-label">تصویر</label>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="image-input image-input-outline" id="product-description-one-image">
+                            <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_1.jpg)"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="ProductDesOneImage" id="ProductDesOneImage" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="product_image_remove" />
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescriptionTwoTitle, new { })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DescriptionTwoTitle, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.DescriptionTwoTitle, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescriptionTwoShortDescription, new { })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DescriptionTwoShortDescription, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.DescriptionTwoShortDescription, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-label">تصویر</label>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="image-input image-input-outline" id="product-description-two-image">
+                            <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_1.jpg)"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="ProductDesTwoImage" id="ProductDesTwoImage" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="product_image_remove" />
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
 
     </div>
             <div class="card-footer">
@@ -211,6 +277,8 @@
                 getProductGroupBrands(productGroupId);
             });
         new KTImageInput('product-image');
+        new KTImageInput('product-description-one-image');
+        new KTImageInput('product-description-two-image');
     </script>
     <script>
         function getProductGroupBrands(productGroupId) {
@@ -332,6 +400,10 @@
                 var ShortDescription = $("#ShortDescription").val();
                 var Brand = $("#Brands option:selected").val();
                 var Description = $("#Description").val();
+                var DescriptionOneTitle = $("#DescriptionOneTitle").val();
+                var DescriptionOneShortDescription = $("#DescriptionOneShortDescription").val();
+                var DescriptionTwoTitle = $("#DescriptionTwoTitle").val();
+                var DescriptionTwoShortDescription = $("#DescriptionTwoShortDescription").val();
                 var desc2 = escape(Description);
                 var Rate = $("#Rate").val();
 
@@ -411,9 +483,15 @@
                     $("#validate_brand").hide();
                     $("#validate_feature").hide();
                     var ProductImage = $('#ProductImage').get(0).files[0];
+                    var ProductDesOneImage = $('#ProductDesOneImage').get(0).files[0];
+                    var ProductDesTwoImage = $('#ProductDesTwoImage').get(0).files[0];
                     var product = {
                         Title: Title,
                         ShortDescription: ShortDescription,
+                        DescriptionOneTitle: DescriptionOneTitle,
+                        DescriptionOneShortDescription: DescriptionOneShortDescription,
+                        DescriptionTwoTitle: DescriptionTwoTitle,
+                        DescriptionTwoShortDescription: DescriptionTwoShortDescription,
                         Brand: Brand,
                         Description: desc2,
                         Rate: Rate,
@@ -425,7 +503,9 @@
                         product,
                         function (id) {
                             var formData = new FormData();
-                            formData.append('File', ProductImage);
+                            formData.append('ProductImage', ProductImage);
+                            formData.append('ProductDesOneImage', ProductDesOneImage);
+                            formData.append('ProductDesTwoImage', ProductDesTwoImage);
                             $.ajax({
                                 type: 'POST',
                                 url: "/Products/UploadImage/" + id,

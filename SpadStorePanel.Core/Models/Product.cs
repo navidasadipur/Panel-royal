@@ -31,7 +31,6 @@ namespace SpadStorePanel.Core.Models
         public int Rate { get; set; }
 
         [Display(Name = "عنوان توضح محصول")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
         public string DescriptionOneTitle { get; set; }
         [Display(Name = "متن کوتاه توضیح محصول")]
@@ -42,7 +41,6 @@ namespace SpadStorePanel.Core.Models
         public string DescriptionOneImage { get; set; }
 
         [Display(Name = "عنوان توضیح محصول")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
         public string DescriptionTwoTitle { get; set; }
         [Display(Name = "متن کوتاه توضیح محصول")]

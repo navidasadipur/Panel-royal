@@ -36,7 +36,8 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.ProductGroups = _productGroupRepo.GetAllProductGroups();
-            return View();
+            var product = new Product();
+            return View(product);
         }
         [HttpPost]
         public int? Create(NewProductViewModel product)
@@ -50,6 +51,10 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             prod.ProductGroupId = product.ProductGroup;
             prod.Rate = product.Rate;
             prod.ShortDescription = product.ShortDescription;
+            prod.DescriptionOneTitle = product.DescriptionOneTitle;
+            prod.DescriptionOneShortDescription = product.DescriptionOneShortDescription;
+            prod.DescriptionTwoTitle = product.DescriptionTwoTitle;
+            prod.DescriptionTwoShortDescription = product.DescriptionTwoShortDescription;
             var addProduct = _productRepo.Add(prod);
             #region Adding Product Features
 
@@ -90,6 +95,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         public int? Edit(NewProductViewModel product)
         {
             if (!ModelState.IsValid) return null;
+
             var prod = _productRepo.Get(product.ProductId.Value);
             prod.Title = product.Title;
             prod.ShortDescription = product.ShortDescription;
@@ -97,7 +103,12 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
             prod.BrandId = product.Brand;
             prod.ProductGroupId = product.ProductGroup;
             prod.Rate = product.Rate;
+            prod.DescriptionOneTitle = product.DescriptionOneTitle;
+            prod.DescriptionOneShortDescription = product.DescriptionOneShortDescription;
+            prod.DescriptionTwoTitle = product.DescriptionTwoTitle;
+            prod.DescriptionTwoShortDescription = product.DescriptionTwoShortDescription;
             var updateProduct = _productRepo.Update(prod);
+
             #region Removing Previous Product Features
             var productMainFeatures = _productRepo.GetProductMainFeatures(updateProduct.Id);
             foreach (var mainFeature in productMainFeatures)
@@ -138,23 +149,119 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        public bool UploadImage(int id, HttpPostedFileBase File)
+        public bool UploadImage(int id, HttpPostedFileBase ProductImage, HttpPostedFileBase ProductDesOneImage, HttpPostedFileBase ProductDesTwoImage)
         {
-            #region Upload Image
-            if (File != null)
+            #region Upload Images
+            if (ProductImage != null || ProductDesOneImage != null || ProductDesTwoImage != null)
             {
                 var product = _productRepo.Get(id);
-                if (product.Image != null)
-                {
-                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Image/" + product.Image)))
-                        System.IO.File.Delete(Server.MapPath("/Files/ProductGroupImages/Image/" + product.Image));
 
-                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Thumb/" + product.Image)))
-                        System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Thumb/" + product.Image));
+                #region Upload Product Image
+
+                if (ProductImage != null)
+                {
+                    var productImage = SaveImage(ProductImage, product.Image);
+                    product.Image = productImage;
+                }
+
+                #endregion
+
+                #region Upload ProductDesOneImage
+
+                if (ProductDesOneImage != null)
+                {
+                    var DescriptionOneImage = SaveImage(ProductDesOneImage, product.DescriptionOneImage);
+                    product.DescriptionOneImage = DescriptionOneImage;
+                }
+
+                //if (ProductDesOneImage != null)
+                //{
+                //    if (product.DescriptionOneImage != null)
+                //    {
+                //        if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Image/" + product.DescriptionOneImage)))
+                //            System.IO.File.Delete(Server.MapPath("/Files/ProductGroupImages/Image/" + product.DescriptionOneImage));
+
+                //        if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Thumb/" + product.DescriptionOneImage)))
+                //            System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Thumb/" + product.DescriptionOneImage));
+                //    }
+                //    // Saving Temp Image
+                //    var newFileNameDesOne = Guid.NewGuid() + Path.GetExtension(ProductDesOneImage.FileName);
+                //    ProductDesOneImage.SaveAs(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesOne));
+                //    // Resize Image
+                //    ImageResizer imageDesOne = new ImageResizer(850, 400, true);
+                //    imageDesOne.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesOne),
+                //        Server.MapPath("/Files/ProductImages/Image/" + newFileNameDesOne));
+
+                //    ImageResizer thumbDesOne = new ImageResizer(200, 200, true);
+                //    thumbDesOne.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesOne),
+                //        Server.MapPath("/Files/ProductImages/Thumb/" + newFileNameDesOne));
+
+                //    // Deleting Temp Image
+                //    System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesOne));
+                //    product.DescriptionOneImage = newFileNameDesOne;
+                //}
+
+                #endregion
+
+                #region Upload ProductDesTwoImage
+
+                if (ProductDesTwoImage != null)
+                {
+                    var DescriptionTwoImage = SaveImage(ProductDesTwoImage, product.DescriptionTwoImage);
+                    product.DescriptionTwoImage = DescriptionTwoImage;
+                }
+
+                //if (ProductDesTwoImage != null)
+                //{
+                //    if (product.DescriptionTwoImage != null)
+                //    {
+                //        if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Image/" + product.DescriptionTwoImage)))
+                //            System.IO.File.Delete(Server.MapPath("/Files/ProductGroupImages/Image/" + product.DescriptionTwoImage));
+
+                //        if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Thumb/" + product.DescriptionTwoImage)))
+                //            System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Thumb/" + product.DescriptionTwoImage));
+                //    }
+                //    // Saving Temp Image
+                //    var newFileNameDesTwo = Guid.NewGuid() + Path.GetExtension(ProductDesTwoImage.FileName);
+                //    ProductDesTwoImage.SaveAs(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesTwo));
+                //    // Resize Image
+                //    ImageResizer imageDesTwo = new ImageResizer(850, 400, true);
+                //    imageDesTwo.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesTwo),
+                //        Server.MapPath("/Files/ProductImages/Image/" + newFileNameDesTwo));
+
+                //    ImageResizer thumbDesTwo = new ImageResizer(200, 200, true);
+                //    thumbDesTwo.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesTwo),
+                //        Server.MapPath("/Files/ProductImages/Thumb/" + newFileNameDesTwo));
+
+                //    // Deleting Temp Image
+                //    System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Temp/" + newFileNameDesTwo));
+                //    product.DescriptionTwoImage = newFileNameDesTwo;
+                //}
+
+                #endregion
+
+                _productRepo.Update(product);
+                return true;
+            }
+
+            #endregion
+
+            return false;
+        }
+
+        private string SaveImage(HttpPostedFileBase ProductImage, string imageName)
+        {
+                if (imageName != null)
+                {
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Image/" + imageName)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ProductGroupImages/Image/" + imageName));
+
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Thumb/" + imageName)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Thumb/" + imageName));
                 }
                 // Saving Temp Image
-                var newFileName = Guid.NewGuid() + Path.GetExtension(File.FileName);
-                File.SaveAs(Server.MapPath("/Files/ProductImages/Temp/" + newFileName));
+                var newFileName = Guid.NewGuid() + Path.GetExtension(ProductImage.FileName);
+                ProductImage.SaveAs(Server.MapPath("/Files/ProductImages/Temp/" + newFileName));
                 // Resize Image
                 ImageResizer image = new ImageResizer(850, 400, true);
                 image.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileName),
@@ -166,15 +273,9 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
 
                 // Deleting Temp Image
                 System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Temp/" + newFileName));
-                product.Image = newFileName;
-                _productRepo.Update(product);
-                return true;
-
-            }
-            #endregion
-
-            return false;
+                return newFileName;
         }
+
         public JsonResult GetProductGroupFeatures(int id)
         {
             var features = _productGroupRepo.GetProductGroupFeatures(id);

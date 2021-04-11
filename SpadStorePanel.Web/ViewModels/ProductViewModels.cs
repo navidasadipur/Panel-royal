@@ -19,6 +19,10 @@ namespace SpadStorePanel.Web.ViewModels
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
+        public string DescriptionOneTitle { get; set; }
+        public string DescriptionOneShortDescription { get; set; }
+        public string DescriptionTwoTitle { get; set; }
+        public string DescriptionTwoShortDescription { get; set; }
         public int Brand { get; set; }
         public int Rate { get; set; }
         public int ProductGroup { get; set; }
