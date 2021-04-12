@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SpadStorePanel.Core.Models;
 using SpadStorePanel.Core.Utility;
+using SpadStorePanel.Infrastructure.Helpers;
 using SpadStorePanel.Infrastructure.Repositories;
 using SpadStorePanel.Web.ViewModels;
 
@@ -428,6 +429,28 @@ namespace SpadCompanyPanel.Web.Controllers
             var model = _productGalleryRepo.GetProductGalleries(productId);
 
             return PartialView(model);
+        }
+
+        public ActionResult RelatedProductsSection(int productId)
+        {
+            //its better to use product tags but for this site i use product groups for relatedProducs
+            var allGroupProducts = new List<Product>();
+
+            var product = _productsRepo.GetProduct(productId);
+
+            if (product.ProductGroupId.HasValue)
+            {
+                allGroupProducts = _productsRepo.getProductsByGroupId(product.ProductGroupId.Value);
+            }
+
+            allGroupProducts.Remove(product);
+
+            foreach (var item in allGroupProducts)
+            {
+                ImageResizer image = new ImageResizer(850, 400, true);
+            }
+
+            return PartialView(allGroupProducts);
         }
     }
 }

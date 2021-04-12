@@ -4880,6 +4880,7 @@
     <Content Include="Views\Shop\ProductDescriptionsSection.cshtml" />
     <Content Include="Views\Shop\ProductGallerySection.cshtml" />
     <Content Include="Views\Shop\ProductFeaturesSection.cshtml" />
+    <Content Include="Views\Shop\RelatedProductsSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
