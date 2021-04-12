@@ -4881,6 +4881,8 @@
     <Content Include="Views\Shop\ProductGallerySection.cshtml" />
     <Content Include="Views\Shop\ProductFeaturesSection.cshtml" />
     <Content Include="Views\Shop\RelatedProductsSection.cshtml" />
+    <Content Include="Views\Home\LatestProductsSection.cshtml" />
+    <Content Include="Views\Home\ServicesSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

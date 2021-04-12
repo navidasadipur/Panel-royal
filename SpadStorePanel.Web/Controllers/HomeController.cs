@@ -329,5 +329,22 @@ namespace SpadCompanyPanel.Web.Controllers
             return View();
         }
 
+        public ActionResult LatestProductsSection()
+        {
+            //SocialViewModel model = new SocialViewModel();
+
+            //model.Instagram = _contentDetailsRepo.GetStaticContentDetail(1009).Link;
+            //model.Aparat = _contentDetailsRepo.GetStaticContentDetail(1012).Link;
+
+            return PartialView();
+        }
+
+        public ActionResult ServicesSection()
+        {
+            var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.OurServices);
+
+            return PartialView(model);
+        }
+
     }
 }
