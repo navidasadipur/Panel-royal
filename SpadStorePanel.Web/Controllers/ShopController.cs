@@ -90,6 +90,29 @@ namespace SpadCompanyPanel.Web.Controllers
             return View(productDetailsVm);
         }
 
+        [HttpPost]
+        public ActionResult PostComment(ProductCommentFormViewModel form)
+        {
+            if (ModelState.IsValid)
+            {
+                var comment = new ProductComment()
+                {
+                    ProductId = form.ProductId,
+                    ParentId = form.ParentId,
+                    Name = form.Name,
+                    Email = form.Email,
+                    Message = form.Message,
+                    AddedDate = DateTime.Now,
+                };
+                _productsRepo.AddComment(comment);
+                return RedirectToAction("ContactUsSummary", "Home");
+            }
+
+            var postTitle = _productsRepo.Get(form.ProductId).Title;
+
+            return RedirectToAction("Details", new { id = form.ProductId });
+        }
+
         //public ActionResult HomeSlider()
         //{
         //    var sliderContent = _contentDetailsRepo.GetContentByTypeId((int)StaticContentTypes.Slider);

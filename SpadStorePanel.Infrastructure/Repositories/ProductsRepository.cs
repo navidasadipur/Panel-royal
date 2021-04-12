@@ -89,6 +89,12 @@ namespace SpadStorePanel.Infrastructure.Repositories
             return _context.ProductComments.Where(c => c.IsDeleted == false && c.ProductId == productId).ToList();
         }
 
+        public void AddComment(ProductComment comment)
+        {
+            _context.ProductComments.Add(comment);
+            _context.SaveChanges();
+        }
+
         public List<ProductTag> GetProductTags(int productId)
         {
             return _context.ProductTags.Where(c => c.IsDeleted == false && c.ProductId == productId).ToList();

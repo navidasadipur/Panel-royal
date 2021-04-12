@@ -61,7 +61,12 @@ namespace SpadStorePanel.Infrastructure.Repositories
             //finding and getting all features of that specific product
             foreach (var featureId in featureIds)
             {
-                features.Add(_context.Features.Where(f => f.IsDeleted == false && f.Id == featureId).FirstOrDefault());
+                var feature = _context.Features.Where(f => f.IsDeleted == false && f.Id == featureId).FirstOrDefault();
+
+                if (feature != null)
+                {
+                    features.Add(feature);
+                }
             }
 
             //finding and getting all subfeatures of all features of specific product
@@ -73,7 +78,10 @@ namespace SpadStorePanel.Infrastructure.Repositories
                 {
                     var subFeature = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.Id == subFeatureId).FirstOrDefault();
 
-                    feature.SubFeatures.Add(subFeature);
+                    if (subFeature != null)
+                    {
+                        feature.SubFeatures.Add(subFeature);
+                    }
                 }
             }
 

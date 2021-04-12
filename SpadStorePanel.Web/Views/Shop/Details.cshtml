@@ -161,7 +161,7 @@
                                     <div class="flash">
                                         <span class="onnew"><span class="text">جدید</span></span>
                                     </div>
-                                    <h1 class="product_title entry-title">رویال دو پددار @Model.Title</h1>
+                                    <h1 class="product_title entry-title"> @Model.Title</h1>
                                     <p class="price">
                                         <span class="lynessa-Price-amount amount">
                                             <span class="lynessa-Price-currencySymbol">$</span>146.00
@@ -276,16 +276,15 @@
                                         <span class="tagged_as">
                                             برچسب ها:
                                             @{
-                                                var allTags = new List<string>();
 
-                                                foreach (var tag in Model.Tags)
+                                                for (int i = 0; i < Model.Tags.Count; i++)
                                                 {
-                                                    allTags.Add(tag.Title);
+                                                    <a href="#" rel="tag"> @Model.Tags[i].Title </a>
+                                                    if (i < Model.Tags.Count - 1)
+                                                    {
+                                                        <text>,</text>
+                                                    }
                                                 }
-
-                                                string alltagStr = string.Join("، ", allTags);
-
-                                                <a href="#" rel="tag"> @alltagStr </a>
                                             }
                                         </span>
                                     </div>
@@ -305,7 +304,7 @@
                                     <a href="#tab-additional_information"> مشخصات</a>
                                 </li>
                                 <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
-                                    <a href="#tab-reviews">نظرات (0)</a>
+                                    <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
                                 </li>
                             </ul>
                             @Html.Action("ProductDescriptionsSection", "Shop", new { productId = Model.Id })
@@ -316,19 +315,58 @@
                                 <div id="reviews" class="lynessa-Reviews">
                                     <div id="comments">
                                         <h2 class="lynessa-Reviews-title">نظرات</h2>
-                                        <p class="lynessa-noreviews">نظری ثبت نشده است</p>
+                                        @foreach (var item in Model.ProductComments.Where(c => c.ParentId == null))
+                                        {
+                                            <div class="review-box">
+                                                <div class="review-user">
+                                                    <div class="review-user-img">
+                                                        <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@item.Name">
+                                                        <div class="reviewer-name">
+                                                            <p class="text-light-black fw-600">
+                                                                @item.Name
+                                                            </p><a onclick="AnswerComment(@item.Id,'@item.Name')" style="cursor: pointer" class="text-light-black"><i class="fas fa-reply text-black"></i> پاسخ دادن  </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-date">
+                                                        <span class="text-light-white">@item.AddedDate</span>
+                                                    </div>
+                                                </div>
+                                                <p class="lynessa-noreviews">@item.Message</p>
+                                            </div>
+                                            foreach (var child in Model.ProductComments.Where(c => c.ParentId == item.Id))
+                                            {
+                                                <div class="review-box comment-reply">
+                                                    <div class="review-user">
+                                                        <div class="review-user-img">
+                                                            <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@child.Name">
+                                                            <div class="reviewer-name">
+                                                                <p class="text-light-black fw-600">
+                                                                    @child.Name
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-date">
+                                                            <span class="text-light-white">@child.AddedDate</span>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-light-black">@child.Message</p>
+                                                </div>
+                                            }
+                                        }
                                     </div>
                                     <div id="review_form_wrapper">
                                         <div id="review_form">
                                             <div id="respond" class="comment-respond">
                                                 <span id="reply-title" class="comment-reply-title">نظر خود را ثبت کنید</span>
-                                                <form id="commentform" class="comment-form">
-
+                                                @using (Html.BeginForm("PostComment", "Shop", FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
+                                                {
+                                                    <input type="hidden" id="ProductId" name="ProductId" value="@Model.Id">
+                                                    <input type="hidden" id="ParentId" name="ParentId" value="">
                                                     <p class="comment-form-author">
                                                         <label for="author">
                                                             نام&nbsp;<span class="required">*</span>
                                                         </label>
-                                                        <input id="author" name="author" value="" size="30" required=""
+                                                        <input id="Name" name="Name" value="" size="30" required=""
                                                                type="text">
                                                     </p>
                                                     <p class="comment-form-email">
@@ -336,7 +374,7 @@
                                                             ایمیل&nbsp;
                                                             <span class="required">*</span>
                                                         </label>
-                                                        <input id="email" name="email" value="" size="30" required=""
+                                                        <input id="Email" name="Email" value="" size="30" required=""
                                                                type="email">
                                                     </p>
                                                     <div class="comment-form-rating">
@@ -363,7 +401,7 @@
                                                     <p class="comment-form-comment">
                                                         <label for="comment">
                                                             نظر شما&nbsp;<span class="required">*</span>
-                                                        </label><textarea id="comment" name="comment" cols="45" rows="8"
+                                                        </label><textarea id="Message" name="Message" cols="45" rows="8"
                                                                           required=""></textarea>
                                                     </p><input name="wpml_language_code"
                                                                value="en" type="hidden">
@@ -371,10 +409,10 @@
                                                         <input name="submit" id="submit" class="submit"
                                                                value="ثبت نظر" type="submit"> <input name="comment_post_ID" value="27" id="comment_post_ID"
                                                                                                      type="hidden">
-                                                        <input name="comment_parent" id="comment_parent" value="0"
-                                                               type="hidden">
+                                                        @*<input name="comment_parent" id="comment_parent" value="0"
+                                                               type="hidden">*@
                                                     </p>
-                                                </form>
+                                                }
                                             </div><!-- #respond -->
                                         </div>
                                     </div>
@@ -951,11 +989,11 @@
     </script>
     <script>
         function AnswerComment(parentId, parentName) {
-            $('#answerPerson').html("پاسخ دادن به   " + parentName + "<a class='btn btn-submit text-white' style='margin-right:10px;cursor:pointer' onclick='removePerson()'>حذف</a>");
+            $('#reply-title').html("پاسخ دادن به   " + parentName + "<a class='btn btn-submit text-white' style='margin-right:10px;cursor:pointer' onclick='removePerson()'>حذف</a>");
             $('#ParentId').val(parentId);
         }
         function removePerson() {
-            $('#answerPerson').html("نظر بدهید");
+            $('#reply-title').html("نظر بدهید");
             $('#ParentId').val("");
         }
     </script>
