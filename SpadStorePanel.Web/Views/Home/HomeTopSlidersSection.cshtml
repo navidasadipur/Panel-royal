@@ -1,0 +1,77 @@
+﻿@model SpadStorePanel.Web.ViewModels.HomeTopSliderViewModel
+
+<div class="slide-home-02">
+    <div class="response-product product-list-owl owl-slick equal-container better-height"
+         data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:0,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:1,&quot;rows&quot;:1}"
+         data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}}]">
+
+        @foreach (var item in Model.Slides)
+        {
+            <div class="slide-wrap">
+                <img src="~/Files/StaticContentImages/Image/@item.Image" alt="image">
+                <div class="slide-info">
+                    <div class="container">
+                        <div class="slide-inner">
+                            <h5> @Html.Raw(item.Title) </h5>
+                            <div class="mylogocontainer wow fadeIn">
+                                <img src="~/Files/StaticContentImages/Image/@Model.LogoAndButton.Image">
+
+                            </div>
+                            <h2> @Html.Raw(item.ShortDescription) </h2>
+                            <a href="#"> @Model.LogoAndButton.ShortDescription </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @*<div class="slide-wrap">
+            <img src="~/Content/client/images/27.jpg" alt="image">
+            <div class="slide-info">
+                <div class="container">
+                    <div class="slide-inner">
+                        <h5>فروش تا  <span>40%</span> تخفیف</h5>
+                        <div class="mylogocontainer wow fadeIn">
+                            <img src="~/Content/client/images/mainlogo2.png">
+
+                        </div>
+                        <h2>  فقط این هفته</h2>
+                        <a href="#"> خرید </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-wrap">
+            <img src="~/Content/client/images/21.jpg" alt="image">
+            <div class="slide-info">
+                <div class="container">
+                    <div class="slide-inner">
+                        <h5>  عجله کنید</h5>
+                        <div class="mylogocontainer wow fadeIn">
+                            <img src="~/Content/client/images/mainlogo2.png">
+
+                        </div>
+                        <h2>   امروز خرید کنید</h2>
+                        <a href="#"> خرید</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-wrap">
+            <img src="~/Content/client/images/bedwal8.jpg" alt="image">
+            <div class="slide-info">
+                <div class="container">
+                    <div class="slide-inner">
+                        <h5> پیشنهاد ویژه</h5>
+                        <div class="mylogocontainer wow fadeIn">
+                            <img src="~/Content/client/images/mainlogo2.png">
+
+                        </div>
+                        <h2>فروش تا  <span>70%</span> تخفیف</h2>
+                        <a href="#"> خرید</a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>

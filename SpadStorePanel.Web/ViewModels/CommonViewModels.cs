@@ -98,8 +98,26 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class InstaGalleryViewModel
     {
+        public InstaGalleryViewModel()
+        {
+            this.Images = new List<StaticContentDetail>();
+        }
+
         public List<StaticContentDetail> Images { get; set; }
         //public List<ProductGalleryVideo> Videos { get; set; }
+    }
+
+    public class HomeTopSliderViewModel
+    {
+        public HomeTopSliderViewModel()
+        {
+            this.Slides = new List<StaticContentDetail>();
+            this.LogoAndButton = new StaticContentDetail();
+        }
+
+        public List<StaticContentDetail> Slides { get; set; }
+
+        public StaticContentDetail LogoAndButton { get; set; }
     }
 
 }

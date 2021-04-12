@@ -158,7 +158,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 Pinterest = _staticContentDetailsRepo.Get((int)StaticContents.Pinterest),
                 Facebook = _staticContentDetailsRepo.Get((int)StaticContents.Facebook),
                 CopyRightShortDescrioption = _staticContentDetailsRepo.Get((int)StaticContents.CopyRight),
-                ImplementationShortDescription = _staticContentDetailsRepo.Get((int)StaticContents.implementaitonService),
+                ImplementationShortDescription = _staticContentDetailsRepo.Get((int)StaticContents.ImplementaitonService),
                 CompanyServices = _staticContentDetailsRepo.Get((int)StaticContents.companyServices)
             };
 
@@ -345,6 +345,18 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return PartialView(model);
         }
+
+        public ActionResult HomeTopSlidersSection()
+        {
+            var model = new HomeTopSliderViewModel();
+
+            model.Slides = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.HomeTopSlider);
+
+            model.LogoAndButton = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Logo);
+
+            return PartialView(model);
+        }
+        
 
     }
 }

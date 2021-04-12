@@ -40,7 +40,9 @@ namespace SpadStorePanel.Core.Utility
         ContactInfo = 1014,
         companyServices = 3003,
         CopyRight = 3004,
-        implementaitonService = 3005
+        ImplementaitonService = 3005,
+        
+        Logo = 3,
     }
 
     public enum StaticContentTypes
@@ -49,7 +51,7 @@ namespace SpadStorePanel.Core.Utility
         Socials = 2,
         InstagramImages = 3,
 
-        Slider = 1001,
+        HomeTopSlider = 11,
         CompanyHistory = 2,
         BlogImage = 1004,
         

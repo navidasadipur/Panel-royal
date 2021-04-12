@@ -4846,7 +4846,7 @@
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\ContactUsSummary.cshtml" />
     <Content Include="Views\Home\Index-old.cshtml" />
-    <Content Include="Views\Home\IndexPartOne.cshtml" />
+    <Content Include="Views\Home\HomeTopSlidersSection.cshtml" />
     <Content Include="Views\Home\IndexPartThree.cshtml" />
     <Content Include="Views\Home\IndexPartTwo.cshtml" />
     <Content Include="Views\Home\SocialsSection.cshtml" />
