@@ -36,23 +36,45 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             var features = new List<Feature>();
 
+            var subFeatures = new List<SubFeature>();
+
+            //finding feature ids of a specific product
             var productFeatureValues = _context.ProductFeatureValues.Where(pfv => pfv.IsDeleted == false && pfv.ProductId == productId).ToList();
 
-            var featureIds = productFeatureValues.Select(pfv => pfv.FeatureId).ToList();
+            var featureIds = productFeatureValues.Where(pfv => pfv.FeatureId != null).Select(pfv => pfv.FeatureId).ToList();
 
-            foreach (var id in featureIds)
+            //foreach (var id in featureIds)
+            //{
+            //    var feature = _context.Features.Where(f => f.IsDeleted == false && f.Id == id).ToList();
+
+            //    features.AddRange(feature);
+            //}
+
+            //foreach (var feature in features)
+            //{
+
+            //    var subFeatures = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.FeatureId == feature.Id).ToList();
+
+            //    feature.SubFeatures = subFeatures;
+            //}
+
+            //finding and getting all features of that specific product
+            foreach (var featureId in featureIds)
             {
-                var feature = _context.Features.Where(f => f.IsDeleted == false && f.Id == id).ToList();
-
-                features.AddRange(feature);
+                features.Add(_context.Features.Where(f => f.IsDeleted == false && f.Id == featureId).FirstOrDefault());
             }
 
+            //finding and getting all subfeatures of all features of specific product
             foreach (var feature in features)
             {
+                var subFeatureIds = _context.ProductFeatureValues.Where(pfv => pfv.FeatureId == feature.Id && pfv.SubFeatureId != null).Select(pfv => pfv.SubFeatureId).ToList();
 
-                var subFeatures = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.FeatureId == feature.Id).ToList();
+                foreach (var subFeatureId in subFeatureIds)
+                {
+                    var subFeature = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.Id == subFeatureId).FirstOrDefault();
 
-                feature.SubFeatures = subFeatures;
+                    feature.SubFeatures.Add(subFeature);
+                }
             }
 
             return features;
