@@ -77,7 +77,14 @@ namespace SpadCompanyPanel.Web.Controllers
 
             var product = _productsRepo.GetProduct(id);
 
+            if (product == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
             var productDetailsVm = new ProductDetailsViewModel(product);
+
+
             var productComments = _productsRepo.GetProductComments(id);
 
             var productCommentsVm = new List<ProductCommentViewModel>();
@@ -107,23 +114,8 @@ namespace SpadCompanyPanel.Web.Controllers
 
             foreach (var featureId in mainFeatureIds)
             {
-                features.Add( _featuresRepo.GetMainFeatureWithSubFeatureById(featureId) );
+                features.Add( _featuresRepo.GetMainFeatureWithSubFeaturesByFeatureIdAndProductId(featureId, id) );
             }
-
-
-            //var subFeatures = new List<SubFeature>();
-
-            //foreach (var feature in model.MainFeatures)
-            //{
-            //    if (feature.SubFeatureId.HasValue)
-            //    {
-            //        var subFeature = _subFeaturesRepo.Get(feature.SubFeatureId.Value);
-
-            //        subFeatures.Add(subFeature);
-            //    }
-            //}
-
-            //model.SubFeatures = subFeatures;
 
             model.MainFeatures = features;
 

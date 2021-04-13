@@ -17,19 +17,22 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public Feature GetMainFeatureWithSubFeatureById(int featureId)
+        public Feature GetMainFeatureWithSubFeaturesByFeatureIdAndProductId(int featureId, int productId)
         {
             var subFeatures = new List<SubFeature>();
 
             var feature = _context.Features.Where(f => f.IsDeleted == false && f.Id == featureId).FirstOrDefault();
 
-            var subFeatureIds = _context.ProductMainFeatures.Where(pmf => pmf.FeatureId == feature.Id && pmf.IsDeleted == false && pmf.SubFeatureId != null).Select(pfv => pfv.SubFeatureId).ToList();
+            var subFeatureIds = _context.ProductMainFeatures
+                .Where( pmf => pmf.IsDeleted == false && pmf.SubFeatureId != null)
+                .Where( pmf => pmf.FeatureId == feature.Id && pmf.ProductId == productId )
+                .Select(pfv => pfv.SubFeatureId).ToList();
 
-
+            subFeatureIds = subFeatureIds.GroupBy(sf => sf.Value).Select(sf => sf.First()).ToList();
 
             foreach (var subFeatureId in subFeatureIds)
             {
-                var subFeature = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.Id == subFeatureId).FirstOrDefault();
+                var subFeature = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.Id == subFeatureId ).FirstOrDefault();
 
                 if (subFeature != null)
                 {

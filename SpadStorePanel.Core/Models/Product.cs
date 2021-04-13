@@ -30,7 +30,7 @@ namespace SpadStorePanel.Core.Models
         [Display(Name = "امتیاز محصول")]
         public int Rate { get; set; }
 
-        [Display(Name = "عنوان توضح محصول")]
+        [Display(Name = "عنوان توضیح محصول")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
         public string DescriptionOneTitle { get; set; }
         [Display(Name = "متن کوتاه توضیح محصول")]
