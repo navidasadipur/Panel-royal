@@ -73,6 +73,9 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
             var featureIds = productFeatureValues.Where(pfv => pfv.FeatureId != null).Select(pfv => pfv.FeatureId).ToList();
 
+            //geting uniqe values of features ids
+            var uniqueFeatureIds = featureIds.GroupBy(fi => fi.Value).Select(fi => fi.First()).ToList();
+
             //foreach (var id in featureIds)
             //{
             //    var feature = _context.Features.Where(f => f.IsDeleted == false && f.Id == id).ToList();
@@ -89,9 +92,9 @@ namespace SpadStorePanel.Infrastructure.Repositories
             //}
 
             //finding and getting all features of that specific product
-            foreach (var featureId in featureIds)
+            foreach (var featureId in uniqueFeatureIds)
             {
-                var feature = _context.Features.Where(f => f.IsDeleted == false && f.Id == featureId).FirstOrDefault();
+                var feature = _context.Features.Where( f => f.IsDeleted == false && f.Id == featureId ).FirstOrDefault();
 
                 if (feature != null)
                 {
@@ -102,9 +105,14 @@ namespace SpadStorePanel.Infrastructure.Repositories
             //finding and getting all subfeatures of all features of specific product
             foreach (var feature in features)
             {
-                var subFeatureIds = _context.ProductFeatureValues.Where(pfv => pfv.FeatureId == feature.Id && pfv.SubFeatureId != null).Select(pfv => pfv.SubFeatureId).ToList();
+                var subFeatureIds = _context.ProductFeatureValues
+                    .Where( pfv => pfv.IsDeleted == false && pfv.SubFeatureId != null )
+                    .Where( pfv => pfv.FeatureId == feature.Id && pfv.ProductId == productId )
+                    .Select( pfv => pfv.SubFeatureId).ToList();
 
-                foreach (var subFeatureId in subFeatureIds)
+                var uniqueSubFeatursIds = subFeatureIds.GroupBy(sf => sf.Value).Select(sf => sf.First());
+
+                foreach (var subFeatureId in uniqueSubFeatursIds)
                 {
                     var subFeature = _context.SubFeatures.Where(sf => sf.IsDeleted == false && sf.Id == subFeatureId).FirstOrDefault();
 
