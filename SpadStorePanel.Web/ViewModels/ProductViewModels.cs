@@ -179,6 +179,7 @@ namespace SpadStorePanel.Web.ViewModels
             this.ShortDescription = product.ShortDescription;
             this.Description = product.Description;
             this.ProductGroup = product.ProductGroup;
+            this.ProductMainFeatures = product.ProductMainFeatures;
             //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
             //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
         }
@@ -190,11 +191,26 @@ namespace SpadStorePanel.Web.ViewModels
         public string Author { get; set; }
         public string PersianDate { get; set; }
         public string SubTitles { get; set; }
+        public ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
         public ProductGroup ProductGroup { get; set; }
         public List<ProductTag> Tags { get; set; }
         public List<ProductCommentViewModel> ProductComments { get; set; }
         public ProductCommentFormViewModel CommentForm { get; set; }
     }
+
+    public class AddToCartViewModel
+    {
+        public AddToCartViewModel()
+        {
+            MainFeatures = new List<Feature>();
+            SubFeatures = new List<SubFeature>();
+        }
+
+        public int ProductId { get; set; }
+        public List<Feature> MainFeatures { get; set; }
+        public List<SubFeature> SubFeatures { get; set; }
+    }
+
 
     public class ProductListViewModel
     {

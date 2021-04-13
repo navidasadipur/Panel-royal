@@ -163,14 +163,39 @@
                                     </div>
                                     <h1 class="product_title entry-title"> @Model.Title</h1>
                                     <p class="price">
-                                        <span class="lynessa-Price-amount amount">
-                                            <span class="lynessa-Price-currencySymbol">$</span>146.00
-                                        </span> – <span class="lynessa-Price-amount amount">
-                                            <span class="lynessa-Price-currencySymbol">$</span>185.00
-                                        </span>
+                                        @{
+                                            var maxPrice = new long();
+                                            var minPrice = new long();
+
+                                            if (Model.ProductMainFeatures.Count() > 0)
+                                            {
+                                                maxPrice = Model.ProductMainFeatures.Max(f => f.Price);
+                                                minPrice = Model.ProductMainFeatures.Min(f => f.Price);
+
+                                                <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+                                                </span>
+                                                <text> – </text>
+                                                <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                                                </span>
+                                            }
+                                        }
+
                                     </p>
                                     <p class="stock in-stock">
-                                        موجودی <span> موجود </span>
+                                        @{ 
+                                            var inventory = "نا موجود";
+                                            foreach (var item in Model.ProductMainFeatures)
+                                            {
+                                                if (item.Quantity > 0)
+                                                {
+                                                    inventory = "موجود";
+                                                }
+                                            }
+
+                                        }
+                                        موجودی <span> @inventory </span>
                                     </p>
                                     <div class="lynessa-product-details__short-description">
                                         @Html.Raw(Model.Description)
@@ -181,8 +206,11 @@
                                             <li>پارچه ژاکارد پنبه دوز شده</li>
                                         </ul>*@
                                     </div>
-                                    <form class="variations_form cart">
-                                        <table class="variations">
+
+
+                                    @Html.Action("AddToCartSection", "Shop", new { productId = Model.Id })
+                                    @*<form class="variations_form cart">
+                                        <table @*class="variations"*@@*>
                                             <tbody>
                                                 <tr>
                                                     <td class="label"><label>رنگ</label></td>
@@ -193,7 +221,7 @@
                                                                 data-attribute_name="attribute_pa_color"
                                                                 data-show_option_none="yes">
                                                             <option data-type="" data-pa_color="" value="">
-                                                                Choose an option
+                                                                یک گزینه را انتخاب کنید
                                                             </option>
                                                             <option data-width="30" data-height="30" data-type="color"
                                                                     data-pa_color="#3155e2" value="blue"
@@ -243,7 +271,7 @@
                                                 <input name="variation_id" class="variation_id" value="0" type="hidden">
                                             </div>
                                         </div>
-                                    </form>
+                                    </form>*@
                                     @*<div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
                                             <a href="#" rel="nofollow"
@@ -276,7 +304,6 @@
                                         <span class="tagged_as">
                                             برچسب ها:
                                             @{
-
                                                 for (int i = 0; i < Model.Tags.Count; i++)
                                                 {
                                                     <a href="#" rel="tag"> @Model.Tags[i].Title </a>

@@ -168,6 +168,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return PartialView(footerContent);
         }
+
         [Route("Gallery")]
         public ActionResult GalleryPage()
         {
@@ -356,7 +357,5 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return PartialView(model);
         }
-        
-
     }
 }

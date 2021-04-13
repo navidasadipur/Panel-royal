@@ -82,13 +82,56 @@ namespace SpadCompanyPanel.Web.Controllers
 
             var productCommentsVm = new List<ProductCommentViewModel>();
             foreach (var item in productComments)
-                productCommentsVm.Add(new ProductCommentViewModel(item));
+            productCommentsVm.Add(new ProductCommentViewModel(item));
             productDetailsVm.ProductComments = productCommentsVm;
 
             var productTags = _productsRepo.GetProductTags(id);
             productDetailsVm.Tags = productTags;
 
             return View(productDetailsVm);
+        }
+
+        public ActionResult AddToCartSection(int id)
+        {
+            //_productsRepo.UpdateProductViewCount(id);
+
+            var product = _productsRepo.GetProduct(id);
+
+            var model = new AddToCartViewModel();
+
+            var features = new List<Feature>();
+
+            var mainFeatures = product.ProductMainFeatures.GroupBy(pf => pf.FeatureId).Select(pf => pf.First()).ToList();
+
+            var mainFeatureIds = mainFeatures.Select(mf => mf.FeatureId).ToList();
+
+            foreach (var featureId in mainFeatureIds)
+            {
+                features.Add( _featuresRepo.GetMainFeatureWithSubFeatureById(featureId) );
+            }
+
+
+            //var subFeatures = new List<SubFeature>();
+
+            //foreach (var feature in model.MainFeatures)
+            //{
+            //    if (feature.SubFeatureId.HasValue)
+            //    {
+            //        var subFeature = _subFeaturesRepo.Get(feature.SubFeatureId.Value);
+
+            //        subFeatures.Add(subFeature);
+            //    }
+            //}
+
+            //model.SubFeatures = subFeatures;
+
+            model.MainFeatures = features;
+
+            model.ProductId = id;
+            
+            //var productDetailsVm = new ProductDetailsViewModel(product);
+
+            return PartialView(model);
         }
 
         [HttpPost]
@@ -452,5 +495,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return PartialView(allGroupProducts);
         }
+
+        
     }
 }

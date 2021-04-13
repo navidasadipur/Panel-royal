@@ -4883,6 +4883,9 @@
     <Content Include="Views\Shop\RelatedProductsSection.cshtml" />
     <Content Include="Views\Home\LatestProductsSection.cshtml" />
     <Content Include="Views\Home\ServicesSection.cshtml" />
+    <Content Include="Views\Shop\AddToCartSection.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
