@@ -4868,7 +4868,7 @@
     </Content>
     <Content Include="Views\Shop\LatestArticlesSection.cshtml" />
     <Content Include="Views\Shop\ProductGroupSection.cshtml" />
-    <Content Include="Views\Shop\Shop.cshtml" />
+    <Content Include="Views\Shop\Cart.cshtml" />
     <Content Include="Views\Shop\SocialsSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

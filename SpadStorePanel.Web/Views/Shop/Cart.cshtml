@@ -1,0 +1,229 @@
+﻿@model SpadStorePanel.Web.ViewModels.AddToCartViewModel
+
+@{
+    ViewBag.Title = "پرداخت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="banner-wrapper has_background">
+        <img src="~/Content/client/images/23.jpg"
+             class="img-responsive attachment-1920x447 size-1920x447 col-md-12" alt="img" style="opacity: 0.3;">
+        <div class="banner-wrapper-inner">
+            <h1 class="page-title"> @ViewBag.Title </h1>
+            <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+                <ul class="trail-items breadcrumb">
+                    <li class="trail-item trail-begin"><a href=""><span>خانه</span></a></li>
+                    <li class="trail-item trail-end active">
+                        <span> @ViewBag.Title </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<main class="site-main main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <div class="lynessa">
+                        <div class="lynessa-notices-wrapper"></div>
+                        <div class="lynessa-cart-form">
+                            <table class="shop_table shop_table_responsive cart lynessa-cart-form__contents"
+                                   cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove">&nbsp;</th>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">نام محصول</th>
+                                        <th class="product-price">قیمت</th>
+                                        <th class="product-quantity">تعداد</th>
+                                        <th class="product-subtotal">جمع</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="lynessa-cart-form__cart-item cart_item">
+                                        <td class="product-remove">
+                                            <a href="#"
+                                               class="remove" aria-label="Remove this item" data-product_id="27"
+                                               data-product_sku="885B712">×</a>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <a href="#">
+                                                <img src="~/Content/client/images/12.jpg"
+                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                     alt="img" width="600" height="778">
+                                            </a>
+                                        </td>
+                                        <td class="product-name" data-title="Product">
+                                            <a href="#">
+                                                رویال 1
+                                            </a>
+                                        </td>
+                                        <td class="product-price" data-title="Price">
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>150.00
+                                            </span>
+                                        </td>
+                                        <td class="product-quantity" data-title="Quantity">
+                                            <div class="quantity">
+                                                <span class="qty-label">Quantiy:</span>
+                                                <div class="control">
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal" data-title="Total">
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>150.00
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="lynessa-cart-form__cart-item cart_item">
+                                        <td class="product-remove">
+                                            <a href="#"
+                                               class="remove" aria-label="Remove this item" data-product_id="29"
+                                               data-product_sku="003D754">×</a>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <a href="#">
+                                                <img src="~/Content/client/images/13.jpg"
+                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                     alt="img" width="600" height="778">
+                                            </a>
+                                        </td>
+                                        <td class="product-name" data-title="Product">
+                                            <a href="#">
+                                                رویال 2
+                                            </a>
+                                        </td>
+                                        <td class="product-price" data-title="Price">
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>129.00
+                                            </span>
+                                        </td>
+                                        <td class="product-quantity" data-title="Quantity">
+                                            <div class="quantity">
+                                                <span class="qty-label">Quantiy:</span>
+                                                <div class="control">
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal" data-title="Total">
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>129.00
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="lynessa-cart-form__cart-item cart_item">
+                                        <td class="product-remove">
+                                            <a href="#"
+                                               class="remove" aria-label="Remove this item" data-product_id="20"
+                                               data-product_sku="775E109">×</a>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <a href="#">
+                                                <img src="~/Content/client/images/14.jpg"
+                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                     alt="img" width="600" height="778">
+                                            </a>
+                                        </td>
+                                        <td class="product-name" data-title="Product">
+                                            <a href="#"> رویال 3</a>
+                                        </td>
+                                        <td class="product-price" data-title="Price">
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>139.00
+                                            </span>
+                                        </td>
+                                        <td class="product-quantity" data-title="Quantity">
+                                            <div class="quantity">
+                                                <span class="qty-label">تعداد</span>
+                                                <div class="control">
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal" data-title="Total">
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>139.00
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="actions">
+                                            <div class="coupon">
+                                                <label for="coupon_code"></label> <input type="text"
+                                                                                         name="coupon_code"
+                                                                                         class="input-text"
+                                                                                         id="coupon_code"
+                                                                                         placeholder="کد تخفیف">
+                                                <button type="submit" class="button" name="apply_coupon"
+                                                        value="Apply coupon">
+                                                    ثبت تخفیف
+                                                </button>
+                                            </div>
+                                            <button type="submit" class="button" name="update_cart" value="Update cart">
+                                                به روز رسانی پرداخت
+                                            </button>
+                                            <input type="hidden" id="lynessa-cart-nonce" name="lynessa-cart-nonce"
+                                                   value="f41b5bf554"><input type="hidden" name="_wp_http_referer"
+                                                                             value="/lynessa/cart/">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cart-collaterals">
+                            <div class="cart_totals ">
+                                <h2>پرداختی ها</h2>
+                                <table class="shop_table shop_table_responsive" cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>قیمت واحد</th>
+                                            <td data-title="Subtotal">
+                                                <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">$</span>418.00
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>جمع کل</th>
+                                            <td data-title="Total">
+                                                <strong>
+                                                    <span class="lynessa-Price-amount amount">
+                                                        <span class="lynessa-Price-currencySymbol">$</span>418.00
+                                                    </span>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="lynessa-proceed-to-checkout">
+                                    <a href="#"
+                                       class="checkout-button button alt lynessa-forward">
+                                        پرداخت
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -130,6 +130,7 @@ namespace SpadCompanyPanel.Web.Controllers
         [HttpPost]
         public ActionResult AddToCartSection(FormCollection form)
         {
+            var isAddedToCart = false;
 
             //var test0 = form.Keys[0];
             var productIdStr = form.GetValue("ProductId");
@@ -137,13 +138,20 @@ namespace SpadCompanyPanel.Web.Controllers
 
             //var test1 = form.Keys[1];
             var featureValueIdStr = form.GetValue("feature");
-            var hasPeatureValueId = int.TryParse(featureValueIdStr.AttemptedValue, out int featureValueId);
+            var hasFeatureValueId = int.TryParse(featureValueIdStr.AttemptedValue, out int featureValueId);
 
             //var test3 = form.Keys[2];
             var quantityStr = form.GetValue("quantity");
             var Hasquantity = int.TryParse(quantityStr.AttemptedValue, out int quantity);
 
-            return RedirectToAction("Details", new { id = productId , isAddedToCart = true });
+            if (hasProductId && hasFeatureValueId && Hasquantity)
+            {
+                
+
+                isAddedToCart = true;
+            }
+
+            return RedirectToAction("Details", new { id = productId , isAddedToCart = isAddedToCart });
         }
 
         [HttpPost]
@@ -506,6 +514,12 @@ namespace SpadCompanyPanel.Web.Controllers
             }
 
             return PartialView(allGroupProducts);
+        }
+
+        public ActionResult Cart(int customerId)
+        {
+
+            return View();
         }
 
         
