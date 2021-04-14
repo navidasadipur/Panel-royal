@@ -122,13 +122,13 @@ namespace SpadCompanyPanel.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ContactUs(ContactUsViewModel viewModel)
+        public ActionResult ContactUs(ContactUsViewModel model)
         {
             var customerContactForm = new ContactForm()
             {
-                Name = viewModel.Name,
-                Email = viewModel.CustomerEmail,
-                Message = viewModel.Message,
+                Name = model.Name,
+                Email = model.CustomerEmail,
+                Message = model.Message,
             };
 
             if (ModelState.IsValid)
@@ -137,7 +137,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 return RedirectToAction("ContactUsSummary");
             }
 
-            return View(viewModel);
+            return RedirectToAction("ContactUs");
         }
 
         public ActionResult ContactUsSummary()

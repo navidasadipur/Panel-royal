@@ -108,6 +108,10 @@
     <Compile Include="Migrations\202104110504002_productModelModified_2.Designer.cs">
       <DependentUpon>202104110504002_productModelModified_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104141153191_ContactUsFormModelChanged.cs" />
+    <Compile Include="Migrations\202104141153191_ContactUsFormModelChanged.Designer.cs">
+      <DependentUpon>202104141153191_ContactUsFormModelChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104110504002_productModelModified_2.resx">
       <DependentUpon>202104110504002_productModelModified_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104141153191_ContactUsFormModelChanged.resx">
+      <DependentUpon>202104141153191_ContactUsFormModelChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

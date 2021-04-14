@@ -59,22 +59,22 @@
                                     <p>
                                         <label>
                                             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
-                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @Name = "your-name", @size = "40" } })
-                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "wpcf7-form-control-wrap your-name" })
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @size = "40" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "wpcf7-form-control-wrap Name text-danger" })
                                         </label>
                                     </p>
                                     <p>
                                         <label>
                                             @Html.LabelFor(model => model.CustomerEmail, htmlAttributes: new { @class = "" })
-                                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email", @Name = "your-email", @size = "40" } })
-                                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "wpcf7-form-control-wrap your-email" })
+                                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email", @size = "40" } })
+                                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "wpcf7-form-control-wrap CustomerEmail text-danger" })
                                         </label>
                                     </p>
                                     <p>
                                         <label>
                                             @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "" })
-                                            @Html.TextAreaFor(model => model.Message, new { cols = "40", rows = "10", @class = "wpcf7-form-control wpcf7-textarea", @Name = "your-message" })
-                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "wpcf7-form-control-wrap your-message" })
+                                            @Html.TextAreaFor(model => model.Message, new { cols = "40", rows = "10", @class = "wpcf7-form-control wpcf7-textarea" })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "wpcf7-form-control-wrap Message text-danger" })
                                         </label>
                                     </p>
                                     <p><input value="ثبت" class="wpcf7-form-control wpcf7-submit" type="submit"></p>
