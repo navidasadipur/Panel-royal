@@ -115,78 +115,82 @@
                     <div class="lynessa">
                         <div class="lynessa-notices-wrapper"></div>
                         <div class="u-columns col2-set" id="customer_login">
-                            <div class="u-column1 col-1">
-                                <h2>ورود</h2>
-                                <form class="lynessa-form lynessa-form-login login" method="post">
-                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
-                                        <label for="username">
-                                            نام کاربری یا ایمیل:&nbsp;<span class="required">*</span>
-                                        </label>
-                                        <input type="text" class="lynessa-Input lynessa-Input--text input-text"
-                                               name="username" id="username" autocomplete="username" value="">
-                                    </p>
-                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
-                                        <label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
-                                        <input class="lynessa-Input lynessa-Input--text input-text"
-                                               type="password" name="password" id="password"
-                                               autocomplete="current-password">
-                                    </p>
-                                    <p class="form-row">
-                                        <input type="hidden" id="lynessa-login-nonce" name="lynessa-login-nonce"
-                                               value="832993cb93"><input type="hidden" name="_wp_http_referer"
-                                                                         value="/lynessa/my-account/">
-                                        <button type="submit" class="lynessa-Button button" name="login"
-                                                value="Log in">
-                                            ورود
-                                        </button>
-                                        <label class="lynessa-form__label lynessa-form__label-for-checkbox inline">
-                                            <input class="lynessa-form__input lynessa-form__input-checkbox"
-                                                   name="rememberme" type="checkbox" id="rememberme" value="forever">
-                                            <span> مرا به خاطر بسپار</span>
-                                        </label>
-                                    </p>
-                                    <p class="lynessa-LostPassword lost_password">
-                                        <a href="#">فراموشی رمز عبور</a>
-                                    </p>
+                            @Html.Action("AccountLoginSection", "Home")
 
-                                </form>
-                            </div>
-                            <div class="u-column2 col-2">
-                                <h2>ثبت نام</h2>
-                                <form method="post" class="lynessa-form lynessa-form-register register">
-                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
-                                        <label for="reg_email">
-                                            ایمبل&nbsp;<span class="required">*</span>
-                                        </label>
-                                        <input type="email" class="lynessa-Input lynessa-Input--text input-text"
-                                               name="email" id="reg_email" autocomplete="email" value="">
-                                    </p>
+                            @Html.Action("AccountRegisterSection", "Home")
 
-                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
-                                        <label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
-                                        <input class="lynessa-Input lynessa-Input--text input-text"
-                                               type="password" name="password" id="password"
-                                               autocomplete="current-password">
-                                    </p>
-                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
-                                        <label for="password">تکرار رمز عبور:&nbsp;<span class="required">*</span></label>
-                                        <input class="lynessa-Input lynessa-Input--text input-text"
-                                               type="password" name="password" id="password"
-                                               autocomplete="current-password">
-                                    </p>
+                            @*<div class="u-column1 col-1">
+            <h2>ورود</h2>
+            <form class="lynessa-form lynessa-form-login login" method="post">
+                <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                    <label for="username">
+                        نام کاربری یا ایمیل:&nbsp;<span class="required">*</span>
+                    </label>
+                    <input type="text" class="lynessa-Input lynessa-Input--text input-text"
+                           name="username" id="username" autocomplete="username" value="">
+                </p>
+                <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                    <label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
+                    <input class="lynessa-Input lynessa-Input--text input-text"
+                           type="password" name="password" id="password"
+                           autocomplete="current-password">
+                </p>
+                <p class="form-row">
+                    <input type="hidden" id="lynessa-login-nonce" name="lynessa-login-nonce"
+                           value="832993cb93"><input type="hidden" name="_wp_http_referer"
+                                                     value="/lynessa/my-account/">
+                    <button type="submit" class="lynessa-Button button" name="login"
+                            value="Log in">
+                        ورود
+                    </button>
+                    <label class="lynessa-form__label lynessa-form__label-for-checkbox inline">
+                        <input class="lynessa-form__input lynessa-form__input-checkbox"
+                               name="rememberme" type="checkbox" id="rememberme" value="forever">
+                        <span> مرا به خاطر بسپار</span>
+                    </label>
+                </p>
+                <p class="lynessa-LostPassword lost_password">
+                    <a href="#">فراموشی رمز عبور</a>
+                </p>
 
-                                    <p class="lynessa-FormRow form-row">
-                                        <input type="hidden" id="lynessa-register-nonce"
-                                               name="lynessa-register-nonce" value="45fae70a87"><input type="hidden"
-                                                                                                       name="_wp_http_referer"
-                                                                                                       value="/lynessa/my-account/">
-                                        <button type="submit" class="lynessa-Button button" name="register"
-                                                value="Register">
-                                            ثبت نام
-                                        </button>
-                                    </p>
-                                </form>
-                            </div>
+            </form>
+        </div>
+        <div class="u-column2 col-2">
+            <h2>ثبت نام</h2>
+            <form method="post" class="lynessa-form lynessa-form-register register">
+                <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                    <label for="reg_email">
+                        ایمبل&nbsp;<span class="required">*</span>
+                    </label>
+                    <input type="email" class="lynessa-Input lynessa-Input--text input-text"
+                           name="email" id="reg_email" autocomplete="email" value="">
+                </p>
+
+                <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                    <label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
+                    <input class="lynessa-Input lynessa-Input--text input-text"
+                           type="password" name="password" id="password"
+                           autocomplete="current-password">
+                </p>
+                <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                    <label for="password">تکرار رمز عبور:&nbsp;<span class="required">*</span></label>
+                    <input class="lynessa-Input lynessa-Input--text input-text"
+                           type="password" name="password" id="password"
+                           autocomplete="current-password">
+                </p>
+
+                <p class="lynessa-FormRow form-row">
+                    <input type="hidden" id="lynessa-register-nonce"
+                           name="lynessa-register-nonce" value="45fae70a87"><input type="hidden"
+                                                                                   name="_wp_http_referer"
+                                                                                   value="/lynessa/my-account/">
+                    <button type="submit" class="lynessa-Button button" name="register"
+                            value="Register">
+                        ثبت نام
+                    </button>
+                </p>
+            </form>
+        </div>*@
                         </div>
                     </div>
                 </div>

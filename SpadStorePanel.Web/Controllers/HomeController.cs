@@ -330,6 +330,32 @@ namespace SpadCompanyPanel.Web.Controllers
             return View();
         }
 
+        public ActionResult AccountLoginSection()
+        {
+            var model = new LoginViewModel();
+
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult AccountLoginSection(LoginViewModel model)
+        {
+            return PartialView(model);
+        }
+
+        public ActionResult AccountRegisterSection()
+        {
+            var model = new RegisterViewModel();
+
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult AccounRegisterSection(RegisterViewModel model)
+        {
+            return PartialView(model);
+        }
+
         public ActionResult LatestProductsSection()
         {
             //SocialViewModel model = new SocialViewModel();

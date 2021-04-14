@@ -48,14 +48,14 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "نام کاربری خود را وارد کنید")]
-        [Display(Name = "نام کاربری")]
+        [Required(ErrorMessage = "نام کاربری یا ایمیل خود را وارد کنید")]
+        [Display(Name = "نام کاربری یا ایمیل: *")]
         //[EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "رمز عبور خود را وارد کنید")]
         [DataType(DataType.Password)]
-        [Display(Name = "رمز عبور")]
+        [Display(Name = "رمز عبور: *")]
         public string Password { get; set; }
 
         [Display(Name = "مرا به خاطر بسپار")]
@@ -66,17 +66,17 @@ namespace SpadStorePanel.Web.ViewModels
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = ":ایمیل *")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = ":رمز عبور *")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "تکرار رمز عبور: *")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
