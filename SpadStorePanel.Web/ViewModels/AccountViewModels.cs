@@ -64,20 +64,20 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "ایمیل خود را وارد کنید")]
         [EmailAddress]
-        [Display(Name = ":ایمیل *")]
+        [Display(Name = "ایمیل: *")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "رمز عبور الزامی است")]
+        [StringLength(100, ErrorMessage = " {0} حداقل باید دارای {2} کاراکتر باشد", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = ":رمز عبور *")]
+        [Display(Name = "رمز عبور: *")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "تکرار رمز عبور: *")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "رمز عبور و تکرار رمز عبور یکسان نیستند")]
         public string ConfirmPassword { get; set; }
     }
 

@@ -12,8 +12,8 @@
             <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
 
                     @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "lynessa-Input lynessa-Input--text input-text", @name = "username", @id="username", autocomplete="username", @size = "40" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "wpcf7-form-control-wrap your-name" })
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "lynessa-Input lynessa-Input--text input-text", @id="username", autocomplete="username", @size = "40" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "wpcf7-form-control-wrap your-name text-danger" })
 
 
                 @*<label for="username">
@@ -24,8 +24,8 @@
             </p>
             <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "lynessa-Input lynessa-Input--text input-text", @name = "password", @id = "password", autocomplete = "current-password", @size = "40" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "wpcf7-form-control-wrap your-name" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "lynessa-Input lynessa-Input--text input-text", @id = "password", autocomplete = "current-password", @size = "40" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "wpcf7-form-control-wrap your-name text-danger" })
 
 
                 @*<label for="password">رمز عبور:&nbsp;<span class="required">*</span></label>
