@@ -71,7 +71,7 @@ namespace SpadCompanyPanel.Web.Controllers
         }
 
         [Route("Shop/Details/{id}")]
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, bool isAddedToCart = false)
         {
             //_productsRepo.UpdateProductViewCount(id);
 
@@ -84,6 +84,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
             var productDetailsVm = new ProductDetailsViewModel(product);
 
+            productDetailsVm.IsAddedToCart = isAddedToCart;
 
             var productComments = _productsRepo.GetProductComments(id);
 
@@ -124,6 +125,25 @@ namespace SpadCompanyPanel.Web.Controllers
             //var productDetailsVm = new ProductDetailsViewModel(product);
 
             return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddToCartSection(FormCollection form)
+        {
+
+            //var test0 = form.Keys[0];
+            var productIdStr = form.GetValue("ProductId");
+            var hasProductId = int.TryParse(productIdStr.AttemptedValue, out int productId);
+
+            //var test1 = form.Keys[1];
+            var featureValueIdStr = form.GetValue("feature");
+            var hasPeatureValueId = int.TryParse(featureValueIdStr.AttemptedValue, out int featureValueId);
+
+            //var test3 = form.Keys[2];
+            var quantityStr = form.GetValue("quantity");
+            var Hasquantity = int.TryParse(quantityStr.AttemptedValue, out int quantity);
+
+            return RedirectToAction("Details", new { id = productId , isAddedToCart = true });
         }
 
         [HttpPost]

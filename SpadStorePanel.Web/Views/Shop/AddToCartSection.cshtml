@@ -1,7 +1,14 @@
 ﻿@model SpadStorePanel.Web.ViewModels.AddToCartViewModel
 @*@model SpadStorePanel.Core.Models.Product*@
 
-<form class="variations_form cart">
+@{ 
+//var subFeatureId = 0;
+}
+
+@using (Html.BeginForm("AddToCartSection", "Shop", FormMethod.Post, new { id = "commentform", @class = "variations_form cart" }))
+{
+
+    @Html.HiddenFor(model => model.ProductId)
     <table @*class="variations"*@>
         <tbody>
             @foreach (var feature in Model.MainFeatures)
@@ -12,7 +19,7 @@
                     <td class="value">
                         <select title="box_style" data-attributetype="box_style"
                                 data-id="pa_color"
-                                class="attribute-select " name="attribute_pa_color"
+                                class="attribute-select " name="feature"
                                 data-attribute_name="attribute_pa_color"
                                 data-show_option_none="yes">
                             <option data-type="" data-pa_color="" value="">
@@ -20,33 +27,34 @@
                             </option>
                             @foreach (var item in feature.SubFeatures)
                             {
-
-                                <option data-width="30" data-height="30" data-type="color"
-                                        data-pa_color="#3155e2" value="blue"
+                                <option data-width="30" data-height="30" data-type="color" name="subfeatureValue"
+                                        data-pa_color="#3155e2" value="@item.Id"
                                         class="attached enabled">
                                     @item.Value
                                 </option>
+                                //subFeatureId = item.Id;
                             }
+
                             @*<option data-width="30" data-height="30" data-type="color"
-                                    data-pa_color="#3155e2" value="blue"
-                                    class="attached enabled">
-                                آبی
-                            </option>
-                            <option data-width="30" data-height="30" data-type="color"
-                                    data-pa_color="#ffe59e" value="pink"
-                                    class="attached enabled">
-                                صورتی
-                            </option>
-                            <option data-width="30" data-height="30" data-type="color"
-                                    data-pa_color="#b6b8ba" value="red"
-                                    class="attached enabled">
-                                قرمز
-                            </option>
-                            <option data-width="30" data-height="30" data-type="color"
-                                    data-pa_color="#e8e120" value="yellow"
-                                    class="attached enabled">
-                                زرد
-                            </option>*@
+                                        data-pa_color="#3155e2" value="blue"
+                                        class="attached enabled">
+                                    آبی
+                                </option>
+                                <option data-width="30" data-height="30" data-type="color"
+                                        data-pa_color="#ffe59e" value="pink"
+                                        class="attached enabled">
+                                    صورتی
+                                </option>
+                                <option data-width="30" data-height="30" data-type="color"
+                                        data-pa_color="#b6b8ba" value="red"
+                                        class="attached enabled">
+                                    قرمز
+                                </option>
+                                <option data-width="30" data-height="30" data-type="color"
+                                        data-pa_color="#e8e120" value="yellow"
+                                        class="attached enabled">
+                                    زرد
+                                </option>*@
                         </select>
 
                         <a class="reset_variations" href="#"
@@ -63,7 +71,7 @@
                 <span class="qty-label">Quantiy:</span>
                 <div class="control">
                     <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                    <input type="text" data-step="1" min="0" max="" name="quantity[25]" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                    <input type="text" data-step="1" min="0" max="" name="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
                     <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                 </div>
             </div>
@@ -71,9 +79,9 @@
                     class="single_add_to_cart_button button alt lynessa-variation-selection-needed">
                 سبد خرید
             </button>
-            <input name="add-to-cart" value="27" type="hidden">
-            <input name="product_id" value="27" type="hidden">
-            <input name="variation_id" class="variation_id" value="0" type="hidden">
+            @*<input name="add-to-cart" value="27" type="hidden">*@
+            @*<input name="product_id" value="27" type="hidden">*@
+            @*<input name="variation_id" class="variation_id" value="0" type="hidden">*@
         </div>
     </div>
-</form>
+}

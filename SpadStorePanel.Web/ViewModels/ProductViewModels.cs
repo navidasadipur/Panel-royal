@@ -191,6 +191,8 @@ namespace SpadStorePanel.Web.ViewModels
         public string Author { get; set; }
         public string PersianDate { get; set; }
         public string SubTitles { get; set; }
+        public bool IsAddedToCart { get; set; }
+
         public ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
         public ProductGroup ProductGroup { get; set; }
         public List<ProductTag> Tags { get; set; }
@@ -209,6 +211,7 @@ namespace SpadStorePanel.Web.ViewModels
         public int ProductId { get; set; }
         public List<Feature> MainFeatures { get; set; }
         public List<SubFeature> SubFeatures { get; set; }
+
     }
 
 
