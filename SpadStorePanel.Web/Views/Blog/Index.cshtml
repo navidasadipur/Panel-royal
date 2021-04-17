@@ -86,7 +86,7 @@
         <h1 class="page-title">@ViewBag.Title</h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
-                <li class="trail-item trail-begin"><a href="#"><span>خانه</span></a></li>
+                <li class="trail-item trail-begin"><a href="/home"><span>خانه</span></a></li>
                 <li class="trail-item trail-end active">
                     <span>@ViewBag.Title</span>
                 </li>
@@ -104,14 +104,14 @@
                     {
                         <article class="post-item post-standard post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
                             <div class="post-thumb">
-                                <a href="/Blog/Details/@post.Id">
+                                <a href="/Blog/Posts/@post.Id">
                                     <img src="~/Files/ArticleImages/Image/@post.MainImage"
-                                         class="img-responsive attachment-1170x768 size-1170x768" alt="img" width="1170"
+                                         class="img-responsive attachment-1170x768 size-1170x768" alt="@post.Title" width="1170"
                                          height="768">
                                 </a>
                             </div>
                             <div class="post-info">
-                                <h2 class="post-title"><a href="/Blog/Details/@post.Id"> @post.Title </a></h2>
+                                <h2 class="post-title"><a href="/Blog/Posts/@post.Id"> @post.Title </a></h2>
                                 <div class="post-meta">
                                     <div class="date">
                                         <a href="#">
@@ -128,7 +128,7 @@
                             <div class="post-content">
                                 @post.ShortDescription
                             </div>
-                            <a href="/Blog/Details/@post.Id" class="readmore">
+                            <a href="/Blog/Posts/@post.Id" class="readmore">
                                 ادامه ..
                             </a>
                         </article>

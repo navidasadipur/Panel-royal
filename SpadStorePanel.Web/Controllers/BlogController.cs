@@ -89,7 +89,7 @@ namespace SpadStorePanel.Web.Controllers
             return PartialView(articleCategoriesVm);
         }
 
-        [Route("Blog/Details/{id}")]
+        [Route("Blog/posts/{id}")]
         public ActionResult Details(int id)
         {
             _articlesRepo.UpdateArticleViewCount(id);

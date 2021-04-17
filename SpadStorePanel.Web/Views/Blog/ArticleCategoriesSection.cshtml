@@ -24,7 +24,7 @@
             @foreach (var item in Model)
             {
                 <li class="cat-item cat-item-51">
-                    <a href="#">@item.Title</a>
+                    <a href="/Blog/@item.Id/@item.Title.Replace(" ","-")">@item.Title</a>
                 </li>
             }
         </ul>

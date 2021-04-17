@@ -224,6 +224,47 @@
                     </div>
                 </article>
                 <div id="comments" class="comments-area">
+                    <div id="comments">
+                        <h2 class="lynessa-Reviews-title">نظرات</h2>
+                        @foreach (var item in Model.ArticleComments.Where(c => c.ParentId == null))
+                        {
+                            <div class="review-box">
+                                <div class="review-user">
+                                    <div class="review-user-img">
+                                        <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="">
+                                        <div class="reviewer-name">
+                                            <p class="text-light-black fw-600">
+                                                @item.Name
+                                            </p><a onclick="AnswerComment(@item.Id,'@item.Name')" style="cursor: pointer" class="text-light-black"><i class="fas fa-reply text-black"></i> پاسخ دادن  </a>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">
+                                        <span class="text-light-white">@item.AddedDate</span>
+                                    </div>
+                                </div>
+                                <p class="lynessa-noreviews">@item.Message</p>
+                            </div>
+                            foreach (var child in Model.ArticleComments.Where(c => c.ParentId == item.Id))
+                            {
+                                <div class="review-box comment-reply">
+                                    <div class="review-user">
+                                        <div class="review-user-img">
+                                            <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@child.Name">
+                                            <div class="reviewer-name">
+                                                <p class="text-light-black fw-600">
+                                                    @child.Name
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="review-date">
+                                            <span class="text-light-white">@child.AddedDate</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-light-black">@child.Message</p>
+                                </div>
+                            }
+                        }
+                    </div>
                     <div id="respond" class="comment-respond">
                         <h3 id="reply-title" class="comment-reply-title"> کامنت </h3>
                         @using (Html.BeginForm("PostComment", "Blog", FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
