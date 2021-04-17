@@ -53,9 +53,12 @@ namespace SpadStorePanel.Core.Utility
         InstagramImages = 3,
 
         HomeTopSlider = 11,
+        HomeSecondSlider = 1010,
+        HomeLastSlider = 1011,
         CompanyHistory = 2,
         BlogImage = 1004,
         
         OurServices = 10,
+
     }
 }

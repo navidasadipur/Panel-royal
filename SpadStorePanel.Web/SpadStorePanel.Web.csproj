@@ -4888,6 +4888,8 @@
     </Content>
     <Content Include="Views\Home\AccountRegisterSection.cshtml" />
     <Content Include="Views\Home\AccountLoginSection.cshtml" />
+    <Content Include="Views\Home\HomeSecondSlidersSection.cshtml" />
+    <Content Include="Views\Home\HomeLastSlidersSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

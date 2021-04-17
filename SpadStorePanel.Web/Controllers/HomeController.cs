@@ -381,6 +381,20 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(model);
         }
 
+        public ActionResult HomeSecondSlidersSection()
+        {
+            var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.HomeSecondSlider);
+
+            return PartialView(model);
+        }
+
+        public ActionResult HomeLastSlidersSection()
+        {
+            var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.HomeLastSlider);
+
+            return PartialView(model);
+        }
+
         public ActionResult LatestProductsSection()
         {
             var model = _productRepo.Get6NewProducts();
