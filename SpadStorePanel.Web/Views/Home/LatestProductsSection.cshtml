@@ -25,7 +25,7 @@
                                 <a class="thumb-link"
                                    href="#" tabindex="0">
                                     <img class="img-responsive"
-                                         src="~/Files/ProductImages/ProductGallery/Thumb/@product.Image"
+                                         src="~/Files/ProductImages/Image/@product.Image"
                                          alt="KNIT LIKE" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -53,15 +53,14 @@
                                     <a href="#"
                                        tabindex="0">
                                         @product.Title
-                                        رویال هفت
-                                        تشک مدیکال (طبی ویژه هارد)
+                                        @*رویال هفت
+                                        تشک مدیکال (طبی ویژه هارد)*@
                                     </a>
                                 </h3>
                                 <span class="price">
                                     <span class="lynessa-Price-amount amount">
                                         <span class="lynessa-Price-currencySymbol">$</span>
-                                        @product.ProductMainFeatures.Min();
-                                        109.00
+                                        @product.ProductMainFeatures.Min(f => f.Price)
                                     </span>
                                 </span>
                                 <div class="rating-wapper nostar">

@@ -132,7 +132,7 @@ namespace SpadStorePanel.Web.Controllers
 
         public ActionResult LatestArticlesSection()
         {
-            var articles = _articlesRepo.GetLatestArticles(5);
+            var articles = _articlesRepo.GetLatestArticles(4);
             var vm = new List<LatestArticlesViewModel>();
             foreach (var item in articles)
             {

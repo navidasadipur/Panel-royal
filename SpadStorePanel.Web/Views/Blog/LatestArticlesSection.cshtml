@@ -41,7 +41,34 @@
         <span class="arrow"></span>
     </h2>
     <div class="lynessa-posts">
-        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+        @if (Model.Any())
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
+                    <div class="post-item-inner">
+                        <div class="post-thumb">
+                            <a href="/Blog/Details/@Model[i].Id">
+                                <img src="/Files/ArticleImages/Thumb/@Model[i].MainImage"
+                                     class="img-responsive attachment-83x83 size-83x83" alt="@Model[i].Title" width="83"
+                                     height="83">
+                            </a>
+                        </div>
+                        <div class="post-info">
+                            <div class="block-title">
+                                <h2 class="post-title">
+                                    <a href="/Blog/Details/@Model[i].Id">@Model[i].Title</a>
+                                </h2>
+                            </div>
+                            <div class="date"> @Model[i].PersianDate </div>
+                        </div>
+                    </div>
+                </article>
+            }
+
+
+        }
+        @*<article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
             <div class="post-item-inner">
                 <div class="post-thumb">
                     <a href="#">
@@ -97,7 +124,7 @@
                     <div class="date">آبان 19, 139</div>
                 </div>
             </div>
-        </article>
+        </article>*@
         <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
             <div class="post-item-inner">
                 <div class="post-thumb">

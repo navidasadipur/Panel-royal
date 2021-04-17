@@ -25,7 +25,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         public List<Product> Get6NewProducts()
         {
-            var allProducts = _context.Products.Include(p => p.ProductGroup).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
+            var allProducts = _context.Products.Where(p => p.IsDeleted == false).Include(p => p.ProductGroup).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
 
             foreach (var product in allProducts)
             {
