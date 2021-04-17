@@ -57,8 +57,6 @@ namespace SpadCompanyPanel.Web.Controllers
                 ProductCategories = _prodectGroupsRepo.GetAllProductGroupsWithProducts()
             };
 
-            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackgroundImage).Image;
-
             return PartialView(viewModel);
         }
 

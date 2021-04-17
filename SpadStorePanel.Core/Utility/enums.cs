@@ -43,7 +43,6 @@ namespace SpadStorePanel.Core.Utility
         ImplementaitonService = 3005,
         
         Logo = 3,
-        BackgroundImage = 4022
     }
 
     public enum StaticContentTypes
