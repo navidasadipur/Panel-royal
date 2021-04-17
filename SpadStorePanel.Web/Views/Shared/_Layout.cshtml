@@ -37,6 +37,10 @@
             <i class="fa fa-angle-up"></i>
         </a>
 
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jqueryval")
+
         <script src="~/Content/client/js/jquery-1.12.4.min.js"></script>
         <script src="~/Content/client/js/bootstrap.min.js"></script>
         <script src="~/Content/client/js/chosen.min.js"></script>
@@ -58,9 +62,7 @@
 
             });
         </script>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/jqueryval")
+
         @RenderSection("scripts", required: false)
 
     </body>

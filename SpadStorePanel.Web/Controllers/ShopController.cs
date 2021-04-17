@@ -52,22 +52,63 @@ namespace SpadCompanyPanel.Web.Controllers
 
         [Route("Shop")]
         [Route("Shop/{id}")]
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, string searchString = null)
         {
-            var viewModel = new ProductViewModel();
+            var products = new List<Product>();
 
             if (id == null)
             {
-                viewModel.Products = _productsRepo.GetAllProducts();
-
-                return PartialView(viewModel);
+                products = _productsRepo.GetAllProducts();
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    ViewBag.BreadCrumb = $"جستجو {searchString}";
+                    products = products
+                        .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
+                            p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
+                            p.Description != null && p.Description.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
+                }
+            }
+            else
+            {
+                var category = _productGroupsRepo.GetProductGroup(id.Value);
+                if (category != null)
+                {
+                    ViewBag.GroupId = id.Value;
+                    ViewBag.BreadCrumb = category.Title;
+                    products = _productsRepo.getProductsByGroupId(id.Value);
+                }
             }
 
-            viewModel.Products = _productsRepo.getProductsByGroupId(id.Value);
 
-            ViewBag.CategoryTitle = _productGroupsRepo.Get(id.Value).Title;
+            var productListVm = new List<ProductListViewModel>();
+            foreach (var item in products)
+            {
+                var vm = new ProductListViewModel(item);
 
-            return PartialView(viewModel);
+                //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                if (item.ProductComments != null)
+                {
+                    vm.CommentCounter = item.ProductComments.Count();
+                }
+                productListVm.Add(vm);
+            }
+            return View(productListVm);
+
+            //var viewModel = new ProductViewModel();
+
+            //if (id == null)
+            //{
+            //    viewModel.Products = _productsRepo.GetAllProducts();
+
+            //    return PartialView(viewModel);
+            //}
+
+            //viewModel.Products = _productsRepo.getProductsByGroupId(id.Value);
+
+            //ViewBag.CategoryTitle = _productGroupsRepo.Get(id.Value).Title;
+
+            //return PartialView(viewModel);
         }
 
         [Route("Shop/Details/{id}")]

@@ -228,6 +228,8 @@ namespace SpadStorePanel.Web.ViewModels
             this.ShortDescription = product.ShortDescription;
             //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
             this.Image = product.Image;
+            this.Rate = product.Rate;
+            this.ProductMainFeatures = product.ProductMainFeatures.ToList();
             //this.AuthorAvatar = product.User.Avatar ?? "user-avatar.png";
             //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
@@ -240,6 +242,9 @@ namespace SpadStorePanel.Web.ViewModels
         //public string AuthorAvatar { get; set; }
         public string Role { get; set; }
         public int CommentCounter { get; set; }
+        public int Rate { get; set; }
+
+        public List<ProductMainFeature> ProductMainFeatures { get; set; }
     }
 
     public class ProductCategoriesViewModel
