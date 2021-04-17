@@ -54,8 +54,6 @@ namespace SpadCompanyPanel.Web.Controllers
         [Route("Shop/{id}")]
         public ActionResult Index(int? id)
         {
-            
-
             var viewModel = new ProductViewModel();
 
             if (id == null)

@@ -20,7 +20,20 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         public List<Product> GetAllProducts()
         {
-            return _context.Products.Where(p => p.IsDeleted == false).Include(a => a.ProductGroup).ToList();
+            var allProducts = _context.Products.Where(p => p.IsDeleted == false).Include(a => a.ProductGroup).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
+
+            foreach (var product in allProducts)
+            {
+                if (product != null)
+                {
+                    product.ProductMainFeatures = product.ProductMainFeatures.Where(f => f.IsDeleted == false && f.ProductId == product.Id).ToList();
+                    product.ProductFeatureValues = product.ProductFeatureValues.Where(f => f.IsDeleted == false && f.ProductId == product.Id).ToList();
+                }
+
+                allProducts = allProducts.OrderByDescending(p => p.Id).ToList();
+            }
+
+            return allProducts;
         }
 
         public List<Product> Get6NewProducts()
