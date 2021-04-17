@@ -21,7 +21,7 @@
     <div class="tagcloud">
         @for (int i = 0; i < Model.Count(); i++)
         {
-            <a href="#"
+            <a href="/Blog?searchString=@Model[i].Title.Replace(" ", "+")"
                class="tag-cloud-link tag-link-42 tag-link-position-@(i+1)"
                aria-label="Just In (@(i+1) items)">@Model[i].Title</a>
 
