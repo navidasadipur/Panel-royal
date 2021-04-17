@@ -33,6 +33,8 @@ namespace SpadStorePanel.Web.Controllers
         [Route("Blog/{id}/{title}")]
         public ActionResult Index(int? id = null, string searchString = null)
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
+
             //ViewBag.BlogImage = _contentRepo.GetStaticContentDetail((int)StaticContents.BlogImage).Image; 
             var articles = new List<Article>();
             if (id == null)

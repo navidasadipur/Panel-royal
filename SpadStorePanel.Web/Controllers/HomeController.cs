@@ -62,6 +62,8 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult Shop(int? id)
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage);
+
             var viewModel = new ProductViewModel();
 
             if (id == null)
@@ -103,6 +105,8 @@ namespace SpadCompanyPanel.Web.Controllers
         
         public ActionResult ContactUs()
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
+
             var contactUsContent = new ContactUsViewModel();
 
             contactUsContent.ContactInfo = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.ContactInfo);
@@ -184,6 +188,8 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult About()
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
+
             var aboutViewModel = new AboutViewModel();
 
             //aboutViewModel.AboutDescription = _contentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault().Description;
@@ -322,6 +328,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult Account()
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
             //SocialViewModel model = new SocialViewModel();
 
             //model.Instagram = _contentDetailsRepo.GetStaticContentDetail(1009).Link;

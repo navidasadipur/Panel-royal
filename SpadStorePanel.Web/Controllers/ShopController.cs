@@ -54,6 +54,8 @@ namespace SpadCompanyPanel.Web.Controllers
         [Route("Shop/{id}")]
         public ActionResult Index(int? id)
         {
+            
+
             var viewModel = new ProductViewModel();
 
             if (id == null)
@@ -258,6 +260,8 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult About()
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
+
             var aboutViewModel = new AboutViewModel();
 
             //aboutViewModel.AboutDescription = _contentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault().Description;
@@ -432,8 +436,12 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult TopProductGroupSection()
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
+
             var categories = _productGroupsRepo.GetProductGroupTable();
+
             var articleCategoriesVm = new List<ProductCategoriesViewModel>();
+
             foreach (var item in categories)
             {
                 var vm = new ProductCategoriesViewModel();
@@ -518,6 +526,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult Cart(int customerId)
         {
+            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
 
             return View();
         }
