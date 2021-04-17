@@ -358,16 +358,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(model);
         }
 
-        public ActionResult LatestProductsSection()
-        {
-            //SocialViewModel model = new SocialViewModel();
-
-            //model.Instagram = _contentDetailsRepo.GetStaticContentDetail(1009).Link;
-            //model.Aparat = _contentDetailsRepo.GetStaticContentDetail(1012).Link;
-
-            return PartialView();
-        }
-
         public ActionResult ServicesSection()
         {
             var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.OurServices);
@@ -382,6 +372,13 @@ namespace SpadCompanyPanel.Web.Controllers
             model.Slides = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.HomeTopSlider);
 
             model.LogoAndButton = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Logo);
+
+            return PartialView(model);
+        }
+
+        public ActionResult LatestProductsSection()
+        {
+            var model = _productRepo.Get6NewProducts();
 
             return PartialView(model);
         }
