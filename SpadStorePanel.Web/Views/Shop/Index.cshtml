@@ -231,7 +231,7 @@
                                 data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
                                 <div class="product-inner tooltip-left">
                                     <div class="product-thumb">
-                                        <a class="thumb-link" href="single-product.html">
+                                        <a class="thumb-link" href="/Shop/Details/@item.Id">
                                             <img class="img-responsive"
                                                  src="~/Files/ProductImages/Image/@item.Image"
                                                  alt="@item.Title" width="600" height="300px">
@@ -284,7 +284,7 @@
                                 </div>
                             </div>*@
 
-                                            <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+                                            <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
                                             <div class="add-to-cart">
                                                 <a href="#" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
                                             </div>
@@ -292,7 +292,7 @@
                                     </div>
                                     <div class="product-info equal-elem">
                                         <h3 class="product-name product_title">
-                                            <a href="#">@item.Title</a>
+                                            <a href="/Shop/Details/@item.Id">@item.Title</a>
                                         </h3>
                                         <div class="rating-wapper nostar">
                                             <div class="star-rating">
@@ -325,6 +325,7 @@
                                             }
                                         </span>
                                         <div class="lynessa-product-details__short-description">
+                                            @item.ShortDescription
                                             <p>توضیحات کامل محصول</p>
                                             <ul>
                                                 <li>پارچه ژاکارد پنبه دوز شده</li>
@@ -335,13 +336,13 @@
                                     </div>
                                     <div class="group-button">
                                         <div class="group-button-inner">
-                                            <div class="yith-wcwl-add-to-wishlist">
+                                            @*<div class="yith-wcwl-add-to-wishlist">
                                                 <div class="yith-wcwl-add-button show">
                                                     <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
                                                 </div>
-                                            </div>
+                                            </div>*@
 
-                                            <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+                                            <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
                                             <div class="add-to-cart">
                                                 <a href="#" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
                                             </div>
@@ -1331,19 +1332,23 @@
                         <h2 class="widgettitle">
                             جستجو براساس قیمت<span class="arrow"></span>
                         </h2>
-                        <form method="get" action="#">
-                            <div class="price_slider_wrapper">
-                                <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$"
-                                     class="price_slider" data-value-min="100" data-value-max="800">
-                                </div>
-                                <div class="price_slider_amount">
-                                    <button type="submit" class="button">فیلتر</button>
-                                    <div class="price_label">
-                                        قیمت: <span class="from">$100</span> — <span class="to">$800</span>
+                        <form method="get" action="~/Shop/Search" name="Search">
+                            @*@using (Html.BeginForm("Search", "Shop", FormMethod.Get, new { id = "form"@*, @class = "wpcf7-form" }))
+                            {*@
+                                <div class="price_slider_wrapper">
+                                    <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$"
+                                         class="price_slider" data-value-min="100" data-value-max="800">
                                     </div>
+                                    <div class="price_slider_amount">
+                                        <button type="submit" class="button" name="Search">فیلتر</button>
+                                        <div class="price_label">
+                                            قیمت: <span class="from">$100</span> — <span class="to">$800</span>
+                                        </div>
+                                    </div>
+                                    @Html.Hidden("max")
+                                    @Html.Hidden("min")
                                 </div>
-                            </div>
-                        </form>
+                            </form>
                     </div>
                     @Html.Action("ColorSearchSection", "Shop")
                     @Html.Action("SizeSearchSection", "Shop")
@@ -1353,3 +1358,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+</script>

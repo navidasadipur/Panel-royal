@@ -111,6 +111,13 @@ namespace SpadCompanyPanel.Web.Controllers
             //return PartialView(viewModel);
         }
 
+        [HttpGet]
+        public ActionResult Search(int min, int max)
+        {
+
+            return Redirect("index");
+        }
+
         [Route("Shop/Details/{id}")]
         public ActionResult Details(int id, bool isAddedToCart = false)
         {

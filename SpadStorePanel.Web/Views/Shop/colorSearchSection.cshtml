@@ -39,7 +39,7 @@
             @foreach (var subFeature in Model)
             {
                 <label class="term-color">
-                    <input type="checkbox" name="term-color">
+                    <input type="checkbox" name="term-color" value="@subFeature.Id">
                     <i style="color: @subFeature.OtherInfo"></i>
                     <span class="term-name">@subFeature.Value</span>
                     <span class="count">(@subFeature.ProductCount)</span>
