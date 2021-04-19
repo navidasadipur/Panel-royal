@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SpadStorePanel.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SpadStorePanel.Core.Models;
 
 namespace SpadStorePanel.Web.ViewModels
 {
@@ -34,7 +34,7 @@ namespace SpadStorePanel.Web.ViewModels
     {
         public ProductFeatures_SubFeaturesViewModel()
         {
-            this.SubFeatures = new List<string>();
+            SubFeatures = new List<string>();
         }
 
         public string Title { get; set; }
@@ -58,8 +58,8 @@ namespace SpadStorePanel.Web.ViewModels
         }
         public ProductCommentWithPersianDateViewModel(ProductComment comment)
         {
-            this.Comment = comment;
-            this.PersianDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString() : "-";
+            Comment = comment;
+            PersianDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString() : "-";
         }
         public ProductComment Comment { get; set; }
         [Display(Name = "تاریخ ثبت")]
@@ -127,8 +127,8 @@ namespace SpadStorePanel.Web.ViewModels
 
         public ProductInfoViewModel(Product product)
         {
-            this.Id = product.Id;
-            this.Title = product.Title;
+            Id = product.Id;
+            Title = product.Title;
             //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
             //this.ArticleCategory = product.ArticleCategory != null ? product.ArticleCategory.Title : "-";
             //this.PersianAddedDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString() : "-";
@@ -154,8 +154,8 @@ namespace SpadStorePanel.Web.ViewModels
 
         public TopProductsViewModel(Product product)
         {
-            this.Id = product.Id;
-            this.Title = product.Title;
+            Id = product.Id;
+            Title = product.Title;
             //this.MainImage = product.MainImage;
             //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
@@ -173,13 +173,13 @@ namespace SpadStorePanel.Web.ViewModels
         }
         public ProductDetailsViewModel(Product product)
         {
-            this.Id = product.Id;
-            this.Title = product.Title;
-            this.Image = product.Image;
-            this.ShortDescription = product.ShortDescription;
-            this.Description = product.Description;
-            this.ProductGroup = product.ProductGroup;
-            this.ProductMainFeatures = product.ProductMainFeatures;
+            Id = product.Id;
+            Title = product.Title;
+            Image = product.Image;
+            ShortDescription = product.ShortDescription;
+            Description = product.Description;
+            ProductGroup = product.ProductGroup;
+            ProductMainFeatures = product.ProductMainFeatures;
             //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
             //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
         }
@@ -223,13 +223,13 @@ namespace SpadStorePanel.Web.ViewModels
 
         public ProductListViewModel(Product product)
         {
-            this.Id = product.Id;
-            this.Title = product.Title;
-            this.ShortDescription = product.ShortDescription;
+            Id = product.Id;
+            Title = product.Title;
+            ShortDescription = product.ShortDescription;
             //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
-            this.Image = product.Image;
-            this.Rate = product.Rate;
-            this.ProductMainFeatures = product.ProductMainFeatures.ToList();
+            Image = product.Image;
+            Rate = product.Rate;
+            ProductMainFeatures = product.ProductMainFeatures.ToList();
             //this.AuthorAvatar = product.User.Avatar ?? "user-avatar.png";
             //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }
@@ -274,7 +274,39 @@ namespace SpadStorePanel.Web.ViewModels
         public int ProductCount { get; set; }
     }
 
-    
+    public class ColorViewModel
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
+        public string OtherInfo { get; set; }
+        public int ProductCount { get; set; }
+    }
+
+    public class SizeViewModel
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
+        public string OtherInfo { get; set; }
+        public int ProductCount { get; set; }
+    }
+
+    public class SearchViewModel
+    {
+        public SearchViewModel()
+        {
+            ColorViewModels = new List<ColorViewModel>();
+            SizeViewModels = new List<SizeViewModel>();
+            ProductCategoriesViewModels = new List<ProductCategoriesViewModel>();
+        }
+
+        public long MinPrice { get; set; }
+        public long MaxPrice { get; set; }
+        public List<ColorViewModel> ColorViewModels { get; set; }
+        public List<SizeViewModel> SizeViewModels { get; set; }
+        public List<ProductCategoriesViewModel> ProductCategoriesViewModels { get; set; }
+    }
+
+
 
     public class ProductCommentViewModel
     {
@@ -285,12 +317,12 @@ namespace SpadStorePanel.Web.ViewModels
 
         public ProductCommentViewModel(ProductComment comment)
         {
-            this.Id = comment.Id;
-            this.ParentId = comment.ParentId;
-            this.Name = comment.Name;
-            this.Email = comment.Email;
-            this.Message = comment.Message;
-            this.AddedDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
+            Id = comment.Id;
+            ParentId = comment.ParentId;
+            Name = comment.Name;
+            Email = comment.Email;
+            Message = comment.Message;
+            AddedDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
         }
         public int Id { get; set; }
         public int? ParentId { get; set; }
@@ -328,8 +360,8 @@ namespace SpadStorePanel.Web.ViewModels
 
         public LatestProductsViewModel(Product product)
         {
-            this.Id = product.Id;
-            this.Title = product.Title;
+            Id = product.Id;
+            Title = product.Title;
             //this.MainImage = product.MainImage;
             //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("d MMMM yyyy") : "-";
         }

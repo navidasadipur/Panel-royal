@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Dtos\Product\ProductWithPriceDto.cs" />
     <Compile Include="Extensions\DistinctBy.cs" />
     <Compile Include="Filters\PaginationFilter.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Repositories\StaticContentTypesRepository.cs" />
     <Compile Include="Repositories\SubFeaturesRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
+    <Compile Include="Services\ProductServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpadStorePanel.Core\SpadStorePanel.Core.csproj">

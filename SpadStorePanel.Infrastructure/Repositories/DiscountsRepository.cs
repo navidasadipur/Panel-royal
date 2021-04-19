@@ -21,7 +21,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         public List<Discount> GetDistinctedDiscounts()
         {
-            return _context.Discounts.Where(d => d.IsDeleted == false).DistinctBy(d=>d.GroupIdentifier).ToList();
+            return _context.Discounts.Where(d => d.IsDeleted == false).DistinctBy(d => d.GroupIdentifier).ToList();
         }
         public List<Discount> GetDiscountGroup(int id)
         {
@@ -31,6 +31,19 @@ namespace SpadStorePanel.Infrastructure.Repositories
         public List<Discount> GetDiscountsByGroupIdentifier(string groupIdentifier)
         {
             return _context.Discounts.Where(d => d.IsDeleted == false && d.GroupIdentifier == groupIdentifier).ToList();
+        }
+
+        public Discount GetProductDiscount(int productId)
+        {
+            return _context.Discounts.FirstOrDefault(d => d.IsDeleted == false && d.ProductId == productId);
+        }
+        public Discount GetProductGroupDiscount(int productGroupId)
+        {
+            return _context.Discounts.FirstOrDefault(d => d.IsDeleted == false && d.ProductGroupId == productGroupId);
+        }
+        public Discount GetBrandDiscount(int brandId)
+        {
+            return _context.Discounts.FirstOrDefault(d => d.IsDeleted == false && d.BrandId == brandId);
         }
     }
 }

@@ -136,5 +136,19 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.ProductTags.Where(c => c.IsDeleted == false && c.ProductId == productId).ToList();
         }
+
+        public List<Product> GetNewestProducts(int take, int? skip = null)
+        {
+            List<Product> products;
+
+            if (skip == null)
+                products = _context.Products.Where(p => p.IsDeleted == false).OrderByDescending(p => p.InsertDate)
+                .Take(take).ToList();
+            else
+                products = _context.Products.Where(p => p.IsDeleted == false).OrderByDescending(p => p.InsertDate).Skip(skip.Value)
+                    .Take(take).ToList();
+
+            return products;
+        }
     }
 }

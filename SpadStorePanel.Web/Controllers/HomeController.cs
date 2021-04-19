@@ -102,7 +102,7 @@ namespace SpadCompanyPanel.Web.Controllers
         //    return PartialView(galleryContent);
         //}
 
-        
+
         public ActionResult ContactUs()
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
@@ -120,7 +120,7 @@ namespace SpadCompanyPanel.Web.Controllers
             contactUsContent.Pinterest = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Pinterest);
             contactUsContent.Facebook = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Facebook);
             contactUsContent.Map = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Map);
-            
+
             return View(contactUsContent);
         }
 

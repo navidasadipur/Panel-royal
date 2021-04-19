@@ -286,7 +286,7 @@
 
                                             <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
                                             <div class="add-to-cart">
-                                                <a href="#" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
+                                                <a href="javascript:void(0)" onclick="AddToCart(@item.Id)" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +344,7 @@
 
                                             <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
                                             <div class="add-to-cart">
-                                                <a href="#" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
+                                                <a href="javascript:void(0)" onclick="AddToCart(@item.Id)" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1328,31 +1328,10 @@
                             <button type="submit" value="Search">جستجو</button>
                         </form>
                     </div>
-                    <div id="lynessa_price_filter-2" class="widget lynessa widget_price_filter">
-                        <h2 class="widgettitle">
-                            جستجو براساس قیمت<span class="arrow"></span>
-                        </h2>
-                        <form method="get" action="~/Shop/Search" name="Search">
-                            @*@using (Html.BeginForm("Search", "Shop", FormMethod.Get, new { id = "form"@*, @class = "wpcf7-form" }))
-                            {*@
-                                <div class="price_slider_wrapper">
-                                    <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$"
-                                         class="price_slider" data-value-min="100" data-value-max="800">
-                                    </div>
-                                    <div class="price_slider_amount">
-                                        <button type="submit" class="button" name="Search">فیلتر</button>
-                                        <div class="price_label">
-                                            قیمت: <span class="from">$100</span> — <span class="to">$800</span>
-                                        </div>
-                                    </div>
-                                    @Html.Hidden("max")
-                                    @Html.Hidden("min")
-                                </div>
-                            </form>
-                    </div>
-                    @Html.Action("ColorSearchSection", "Shop")
-                    @Html.Action("SizeSearchSection", "Shop")
-                    @Html.Action("ProductGroupSection", "Shop")
+
+                    @Html.Action("SearchSection", "Shop")
+                    @*@Html.Action("SizeSearchSection", "Shop")
+                    @Html.Action("ProductGroupSection", "Shop")*@
                 </div><!-- .widget-area -->
             </div>
         </div>
