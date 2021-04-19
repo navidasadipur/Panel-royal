@@ -786,11 +786,48 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(allGroupProducts);
         }
 
-        public ActionResult Cart(int customerId)
+        [Route("Cart")]
+        [Route("Cart/{id}")]
+        public ActionResult Cart(int? customerId)
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
 
-            return View();
+            try
+            {
+                var cartModel = new CartModel();
+                cartModel.CartItems = new List<CartItemModel>();
+
+                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+                if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+                {
+                    string cartJsonStr = cartCookie.Values["cart"];
+                    cartModel = new CartModel(cartJsonStr);
+                }
+                return View(cartModel);
+
+            }
+            catch (Exception e)
+            {
+                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+                cartCookie.Values.Set("cart", "");
+
+                cartCookie.Expires = DateTime.Now.AddHours(12);
+                cartCookie.SameSite = SameSiteMode.Lax;
+
+
+                var cartModel = new CartModel();
+                cartModel.CartItems = new List<CartItemModel>();
+
+                if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+                {
+                    string cartJsonStr = cartCookie.Values["cart"];
+                    cartModel = new CartModel(cartJsonStr);
+                }
+                return View(cartModel);
+
+            }
         }
 
 

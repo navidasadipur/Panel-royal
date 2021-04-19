@@ -86,11 +86,11 @@
                     foreach (var item in Model.CartItems)
                     {
                         <li class="lynessa-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button">×</a>
-                            <a href="#">
+                            <a href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true')" class="remove remove_from_cart_button">×</a>
+                            <a href="/Shop/Details/@item.Id">
                                 <img src="~/Files/ProductImages/Image/@item.Image"
                                      class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
-                                     alt="img" width="600" height="300">@item.ProductName
+                                     alt="@item.ProductName img" width="600" height="300">@item.ProductName
                             </a>
                             <span class="quantity">
                                 @item.Quantity × <span class="lynessa-Price-amount amount">
@@ -147,8 +147,8 @@
                 </span>
             </p>
             <p class="lynessa-mini-cart__buttons buttons">
-                <a href="cart.html" class="button lynessa-forward">مشاهده سبد خرید</a>
-                <a href="#"
+                <a href="/Cart" class="button lynessa-forward">مشاهده سبد خرید</a>
+                <a href="/Cart"
                    class="button checkout lynessa-forward">تسویه حساب</a>
             </p>
         </div>

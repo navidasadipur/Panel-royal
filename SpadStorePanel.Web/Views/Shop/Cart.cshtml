@@ -1,27 +1,27 @@
-﻿@model SpadStorePanel.Web.ViewModels.AddToCartViewModel
+﻿@model SpadStorePanel.Web.ViewModels.CartModel
 
 @{
     ViewBag.Title = "پرداخت";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="banner-wrapper has_background">
-        @*<img src="~/Content/client/images/23.jpg"
-             class="img-responsive attachment-1920x447 size-1920x447 col-md-12" alt="img" style="opacity: 0.3;">*@
-        <img src="~/Files/StaticContentImages/Image/@ViewBag.BackImage"
-             class="img-responsive attachment-1920x447 size-1920x447 col-md-12" alt="img" style="opacity: 0.3;">
-        <div class="banner-wrapper-inner">
-            <h1 class="page-title"> @ViewBag.Title </h1>
-            <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
-                <ul class="trail-items breadcrumb">
-                    <li class="trail-item trail-begin"><a href=""><span>خانه</span></a></li>
-                    <li class="trail-item trail-end active">
-                        <span> @ViewBag.Title </span>
-                    </li>
-                </ul>
-            </div>
+<div class="banner-wrapper has_background">
+    @*<img src="~/Content/client/images/23.jpg"
+        class="img-responsive attachment-1920x447 size-1920x447 col-md-12" alt="img" style="opacity: 0.3;">*@
+    <img src="~/Files/StaticContentImages/Image/@ViewBag.BackImage"
+         class="img-responsive attachment-1920x447 size-1920x447 col-md-12" alt="img" style="opacity: 0.3;">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title"> @ViewBag.Title </h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href=""><span>خانه</span></a></li>
+                <li class="trail-item trail-end active">
+                    <span> @ViewBag.Title </span>
+                </li>
+            </ul>
         </div>
     </div>
+</div>
 <main class="site-main main-container no-sidebar">
     <div class="container">
         <div class="row">
@@ -43,7 +43,66 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="lynessa-cart-form__cart-item cart_item">
+                                    @{
+                                        int i = 0;
+
+                                        if (Model?.CartItems != null && Model.CartItems.Any())
+                                        {
+
+
+                                            foreach (var item in Model.CartItems)
+                                            {
+                                                i += @item.Quantity;
+
+
+                                                <tr class="lynessa-cart-form__cart-item cart_item">
+                                                    <td class="product-remove">
+                                                        <a href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true')"
+                                                           class="remove" aria-label="Remove this item" data-product_id="@item.Id"
+                                                           data-product_sku="885B712">×</a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="/Shop/Details/@item.Id">
+                                                            <img src="~/Files/ProductImages/Image/@item.Image"
+                                                                 class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                                 alt="@item.ProductName img" width="600" height="778">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name" data-title="Product">
+                                                        <a href="/Shop/Details/@item.Id">
+                                                            @item.ProductName
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-price" data-title="Price">
+                                                        <span class="lynessa-Price-amount amount">
+                                                            <span class="lynessa-Price-currencySymbol">$</span>@item.Price
+                                                        </span>
+                                                    </td>
+                                                    <td class="product-quantity" data-title="Quantity">
+                                                        <div class="quantity">
+                                                            <span class="qty-label">Quantiy:</span>
+                                                            <div class="control">
+                                                                <div class="def-number-input number-input safari_only">
+                                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" @*href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true'); this.parentNode.querySelector('input[type=number]').stepDown();"*@ class="minus"></button>
+                                                                    <input class="quantity" min="0" name="quantity" value="@item.Quantity" type="number">
+                                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" @*href="javascript:void(0)" onclick="AddToCart(@item.Id); this.parentNode.querySelector('input[type=number]').stepUp();"*@ class="plus"></button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="product-subtotal" data-title="Total">
+                                                        <span class="lynessa-Price-amount amount">
+                                                            <span class="lynessa-Price-currencySymbol">$</span>@{ var totalOneProduct = item.Quantity * item.Price;} @totalOneProduct
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+
+                                    }
+                                    @*<tr class="lynessa-cart-form__cart-item cart_item">
                                         <td class="product-remove">
                                             <a href="#"
                                                class="remove" aria-label="Remove this item" data-product_id="27"
@@ -164,10 +223,10 @@
                                                 <span class="lynessa-Price-currencySymbol">$</span>139.00
                                             </span>
                                         </td>
-                                    </tr>
+                                    </tr>*@
                                     <tr>
                                         <td colspan="6" class="actions">
-                                            <div class="coupon">
+                                            @*<div class="coupon">
                                                 <label for="coupon_code"></label> <input type="text"
                                                                                          name="coupon_code"
                                                                                          class="input-text"
@@ -177,8 +236,8 @@
                                                         value="Apply coupon">
                                                     ثبت تخفیف
                                                 </button>
-                                            </div>
-                                            <button type="submit" class="button" name="update_cart" value="Update cart">
+                                            </div>*@
+                                            <button type="submit" class="button" name="update_cart" value="Update cart" >
                                                 به روز رسانی پرداخت
                                             </button>
                                             <input type="hidden" id="lynessa-cart-nonce" name="lynessa-cart-nonce"
@@ -194,20 +253,20 @@
                                 <h2>پرداختی ها</h2>
                                 <table class="shop_table shop_table_responsive" cellspacing="0">
                                     <tbody>
-                                        <tr class="cart-subtotal">
+                                        @*<tr class="cart-subtotal">
                                             <th>قیمت واحد</th>
                                             <td data-title="Subtotal">
                                                 <span class="lynessa-Price-amount amount">
                                                     <span class="lynessa-Price-currencySymbol">$</span>418.00
                                                 </span>
                                             </td>
-                                        </tr>
+                                        </tr>*@
                                         <tr class="order-total">
                                             <th>جمع کل</th>
                                             <td data-title="Total">
                                                 <strong>
                                                     <span class="lynessa-Price-amount amount">
-                                                        <span class="lynessa-Price-currencySymbol">$</span>418.00
+                                                        <span class="lynessa-Price-currencySymbol">$</span>@Model.TotalPrice
                                                     </span>
                                                 </strong>
                                             </td>
