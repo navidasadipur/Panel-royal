@@ -30,5 +30,10 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.ProductMainFeatures.Include(f => f.Feature).Include(f => f.SubFeature).Where(f => f.IsDeleted == false && f.ProductId == productId).ToList();
         }
+
+        public List<ProductMainFeature> GetProductMainFeaturesBySubFeatureId(int subFeatureId)
+        {
+            return _context.ProductMainFeatures.Where(f => f.IsDeleted == false && f.SubFeatureId == subFeatureId).ToList();
+        }
     }
 }

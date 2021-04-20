@@ -1,4 +1,138 @@
-﻿@model List<SpadStorePanel.Web.ViewModels.Color_SizeSearchViewModel>
+﻿@model List<SpadStorePanel.Web.ViewModels.ProductListViewModel>
+
+
+<ul class="row products columns-3">
+
+    @foreach (var item in Model)
+    {
+        <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-ts-6 style-01 post-24 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-table product_cat-new-arrivals product_tag-light product_tag-hat product_tag-sock first instock featured shipping-taxable purchasable product-type-variable has-default-attributes"
+            data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
+            <div class="product-inner tooltip-left">
+                <div class="product-thumb">
+                    <a class="thumb-link" href="/Shop/Details/@item.Id">
+                        <img class="img-responsive"
+                             src="~/Files/ProductImages/Image/@item.Image"
+                             alt="@item.Title" width="600" height="300px">
+                    </a>
+                    <div class="flash">
+                        <span class="onnew"><span class="text">جدید</span></span>
+                    </div>
+                    <form class="variations_form cart">
+                        <table class="variations">
+                            <tbody>
+                                <tr>
+                                    <td class="value">
+                                        <select title="box_style" data-attributetype="box_style"
+                                                data-id="pa_color"
+                                                class="attribute-select " name="attribute_pa_color"
+                                                data-attribute_name="attribute_pa_color"
+                                                data-show_option_none="yes">
+                                            <option data-type="" data-pa_color="" value="">
+                                                Choose an
+                                                option
+                                            </option>
+                                            <option data-width="30" data-height="30" data-type="color"
+                                                    data-pa_color="#3155e2" value="blue"
+                                                    class="attached enabled">
+                                                Blue
+                                            </option>
+                                            <option data-width="30" data-height="30" data-type="color"
+                                                    data-pa_color="#52b745" value="green"
+                                                    class="attached enabled">
+                                                Green
+                                            </option>
+                                            <option data-width="30" data-height="30" data-type="color"
+                                                    data-pa_color="#ffe59e" value="pink"
+                                                    class="attached enabled">
+                                                Pink
+                                            </option>
+                                        </select>
+
+                                        <a class="reset_variations" href="#" style="visibility: hidden;">Clear</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <a href="#" class="button yith-wcqv-button" data-product_id="24">نمایش محصول</a>
+                    <div class="group-button">
+                        @*<div class="yith-wcwl-add-to-wishlist">
+                                <div class="yith-wcwl-add-button show">
+                                    <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
+                                </div>
+                            </div>*@
+
+                        <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
+                        <div class="add-to-cart">
+                            <a href="javascript:void(0)" onclick="AddToCart(@item.Id)" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info equal-elem">
+                    <h3 class="product-name product_title">
+                        <a href="/Shop/Details/@item.Id">@item.Title</a>
+                    </h3>
+                    <div class="rating-wapper nostar">
+                        <div class="star-rating">
+                            @{var persentageRate = (item.Rate * 100) / 5;}
+                            <span style="width:@persentageRate%">
+                                Rated <strong class="rating">@item.Rate</strong> out of 5
+                            </span>
+                        </div>
+                        <span class="review">(0)</span>
+                    </div>
+
+                    <span class="price">
+                        @{
+                            var maxPrice = new long();
+                            var minPrice = new long();
+
+                            if (item.ProductMainFeatures.Count() > 0)
+                            {
+                                maxPrice = item.ProductMainFeatures.Max(f => f.Price);
+                                minPrice = item.ProductMainFeatures.Min(f => f.Price);
+
+                                <span class="lynessa-Price-amount amount">
+                                    <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+                                </span>
+                                <text> – </text>
+                                <span class="lynessa-Price-amount amount">
+                                    <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                                </span>
+                            }
+                        }
+                    </span>
+                    <div class="lynessa-product-details__short-description">
+                        @item.ShortDescription
+                        <p>توضیحات کامل محصول</p>
+                        <ul>
+                            <li>پارچه ژاکارد پنبه دوز شده</li>
+                            <li>دارای ساپورت سرتاسری در حد فاصل فنرها</li>
+                            <li>پارچه ژاکارد پنبه دوز شده</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="group-button">
+                    <div class="group-button-inner">
+                        @*<div class="yith-wcwl-add-to-wishlist">
+                                <div class="yith-wcwl-add-button show">
+                                    <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
+                                </div>
+                            </div>*@
+
+                        <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
+                        <div class="add-to-cart">
+                            <a href="javascript:void(0)" onclick="AddToCart(@item.Id)" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+    }
+</ul>
+
+
 @*@model List<SpadStorePanel.Web.ViewModels.ProductCategoriesViewModel>*@
 
 
@@ -33,22 +167,4 @@
     </div>*@
 
 
-<div id="lynessa_layered_nav-6"
-     class="widget lynessa widget_layered_nav lynessa-widget-layered-nav">
-    <h2 class="widgettitle">
-        جستجو بر اساس سایز<span class="arrow"></span>
-    </h2>
-    <ul class="lynessa-widget-layered-nav-list">
-        @foreach (var subFeature in Model)
-        {
-            <li class="lynessa-widget-layered-nav-list__item lynessa-layered-nav-term ">
-                <label>
-                    <input type="checkbox" name="size">
-                    <span>@subFeature.Value</span>
-                    <span class="count">(@subFeature.ProductCount)</span>
-                </label>
-            </li>
-        }
-    </ul>
-</div>
 

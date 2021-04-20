@@ -27,8 +27,13 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         public int GetProductsCountBySubFeatureId(int id)
         {
-            return _context.ProductFeatureValues
-                .Count(pfv => pfv.IsDeleted == false && pfv.SubFeatureId == id);
+            var allProductFeatureValues = _context.ProductFeatureValues.Where(pfv => pfv.IsDeleted == false && pfv.SubFeatureId == id);
+
+            var allProductIds = allProductFeatureValues.Select(pfv => pfv.ProductId).ToList();
+            //distinct product ids
+            allProductIds = allProductIds.GroupBy(i => i.Value).Select(i => i.First()).ToList();
+
+            return allProductIds.Count();
         }
 
     }

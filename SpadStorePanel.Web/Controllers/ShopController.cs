@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SpadStorePanel.Core.Models;
 using SpadStorePanel.Core.Utility;
+using SpadStorePanel.Infrastructure.Extensions;
 using SpadStorePanel.Infrastructure.Helpers;
 using SpadStorePanel.Infrastructure.Repositories;
 using SpadStorePanel.Infrastructure.Services;
@@ -54,6 +55,202 @@ namespace SpadCompanyPanel.Web.Controllers
             this._productService = productService;
         }
 
+        //public ActionResult Test()
+        //{
+        //    return View();
+        //}
+
+        [Route("Shop")]
+        [Route("Shop/{id}")]
+        public ActionResult Index(int? id, string searchString = null)
+        {
+            var model = new List<Color_SizeSearchViewModel>();
+
+            var subFeatures = _productsRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Size);
+
+            foreach (var item in subFeatures)
+            {
+                var viewModel = new Color_SizeSearchViewModel()
+                {
+                    Id = item.Id,
+                    Value = item.Value,
+                    OtherInfo = item.OtherInfo,
+                };
+
+                var allProducts = _productMainFeaturesRepo.GetProductMainFeaturesBySubFeatureId(item.Id).ToList();
+
+                var allProductIds = DistinctByExtension.DistinctBy(allProducts, p => p.ProductId).Select(p => p.ProductId).ToList();
+
+                viewModel.ProductCount = allProductIds.Count();
+
+                model.Add(viewModel);
+            }
+
+            if (id != null)
+                ViewBag.Id = id;
+            if (searchString != null)
+                ViewBag.SearchString = searchString;
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("SizeSearchSection/")]
+        [Route("SizeSearchSection/{sizeId}")]
+        public ActionResult SizeSearchSection(int? sizeId, int? groupId, string searchString)
+        {
+            var allProducts = new List<Product>();
+
+            var productListVm = new List<ProductListViewModel>();
+
+            var products = _productsRepo.GetAllProducts();
+
+            //search by size id
+            if (sizeId != null)
+            {
+                //if size id == 0 all show all products
+                if (sizeId == 0)
+                {
+
+                    foreach (var item in products)
+                    {
+                        item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                        item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                    }
+
+                    foreach (var item in products)
+                    {
+                        var vm = new ProductListViewModel(item);
+
+                        //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                        if (item.ProductComments != null)
+                        {
+                            vm.CommentCounter = item.ProductComments.Count();
+                        }
+                        productListVm.Add(vm);
+                    }
+                }
+                //search by size id
+                else
+                {
+
+                    var allProductMainFeatures = _productMainFeaturesRepo.GetProductMainFeaturesBySubFeatureId(sizeId.Value).ToList();
+
+                    var allProductIds = DistinctByExtension.DistinctBy(allProductMainFeatures, p => p.ProductId).Select(p => p.ProductId).ToList();
+
+                    foreach (var id in allProductIds)
+                    {
+                        var product = _productsRepo.GetProduct(id);
+
+                        allProducts.Add(product);
+                    }
+
+                    //filling productmainFeatures
+                    foreach (var item in allProducts)
+                    {
+
+                        item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                        item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                    }
+
+                    //creating productListViewModel
+
+                    foreach (var item in allProducts)
+                    {
+
+
+                        var vm = new ProductListViewModel(item);
+
+                        //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                        if (item.ProductComments != null)
+                        {
+                            vm.CommentCounter = item.ProductComments.Count();
+                        }
+                        productListVm.Add(vm);
+                    }
+                }
+
+                ViewBag.PageCount = 0;
+
+                return PartialView(productListVm);
+            }
+
+            //search by group id
+            if (groupId != null)
+            {
+                var category = _productGroupsRepo.GetProductGroup(groupId.Value);
+                if (category != null)
+                {
+                    ViewBag.GroupId = groupId.Value;
+                    ViewBag.BreadCrumb = category.Title;
+                    products = _productsRepo.getProductsByGroupId(groupId.Value);
+                }
+
+                foreach (var item in products)
+                {
+                    item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                }
+
+                foreach (var item in products)
+                {
+                    var vm = new ProductListViewModel(item);
+
+                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    if (item.ProductComments != null)
+                    {
+                        vm.CommentCounter = item.ProductComments.Count();
+                    }
+                    productListVm.Add(vm);
+                }
+
+                return PartialView(productListVm);
+            }
+
+            //search by string
+            else
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    ViewBag.BreadCrumb = $"جستجو {searchString}";
+                    products = products
+                        .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
+                            p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
+                            p.Description != null && p.Description.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
+                }
+
+                foreach (var item in products)
+                {
+                    item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                }
+
+                foreach (var item in products)
+                {
+                    var vm = new ProductListViewModel(item);
+
+                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    if (item.ProductComments != null)
+                    {
+                        vm.CommentCounter = item.ProductComments.Count();
+                    }
+                    productListVm.Add(vm);
+                }
+
+                return PartialView(productListVm);
+            }
+            
+        }
+
+        /*
         [Route("Shop")]
         [Route("Shop/{id}")]
         public ActionResult Index(int? id, string searchString = null, List<Product> model = null)
@@ -128,7 +325,7 @@ namespace SpadCompanyPanel.Web.Controllers
             //ViewBag.CategoryTitle = _productGroupsRepo.Get(id.Value).Title;
 
             //return PartialView(viewModel);
-        }
+        }*/
 
         //[HttpGet]
         //public ActionResult Search(int min, int max)
@@ -693,38 +890,12 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(articleCategoriesVm);
         }
 
-        [HttpPost]
-        public ActionResult ProductGroupSection(int id)
-        {
-            var model = new List<Product>();
-            return View("Index", model);
-        }
-
+        /*
         public ActionResult SizeSearchSection()
-        {
-            var model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Size);
-
-            return PartialView(model);
-        }
-
-        [HttpPost]
-        public ActionResult SizeSearchSection(int id)
-        {
-            var model = new List<Product>();
-
-            var productIds = _productMainFeaturesRepo.GetAll().Where(pmf => pmf.FeatureId == id).Select(pmf => pmf.ProductId).ToList();
-
-            //model = _productsRepo
-
-            ViewBag.PageCount = 0;
-            return View("Index", model);
-        }
-
-        private List<Color_SizeSearchViewModel> CreatingColor_SizeSearchViewModel(int featureId)
         {
             var model = new List<Color_SizeSearchViewModel>();
 
-            var subFeatures = _productsRepo.GetSubFeaturesByFeatureId(featureId);
+            var subFeatures = _productsRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Size);
 
             foreach (var item in subFeatures)
             {
@@ -733,14 +904,90 @@ namespace SpadCompanyPanel.Web.Controllers
                     Id = item.Id,
                     Value = item.Value,
                     OtherInfo = item.OtherInfo,
-                    ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
                 };
+
+                var allProducts = _productMainFeaturesRepo.GetProductMainFeaturesBySubFeatureId(item.Id).ToList();
+
+                var allProductIds = DistinctByExtension.DistinctBy(allProducts, p => p.ProductId).Select(p => p.ProductId).ToList();
+
+                viewModel.ProductCount = allProductIds.Count();
 
                 model.Add(viewModel);
             }
 
-            return model;
+            return PartialView(model);
         }
+
+        [HttpPost]
+        public ActionResult SizeSearchSection(int sizeId)
+        {
+
+            var allProducts = new List<Product>();
+
+            var allProductMainFeatures = _productMainFeaturesRepo.GetProductMainFeaturesBySubFeatureId(sizeId).ToList();
+
+            var allProductIds = DistinctByExtension.DistinctBy(allProductMainFeatures, p => p.ProductId).Select(p => p.ProductId).ToList();
+
+            foreach (var id in allProductIds)
+            {
+                var product = _productsRepo.GetProduct(id);
+
+                allProducts.Add(product);
+            }
+
+            //filling productmainFeatures
+            foreach (var item in allProducts)
+            {
+
+                item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+            }
+
+            //creating productListViewModel
+            var productListVm = new List<ProductListViewModel>();
+            foreach (var item in allProducts)
+            {
+
+
+                var vm = new ProductListViewModel(item);
+
+                //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                if (item.ProductComments != null)
+                {
+                    vm.CommentCounter = item.ProductComments.Count();
+                }
+                productListVm.Add(vm);
+            }
+
+            //model = _productsRepo
+
+            ViewBag.PageCount = 0;
+            return View("Index", productListVm);
+        }*/
+
+        //private List<Color_SizeSearchViewModel> CreatingColor_SizeSearchViewModel(int featureId)
+        //{
+        //    var model = new List<Color_SizeSearchViewModel>();
+
+        //    var subFeatures = _productsRepo.GetSubFeaturesByFeatureId(featureId);
+
+        //    foreach (var item in subFeatures)
+        //    {
+        //        var viewModel = new Color_SizeSearchViewModel()
+        //        {
+        //            Id = item.Id,
+        //            Value = item.Value,
+        //            OtherInfo = item.OtherInfo,
+        //            ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
+        //        };
+
+        //        model.Add(viewModel);
+        //    }
+
+        //    return model;
+        //}
 
 
 

@@ -408,8 +408,7 @@
                                 <div id="review_form">
                                     <div id="respond" class="comment-respond">
                                         <span id="reply-title" class="comment-reply-title">نظر خود را ثبت کنید</span>
-                                        @using (Html.BeginForm("PostComment", "Shop", FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
-                                        {
+  
                                             <input type="hidden" id="ProductId" name="ProductId" value="@Model.Id">
                                             <input type="hidden" id="ParentId" name="ParentId" value="">
                                             <p class="comment-form-author">

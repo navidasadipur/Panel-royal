@@ -294,16 +294,16 @@ namespace SpadStorePanel.Web.ViewModels
     {
         public SearchViewModel()
         {
-            ColorViewModels = new List<ColorViewModel>();
-            SizeViewModels = new List<SizeViewModel>();
-            ProductCategoriesViewModels = new List<ProductCategoriesViewModel>();
+            //ColorViewModels = new List<ColorViewModel>();
+            //SizeViewModels = new List<SizeViewModel>();
+            //ProductCategoriesViewModels = new List<ProductCategoriesViewModel>();
         }
 
         public long MinPrice { get; set; }
         public long MaxPrice { get; set; }
-        public List<ColorViewModel> ColorViewModels { get; set; }
-        public List<SizeViewModel> SizeViewModels { get; set; }
-        public List<ProductCategoriesViewModel> ProductCategoriesViewModels { get; set; }
+        //public List<ColorViewModel> ColorViewModels { get; set; }
+        //public List<SizeViewModel> SizeViewModels { get; set; }
+        //public List<ProductCategoriesViewModel> ProductCategoriesViewModels { get; set; }
     }
 
 
