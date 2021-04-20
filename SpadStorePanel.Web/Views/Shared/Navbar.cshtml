@@ -6,16 +6,16 @@
             <div class="header-search-mid">
                 <div class="header-search">
                     <div class="block-search">
-                        <form role="search" method="get"
+                        <form role="search" method="get" action="~/Shop/index"
                               class="form-search block-search-form lynessa-live-search-form">
                             <div class="form-content search-box results-search">
                                 <div class="inner">
-                                    <input autocomplete="off" class="searchfield txt-livesearch input" name="s"
+                                    <input autocomplete="off" class="searchfield txt-livesearch input" name="searchString"
                                            value="" placeholder="جستجو .." type="text">
                                 </div>
                             </div>
-                            <input name="post_type" value="product" type="hidden">
-                            <input name="taxonomy" value="product_cat" type="hidden">
+                            @*<input name="post_type" value="product" type="hidden">
+                            <input name="taxonomy" value="product_cat" type="hidden">*@
 
                             <button type="submit" class="btn-submit">
                                 <span class="pe-7s-search"></span>

@@ -18,9 +18,9 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _logger = logger;
         }
 
-                public ProductMainFeature GetByProductId(int productId)
+        public ProductMainFeature GetByProductId(int productId)
         {
-            return _context.ProductMainFeatures.FirstOrDefault(f => f.IsDeleted == false && f.ProductId == productId);
+            return _context.ProductMainFeatures.FirstOrDefault(f => f.IsDeleted == false && f.ProductId == productId );
         }
         public ProductMainFeature GetByProductId(int productId, int mainFeatureId)
         {

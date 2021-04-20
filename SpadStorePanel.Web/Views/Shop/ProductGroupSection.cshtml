@@ -17,18 +17,73 @@
         </ul>
     }*@
 @*<div id="categories-3" class="widget widget_categories">
+        <h2 class="widgettitle">
+            دسته بندی ها<span class="arrow"></span>
+        </h2>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="cat-item cat-item-51">
+                    <a href="#">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </div>*@
+
+<div id="lynessa_product_categories-3" class="widget lynessa widget_product_categories">
     <h2 class="widgettitle">
-        دسته بندی ها<span class="arrow"></span>
+        بر اساس نوع<span class="arrow"></span>
     </h2>
-    <ul>
-        @foreach (var item in Model)
+    <ul class="product-categories">
+        @foreach (var group in Model)
         {
-            <li class="cat-item cat-item-51">
-                <a href="#">@item.Title</a>
+            <li class="cat-item cat-item-@group.Id">
+
+                <label>
+                    <a href="/Shop/@group.Id">
+                        <input type="checkbox"
+                               name="cate" value="@group.Id"><span>@group.Title</span>
+                            <span class="count">(@group.ProductCount)</span>
+                        </a>
+                    </label>
+                </li>
+            }
+        @*<li class="cat-item cat-item-22">
+                <label>
+                    <input type="checkbox"
+                           name="cate"><span>رویال دو ویژه</span>
+                    <span class="count">(11)</span>
+                </label>
             </li>
-        }
+            <li class="cat-item cat-item-16">
+                <label>
+                    <input type="checkbox"
+                           name="cate"><span>پارچه ژاکارد پنبه دوز شده</span>
+                    <span class="count">(9)</span>
+                </label>
+            </li>
+            <li class="cat-item cat-item-24">
+                <label>
+                    <input type="checkbox"
+                           name="cate"><span>سوپاپ تخلیه هوا</span>
+                    <span class="count">(6)</span>
+                </label>
+            </li>
+            <li class="cat-item cat-item-27">
+                <label>
+                    <input type="checkbox"
+                           name="cate"><span>قاب اسفنجی</span> <span class="count">(6)</span>
+                </label>
+            </li>
+            <li class="cat-item cat-item-19">
+                <label>
+                    <input type="checkbox" name="cate"><span>فنر منفصل (پاکتی)</span>
+                    <span class="count">(7)</span>
+                </label>
+            </li>*@
+
     </ul>
-</div>*@
+</div>
 
 
 

@@ -31,7 +31,7 @@
             }
         </ul>
     </div>*@
-    <form method="post" action="~/Shop/Search/full" name="Search">
+    @*<form method="post" action="~/Shop/Search/full" name="Search">*@
         <div id="lynessa_price_filter-2" class="widget lynessa widget_price_filter">
             <h2 class="widgettitle">
                 جستجو براساس قیمت<span class="arrow"></span>
@@ -56,10 +56,9 @@
         </div>
 
 
-        <div id="lynessa_lynessa_layered_nav-6"
+        @*<div id="lynessa_lynessa_layered_nav-6"
              class="widget lynessa_widget_layered_nav widget_layered_nav">
             <h2 class="widgettitle">جستجو بر اساس رنگ<span class="arrow"></span></h2>
-            @*<form class="color-group">*@
         <div class="color-group">
             @foreach (var subFeature in Model.ColorViewModels)
             {
@@ -71,7 +70,6 @@
                 </label>
             }
         </div>
-            @*</form>*@
         </div>
 
         <div id="lynessa_layered_nav-6"
@@ -107,7 +105,7 @@
                             </label>
                         </li>
                     }
-                @*<li class="cat-item cat-item-22">
+                <li class="cat-item cat-item-22">
                     <label>
                         <input type="checkbox"
                                name="cate"><span>رویال دو ویژه</span>
@@ -139,9 +137,9 @@
                         <input type="checkbox" name="cate"><span>فنر منفصل (پاکتی)</span>
                         <span class="count">(7)</span>
                     </label>
-                </li>*@
+                </li>
 
             </ul>
         </div>
 
-    </form>
+    </form>*@

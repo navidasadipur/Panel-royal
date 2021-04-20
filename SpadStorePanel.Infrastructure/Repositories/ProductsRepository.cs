@@ -106,7 +106,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         public List<Product> getProductsByGroupId(int id)
         {
-            var allProducts = _context.Products.Where(g => g.IsDeleted == false).Include(g => g.ProductGroup);
+            var allProducts = _context.Products.Where(g => g.IsDeleted == false).Include(p => p.ProductGroup);
 
             var ProductIdCategory = allProducts.Where(g => g.ProductGroup.Id == id).OrderByDescending(g => g.Id).ToList();
 

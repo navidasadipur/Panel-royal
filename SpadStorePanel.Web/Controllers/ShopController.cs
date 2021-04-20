@@ -8,6 +8,7 @@ using SpadStorePanel.Core.Models;
 using SpadStorePanel.Core.Utility;
 using SpadStorePanel.Infrastructure.Helpers;
 using SpadStorePanel.Infrastructure.Repositories;
+using SpadStorePanel.Infrastructure.Services;
 using SpadStorePanel.Web.ViewModels;
 
 namespace SpadCompanyPanel.Web.Controllers
@@ -24,6 +25,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ContactFormsRepository _contactFormRepo;
         private readonly ProductGroupsRepository _productGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
+        private readonly ProductService _productService;
 
         public ShopController(
             ProductGalleriesRepository productGalleryRepo,
@@ -35,7 +37,8 @@ namespace SpadCompanyPanel.Web.Controllers
             ContactFormsRepository contactFormRepo,
             //GalleryVideosRepository galleryVideosRepo,
             ProductGroupsRepository productGroupRepo,
-            StaticContentDetailsRepository staticContentDetailsRepo
+            StaticContentDetailsRepository staticContentDetailsRepo,
+            ProductService productService
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -48,6 +51,7 @@ namespace SpadCompanyPanel.Web.Controllers
             //_galleryVideosRepo = galleryVideosRepo;
             this._productGroupsRepo = productGroupRepo;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
+            this._productService = productService;
         }
 
         [Route("Shop")]
@@ -84,10 +88,20 @@ namespace SpadCompanyPanel.Web.Controllers
                 }
             }
 
+            foreach (var item in products)
+            {
+
+                item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+            }
+
 
             var productListVm = new List<ProductListViewModel>();
             foreach (var item in products)
             {
+
+
                 var vm = new ProductListViewModel(item);
 
                 //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
@@ -435,219 +449,233 @@ namespace SpadCompanyPanel.Web.Controllers
         }
 
 
-        [HttpPost]
-        //[Route("SearchSection")]
-        //[Route("Shop/test/test")]
-        public ActionResult Search(FormCollection form)
-        {
-            var model = new List<Product>();
+        //[HttpPost]
+        ////[Route("SearchSection")]
+        ////[Route("Shop/test/test")]
+        //public ActionResult Search(FormCollection form)
+        //{
+        //    var model = new List<Product>();
 
-            var allMainFeatures = _productMainFeaturesRepo.GetAll().OrderBy(mf => mf.Price);
+        //    var allMainFeatures = _productMainFeaturesRepo.GetAll().OrderBy(mf => mf.Price);
 
-            var maxLimitStr = form.GetValue("maxLimit").ToString();
-            var hasMaxLimit = long.TryParse(maxLimitStr, out long maxLimit);
-            if (!hasMaxLimit)
-            {
-                maxLimit = allMainFeatures.Last().Price;
-            }
+        //    var maxLimitStr = form.GetValue("maxLimit").ToString();
+        //    var hasMaxLimit = long.TryParse(maxLimitStr, out long maxLimit);
+        //    if (!hasMaxLimit)
+        //    {
+        //        maxLimit = allMainFeatures.Last().Price;
+        //    }
 
-            var minLimitStr = form.GetValue("minLimit").ToString();
-            var hasMinLimit = long.TryParse(minLimitStr, out long minLimit);
-            if (!hasMinLimit)
-            {
-                minLimit = allMainFeatures.First().Price;
-            }
+        //    var minLimitStr = form.GetValue("minLimit").ToString();
+        //    var hasMinLimit = long.TryParse(minLimitStr, out long minLimit);
+        //    if (!hasMinLimit)
+        //    {
+        //        minLimit = allMainFeatures.First().Price;
+        //    }
 
-            //var limitetMainFeatures = allMainFeatures.Where(mf => mf.Price >= minLimit && mf.Price <= maxLimit).ToList();
+        //    //var limitetMainFeatures = allMainFeatures.Where(mf => mf.Price >= minLimit && mf.Price <= maxLimit).ToList();
 
-            //foreach (var mainFeature in limitetMainFeatures)
-            //{
-            //    var product = allProducts.First(p => p.Id == mainFeature.ProductId);
+        //    //foreach (var mainFeature in limitetMainFeatures)
+        //    //{
+        //    //    var product = allProducts.First(p => p.Id == mainFeature.ProductId);
 
-            //    model.Add(product);
-            //}
+        //    //    model.Add(product);
+        //    //}
             
 
-            var allKeys = form.AllKeys;
+        //    var allKeys = form.AllKeys;
 
-            var colorKey = "color";
+        //    var colorKey = "color";
 
-            var sizeKey = "size";
+        //    var sizeKey = "size";
 
-            var categoryKey = "cate";
+        //    var categoryKey = "cate";
 
-            var colorIdsList = new List<int>();
-            var sizeIdsList = new List<int>();
-            var groupIdsList = new List<int>();
+        //    var colorIdsList = new List<int>();
+        //    var sizeIdsList = new List<int>();
+        //    var groupIdsList = new List<int>();
 
-            foreach (var key in allKeys)
-            {
-                if (key == colorKey)
-                {
-                    //creating color Ids list
-                    var colorIdsStr = form.GetValue(colorKey).AttemptedValue;
-                    var colorIdsArray = colorIdsStr.Split(',');
-                    if (colorIdsArray.Count() > 0)
-                    {
+        //    foreach (var key in allKeys)
+        //    {
+        //        if (key == colorKey)
+        //        {
+        //            //creating color Ids list
+        //            var colorIdsStr = form.GetValue(colorKey).AttemptedValue;
+        //            var colorIdsArray = colorIdsStr.Split(',');
+        //            if (colorIdsArray.Count() > 0)
+        //            {
                         
-                        foreach (var idStr in colorIdsArray)
-                        {
-                            var hasId = int.TryParse(idStr, out int id);
-                            if (hasId)
-                            {
-                                colorIdsList.Add(id);
-                            }
-                        }
-                    }
-                }
-                else if (key == sizeKey)
-                {
-                    //creating size Ids list
-                    var sizeIdsStr = form.GetValue(sizeKey).AttemptedValue;
-                    var sizeIdsArray = sizeIdsStr.Split(',');
-                    if (sizeIdsArray.Count() > 0)
-                    {
+        //                foreach (var idStr in colorIdsArray)
+        //                {
+        //                    var hasId = int.TryParse(idStr, out int id);
+        //                    if (hasId)
+        //                    {
+        //                        colorIdsList.Add(id);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else if (key == sizeKey)
+        //        {
+        //            //creating size Ids list
+        //            var sizeIdsStr = form.GetValue(sizeKey).AttemptedValue;
+        //            var sizeIdsArray = sizeIdsStr.Split(',');
+        //            if (sizeIdsArray.Count() > 0)
+        //            {
                         
-                        foreach (var idStr in sizeIdsArray)
-                        {
-                            var hasId = int.TryParse(idStr, out int id);
-                            if (hasId)
-                            {
-                                sizeIdsList.Add(id);
-                            }
-                        }
-                    }
-                }
-                else if (key == categoryKey)
-                {
-                    //creating group Ids list
-                    var groupIdsStr = form.GetValue(categoryKey).AttemptedValue;
-                    var groupIdsArray = groupIdsStr.Split(',');
-                    if (groupIdsArray.Count() > 0)
-                    {
+        //                foreach (var idStr in sizeIdsArray)
+        //                {
+        //                    var hasId = int.TryParse(idStr, out int id);
+        //                    if (hasId)
+        //                    {
+        //                        sizeIdsList.Add(id);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else if (key == categoryKey)
+        //        {
+        //            //creating group Ids list
+        //            var groupIdsStr = form.GetValue(categoryKey).AttemptedValue;
+        //            var groupIdsArray = groupIdsStr.Split(',');
+        //            if (groupIdsArray.Count() > 0)
+        //            {
                         
-                        foreach (var idStr in groupIdsArray)
-                        {
-                            var hasId = int.TryParse(idStr, out int id);
-                            if (hasId)
-                            {
-                                groupIdsList.Add(id);
-                            }
-                        }
-                    }
-                }
-            }
+        //                foreach (var idStr in groupIdsArray)
+        //                {
+        //                    var hasId = int.TryParse(idStr, out int id);
+        //                    if (hasId)
+        //                    {
+        //                        groupIdsList.Add(id);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
 
 
-            var allProducts = _productsRepo.GetAllProducts().ToList();
+        //    var allProducts = _productsRepo.GetAllProducts().ToList();
 
-            //searching all main features based on values of color and values of sizes and limits of price
-            var SearchedMainFeatures = allMainFeatures.Where(mf => (mf.FeatureId == (int)ProductFeatures.Color && colorIdsList.Contains(mf.SubFeatureId.Value)) ||
-                                                           (mf.FeatureId == (int)ProductFeatures.Size && sizeIdsList.Contains(mf.SubFeatureId.Value)) ||
-                                                           (mf.Price >= minLimit && mf.Price <= maxLimit)).ToList();
-            //adding searched products to model
-            if (SearchedMainFeatures.Count() > 0)
-            {
-                foreach (var mainFeature in SearchedMainFeatures)
-                {
-                    var product = allProducts.Where(p => p.Id == mainFeature.ProductId).FirstOrDefault();
+        //    //searching all main features based on values of color and values of sizes and limits of price
+        //    var SearchedMainFeatures = allMainFeatures.Where(mf => (mf.FeatureId == (int)ProductFeatures.Color && colorIdsList.Contains(mf.SubFeatureId.Value)) ||
+        //                                                   (mf.FeatureId == (int)ProductFeatures.Size && sizeIdsList.Contains(mf.SubFeatureId.Value)) ||
+        //                                                   (mf.Price >= minLimit && mf.Price <= maxLimit)).ToList();
+        //    //adding searched products to model
+        //    if (SearchedMainFeatures.Count() > 0)
+        //    {
+        //        foreach (var mainFeature in SearchedMainFeatures)
+        //        {
+        //            var product = allProducts.Where(p => p.Id == mainFeature.ProductId).FirstOrDefault();
 
-                    model.Add(product);
-                }
-            }
+        //            model.Add(product);
+        //        }
+        //    }
             
 
-            //seaching all products in a group
-            var allProductsByGroup = new List<Product>();
+        //    //seaching all products in a group
+        //    var allProductsByGroup = new List<Product>();
 
-            foreach (var id in groupIdsList)
-            {
-                var products = _productsRepo.getProductsByGroupId(id);
+        //    foreach (var id in groupIdsList)
+        //    {
+        //        var products = _productsRepo.getProductsByGroupId(id);
 
-                allProductsByGroup.AddRange(products);
-            }
+        //        allProductsByGroup.AddRange(products);
+        //    }
 
-            //checking if that product alredy is in the model do noting and else add it
-            foreach (var product in allProductsByGroup)
-            {
-                if (!model.Contains(product))
-                {
-                    model.Add(product);
-                }
-            }
+        //    //checking if that product alredy is in the model do noting and else add it
+        //    foreach (var product in allProductsByGroup)
+        //    {
+        //        if (!model.Contains(product))
+        //        {
+        //            model.Add(product);
+        //        }
+        //    }
 
-            return RedirectToAction("Index", new { model = model });
-        }
+        //    return RedirectToAction("Index", new { model = model });
+        //}
 
-        public ActionResult SearchSection()
+        //public ActionResult SearchSection()
+        //{
+        //    //var model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Color);
+        //    //model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Size);
+
+        //    var model = new SearchViewModel();
+
+        //    #region SizeViewModels
+        //    var allProductGroups = _productGroupsRepo.GetAllProductGroups();
+
+        //    foreach (var item in allProductGroups)
+        //    {
+        //        var vm = new ProductCategoriesViewModel();
+        //        vm.Id = item.Id;
+        //        vm.Title = item.Title;
+        //        vm.ProductCount = _productsRepo.getProductsByGroupId(item.Id).Count();
+
+        //        model.ProductCategoriesViewModels.Add(vm);
+        //    }
+        //    #endregion
+
+        //    #region SizeViewModels
+        //    var sizeSubFeatures = _productsRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Size);
+
+        //    foreach (var item in sizeSubFeatures)
+        //    {
+        //        var viewModel = new SizeViewModel()
+        //        {
+        //            Id = item.Id,
+        //            Value = item.Value,
+        //            OtherInfo = item.OtherInfo,
+        //            ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
+        //        };
+
+        //        model.SizeViewModels.Add(viewModel);
+        //    }
+        //    #endregion
+
+        //    #region ColorViewModels
+        //    var colorSubFeatures = _productsRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Color);
+
+        //    foreach (var item in colorSubFeatures)
+        //    {
+        //        var viewModel = new ColorViewModel()
+        //        {
+        //            Id = item.Id,
+        //            Value = item.Value,
+        //            OtherInfo = item.OtherInfo,
+        //            ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
+        //        };
+
+        //        model.ColorViewModels.Add(viewModel);
+        //    }
+        //    #endregion
+
+        //    #region priceLimits
+
+        //    var allMainFeatures = _productMainFeaturesRepo.GetAll();
+
+        //    var allPrices = allMainFeatures.OrderBy(mf => mf.Price).Select(mf => mf.Price).ToList();
+
+        //    model.MinPrice = allPrices.First();
+        //    model.MinPrice = allPrices.Last();
+
+        //    #endregion
+
+        //    return PartialView(model);
+
+        //}
+
+        public ActionResult PriceSearchSection()
         {
-            //var model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Color);
-            //model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Size);
-
             var model = new SearchViewModel();
 
-            #region SizeViewModels
-            var allProductGroups = _productGroupsRepo.GetAllProductGroups();
-
-            foreach (var item in allProductGroups)
-            {
-                var vm = new ProductCategoriesViewModel();
-                vm.Id = item.Id;
-                vm.Title = item.Title;
-                vm.ProductCount = _productsRepo.getProductsByGroupId(item.Id).Count();
-
-                model.ProductCategoriesViewModels.Add(vm);
-            }
-            #endregion
-
-            #region SizeViewModels
-            var sizeSubFeatures = _productsRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Size);
-
-            foreach (var item in sizeSubFeatures)
-            {
-                var viewModel = new SizeViewModel()
-                {
-                    Id = item.Id,
-                    Value = item.Value,
-                    OtherInfo = item.OtherInfo,
-                    ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
-                };
-
-                model.SizeViewModels.Add(viewModel);
-            }
-            #endregion
-
-            #region ColorViewModels
-            var colorSubFeatures = _productsRepo.GetSubFeaturesByFeatureId((int)ProductFeatures.Color);
-
-            foreach (var item in colorSubFeatures)
-            {
-                var viewModel = new ColorViewModel()
-                {
-                    Id = item.Id,
-                    Value = item.Value,
-                    OtherInfo = item.OtherInfo,
-                    ProductCount = _productFeatureValuesRepo.GetProductsCountBySubFeatureId(item.Id)
-                };
-
-                model.ColorViewModels.Add(viewModel);
-            }
-            #endregion
-
-            #region priceLimits
-
-            var allMainFeatures = _productMainFeaturesRepo.GetAll();
-
-            var allPrices = allMainFeatures.OrderBy(mf => mf.Price).Select(mf => mf.Price).ToList();
-
-            model.MinPrice = allPrices.First();
-            model.MinPrice = allPrices.Last();
-
-            #endregion
-
             return PartialView(model);
+        }
 
+        [HttpPost]
+        public ActionResult PriceSearchSection(int min, int Max)
+        {
+            var model = new List<Product>();
+            return View("Index", model);
         }
 
         public ActionResult ProductGroupSection()
@@ -665,11 +693,31 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(articleCategoriesVm);
         }
 
+        [HttpPost]
+        public ActionResult ProductGroupSection(int id)
+        {
+            var model = new List<Product>();
+            return View("Index", model);
+        }
+
         public ActionResult SizeSearchSection()
         {
             var model = CreatingColor_SizeSearchViewModel((int)ProductFeatures.Size);
 
             return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult SizeSearchSection(int id)
+        {
+            var model = new List<Product>();
+
+            var productIds = _productMainFeaturesRepo.GetAll().Where(pmf => pmf.FeatureId == id).Select(pmf => pmf.ProductId).ToList();
+
+            //model = _productsRepo
+
+            ViewBag.PageCount = 0;
+            return View("Index", model);
         }
 
         private List<Color_SizeSearchViewModel> CreatingColor_SizeSearchViewModel(int featureId)

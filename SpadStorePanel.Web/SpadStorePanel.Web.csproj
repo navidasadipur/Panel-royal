@@ -4871,7 +4871,6 @@
     <Content Include="Views\Shop\InstaGalleriesSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Shop\LatestArticlesSection.cshtml" />
     <Content Include="Views\Shop\ProductGroupSection.cshtml" />
     <Content Include="Views\Shop\Cart.cshtml" />
     <Content Include="Views\Shop\SocialsSection.cshtml">
@@ -4879,7 +4878,7 @@
     </Content>
     <Content Include="Views\Shop\TagsSection.cshtml" />
     <Content Include="Views\Shop\TopProductGroupSection.cshtml" />
-    <Content Include="Views\Shop\SearchSection.cshtml" />
+    <Content Include="Views\Shop\PriceSearchSection.cshtml" />
     <Content Include="Views\Shop\SizeSearchSection.cshtml" />
     <Content Include="Views\Shop\Details.cshtml" />
     <Content Include="Views\Shop\ProductDescriptionsSection.cshtml" />
