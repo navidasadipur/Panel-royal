@@ -235,6 +235,7 @@
     <Compile Include="ViewModels\CartItemModel.cs" />
     <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\CommonViewModels.cs" />
+    <Compile Include="ViewModels\FilterModel.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\InvoiceViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />

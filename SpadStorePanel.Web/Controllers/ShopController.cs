@@ -94,10 +94,9 @@ namespace SpadCompanyPanel.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Route("SizeSearchSection/")]
-        [Route("SizeSearchSection/{sizeId}")]
-        public ActionResult SizeSearchSection(int? sizeId, int? groupId, string searchString)
+        [HttpPost]
+        [Route("FilterProducts/")]
+        public ActionResult SizeSearchSection(FilterModel model)
         {
             var allProducts = new List<Product>();
 
@@ -106,14 +105,14 @@ namespace SpadCompanyPanel.Web.Controllers
             var products = _productsRepo.GetAllProducts();
 
             //search by group id
-            if (groupId != null)
+            if (model.GroupId != null)
             {
-                var category = _productGroupsRepo.GetProductGroup(groupId.Value);
+                var category = _productGroupsRepo.GetProductGroup(model.GroupId.Value);
                 if (category != null)
                 {
-                    ViewBag.GroupId = groupId.Value;
+                    ViewBag.GroupId = model.GroupId.Value;
                     ViewBag.BreadCrumb = category.Title;
-                    products = _productsRepo.getProductsByGroupId(groupId.Value);
+                    products = _productsRepo.getProductsByGroupId(model.GroupId.Value);
                 }
 
                 foreach (var item in products)
@@ -140,15 +139,15 @@ namespace SpadCompanyPanel.Web.Controllers
             }
 
             //search by string
-            else if (!string.IsNullOrEmpty(searchString))
+            else if (!string.IsNullOrEmpty(model.SearchString))
             {
-                if (!string.IsNullOrEmpty(searchString))
+                if (!string.IsNullOrEmpty(model.SearchString))
                 {
-                    ViewBag.BreadCrumb = $"جستجو {searchString}";
+                    ViewBag.BreadCrumb = $"جستجو {model.SearchString}";
                     products = products
-                        .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
-                            p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
-                            p.Description != null && p.Description.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
+                        .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(model.SearchString.ToLower().Trim()) ||
+                            p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(model.SearchString.ToLower().Trim()) ||
+                            p.Description != null && p.Description.ToLower().Trim().Contains(model.SearchString.ToLower().Trim())).ToList();
                 }
 
                 foreach (var item in products)
@@ -178,7 +177,7 @@ namespace SpadCompanyPanel.Web.Controllers
             else
             {
                 //if size id == 0 all show all products
-                if (sizeId == 0)
+                if (model.SizeId == 0)
                 {
 
                     foreach (var item in products)
@@ -205,7 +204,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 else
                 {
 
-                    var allProductMainFeatures = _productMainFeaturesRepo.GetProductMainFeaturesBySubFeatureId(sizeId.Value).ToList();
+                    var allProductMainFeatures = _productMainFeaturesRepo.GetProductMainFeaturesBySubFeatureId(model.SizeId.Value).ToList();
 
                     var allProductIds = DistinctByExtension.DistinctBy(allProductMainFeatures, p => p.ProductId).Select(p => p.ProductId).ToList();
 
