@@ -105,8 +105,77 @@ namespace SpadCompanyPanel.Web.Controllers
 
             var products = _productsRepo.GetAllProducts();
 
+            //search by group id
+            if (groupId != null)
+            {
+                var category = _productGroupsRepo.GetProductGroup(groupId.Value);
+                if (category != null)
+                {
+                    ViewBag.GroupId = groupId.Value;
+                    ViewBag.BreadCrumb = category.Title;
+                    products = _productsRepo.getProductsByGroupId(groupId.Value);
+                }
+
+                foreach (var item in products)
+                {
+                    item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                }
+
+                foreach (var item in products)
+                {
+                    var vm = new ProductListViewModel(item);
+
+                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    if (item.ProductComments != null)
+                    {
+                        vm.CommentCounter = item.ProductComments.Count();
+                    }
+                    productListVm.Add(vm);
+                }
+
+                return PartialView(productListVm);
+            }
+
+            //search by string
+            else if (!string.IsNullOrEmpty(searchString))
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    ViewBag.BreadCrumb = $"جستجو {searchString}";
+                    products = products
+                        .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
+                            p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
+                            p.Description != null && p.Description.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
+                }
+
+                foreach (var item in products)
+                {
+                    item.ProductMainFeatures = new List<ProductMainFeature>();
+
+                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                }
+
+                foreach (var item in products)
+                {
+                    var vm = new ProductListViewModel(item);
+
+                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    if (item.ProductComments != null)
+                    {
+                        vm.CommentCounter = item.ProductComments.Count();
+                    }
+                    productListVm.Add(vm);
+                }
+
+                return PartialView(productListVm);
+            }
+
             //search by size id
-            if (sizeId != null)
+            else
             {
                 //if size id == 0 all show all products
                 if (sizeId == 0)
@@ -182,75 +251,6 @@ namespace SpadCompanyPanel.Web.Controllers
                 return PartialView(productListVm);
             }
 
-            //search by group id
-            if (groupId != null)
-            {
-                var category = _productGroupsRepo.GetProductGroup(groupId.Value);
-                if (category != null)
-                {
-                    ViewBag.GroupId = groupId.Value;
-                    ViewBag.BreadCrumb = category.Title;
-                    products = _productsRepo.getProductsByGroupId(groupId.Value);
-                }
-
-                foreach (var item in products)
-                {
-                    item.ProductMainFeatures = new List<ProductMainFeature>();
-
-                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
-                }
-
-                foreach (var item in products)
-                {
-                    var vm = new ProductListViewModel(item);
-
-                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
-
-                    if (item.ProductComments != null)
-                    {
-                        vm.CommentCounter = item.ProductComments.Count();
-                    }
-                    productListVm.Add(vm);
-                }
-
-                return PartialView(productListVm);
-            }
-
-            //search by string
-            else
-            {
-                if (!string.IsNullOrEmpty(searchString))
-                {
-                    ViewBag.BreadCrumb = $"جستجو {searchString}";
-                    products = products
-                        .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
-                            p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(searchString.ToLower().Trim()) ||
-                            p.Description != null && p.Description.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
-                }
-
-                foreach (var item in products)
-                {
-                    item.ProductMainFeatures = new List<ProductMainFeature>();
-
-                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
-                }
-
-                foreach (var item in products)
-                {
-                    var vm = new ProductListViewModel(item);
-
-                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
-
-                    if (item.ProductComments != null)
-                    {
-                        vm.CommentCounter = item.ProductComments.Count();
-                    }
-                    productListVm.Add(vm);
-                }
-
-                return PartialView(productListVm);
-            }
-            
         }
 
         /*

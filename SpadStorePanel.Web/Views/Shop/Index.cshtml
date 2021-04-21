@@ -288,18 +288,21 @@
 @section scripts
 {
     <script>
-        var groupId = 0;
-        var sizeId = 0;
-        var searchString = '';
+    var sizeId = 0;
+    var groupId = null;
+    var searchString = "";
     </script>
 
     @if (ViewBag.Id != null)
     {
         <script>
-
             groupId = @ViewBag.Id;
-            searchString = @ViewBag.SearchString;
-
+        </script>
+    }
+    @if (ViewBag.SearchString != null)
+    {
+        <script>
+            searchString = "@ViewBag.SearchString";
         </script>
     }
 
