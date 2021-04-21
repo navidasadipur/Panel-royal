@@ -144,17 +144,20 @@ namespace SpadCompanyPanel.Web.Controllers
                     {
                         var product = _productsRepo.GetProduct(id);
 
-                        allProducts.Add(product);
+                        if (product != null)
+                        {
+                            allProducts.Add(product);
+                        }
                     }
 
-                    //filling productmainFeatures
-                    foreach (var item in allProducts)
-                    {
+                    ////filling productmainFeatures
+                    //foreach (var item in allProducts)
+                    //{
 
-                        item.ProductMainFeatures = new List<ProductMainFeature>();
+                    //    item.ProductMainFeatures = new List<ProductMainFeature>();
 
-                        item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
-                    }
+                    //    item.ProductMainFeatures = _productMainFeaturesRepo.GetProductMainFeatures(item.Id);
+                    //}
 
                     //creating productListViewModel
 
