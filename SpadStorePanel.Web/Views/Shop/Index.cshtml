@@ -241,13 +241,13 @@
             <div class="sidebar col-xl-3 col-lg-4 col-md-4 col-sm-12 order-md-2 order-1">
                 <div id="widget-area" class="widget-area shop-sidebar">
                     <div id="lynessa_product_search-2" class="widget lynessa widget_product_search">
-                        <form class="lynessa-product-search">
+                        <form class="lynessa-product-search" onsubmit="SearchString();return false">
                             <input id="lynessa-product-search-field-0" class="search-field"
                                    placeholder="جستجو محصولات" value="" name="searchString" type="search">
                             <button type="submit" value="Search">جستجو</button>
                         </form>
                     </div>
-                    @*@Html.Action("PriceSearchSection", "Shop")*@
+                    @Html.Action("PriceSearchSection", "Shop")
 
                     @*@using (Html.BeginForm("SizeSearchSection", "Shop", FormMethod.Post, new { id = "form", @class = "" }))
                         {*@
@@ -290,7 +290,9 @@
     <script>
             var sizeId = 0;
             var groupId = null;
-            var searchString = "";
+    var searchString = "";
+            var minPrice = 0;
+        var maxPrice = 0;
     </script>
 
     @if (ViewBag.Id != null)
@@ -328,11 +330,11 @@
             type: "POST",
             data: FilterModel,
             url: "/FilterProducts/",
-            //data: "sizeId=" + sizeId,
             success: function (text) {
                 $("#grid").html(text);
                 sizeId = 0;
                 groupId = null;
+                searchString = "";
             }
         });
     }
@@ -370,6 +372,39 @@
         submitForm();
     }
 
+    function SearchString() {
+        searchString = $('.search-field').val()
+        submitForm();
+        }
+
+    function CheckPriceUpdated() {
+        var newMin = $('.to').text();
+        var newMax = $('.from').text();
+
+        console.log(newMin);
+        console.log(newMax);
+        //submitForm();
+        //if (newMin != minPrice || newMax != maxPrice) {
+        //    minPrice = newMin;
+        //    maxPrice = newMax;
+        //    submitForm();
+        //}
+    }
+
+    //// Update Price Range
+    //priceSlider.noUiSlider.on('update', function (values, handle) {
+    //    $('#filter-price-range').text(values.join(' - '));
+    //    var minVal = values[0].replace("تومان", "");
+    //    var maxVal = values[1].replace("تومان", "");
+    //    console.log(values);
+    //    $('.from').val(minVal);
+    //    $('.to').val(maxVal);
+
+    //    if (priceUpdated) {
+    //        priceUpdated = false;
+    //        CheckPriceUpdated();
+    //    }
+    //});
 
 </script>
 }
