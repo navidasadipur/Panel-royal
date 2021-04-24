@@ -70,6 +70,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
             foreach (var item in subFeatures)
             {
+
                 var viewModel = new Color_SizeSearchViewModel()
                 {
                     Id = item.Id,
@@ -85,6 +86,13 @@ namespace SpadCompanyPanel.Web.Controllers
 
                 model.Add(viewModel);
             }
+
+            var minPrice = _productMainFeaturesRepo.GetMinPrice();
+
+            var maxPrice = _productMainFeaturesRepo.GetMaxPrice();
+
+            ViewBag.MinPrice = minPrice;
+            ViewBag.MaxPrice = maxPrice;
 
             if (id != null)
                 ViewBag.Id = id;
@@ -103,6 +111,43 @@ namespace SpadCompanyPanel.Web.Controllers
             var productListVm = new List<ProductListViewModel>();
 
             var products = _productsRepo.GetAllProducts();
+
+            var maxLimitPrice = _productMainFeaturesRepo.GetMaxPrice();
+            var minLimitPrice = _productMainFeaturesRepo.GetMinPrice();
+
+            if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
+            {
+                var targetProducts = new List<Product>();
+
+                foreach (var product in products)
+                {
+                    product.ProductMainFeatures = new List<ProductMainFeature>();
+
+                    product.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(product.Id));
+
+                    var targetProductId = product.ProductMainFeatures.Where(pmf => pmf.Price >= model.MinPrice && pmf.Price <= model.MaxPrice).Select(pmf => pmf.ProductId).FirstOrDefault();
+
+                    if (targetProductId != 0)
+                    {
+                        targetProducts.Add(_productsRepo.GetProduct(targetProductId));
+                    }
+                }
+
+                foreach (var item in targetProducts)
+                {
+                    var vm = new ProductListViewModel(item);
+
+                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    if (item.ProductComments != null)
+                    {
+                        vm.CommentCounter = item.ProductComments.Count();
+                    }
+                    productListVm.Add(vm);
+                }
+
+                return PartialView(productListVm);
+            }
 
             //search by group id
             if (model.GroupId != null)
@@ -866,6 +911,9 @@ namespace SpadCompanyPanel.Web.Controllers
         public ActionResult PriceSearchSection()
         {
             var model = new SearchViewModel();
+
+            model.MaxPrice = _productMainFeaturesRepo.GetMaxPrice();
+            model.MinPrice = _productMainFeaturesRepo.GetMinPrice();
 
             return PartialView(model);
         }

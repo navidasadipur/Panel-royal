@@ -40,13 +40,13 @@
             @*@using (Html.BeginForm("Search", "Shop", FormMethod.Get, new { id = "form"@*, @class = "wpcf7-form" }))
             {*@
             <div class="price_slider_wrapper">
-                <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$"
-                     class="price_slider" data-value-min="100" data-value-max="800">
+                <div data-label-reasult="Range:" data-min="@Model.MinPrice" data-max="@Model.MaxPrice" data-unit="$"
+                     class="price_slider" data-value-min="@Model.MinPrice" data-value-max="@Model.MaxPrice">
                 </div>
                 <div class="price_slider_amount">
-                    <button type="submit" class="button" name="Search">فیلتر</button>
+                    <button onclick="CheckPriceUpdated()" type="button" class="button" name="Search">فیلتر</button>
                     <div class="price_label">
-                        قیمت: <span class="from">$100</span> — <span class="to">$800</span>
+                        قیمت: <span class="from">$@Model.MinPrice</span> — <span class="to">$@Model.MaxPrice</span>
                     </div>
                 </div>
 

@@ -234,7 +234,7 @@ jQuery(function (e) {
                 max: t,
                 values: [n, s],
                 slide: function (a, t) {
-                    var n = '<button type="submit" class="button">فیلتر</button><div class="price_label">قیمت: <span class="from">' + e + t.values[0] + ' </span> — <span class="to">' + e + t.values[1] + "</span></div>";
+                    var n = '<button type="submit" onclick="CheckPriceUpdated()" class="button">فیلتر</button><div class="price_label">قیمت: <span class="from">' + e + t.values[0] + ' </span> — <span class="to">' + e + t.values[1] + "</span></div>";
                     l.closest(".price_slider_wrapper").find(".price_slider_amount").html(n);
                 },
             });
