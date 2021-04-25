@@ -31,6 +31,7 @@ namespace SpadCompanyPanel.Web.Controllers
             Product product,
             StaticContentDetailsRepository staticContentDetailsRepo,
             OurTeamRepository ourTeamRepo
+            
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -79,29 +80,6 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return PartialView(viewModel);
         }
-
-        //public ActionResult HomeSlider()
-        //{
-        //    var sliderContent = _contentDetailsRepo.GetContentByTypeId((int)StaticContentTypes.Slider);
-        //    return PartialView(sliderContent);
-        //}
-        //public ActionResult Gallery()
-        //{
-        //    var galleryContent = _galleryRepo.GetAll();
-        //    return PartialView(galleryContent);
-        //}
-        //public ActionResult CompanyHistory()
-        //{
-        //    var content = _contentDetailsRepo.GetContentByTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault();
-        //    return PartialView(content);
-        //}
-
-        //public ActionResult GallerySlider()
-        //{
-        //    var galleryContent = _galleryRepo.GetAll();
-        //    return PartialView(galleryContent);
-        //}
-
 
         public ActionResult ContactUs()
         {
@@ -166,10 +144,6 @@ namespace SpadCompanyPanel.Web.Controllers
                 CompanyServices = _staticContentDetailsRepo.Get((int)StaticContents.companyServices)
             };
 
-            // getting and making ready company services(list of text);
-            //var companyServices = _staticContentDetailsRepo.Get((int)StaticContents.companyServices);
-            //footerContent.CompanyServices = companyServices.ShortDescription.Split('-').ToList();
-
             return PartialView(footerContent);
         }
 
@@ -177,7 +151,7 @@ namespace SpadCompanyPanel.Web.Controllers
         public ActionResult GalleryPage()
         {
             var images = _productGalleryRepo.GetAll();
-            //var videos = _productGalleryVideosRepo.GetAll();
+            
             var vm = new GalleryPageViewModel()
             {
                 Images = images,
@@ -191,8 +165,6 @@ namespace SpadCompanyPanel.Web.Controllers
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
 
             var aboutViewModel = new AboutViewModel();
-
-            //aboutViewModel.AboutDescription = _contentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault().Description;
 
             return PartialView(aboutViewModel);
         }
@@ -245,94 +217,9 @@ namespace SpadCompanyPanel.Web.Controllers
             return Content(vOutput);
         }
 
-        //public ActionResult IndexPartOne()
-        //{
-        //    var section1Cover = _staticContentDetailsRepo.GetStaticContentDetail(3024);
-        //    var section1Part2 = _staticContentDetailsRepo.GetStaticContentDetail(3029);
-        //    var section1part3 = _staticContentDetailsRepo.GetStaticContentDetail(3031);
-        //    var section1Video = _galleryVideosRepo.GetFirstVideo();
-        //    var section1VideoDescription = _staticContentDetailsRepo.GetStaticContentDetail(3034);
-
-        //    var model = new IndexPartViewModels()
-        //    {
-        //        Description = section1Cover.Description,
-        //        ButtonLink = section1Cover.Link,
-        //        CoverImage = section1Cover.Image,
-        //        Part2Image = section1Part2.Image,
-        //        part2Description = section1Part2.Description,
-        //        part3Image = section1part3.Image,
-        //        part3Description = section1part3.Description,
-        //        VideoDescriptions = section1VideoDescription.Description,
-        //        Video = section1Video.Video
-        //    };
-
-        //    return PartialView(model);
-        //}
-        //public ActionResult IndexPartTwo()
-        //{
-        //    var section2Cover = _staticContentDetailsRepo.GetStaticContentDetail(3036);
-        //    var section2Part2 = _staticContentDetailsRepo.GetStaticContentDetail(3037);
-        //    var section2part3 = _staticContentDetailsRepo.GetStaticContentDetail(3038);
-        //    var section2Video = _galleryVideosRepo.GetFirstVideo();
-        //    var section2VideoDescription = _staticContentDetailsRepo.GetStaticContentDetail(3040);
-
-        //    var model = new IndexPartViewModels()
-        //    {
-        //        Description = section2Cover.Description,
-        //        ButtonLink = section2Cover.Link,
-        //        CoverImage = section2Cover.Image,
-        //        Part2Image = section2Part2.Image,
-        //        part2Description = section2Part2.Description,
-        //        part3Image = section2part3.Image,
-        //        part3Description = section2part3.Description,
-        //        VideoDescriptions = section2VideoDescription.Description,
-        //        Video = section2Video.Video
-        //    };
-
-        //    return PartialView(model);
-        //}
-
-        //public ActionResult IndexPartThree()
-        //{
-        //    var section3Cover = _staticContentDetailsRepo.GetStaticContentDetail(3041);
-        //    var section3Part2 = _staticContentDetailsRepo.GetStaticContentDetail(3042);
-        //    var section3part3 = _staticContentDetailsRepo.GetStaticContentDetail(3043);
-        //    //var section3Video = _galleryVideosRepo.GetFirstVideo();
-        //    var section3VideoDescription = _staticContentDetailsRepo.GetStaticContentDetail(3044);
-
-        //    var model = new IndexPartViewModels()
-        //    {
-        //        Description = section3Cover.Description,
-        //        ButtonLink = section3Cover.Link,
-        //        CoverImage = section3Cover.Image,
-        //        Part2Image = section3Part2.Image,
-        //        part2Description = section3Part2.Description,
-        //        part3Image = section3part3.Image,
-        //        part3Description = section3part3.Description,
-        //        VideoDescriptions = section3VideoDescription.Description,
-        //        Video = section3Video.Video
-        //    };
-
-        //    return PartialView(model);
-        //}
-
-        //public ActionResult SocialsSection()
-        //{
-        //    SocialViewModel model = new SocialViewModel();
-
-        //    model.Instagram= _contentDetailsRepo.GetStaticContentDetail(1009).Link;
-        //    model.Aparat = _contentDetailsRepo.GetStaticContentDetail(1012).Link;
-
-        //    return PartialView(model);
-        //}
-
         public ActionResult Account()
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
-            //SocialViewModel model = new SocialViewModel();
-
-            //model.Instagram = _contentDetailsRepo.GetStaticContentDetail(1009).Link;
-            //model.Aparat = _contentDetailsRepo.GetStaticContentDetail(1012).Link;
 
             return View();
         }
@@ -347,7 +234,9 @@ namespace SpadCompanyPanel.Web.Controllers
         [HttpPost]
         public ActionResult AccountLoginSection(LoginViewModel model)
         {
-            return PartialView(model);
+
+
+            return RedirectToAction("Account");
         }
 
         public ActionResult AccountRegisterSection()
@@ -360,7 +249,9 @@ namespace SpadCompanyPanel.Web.Controllers
         [HttpPost]
         public ActionResult AccounRegisterSection(RegisterViewModel model)
         {
-            return PartialView(model);
+            
+
+            return RedirectToAction("Account");
         }
 
         public ActionResult ServicesSection()

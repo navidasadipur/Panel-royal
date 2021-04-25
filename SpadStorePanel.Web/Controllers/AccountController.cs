@@ -429,7 +429,7 @@ namespace SpadStorePanel.Web.Controllers
         {
             return View();
         }
-        //
+        
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()

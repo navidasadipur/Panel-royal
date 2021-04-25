@@ -102,26 +102,7 @@ namespace SpadCompanyPanel.Web.Controllers
             return View(model);
         }
 
-        private List<Product> FilteringByPrice(int minFilterPrice, int maxFilterPrice, List<Product> allTargetProducts)
-        {
-            var targetProducts = new List<Product>();
-
-            foreach (var product in allTargetProducts)
-            {
-                product.ProductMainFeatures = new List<ProductMainFeature>();
-
-                product.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(product.Id));
-
-                var targetProductId = product.ProductMainFeatures.Where(pmf => pmf.Price >= minFilterPrice && pmf.Price <= maxFilterPrice).Select(pmf => pmf.ProductId).FirstOrDefault();
-
-                if (targetProductId != 0)
-                {
-                    targetProducts.Add(_productsRepo.GetProduct(targetProductId));
-                }
-            }
-
-            return targetProducts;
-        }
+        
 
         [HttpPost]
         [Route("FilterProducts/")]
@@ -659,7 +640,7 @@ namespace SpadCompanyPanel.Web.Controllers
         //[HttpPost]
         //public ActionResult CartPageSection(int? customerId)
         //{
-            
+
 
         //    try
         //    {
@@ -698,6 +679,29 @@ namespace SpadCompanyPanel.Web.Controllers
 
         //    }
         //}
+
+        #region Helpers
+        private List<Product> FilteringByPrice(int minFilterPrice, int maxFilterPrice, List<Product> allTargetProducts)
+        {
+            var targetProducts = new List<Product>();
+
+            foreach (var product in allTargetProducts)
+            {
+                product.ProductMainFeatures = new List<ProductMainFeature>();
+
+                product.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(product.Id));
+
+                var targetProductId = product.ProductMainFeatures.Where(pmf => pmf.Price >= minFilterPrice && pmf.Price <= maxFilterPrice).Select(pmf => pmf.ProductId).FirstOrDefault();
+
+                if (targetProductId != 0)
+                {
+                    targetProducts.Add(_productsRepo.GetProduct(targetProductId));
+                }
+            }
+
+            return targetProducts;
+        }
+        #endregion
 
 
     }

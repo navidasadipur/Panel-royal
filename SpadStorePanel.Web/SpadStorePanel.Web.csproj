@@ -4853,8 +4853,6 @@
     <Content Include="Views\Home\ContactUsSummary.cshtml" />
     <Content Include="Views\Home\Index-old.cshtml" />
     <Content Include="Views\Home\HomeTopSlidersSection.cshtml" />
-    <Content Include="Views\Home\IndexPartThree.cshtml" />
-    <Content Include="Views\Home\IndexPartTwo.cshtml" />
     <Content Include="Views\Home\SocialsSection.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />

@@ -1,39 +1,5 @@
 ﻿@model List<SpadStorePanel.Web.ViewModels.LatestArticlesViewModel>
 
-@*@if (Model.Any())
-{
-
-    <div class="blog-left-title">
-        پست های اخیر
-    </div>
-    //if (0 < Model.Count)
-    //{
-
-    //}
-
-    for (int i = 0; i < 4; i++)
-    {
-        <div class="latest-blog">
-            <div class="d-inline-block">
-                <a href="/Blog/Post/@Model[i].Id">
-
-                    <img src="/Files/ArticleImages/Image/@Model[i].Image" alt="@Model[i].Title" class="latest-blog-img">
-                </a>
-            </div>
-            <div class="latest-blog-title">
-                <a href="/Blog/Post/@Model[i].Id">
-
-                    <p>@Model[i].Title</p>
-                </a>
-                <span>
-                    @Model[i].PersianDate
-                </span>
-            </div>
-        </div>
-    }
-}*@
-@*/@Model[i].Title.Replace(" ","-")*@
-@*/@Model[i].Title.Replace(" ", "-")*@
 
 <div id="widget_lynessa_post-2" class="widget widget-lynessa-post">
     <h2 class="widgettitle">
@@ -66,83 +32,7 @@
                 </article>
             }
 
-
         }
-        @*<article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-            <div class="post-item-inner">
-                <div class="post-thumb">
-                    <a href="#">
-                        <img src="~/Content/client/images/2.jpg"
-                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
-                             height="83">
-                    </a>
-                </div>
-                <div class="post-info">
-                    <div class="block-title">
-                        <h2 class="post-title">
-                            <a href="#">عنوان پست</a>
-                        </h2>
-                    </div>
-                    <div class="date">آبان 19, 139</div>
-                </div>
-            </div>
-        </article>
-        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-            <div class="post-item-inner">
-                <div class="post-thumb">
-                    <a href="#">
-                        <img src="~/Content/client/images/5.jpg"
-                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
-                             height="83">
-                    </a>
-                </div>
-                <div class="post-info">
-                    <div class="block-title">
-                        <h2 class="post-title">
-                            <a href="#">عنوان پست</a>
-                        </h2>
-                    </div>
-                    <div class="date">آبان 19, 139</div>
-                </div>
-            </div>
-        </article>
-        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-            <div class="post-item-inner">
-                <div class="post-thumb">
-                    <a href="#">
-                        <img src="~/Content/client/images/4.jpg"
-                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
-                             height="83">
-                    </a>
-                </div>
-                <div class="post-info">
-                    <div class="block-title">
-                        <h2 class="post-title">
-                            <a href="#">عنوان پست</a>
-                        </h2>
-                    </div>
-                    <div class="date">آبان 19, 139</div>
-                </div>
-            </div>
-        </article>*@
-        <article class="post-195 post type-post status-publish format-standard has-post-thumbnail hentry category-light category-table category-life-style tag-light tag-life-style">
-            <div class="post-item-inner">
-                <div class="post-thumb">
-                    <a href="#">
-                        <img src="~/Content/client/images/2.jpg"
-                             class="img-responsive attachment-83x83 size-83x83" alt="img" width="83"
-                             height="83">
-                    </a>
-                </div>
-                <div class="post-info">
-                    <div class="block-title">
-                        <h2 class="post-title">
-                            <a href="#">عنوان پست</a>
-                        </h2>
-                    </div>
-                    <div class="date">آبان 19, 139</div>
-                </div>
-            </div>
-        </article>
+       
     </div>
 </div>

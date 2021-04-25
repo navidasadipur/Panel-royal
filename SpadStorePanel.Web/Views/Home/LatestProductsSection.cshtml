@@ -23,7 +23,7 @@
                         <div class="product-inner tooltip-top tooltip-all-top">
                             <div class="product-thumb">
                                 <a class="thumb-link"
-                                   href="#" tabindex="0">
+                                   href="/Shop/Details/@product.Id" tabindex="0">
                                     <img class="img-responsive"
                                          src="~/Files/ProductImages/Image/@product.Image"
                                          alt="KNIT LIKE" width="270" height="350">
@@ -33,28 +33,26 @@
                                 </div>
                                 <div class="group-button">
                                     <div class="add-to-cart">
-                                        <a href="#"
+                                        <a href="javascript:void(0)" onclick="AddToCart(@product.Id)"
                                            class="button product_type_simple add_to_cart_button ajax_add_to_cart">
                                             Add to
                                             cart
                                         </a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="/Shop/Details/@product.Id" class="button yith-wcqv-button">Quick View</a>
 
-                                    <div class="yith-wcwl-add-to-wishlist">
+                                    @*<div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
                                             <a href="#" class="add_to_wishlist">Add to Wishlist</a>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                             <div class="product-info">
                                 <h3 class="product-name product_title">
-                                    <a href="#"
+                                    <a href="/Shop/Details/@product.Id"
                                        tabindex="0">
                                         @product.Title
-                                        @*رویال هفت
-                                        تشک مدیکال (طبی ویژه هارد)*@
                                     </a>
                                 </h3>
                                 <span class="price">

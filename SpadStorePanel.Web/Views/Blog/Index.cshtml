@@ -4,81 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-@*<div id="parent-page" class="parent-page">
-
-    <div class="container rtl">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home">خانه</a></li>
-                @if (ViewBag.BreadCrumb != null)
-                {
-                    <li class="breadcrumb-item" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">@ViewBag.BreadCrumb</li>
-                }
-                else
-                {
-                    <li class="breadcrumb-item active" aria-current="page"><a href="/blog">@ViewBag.Title</a></li>
-                }
-
-            </ol>
-        </nav>
-
-        <div class="row">
-            <div class="col-md-8 col-xs-12">
-
-                @foreach (var item in Model)
-                {
-                    <div class="blog-post">
-                        <figure class="blog-img">
-                            <a href="/Blog/Post/@item.Id">
-                                <img src="/Files/ArticleImages/Thumb/@item.Image" alt="@item.Title" style="width:100%">
-                            </a>
-                        </figure>
-                        <div class="blog-body">
-                            <p class="blog-date">
-                                <span>
-                                    @item.PersianDate
-                                </span>
-                                |
-                                <span>
-                                    نظرات @item.CommentCounter
-                                </span>
-                            </p>
-                            <h2 class="blog-title">
-                                <a href="/Blog/Post/@item.Id">
-                                    @item.Title
-                                </a>
-                            </h2>
-                            <p class="margin-top-17">
-                                @item.ShortDescription
-                            </p>
-                        </div>
-                    </div>
-                }
-
-
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <div class="blog-left">
-                    @Html.Action("ArticleCategoriesSection", "Blog")
-                    @Html.Action("LatestArticlesSection", "Blog")
-                    @Html.Action("SocialsSection", "Blog")
-                    @Html.Action("InstagramsSection", "Blog")
-                    @Html.Action("TagsSection", "Blog")
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-</div>*@
-
-
-
-
-
 <div class="banner-wrapper has_background">
     <img src="~/Files/StaticContentImages/Image/@ViewBag.BackImage"
          class="img-responsive attachment-1920x447 size-1920x447 col-md-12" alt="img" style="opacity: 0.3;">
@@ -135,13 +60,13 @@
                     }
 
                 </div>
-                <nav class="navigation pagination">
+                @*<nav class="navigation pagination">
                     <div class="nav-links">
                         <span class="page-numbers current">1</span>
                         <a class="page-numbers" href="#">2</a>
                         <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
                     </div>
-                </nav>
+                </nav>*@
             </div>
             <div class="sidebar lynessa_sidebar col-xl-3 col-lg-4 col-md-12 col-sm-12">
                 <div id="widget-area" class="widget-area sidebar-blog">
