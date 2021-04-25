@@ -4880,7 +4880,7 @@
     <Content Include="Views\Shop\TagsSection.cshtml" />
     <Content Include="Views\Shop\TopProductGroupSection.cshtml" />
     <Content Include="Views\Shop\PriceSearchSection.cshtml" />
-    <Content Include="Views\Shop\SizeSearchSection.cshtml" />
+    <Content Include="Views\Shop\FilterProducts.cshtml" />
     <Content Include="Views\Shop\Details.cshtml" />
     <Content Include="Views\Shop\ProductDescriptionsSection.cshtml" />
     <Content Include="Views\Shop\ProductGallerySection.cshtml" />

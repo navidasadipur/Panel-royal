@@ -30,6 +30,7 @@
                     <div class="lynessa">
                         <div class="lynessa-notices-wrapper"></div>
                         <div class="lynessa-cart-form">
+
                             <table class="shop_table shop_table_responsive cart lynessa-cart-form__contents"
                                    cellspacing="0">
                                 <thead>
@@ -83,9 +84,9 @@
                                                             <span class="qty-label">Quantiy:</span>
                                                             <div class="control">
                                                                 <div class="def-number-input number-input safari_only">
-                                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" @*href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true'); this.parentNode.querySelector('input[type=number]').stepDown();"*@ class="minus"></button>
-                                                                    <input class="quantity" min="0" name="quantity" value="@item.Quantity" type="number">
-                                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" @*href="javascript:void(0)" onclick="AddToCart(@item.Id); this.parentNode.querySelector('input[type=number]').stepUp();"*@ class="plus"></button>
+                                                                    @*<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); return false;" *@@*href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true'); this.parentNode.querySelector('input[type=number]').stepDown();"*@ @*class="minus"></button>*@
+                                                                    <input class="quantity-@item.Id" min="0" name="quantity-@item.Id" value="@item.Quantity" type="number">
+                                                                    @*<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); return false;" @*href="javascript:void(0)" onclick="AddToCart(@item.Id); this.parentNode.querySelector('input[type=number]').stepUp();"*@@* class="plus"></button>*@
                                                                 </div>
 
                                                             </div>
@@ -102,142 +103,20 @@
 
 
                                     }
-                                    @*<tr class="lynessa-cart-form__cart-item cart_item">
-                                        <td class="product-remove">
-                                            <a href="#"
-                                               class="remove" aria-label="Remove this item" data-product_id="27"
-                                               data-product_sku="885B712">×</a>
-                                        </td>
-                                        <td class="product-thumbnail">
-                                            <a href="#">
-                                                <img src="~/Content/client/images/12.jpg"
-                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
-                                                     alt="img" width="600" height="778">
-                                            </a>
-                                        </td>
-                                        <td class="product-name" data-title="Product">
-                                            <a href="#">
-                                                رویال 1
-                                            </a>
-                                        </td>
-                                        <td class="product-price" data-title="Price">
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span>150.00
-                                            </span>
-                                        </td>
-                                        <td class="product-quantity" data-title="Quantity">
-                                            <div class="quantity">
-                                                <span class="qty-label">Quantiy:</span>
-                                                <div class="control">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Total">
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span>150.00
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="lynessa-cart-form__cart-item cart_item">
-                                        <td class="product-remove">
-                                            <a href="#"
-                                               class="remove" aria-label="Remove this item" data-product_id="29"
-                                               data-product_sku="003D754">×</a>
-                                        </td>
-                                        <td class="product-thumbnail">
-                                            <a href="#">
-                                                <img src="~/Content/client/images/13.jpg"
-                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
-                                                     alt="img" width="600" height="778">
-                                            </a>
-                                        </td>
-                                        <td class="product-name" data-title="Product">
-                                            <a href="#">
-                                                رویال 2
-                                            </a>
-                                        </td>
-                                        <td class="product-price" data-title="Price">
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span>129.00
-                                            </span>
-                                        </td>
-                                        <td class="product-quantity" data-title="Quantity">
-                                            <div class="quantity">
-                                                <span class="qty-label">Quantiy:</span>
-                                                <div class="control">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Total">
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span>129.00
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="lynessa-cart-form__cart-item cart_item">
-                                        <td class="product-remove">
-                                            <a href="#"
-                                               class="remove" aria-label="Remove this item" data-product_id="20"
-                                               data-product_sku="775E109">×</a>
-                                        </td>
-                                        <td class="product-thumbnail">
-                                            <a href="#">
-                                                <img src="~/Content/client/images/14.jpg"
-                                                     class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
-                                                     alt="img" width="600" height="778">
-                                            </a>
-                                        </td>
-                                        <td class="product-name" data-title="Product">
-                                            <a href="#"> رویال 3</a>
-                                        </td>
-                                        <td class="product-price" data-title="Price">
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span>139.00
-                                            </span>
-                                        </td>
-                                        <td class="product-quantity" data-title="Quantity">
-                                            <div class="quantity">
-                                                <span class="qty-label">تعداد</span>
-                                                <div class="control">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Total">
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span>139.00
-                                            </span>
-                                        </td>
-                                    </tr>*@
                                     <tr>
                                         <td colspan="6" class="actions">
                                             @*<div class="coupon">
-                                                <label for="coupon_code"></label> <input type="text"
-                                                                                         name="coupon_code"
-                                                                                         class="input-text"
-                                                                                         id="coupon_code"
-                                                                                         placeholder="کد تخفیف">
-                                                <button type="submit" class="button" name="apply_coupon"
-                                                        value="Apply coupon">
-                                                    ثبت تخفیف
-                                                </button>
-                                            </div>*@
-                                            <button type="submit" class="button" name="update_cart" value="Update cart" >
+                                                    <label for="coupon_code"></label> <input type="text"
+                                                                                             name="coupon_code"
+                                                                                             class="input-text"
+                                                                                             id="coupon_code"
+                                                                                             placeholder="کد تخفیف">
+                                                    <button type="submit" class="button" name="apply_coupon"
+                                                            value="Apply coupon">
+                                                        ثبت تخفیف
+                                                    </button>
+                                                </div>*@
+                                            <button type="submit" class="button" name="update_cart" value="Update cart">
                                                 به روز رسانی پرداخت
                                             </button>
                                             <input type="hidden" id="lynessa-cart-nonce" name="lynessa-cart-nonce"
@@ -254,13 +133,13 @@
                                 <table class="shop_table shop_table_responsive" cellspacing="0">
                                     <tbody>
                                         @*<tr class="cart-subtotal">
-                                            <th>قیمت واحد</th>
-                                            <td data-title="Subtotal">
-                                                <span class="lynessa-Price-amount amount">
-                                                    <span class="lynessa-Price-currencySymbol">$</span>418.00
-                                                </span>
-                                            </td>
-                                        </tr>*@
+                                                <th>قیمت واحد</th>
+                                                <td data-title="Subtotal">
+                                                    <span class="lynessa-Price-amount amount">
+                                                        <span class="lynessa-Price-currencySymbol">$</span>418.00
+                                                    </span>
+                                                </td>
+                                            </tr>*@
                                         <tr class="order-total">
                                             <th>جمع کل</th>
                                             <td data-title="Total">
@@ -288,3 +167,19 @@
         </div>
     </div>
 </main>
+
+@section scripts
+{
+    <script>
+        @*var productQty = @Model*@
+
+    </script>
+    <script>
+    $(document).ready(function () {
+
+
+    }
+
+    </script>
+
+}

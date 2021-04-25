@@ -101,7 +101,7 @@ namespace SpadStorePanel.Web.Controllers
         }
 
         public ActionResult CartSection()
-       {
+        {
             try
             {
                 var cartModel = new CartModel();
