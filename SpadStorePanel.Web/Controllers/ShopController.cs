@@ -443,7 +443,10 @@ namespace SpadCompanyPanel.Web.Controllers
 
             if (hasProductId && hasFeatureValueId && Hasquantity)
             {
+                for (int i = 0; i < quantity; i++)
+                {
 
+                }
 
                 isAddedToCart = true;
             }
