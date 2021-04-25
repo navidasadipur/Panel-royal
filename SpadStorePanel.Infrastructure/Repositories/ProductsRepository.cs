@@ -51,9 +51,16 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
             allProducts = allProducts.OrderByDescending(p => p.Id).ToList();
 
-            var all6LatestProduts = allProducts.GetRange(0, 6);
+            if (allProducts.Count() > 6)
+            {
+                var all6LatestProduts = allProducts.GetRange(0, 6);
 
-            return all6LatestProduts;
+                return all6LatestProduts;
+            }
+            else
+            {
+                return allProducts;
+            }
         }
 
         public Product GetProduct(int id)

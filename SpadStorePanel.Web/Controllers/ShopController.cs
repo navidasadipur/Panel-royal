@@ -102,52 +102,41 @@ namespace SpadCompanyPanel.Web.Controllers
             return View(model);
         }
 
+        private List<Product> FilteringByPrice(int minFilterPrice, int maxFilterPrice, List<Product> allTargetProducts)
+        {
+            var targetProducts = new List<Product>();
+
+            foreach (var product in allTargetProducts)
+            {
+                product.ProductMainFeatures = new List<ProductMainFeature>();
+
+                product.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(product.Id));
+
+                var targetProductId = product.ProductMainFeatures.Where(pmf => pmf.Price >= minFilterPrice && pmf.Price <= maxFilterPrice).Select(pmf => pmf.ProductId).FirstOrDefault();
+
+                if (targetProductId != 0)
+                {
+                    targetProducts.Add(_productsRepo.GetProduct(targetProductId));
+                }
+            }
+
+            return targetProducts;
+        }
+
         [HttpPost]
         [Route("FilterProducts/")]
         public ActionResult SizeSearchSection(FilterModel model)
         {
-            var allProducts = new List<Product>();
+            var allSearchedTargetProducts = new List<Product>();
+
+            var targetProductsPriceFilted = new List<Product>();
 
             var productListVm = new List<ProductListViewModel>();
 
-            var products = _productsRepo.GetAllProducts();
+            var allTargetProducts = _productsRepo.GetAllProducts();
 
             var maxLimitPrice = _productMainFeaturesRepo.GetMaxPrice();
             var minLimitPrice = _productMainFeaturesRepo.GetMinPrice();
-
-            if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
-            {
-                var targetProducts = new List<Product>();
-
-                foreach (var product in products)
-                {
-                    product.ProductMainFeatures = new List<ProductMainFeature>();
-
-                    product.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(product.Id));
-
-                    var targetProductId = product.ProductMainFeatures.Where(pmf => pmf.Price >= model.MinPrice && pmf.Price <= model.MaxPrice).Select(pmf => pmf.ProductId).FirstOrDefault();
-
-                    if (targetProductId != 0)
-                    {
-                        targetProducts.Add(_productsRepo.GetProduct(targetProductId));
-                    }
-                }
-
-                foreach (var item in targetProducts)
-                {
-                    var vm = new ProductListViewModel(item);
-
-                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
-
-                    if (item.ProductComments != null)
-                    {
-                        vm.CommentCounter = item.ProductComments.Count();
-                    }
-                    productListVm.Add(vm);
-                }
-
-                return PartialView(productListVm);
-            }
 
             //search by group id
             if (model.GroupId != null)
@@ -157,21 +146,23 @@ namespace SpadCompanyPanel.Web.Controllers
                 {
                     ViewBag.GroupId = model.GroupId.Value;
                     ViewBag.BreadCrumb = category.Title;
-                    products = _productsRepo.getProductsByGroupId(model.GroupId.Value);
+                    allSearchedTargetProducts = _productsRepo.getProductsByGroupId(model.GroupId.Value);
                 }
 
-                foreach (var item in products)
+                if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
                 {
-                    item.ProductMainFeatures = new List<ProductMainFeature>();
+                    targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allSearchedTargetProducts);
 
-                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                    allTargetProducts = targetProductsPriceFilted;
+                }
+                else
+                {
+                    allTargetProducts = allSearchedTargetProducts;
                 }
 
-                foreach (var item in products)
+                foreach (var item in allTargetProducts)
                 {
                     var vm = new ProductListViewModel(item);
-
-                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
 
                     if (item.ProductComments != null)
                     {
@@ -189,24 +180,17 @@ namespace SpadCompanyPanel.Web.Controllers
                 if (!string.IsNullOrEmpty(model.SearchString))
                 {
                     ViewBag.BreadCrumb = $"جستجو {model.SearchString}";
-                    products = products
+                    allSearchedTargetProducts = allTargetProducts
                         .Where(p => p.Title != null && p.Title.ToLower().Trim().Contains(model.SearchString.ToLower().Trim()) ||
                             p.ShortDescription != null && p.ShortDescription.ToLower().Trim().Contains(model.SearchString.ToLower().Trim()) ||
                             p.Description != null && p.Description.ToLower().Trim().Contains(model.SearchString.ToLower().Trim())).ToList();
                 }
 
-                foreach (var item in products)
-                {
-                    item.ProductMainFeatures = new List<ProductMainFeature>();
+                allTargetProducts = allSearchedTargetProducts;
 
-                    item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
-                }
-
-                foreach (var item in products)
+                foreach (var item in allTargetProducts)
                 {
                     var vm = new ProductListViewModel(item);
-
-                    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
 
                     if (item.ProductComments != null)
                     {
@@ -221,18 +205,22 @@ namespace SpadCompanyPanel.Web.Controllers
             //search by size id
             else
             {
-                //if size id == 0 all show all products
+                //if size id == 0 show all products
                 if (model.SizeId == 0)
                 {
 
-                    foreach (var item in products)
+                    if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
                     {
-                        item.ProductMainFeatures = new List<ProductMainFeature>();
+                        targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allTargetProducts);
 
-                        item.ProductMainFeatures = (_productMainFeaturesRepo.GetProductMainFeatures(item.Id));
+                        allTargetProducts = targetProductsPriceFilted;
+                    }
+                    else
+                    {
+                        allTargetProducts = allTargetProducts;
                     }
 
-                    foreach (var item in products)
+                    foreach (var item in allTargetProducts)
                     {
                         var vm = new ProductListViewModel(item);
 
@@ -259,25 +247,23 @@ namespace SpadCompanyPanel.Web.Controllers
 
                         if (product != null)
                         {
-                            allProducts.Add(product);
+                            allSearchedTargetProducts.Add(product);
                         }
                     }
 
-                    ////filling productmainFeatures
-                    //foreach (var item in allProducts)
-                    //{
-
-                    //    item.ProductMainFeatures = new List<ProductMainFeature>();
-
-                    //    item.ProductMainFeatures = _productMainFeaturesRepo.GetProductMainFeatures(item.Id);
-                    //}
-
-                    //creating productListViewModel
-
-                    foreach (var item in allProducts)
+                    if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
                     {
+                        targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allSearchedTargetProducts);
 
+                        allTargetProducts = targetProductsPriceFilted;
+                    }
+                    else
+                    {
+                        allTargetProducts = allSearchedTargetProducts;
+                    }
 
+                    foreach (var item in allTargetProducts)
+                    {
                         var vm = new ProductListViewModel(item);
 
                         //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);

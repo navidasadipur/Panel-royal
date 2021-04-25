@@ -308,7 +308,7 @@
         </script>
     }
 
-<script>
+    <script>
 
     function submitForm() {
         // Initiate Variables With Form Content
@@ -349,31 +349,64 @@
     $(document).ready(function () {
         submitForm();
 
-        var pathname = $(location).attr('pathname').split('/');
-        var selectedGroupId = pathname[pathname.length - 1];
-        var search = $(location).attr('search');
-        console.log('.cat-item-' + selectedGroupId);
-        console.log(search);
+        //var pathname = $(location).attr('pathname').split('/');
+        //var selectedGroupId = pathname[pathname.length - 1];
+        //var search = $(location).attr('search');
+        //console.log('.cat-item-' + selectedGroupId);
 
-        if (selectedGroupId) {
-            $('#checkbox-' + selectedGroupId).attr('checked', '');
-        }
+        //if (selectedGroupId) {
+        //    $('#checkbox-' + selectedGroupId).attr('checked', '');
+        //}
 
 
     })
 
     function ChangeSize(size) {
+        var newMintxt = $('.from').text();
+        var newMaxtxt = $('.to').text();
+
+        var newMin = newMintxt.substring(1);
+        var newMax = newMaxtxt.substring(1);
+
+        if (newMin != minPrice || newMax != maxPrice) {
+            minPrice = newMin;
+            maxPrice = newMax;
+        }
+
+        searchString = "";
+        $('.search-field').val(searchString);
+
         sizeId = size;
         submitForm();
     }
 
     function UpdateGroup(id) {
+        var newMintxt = $('.from').text();
+        var newMaxtxt = $('.to').text();
+
+        var newMin = newMintxt.substring(1);
+        var newMax = newMaxtxt.substring(1);
+
+        if (newMin != minPrice || newMax != maxPrice) {
+            minPrice = newMin;
+            maxPrice = newMax;
+        }
+
+        searchString = "";
+        $('.search-field').val(searchString);
+
         groupId = id;
         submitForm();
     }
 
     function SearchString() {
         searchString = $('.search-field').val()
+
+        sizeId = 0;
+        groupId = null;
+        minPrice = @ViewBag.MinPrice;
+        maxPrice = @ViewBag.MaxPrice;
+
         submitForm();
         }
 
@@ -387,6 +420,10 @@
         if (newMin != minPrice || newMax != maxPrice) {
             minPrice = newMin;
             maxPrice = newMax;
+
+            searchString = "";
+            $('.search-field').val(searchString);
+
             submitForm();
         }
     }
@@ -408,5 +445,5 @@
 
 
 
-</script>
+    </script>
 }
