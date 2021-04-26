@@ -1,36 +1,6 @@
-﻿@*@model List<SpadStorePanel.Web.ViewModels.ProductCategoriesViewModel>*@
-
+﻿
 @model List<SpadStorePanel.Core.Models.Product>
 
-@*<div class="blog-left-title">
-        دسته بندی
-    </div>
-    @if (Model.Any())
-    {
-        <ul class="blog-category">
-            @foreach (var category in Model)
-            {
-                <li>
-                    <a href="/Blog/@category.Id/@category.Title.Replace(" ","-")">
-                        @category.Title
-                    </a>
-                </li>
-            }
-        </ul>
-    }*@
-@*<div id="categories-3" class="widget widget_categories">
-    <h2 class="widgettitle">
-        دسته بندی ها<span class="arrow"></span>
-    </h2>
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li class="cat-item cat-item-51">
-                <a href="#">@item.Title</a>
-            </li>
-        }
-    </ul>
-</div>*@
 
     <div class="col-md-12 col-sm-12 dreaming_related-product">
         <div class="block-title">
@@ -48,7 +18,7 @@
                     <div class="product-inner tooltip-left">
                         <div class="product-thumb">
                             <a class="thumb-link"
-                               href="#" tabindex="0">
+                               href="/Shop/Details/@product.Id" tabindex="0">
                                 <img class="img-responsive"
                                      src="~/Files/ProductImages/ProductGallery/@product.Image"
                                      alt=@product.Title width="600" height="778">
@@ -61,15 +31,15 @@
                                     </div>
                                 </div>*@
 
-                                <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+                                <a href="/Shop/Details/@product.Id" class="button yith-wcqv-button">نمایش محصول</a>
                                 <div class="add-to-cart">
-                                    <a href="#" class="button product_type_variable add_to_cart_button">سبد خرید</a>
+                                    <a href="javascript:void(0)" onclick="AddToCart(@product.Id)" class="button product_type_variable add_to_cart_button">سبد خرید</a>
                                 </div>
                             </div>
                         </div>
                         <div class="product-info equal-elem">
                             <h3 class="product-name product_title">
-                                <a href="#"
+                                <a href="/Shop/Details/@product.Id"
                                    tabindex="0">@product.Title</a>
                             </h3>
                             <div class="rating-wapper nostar">

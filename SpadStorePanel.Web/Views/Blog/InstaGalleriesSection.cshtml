@@ -8,7 +8,7 @@
         <div class="content-instagram">
             @foreach (var item in Model.Images)
             {
-                <a target="_blank" href="#" class="item">
+                <a target="_blank" href="@item.Link" class="item">
                     <img class="img-responsive" src="~/Files/StaticContentImages/Image/@item.Image"
                          alt="Not your ordinary multi service.">
                 </a>

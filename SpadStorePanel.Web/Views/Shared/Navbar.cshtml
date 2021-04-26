@@ -61,7 +61,7 @@
                         <div class="box-header-nav menu-nocenter" style="position: relative;">
 
                             <div class="header-logo">
-                                <a href="#">
+                                <a href="~/home">
                                     <img alt="Lynessa" src="~/Content/client/images/mainlogo3.png" class="logo">
                                 </a>
                             </div>
@@ -93,7 +93,7 @@
                                                                 @foreach (var product in group.Products)
                                                                 {
                                                                     <li>
-                                                                        <a href="#"
+                                                                        <a href="/Shop/Details/@product.Id"
                                                                            target="_self">@product.Title</a>
                                                                     </li>
                                                                 }
