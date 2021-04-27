@@ -140,6 +140,46 @@ namespace SpadStorePanel.Web.Controllers
             }
         }
 
+        public ActionResult CartSectionMobile()
+        {
+            try
+            {
+                var cartModel = new CartModel();
+                cartModel.CartItems = new List<CartItemModel>();
+
+                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+                if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+                {
+                    string cartJsonStr = cartCookie.Values["cart"];
+                    cartModel = new CartModel(cartJsonStr);
+                }
+                return PartialView(cartModel);
+
+            }
+            catch (Exception e)
+            {
+                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+                cartCookie.Values.Set("cart", "");
+
+                cartCookie.Expires = DateTime.Now.AddHours(12);
+                cartCookie.SameSite = SameSiteMode.Lax;
+
+
+                var cartModel = new CartModel();
+                cartModel.CartItems = new List<CartItemModel>();
+
+                if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+                {
+                    string cartJsonStr = cartCookie.Values["cart"];
+                    cartModel = new CartModel(cartJsonStr);
+                }
+                return PartialView(cartModel);
+
+            }
+        }
+
         [HttpPost]
         public void RemoveFromCart(int productId, int? mainFeatureId, string complete = null)
         {

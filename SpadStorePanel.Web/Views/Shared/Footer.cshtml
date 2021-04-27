@@ -196,9 +196,9 @@
             <a href="#">
                 <span class="icon">
                     <span class="pe-7s-shopbag"></span>
-                    <span class="count-icon">
+                    @*<span class="count-icon">
                         0
-                    </span>
+                    </span>*@
                 </span>
                 <span class="text">سبد خرید</span>
             </a>
@@ -213,79 +213,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-@*@Html.Action("GallerySlider", "Home")
-    <div class="container-fluid @(ViewBag.ContactUsPage == null ? "contact-footer": "")">
-        <div class="row">
-            @if (ViewBag.ContactUsPage == null)
-            {
-                <div class="col-md-6 pt-5">
-                    <div class="section-header-left">
-                        <h3 class="text-light-black header-title title">
-                            <span class="text-dark">ارتباط با ما</span>
-                        </h3>
-                    </div>
-                    @Html.Action("ContactUsForm", "Home")
-                </div>
-                <div class="col-md-6 mt-5 mb-3">
-                    @Html.Raw(Model.Map.Description)
-                </div>
-            }
-            else
-            {
-                <div class="col-md-12 mt-5 mb-3">
-                    @Html.Raw(Model.Map.Description)
-                </div>
-            }
-        </div>
-    </div>*@
-
-
-@*<footer class="footer">
-    <div class="container">
-        <div class="row footer-row">
-            <div class="col-md-6 col-xs-12">
-                <img src="~/Content/client/wp-content/themes/uniqo/img/footer-logo.png" class="footer-img" alt="">
-                <div>
-                    <p class="text-right">
-                        @Model.ShortDescription.ShortDescription
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-12 ">
-                <h2>لینک های مفید</h2>
-                <ul class="footer-list">
-                    <li><a href="~/home/index">خانه</a></li>
-                    <li><a href="~/home/products">محصولات</a></li>
-                    <li><a href="~/blog">بلاگ</a></li>
-                    <li><a href="~/home/about">درباره ما</a></li>
-                    <li><a href="~/home/contactUsForm">تماس با ما</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-xs-12 ">
-                <h2>اطلاعات تماس</h2>
-                <p class="footer-contact-txt">@Model.Address.ShortDescription</p>
-                <h4 class="footer-contact-title">پشیبانی</h4>
-                <p class="footer-contact-txt">
-                    @Model.SupportPhone.ShortDescription
-                </p>
-                <h4 class="footer-contact-title">ایمیل</h4>
-                <p class="footer-contact-txt">
-                    @Model.Email.ShortDescription
-                </p>
-            </div>
-        </div>
-        <p class="copy-right">   طراحی شده توسط <a href="https://www.spad.co/">اسپاد </a>© </p>
-
-    </div>
-
-</footer>*@
-
 
 
 <!-- footer -->

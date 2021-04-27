@@ -1,0 +1,65 @@
+﻿@model SpadStorePanel.Web.ViewModels.CartModel
+
+
+@{
+    int i = 0;
+
+    if (Model?.CartItems != null && Model.CartItems.Any())
+    {
+        foreach (var item in Model.CartItems)
+        {
+            i += @item.Quantity;
+        }
+    }
+}
+
+
+            <div class="block-minicart block-dreaming lynessa-mini-cart lynessa-dropdown">
+                <div class="shopcart-dropdown block-cart-link" data-lynessa="lynessa-dropdown">
+                    <a class="block-link link-dropdown" href="#">
+                        <span class="pe-7s-shopbag"></span>
+                        <span class="count">@i</span>
+                    </a>
+                </div>
+                <div class="widget lynessa widget_shopping_cart">
+                    <div class="closingbtn" style="width: 50px ; height: 50px ; position: absolute; right: 0 ; top:  0;">
+                        <i class="fa fa-close" style="font-size: 45px;"></i>
+
+                    </div>
+                    <div class="widget_shopping_cart_content">
+                        <h3 class="minicart-title">حساب شما<span class="minicart-number-items">3</span></h3>
+                        <ul class="lynessa-mini-cart cart_list product_list_widget">
+                            @if (Model?.CartItems != null && Model.CartItems.Any())
+                            {
+                                foreach (var item in Model.CartItems)
+                                {
+                                    <li class="lynessa-mini-cart-item mini_cart_item">
+                                        <a href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true')" class="remove remove_from_cart_button">×</a>
+                                        <a href="/Shop/Details/@item.Id">
+                                            <img src="~/Files/ProductImages/Image/@item.Image"
+                                                 class="attachment-lynessa_thumbnail size-lynessa_thumbnail"
+                                                 alt="@item.ProductName img" width="600" height="300px">@item.ProductName
+                                            </a>
+                                        <span class="quantity">
+                                            @item.Quantity × <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">$</span>@item.Price
+                                            </span>
+                                        </span>
+                                    </li>
+                                }
+                            }
+                                </ul>
+                        <p class="lynessa-mini-cart__total total">
+                            <strong>مجموع</strong>
+                            <span class="lynessa-Price-amount amount">
+                                <span class="lynessa-Price-currencySymbol">$</span>@Model.TotalPrice
+                            </span>
+                        </p>
+                        <p class="lynessa-mini-cart__buttons buttons">
+                            <a href="/Cart" class="button lynessa-forward">مشاهده سبد خرید</a>
+                            <a href="/Cart" class="button checkout lynessa-forward">تسویه حساب</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+

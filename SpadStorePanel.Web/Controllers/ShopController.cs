@@ -598,6 +598,8 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
 
+            ViewBag.Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone);
+
             try
             {
                 var cartModel = new CartModel();

@@ -14,7 +14,7 @@
         <h1 class="page-title"> @ViewBag.Title </h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
-                <li class="trail-item trail-begin"><a href=""><span>خانه</span></a></li>
+                <li class="trail-item trail-begin"><a href="~/Home"><span>خانه</span></a></li>
                 <li class="trail-item trail-end active">
                     <span> @ViewBag.Title </span>
                 </li>
@@ -133,13 +133,13 @@
                                 <table class="shop_table shop_table_responsive" cellspacing="0">
                                     <tbody>
                                         @*<tr class="cart-subtotal">
-                                                <th>قیمت واحد</th>
-                                                <td data-title="Subtotal">
-                                                    <span class="lynessa-Price-amount amount">
-                                                        <span class="lynessa-Price-currencySymbol">$</span>418.00
-                                                    </span>
-                                                </td>
-                                            </tr>*@
+                    <th>قیمت واحد</th>
+                    <td data-title="Subtotal">
+                        <span class="lynessa-Price-amount amount">
+                            <span class="lynessa-Price-currencySymbol">$</span>418.00
+                        </span>
+                    </td>
+                </tr>*@
                                         <tr class="order-total">
                                             <th>جمع کل</th>
                                             <td data-title="Total">
@@ -157,7 +157,21 @@
                                        class="checkout-button button alt lynessa-forward">
                                         پرداخت
                                     </a>
+
                                 </div>
+                                <div class="lynessa-proceed-to-checkout">
+                                    <div style="font-size:large; direction: rtl;">
+                                        @Html.Raw(ViewBag.Phone.Description)
+                                    </div>
+                                    <div class="lynessa-proceed-to-checkout">
+                                        <a style="color:aliceblue;" class="checkout-button button alt lynessa-forward">
+
+                                            @ViewBag.Phone.ShortDescription
+                                        </a>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
