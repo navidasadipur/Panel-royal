@@ -2339,23 +2339,18 @@
     <Content Include="Files\ArticleImages\Thumb\67b82616-1101-4cb9-96ec-ac40a019795b.png" />
     <Content Include="Files\ArticleImages\Thumb\c2e50ba8-473a-4a90-9f1b-a72827a89bcd.jpg" />
     <Content Include="Files\ArticleImages\Thumb\e2ba42fb-b42f-4283-a08d-0f34a460fd2f.png" />
-    <Content Include="Files\BrandsImages\112fb6a6-f658-44e5-b4bb-67ab393d49a3.jpg" />
     <Content Include="Files\GalleryImages\30430c5d-3c94-4837-b55d-02f94c9d1856.jpg" />
     <Content Include="Files\GalleryImages\5e15f24a-0f87-470f-bcda-1ad269195bf8.png" />
     <Content Include="Files\OffersImages\b7067cd2-7276-4a0b-82b3-f1efab2abb81.png" />
     <Content Include="Files\OurTeamImages\4d9a209d-f720-495a-b084-762464257766.png" />
     <Content Include="Files\PartnersImages\1491125a-3cfd-42e0-a915-ef30c9084a29.png" />
     <Content Include="Files\PartnersImages\8b7cf755-145e-4974-a427-7af5f78538d9.png" />
-    <Content Include="Files\ProductGroupImages\Image\036f047e-2481-44d7-b461-e677b00bc463.jpg" />
     <Content Include="Files\ProductGroupImages\Image\28bedf84-bc39-4beb-8e5f-0c84bb0ccd3d.jpg" />
-    <Content Include="Files\ProductGroupImages\Image\555db560-144a-4dfd-b837-ec5a55d84b57.jpg" />
     <Content Include="Files\ProductGroupImages\Image\84271219-cc7b-42ee-9273-d298d909c9f2.jpg" />
     <Content Include="Files\ProductGroupImages\Image\9ec533d8-38cc-481a-84df-8925d87a7cb0.jpg" />
     <Content Include="Files\ProductGroupImages\Image\db414942-f136-4d86-aafb-2a3dbc558eb4.jpg" />
     <Content Include="Files\ProductGroupImages\Image\f5e619f2-3c39-4194-b86b-3d6908da7cdf.jpg" />
-    <Content Include="Files\ProductGroupImages\Thumb\036f047e-2481-44d7-b461-e677b00bc463.jpg" />
     <Content Include="Files\ProductGroupImages\Thumb\28bedf84-bc39-4beb-8e5f-0c84bb0ccd3d.jpg" />
-    <Content Include="Files\ProductGroupImages\Thumb\555db560-144a-4dfd-b837-ec5a55d84b57.jpg" />
     <Content Include="Files\ProductGroupImages\Thumb\84271219-cc7b-42ee-9273-d298d909c9f2.jpg" />
     <Content Include="Files\ProductGroupImages\Thumb\9ec533d8-38cc-481a-84df-8925d87a7cb0.jpg" />
     <Content Include="Files\ProductGroupImages\Thumb\db414942-f136-4d86-aafb-2a3dbc558eb4.jpg" />
@@ -2366,7 +2361,6 @@
     <Content Include="Files\ProductImages\Image\a33d46f5-0385-479f-9b00-3adb2d3bf53e.jpg" />
     <Content Include="Files\ProductImages\Image\ce4808f6-ce7f-412e-b059-7646e80c1f65.jpg" />
     <Content Include="Files\ProductImages\Image\d3b551c3-c20c-480a-af9d-264c2b0e10e8.jpg" />
-    <Content Include="Files\ProductImages\ProductGallery\1260e560-2ad1-4c1b-95ff-bda2a3f0e863.jpg" />
     <Content Include="Files\ProductImages\Thumb\06502a8a-0d04-4944-8c7b-adbd93308ff4.jpg" />
     <Content Include="Files\ProductImages\Thumb\16b59b67-0962-4f4e-b19c-e31d768fe962.jpg" />
     <Content Include="Files\ProductImages\Thumb\2f672cb1-db63-4766-a72c-aee0caba46ee.jpg" />
@@ -4896,6 +4890,7 @@
     <Content Include="Views\Cookie\CartSection.cshtml" />
     <Content Include="Views\Shop\Test.cshtml" />
     <Content Include="Views\Cookie\CartSectionMobile.cshtml" />
+    <Content Include="Views\Shared\FooterNewsEmailForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4904,6 +4899,7 @@
     <Folder Include="Files\BrandsImages\Temp\" />
     <Folder Include="Files\OffersImages\Temp\" />
     <Folder Include="Files\ProductGroupImages\Temp\" />
+    <Folder Include="Files\ProductImages\ProductGallery\" />
     <Folder Include="Files\ProductImages\Temp\" />
     <Folder Include="Files\Services\File\" />
     <Folder Include="Files\Services\Image\" />

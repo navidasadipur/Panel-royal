@@ -147,6 +147,15 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(footerContent);
         }
 
+        public ActionResult FooterNewsEmailForm()
+        {
+
+
+            var staticContent = _staticContentDetailsRepo.Get((int)StaticContents.DiscountNews);
+
+            return PartialView(staticContent);
+        }
+
         [Route("Gallery")]
         public ActionResult GalleryPage()
         {

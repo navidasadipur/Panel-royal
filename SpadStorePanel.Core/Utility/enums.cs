@@ -41,7 +41,9 @@ namespace SpadStorePanel.Core.Utility
         companyServices = 3003,
         CopyRight = 3004,
         ImplementaitonService = 3005,
-        
+
+        DiscountNews = 5027,
+
         Logo = 3,
         BackGroundImage = 4022,
     }

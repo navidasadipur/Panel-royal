@@ -1,0 +1,28 @@
+﻿@model SpadStorePanel.Core.Models.StaticContentDetail
+
+<div class="section-001 section-009">
+    <div class="container">
+        <div class="lynessa-newsletter style-01">
+            <div class="newsletter-inner">
+                <div class="newsletter-info">
+                    <div class="newsletter-wrap">
+                        <h3 class="title">@Model.Title<span></span></h3>
+                        <h4 class="subtitle">@Model.ShortDescription</h4>
+                        <p class="desc">
+                            @Html.Raw(Model.Description)
+                        </p>
+                    </div>
+                </div>
+                <div class="newsletter-form-wrap">
+                    <div class="newsletter-form-inner">
+                        <input class="email email-newsletter" name="email" placeholder="ایمیل خود را وارد کنید..."
+                               type="email">
+                        <a href="#" class="button btn-submit submit-newsletter">
+                            <span class="text">ارسال</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
