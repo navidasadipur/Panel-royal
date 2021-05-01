@@ -173,9 +173,12 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
 
-            var aboutViewModel = new AboutViewModel();
 
-            return PartialView(aboutViewModel);
+            var about = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.About);
+
+
+
+            return PartialView(about);
         }
 
         public ActionResult OurTeamsSection()

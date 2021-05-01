@@ -413,17 +413,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return View(vm);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
-
-            var aboutViewModel = new AboutViewModel();
-
-            //aboutViewModel.AboutDescription = _contentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.CompanyHistory).FirstOrDefault().Description;
-
-            return PartialView(aboutViewModel);
-        }
-
         public ActionResult UploadImage(HttpPostedFileBase upload, string CKEditorFuncNum, string CKEditor, string langCode)
         {
             string vImagePath = String.Empty;

@@ -39,11 +39,6 @@ namespace SpadStorePanel.Web.ViewModels
         public List<Product> Products { get; set; }
     }
 
-    public class AboutViewModel
-    {
-        [DataType(DataType.MultilineText)]
-        public string AboutDescription { get; set; }
-    }
     public class FooterViewModel
     {
         public StaticContentDetail Phone { get; set; }

@@ -26,6 +26,7 @@ namespace SpadStorePanel.Core.Utility
 
     public enum StaticContents
     {
+        About = 5028,
         Phone = 1005,
         Map = 2005,
         Address = 6,
