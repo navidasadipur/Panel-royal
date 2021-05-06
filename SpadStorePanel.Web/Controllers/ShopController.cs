@@ -587,8 +587,6 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
 
-            ViewBag.Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone);
-
             try
             {
                 var cartModel = new CartModel();
@@ -625,6 +623,23 @@ namespace SpadCompanyPanel.Web.Controllers
                 return View(cartModel);
 
             }
+        }
+
+        public ActionResult CartTable()
+        {
+            var cartModel = new CartModel();
+
+            HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+            if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+            {
+                string cartJsonStr = cartCookie.Values["cart"];
+                cartModel = new CartModel(cartJsonStr);
+            }
+
+            ViewBag.Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone);
+
+            return PartialView(cartModel);
         }
 
         //[Route("Cart/")]

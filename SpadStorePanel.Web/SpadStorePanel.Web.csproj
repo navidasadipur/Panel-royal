@@ -4891,6 +4891,7 @@
     <Content Include="Views\Shop\Test.cshtml" />
     <Content Include="Views\Cookie\CartSectionMobile.cshtml" />
     <Content Include="Views\Shared\FooterNewsEmailForm.cshtml" />
+    <Content Include="Views\Shop\CartTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
