@@ -1,210 +1,214 @@
 ﻿@model SpadStorePanel.Web.ViewModels.ProductDetailsViewModel
 @{
-    //ViewBag.Title = Model.Title;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	//ViewBag.Title = Model.Title;
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <style>
-        .addedToCart {
+	<style>
+		.addedToCart {
 	font-weight: normal;
 	display: inline-block;
 	vertical-align: top;
 	margin-right: 9px;
 	content: "\e66e";
-    background-color: #16636b;
+	background-color: #16636b;
 	color: #fff;
-    padding: 9px;
-    margin: 9px;
+	padding: 9px;
+	margin: 9px;
 	/*border-color: transparent;*/
 }
-    </style>
+	</style>
 
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div class="single-thumb-vertical main-container shop-page no-sidebar">
-        <div class="container">
-            <div class="row">
-                <div class="main-content col-md-12">
-                    <div class="lynessa-notices-wrapper"></div>
-                    <div id="product-27"
-                         class="post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock first instock shipping-taxable purchasable product-type-variable has-default-attributes">
-                        <div class="main-contain-summary">
-                            <div class="contain-left has-gallery">
-                                @Html.Action("ProductGallerySection", "Shop", new { productId = "15" })
-                                <div class="summary entry-summary">
-                                    <div class="flash">
-                                        <span class="onnew"><span class="text">جدید</span></span>
-                                    </div>
-                                    <h1 class="product_title entry-title"> @Model.Title</h1>
-                                    <p class="price">
-                                        @{
-                                            var maxPrice = new long();
-                                            var minPrice = new long();
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<div class="single-thumb-vertical main-container shop-page no-sidebar">
+		<div class="container">
+			<div class="row">
+				<div class="main-content col-md-12">
+					<div class="lynessa-notices-wrapper"></div>
+					<div id="product-27"
+						 class="post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock first instock shipping-taxable purchasable product-type-variable has-default-attributes">
+						<div class="main-contain-summary">
+							<div class="contain-left has-gallery">
+								@Html.Action("ProductGallerySection", "Shop", new { productId = "15" })
+								<div class="summary entry-summary">
+									<div class="flash">
+										<span class="onnew"><span class="text">جدید</span></span>
+									</div>
+									<h1 class="product_title entry-title"> @Model.Title</h1>
+									<p class="price">
+										@{
+											var maxPrice = new long();
+											var minPrice = new long();
 
-                                            if (Model.ProductMainFeatures.Count() > 0)
-                                            {
-                                                maxPrice = Model.ProductMainFeatures.Max(f => f.Price);
-                                                minPrice = Model.ProductMainFeatures.Min(f => f.Price);
+											if (Model.ProductMainFeatures.Count() > 0)
+											{
+												maxPrice = Model.ProductMainFeatures.Max(f => f.Price);
+												minPrice = Model.ProductMainFeatures.Min(f => f.Price);
 
-                                                <span class="lynessa-Price-amount amount">
-                                                    <span class="lynessa-Price-currencySymbol">$</span> @minPrice
-                                                </span>
-                                                <text> – </text>
-                                                <span class="lynessa-Price-amount amount">
-                                                    <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
-                                                </span>
-                                            }
-                                        }
+												<span class="lynessa-Price-amount amount">
+													<span class="lynessa-Price-currencySymbol">$</span> @minPrice
+												</span>
+												<text> – </text>
+												<span class="lynessa-Price-amount amount">
+													<span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+												</span>
+											}
+										}
 
-                                    </p>
-                                    <p class="stock in-stock">
-                                        @{
-                                            var inventory = "نا موجود";
-                                            foreach (var item in Model.ProductMainFeatures)
-                                            {
-                                                if (item.Quantity > 0)
-                                                {
-                                                    inventory = "موجود";
-                                                }
-                                            }
+									</p>
+									<p class="stock in-stock">
+										@{
+											var inventory = "نا موجود";
+											foreach (var item in Model.ProductMainFeatures)
+											{
+												if (item.Quantity > 0)
+												{
+													inventory = "موجود";
+												}
+											}
 
-                                        }
-                                        موجودی <span> @inventory </span>
-                                    </p>
-                                    <div class="lynessa-product-details__short-description">
-                                        @Html.Raw(Model.Description)
+										}
+										موجودی <span> @inventory </span>
+									</p>
+									<div class="lynessa-product-details__short-description">
+										@Html.Raw(Model.Description)
 
-                                    </div>
+									</div>
 
 
-                                    @Html.Action("AddToCartSection", "Shop", new { productId = Model.Id })
-                                   
-                            @*<div class="yith-wcwl-add-to-wishlist">
-                        <div class="yith-wcwl-add-button show">
-                            <a href="#" rel="nofollow"
-                               data-product-id="27" data-product-type="variable" class="add_to_wishlist">
-                                علاقه مندی ها
-                            </a>
-                        </div>
-                    </div>*@
-                            @*<div class="clear"></div>
-                    <a href="#"
-                       class="compare button" data-product_id="27" rel="nofollow">مقایسه</a>*@
-                            <div class="product_meta">
-                                <div class="wcml-dropdown product wcml_currency_switcher">
-                                    <ul>
-                                        <li class="wcml-cs-active-currency">
-                                            <a class="wcml-cs-item-toggle">USD</a>
-                                            <ul class="wcml-cs-submenu">
-                                                <li>
-                                                    <a>EUR</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+									@Html.Action("AddToCartSection", "Shop", new { productId = Model.Id })
+								   
+							@*<div class="yith-wcwl-add-to-wishlist">
+						<div class="yith-wcwl-add-button show">
+							<a href="#" rel="nofollow"
+							   data-product-id="27" data-product-type="variable" class="add_to_wishlist">
+								علاقه مندی ها
+							</a>
+						</div>
+					</div>*@
+							@*<div class="clear"></div>
+					<a href="#"
+					   class="compare button" data-product_id="27" rel="nofollow">مقایسه</a>*@
+							<div class="product_meta">
+								<div class="wcml-dropdown product wcml_currency_switcher">
+									<ul>
+										<li class="wcml-cs-active-currency">
+											<a class="wcml-cs-item-toggle">USD</a>
+											<ul class="wcml-cs-submenu">
+												<li>
+													<a>EUR</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
 
-                                <span class="posted_in">
-                                    دسته بندی:
-                                    <a href="#" rel="tag">@Model.ProductGroup.Title</a>
-                                </span>
-                                <span class="tagged_as">
-                                    برچسب ها:
-                                    @{
-                                        for (int i = 0; i < Model.Tags.Count; i++)
-                                        {
-                                            <a href="#" rel="tag"> @Model.Tags[i].Title </a>
-                                            if (i < Model.Tags.Count - 1)
-                                            {
-                                                <text>,</text>
-                                            }
-                                        }
-                                    }
-                                </span>
-                            </div>           
-                            <div class="row">
-                            @if (Model.IsAddedToCart)
-                            {
-                                <div class="addedToCart col-12" role="alert">
-                                    محصول مورد نظر شما به سبد خرید اظافه شد
-                                </div>
-                            }
-                            </div>
-                            @Html.Action("SocialsSection", "Shop")
+								<span class="posted_in">
+									دسته بندی:
+									<a href="#" rel="tag">@Model.ProductGroup.Title</a>
+								</span>
+								<span class="tagged_as">
+									برچسب ها:
+									@{
+										for (int i = 0; i < Model.Tags.Count; i++)
+										{
+											<a href="#" rel="tag"> @Model.Tags[i].Title </a>
+											if (i < Model.Tags.Count - 1)
+											{
+												<text>,</text>
+											}
+										}
+									}
+								</span>
+							</div>           
+							<div class="row">
+							@if (Model.IsAddedToCart)
+							{
+								<div class="addedToCart col-12" role="alert">
+									محصول مورد نظر شما به سبد خرید اظافه شد
+								</div>
+							}
+							</div>
+							@Html.Action("SocialsSection", "Shop")
 
-                        </div>
-                    </div>
-                </div>
-                <div class="lynessa-tabs lynessa-tabs-wrapper">
-                    <ul class="tabs dreaming-tabs" role="tablist">
-                        <li class="description_tab active" id="tab-title-description" role="tab"
-                            aria-controls="tab-description">
-                            <a href="#tab-description">توضیحات محصول</a>
-                        </li>
-                        <li class="additional_information_tab" id="tab-title-additional_information" role="tab"
-                            aria-controls="tab-additional_information">
-                            <a href="#tab-additional_information"> مشخصات</a>
-                        </li>
-                        <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
-                            <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
-                        </li>
-                    </ul>
-                    @Html.Action("ProductDescriptionsSection", "Shop", new { productId = Model.Id })
+						</div>
+					</div>
+				</div>
+				<div class="lynessa-tabs lynessa-tabs-wrapper">
+					<ul class="tabs dreaming-tabs" role="tablist">
+						<li class="description_tab active" id="tab-title-description" role="tab"
+							aria-controls="tab-description">
+							<a href="#tab-description">توضیحات محصول</a>
+						</li>
+						<li class="additional_information_tab" id="tab-title-additional_information" role="tab"
+							aria-controls="tab-additional_information">
+							<a href="#tab-additional_information"> مشخصات</a>
+						</li>
+						<li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
+							<a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
+						</li>
+					</ul>
+					@Html.Action("ProductDescriptionsSection", "Shop", new { productId = Model.Id })
 
-                    @Html.Action("ProductFeaturesSection", "Shop", new { productId = Model.Id })
-                    <div class="lynessa-Tabs-panel lynessa-Tabs-panel--reviews panel entry-content lynessa-tab"
-                         id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
-                        <div id="reviews" class="lynessa-Reviews">
-                            <div id="comments">
-                                <h2 class="lynessa-Reviews-title">نظرات</h2>
-                                @foreach (var item in Model.ProductComments.Where(c => c.ParentId == null))
-                                {
-                                    <div class="review-box">
-                                        <div class="review-user">
-                                            <div class="review-user-img">
-                                                <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="">
-                                                <div class="reviewer-name">
-                                                    <p class="text-light-black fw-600">
-                                                        @item.Name
-                                                    </p><a onclick="AnswerComment(@item.Id,'@item.Name')" style="cursor: pointer" class="text-light-black"><i class="fas fa-reply text-black"></i> پاسخ دادن  </a>
-                                                </div>
-                                            </div>
-                                            <div class="review-date">
-                                                <span class="text-light-white">@item.AddedDate</span>
-                                            </div>
-                                        </div>
-                                        <p class="lynessa-noreviews">@item.Message</p>
-                                    </div>
-                                    foreach (var child in Model.ProductComments.Where(c => c.ParentId == item.Id))
-                                    {
-                                        <div class="review-box comment-reply">
-                                            <div class="review-user">
-                                                <div class="review-user-img">
-                                                    <img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@child.Name">
-                                                    <div class="reviewer-name">
-                                                        <p class="text-light-black fw-600">
-                                                            @child.Name
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="review-date">
-                                                    <span class="text-light-white">@child.AddedDate</span>
-                                                </div>
-                                            </div>
-                                            <p class="text-light-black">@child.Message</p>
-                                        </div>
-                                    }
-                                }
-                            </div>
-                            <div id="review_form_wrapper">
-                                <div id="review_form">
+					@Html.Action("ProductFeaturesSection", "Shop", new { productId = Model.Id })
+					<div class="lynessa-Tabs-panel lynessa-Tabs-panel--reviews panel entry-content lynessa-tab"
+						 id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
+						<div id="reviews" class="lynessa-Reviews">
+							<div id="comments">
+								<h2 class="lynessa-Reviews-title">نظرات</h2>
+								@foreach (var item in Model.ProductComments.Where(c => c.ParentId == null))
+								{
+									<div class="review-box">
+										<div class="review-user">
+											<div class="review-user-img">
+												<img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="">
+												<p class="text-light-black fw-600"> نام: @item.Name</p>
+												@*<div class="reviewer-name">
+													<p class="text-light-black fw-600">
+														@item.Name
+													</p><a onclick="AnswerComment(@item.Id,'@item.Name')" style="cursor: pointer" class="text-light-black"><i class="fas fa-reply text-black"></i> پاسخ دادن  </a>
+												</div>*@
+											</div>
+											<div class="review-date">
+												<span class="text-light-white">@item.AddedDate</span>
+											</div>
+										</div>
+										<p class="lynessa-noreviews">@item.Message</p>
+									</div>
+									foreach (var child in Model.ProductComments.Where(c => c.ParentId == item.Id))
+									{
+										<div class="review-box comment-reply">
+											<div class="review-user">
+												<div class="review-user-img">
+													<img src="/Files/UserAvatars/user-avatar.png" style="width: 50px" class="rounded-circle" alt="@child.Name">
+													<div class="reviewer-name">
+														<p class="text-light-black fw-600">
+															@child.Name
+														</p>
+													</div>
+												</div>
+												<div class="review-date">
+													<span class="text-light-white">@child.AddedDate</span>
+												</div>
+											</div>
+											<p class="text-light-black">@child.Message</p>
+										</div>
+									}
+								}
+							</div>
+							<div id="review_form_wrapper">
+								<div id="review_form">
                                     <div id="respond" class="comment-respond">
                                         <span id="reply-title" class="comment-reply-title">نظر خود را ثبت کنید</span>
-  
+                                        @using (Html.BeginForm("PostComment", "Shop", FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
+                                        {
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.AntiForgeryToken()
                                             <input type="hidden" id="ProductId" name="ProductId" value="@Model.Id">
                                             <input type="hidden" id="ParentId" name="ParentId" value="">
                                             <p class="comment-form-author">
@@ -255,267 +259,268 @@
                                                        value="ثبت نظر" type="submit"> <input name="comment_post_ID" value="27" id="comment_post_ID"
                                                                                              type="hidden">
                                                 @*<input name="comment_parent" id="comment_parent" value="0"
-                                        type="hidden">*@
+                type="hidden">*@
                                             </p>
                                         }
-                                    </div><!-- #respond -->
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            @Html.Action("RelatedProductsSection", "Shop", new { productId = Model.Id, })
-            
 
-            @*<div class="col-md-12 col-sm-12 lynessa_dreaming_upsell-product">
-        <div class="block-title">
-            <h2 class="product-grid-title">
-                پر فروش ترین ها
-                <span></span>
-            </h2>
-        </div>
-        <div class="owl-slick owl-products equal-container better-height"
-             data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
-             data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
-            <div class="product-item style-01 post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock  instock shipping-taxable purchasable product-type-variable has-default-attributes ">
-                <div class="product-inner tooltip-left">
-                    <div class="product-thumb">
-                        <a class="thumb-link"
-                           href="#" tabindex="0">
-                            <img class="img-responsive"
-                                 src="~/Content/client/images/12.jpg"
-                                 alt="ELOISE SHIRRED" width="600" height="778">
-                        </a>
-                        <div class="flash">
-                            <span class="onnew"><span class="text">جدید</span></span>
-                        </div>
-                        <div class="group-button">
-                            <div class="yith-wcwl-add-to-wishlist">
-                                <div class="yith-wcwl-add-button show">
-                                    <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
-                                </div>
-                            </div>
+                                        </div><!-- #respond -->
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			@Html.Action("RelatedProductsSection", "Shop", new { productId = Model.Id, })
+			
 
-                            <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
-                            <div class="add-to-cart">
-                                <a href="#" class="button product_type_external add_to_cart_button">
-                                    Buy
-                                    it on Amazon
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info equal-elem">
-                        <h3 class="product-name product_title">
-                            <a href="#" tabindex="0">رویال</a>
-                        </h3>
-                        <div class="rating-wapper ">
-                            <div class="star-rating">
-                                <span style="width:100%">
-                                    Rated <strong class="rating">5.00</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="review">(1)</span>
-                        </div>
-                        <span class="price">
-                            <span class="lynessa-Price-amount amount">
-                                <span class="lynessa-Price-currencySymbol">$</span>207.00
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="product-item style-01 post-26 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-hat last instock featured shipping-taxable product-type-external  ">
-                <div class="product-inner tooltip-left">
-                    <div class="product-thumb">
-                        <a class="thumb-link" href="#"
-                           tabindex="0">
-                            <img class="img-responsive"
-                                 src="~/Content/client/images/13.jpg"
-                                 alt="KNIT CARDIGAN" width="600" height="778">
-                        </a>
-                        <div class="flash">
-                            <span class="onnew"><span class="text">جدید</span></span>
-                        </div>
-                        <div class="group-button">
-                            <div class="yith-wcwl-add-to-wishlist">
-                                <div class="yith-wcwl-add-button show">
-                                    <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
-                                </div>
-                            </div>
+			@*<div class="col-md-12 col-sm-12 lynessa_dreaming_upsell-product">
+		<div class="block-title">
+			<h2 class="product-grid-title">
+				پر فروش ترین ها
+				<span></span>
+			</h2>
+		</div>
+		<div class="owl-slick owl-products equal-container better-height"
+			 data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
+			 data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
+			<div class="product-item style-01 post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock  instock shipping-taxable purchasable product-type-variable has-default-attributes ">
+				<div class="product-inner tooltip-left">
+					<div class="product-thumb">
+						<a class="thumb-link"
+						   href="#" tabindex="0">
+							<img class="img-responsive"
+								 src="~/Content/client/images/12.jpg"
+								 alt="ELOISE SHIRRED" width="600" height="778">
+						</a>
+						<div class="flash">
+							<span class="onnew"><span class="text">جدید</span></span>
+						</div>
+						<div class="group-button">
+							<div class="yith-wcwl-add-to-wishlist">
+								<div class="yith-wcwl-add-button show">
+									<a href="#" class="add_to_wishlist">علاقه مندی ها</a>
+								</div>
+							</div>
 
-                            <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
-                            <div class="add-to-cart">
-                                <a href="#" class="button product_type_simple add_to_cart_button">سبد خرید</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info equal-elem">
-                        <h3 class="product-name product_title">
-                            <a href="#" tabindex="0">رویال</a>
-                        </h3>
-                        <div class="rating-wapper nostar">
-                            <div class="star-rating">
-                                <span style="width:0%">
-                                    Rated <strong class="rating">0</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="review">(0)</span>
-                        </div>
-                        <span class="price">
-                            <span class="lynessa-Price-amount amount">
-                                <span class="lynessa-Price-currencySymbol">$</span>120.00
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="product-item style-01 post-37 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-bed product_tag-light product_tag-hat product_tag-sock first instock shipping-taxable purchasable product-type-simple  ">
-                <div class="product-inner tooltip-left">
-                    <div class="product-thumb">
-                        <a class="thumb-link lynessa-product-gallery__image"
-                           href="#"
-                           tabindex="0">
-                            <img class="img-responsive wp-post-image"
-                                 src="~/Content/client/images/14.jpg"
-                                 alt="WIDE PANTS" width="600" height="778">
-                        </a>
-                        <div class="flash">
-                            <span class="onnew"><span class="text">جدید</span></span>
-                        </div>
-                        <div class="group-button">
-                            <div class="yith-wcwl-add-to-wishlist">
-                                <div class="yith-wcwl-add-button show">
-                                    <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
-                                </div>
-                            </div>
+							<a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+							<div class="add-to-cart">
+								<a href="#" class="button product_type_external add_to_cart_button">
+									Buy
+									it on Amazon
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="product-info equal-elem">
+						<h3 class="product-name product_title">
+							<a href="#" tabindex="0">رویال</a>
+						</h3>
+						<div class="rating-wapper ">
+							<div class="star-rating">
+								<span style="width:100%">
+									Rated <strong class="rating">5.00</strong> out of 5
+								</span>
+							</div>
+							<span class="review">(1)</span>
+						</div>
+						<span class="price">
+							<span class="lynessa-Price-amount amount">
+								<span class="lynessa-Price-currencySymbol">$</span>207.00
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="product-item style-01 post-26 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-hat last instock featured shipping-taxable product-type-external  ">
+				<div class="product-inner tooltip-left">
+					<div class="product-thumb">
+						<a class="thumb-link" href="#"
+						   tabindex="0">
+							<img class="img-responsive"
+								 src="~/Content/client/images/13.jpg"
+								 alt="KNIT CARDIGAN" width="600" height="778">
+						</a>
+						<div class="flash">
+							<span class="onnew"><span class="text">جدید</span></span>
+						</div>
+						<div class="group-button">
+							<div class="yith-wcwl-add-to-wishlist">
+								<div class="yith-wcwl-add-button show">
+									<a href="#" class="add_to_wishlist">علاقه مندی ها</a>
+								</div>
+							</div>
 
-                            <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
-                            <div class="add-to-cart">
-                                <a href="#" class="button product_type_simple add_to_cart_button">سبد خرید</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info equal-elem">
-                        <h3 class="product-name product_title">
-                            <a href="#"
-                               tabindex="0">رویال</a>
-                        </h3>
-                        <div class="rating-wapper nostar">
-                            <div class="star-rating">
-                                <span style="width:0%">
-                                    Rated <strong class="rating">0</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="review">(0)</span>
-                        </div>
-                        <span class="price">
-                            <span class="lynessa-Price-amount amount">
-                                <span class="lynessa-Price-currencySymbol">$</span>56.00
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="product-item style-01 post-1194 product_variation type-product_variation status-publish has-post-thumbnail product  instock shipping-taxable purchasable product-type-variation ">
-                <div class="product-inner tooltip-left">
-                    <div class="product-thumb">
-                        <a class="thumb-link"
-                           href="#" tabindex="-1">
-                            <img class="img-responsive"
-                                 src="~/Content/client/images/12.jpg"
-                                 alt="MARIE CAMI" width="600" height="778">
-                        </a>
-                        <div class="flash">
-                            <span class="onnew"><span class="text">جدید</span></span>
-                        </div>
-                        <div class="group-button">
-                            <div class="yith-wcwl-add-to-wishlist">
-                                <div class="yith-wcwl-add-button show">
-                                    <a href="#" class="add_to_wishlist">علاقه مندی ها</a>
-                                </div>
-                            </div>
+							<a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+							<div class="add-to-cart">
+								<a href="#" class="button product_type_simple add_to_cart_button">سبد خرید</a>
+							</div>
+						</div>
+					</div>
+					<div class="product-info equal-elem">
+						<h3 class="product-name product_title">
+							<a href="#" tabindex="0">رویال</a>
+						</h3>
+						<div class="rating-wapper nostar">
+							<div class="star-rating">
+								<span style="width:0%">
+									Rated <strong class="rating">0</strong> out of 5
+								</span>
+							</div>
+							<span class="review">(0)</span>
+						</div>
+						<span class="price">
+							<span class="lynessa-Price-amount amount">
+								<span class="lynessa-Price-currencySymbol">$</span>120.00
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="product-item style-01 post-37 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-bed product_tag-light product_tag-hat product_tag-sock first instock shipping-taxable purchasable product-type-simple  ">
+				<div class="product-inner tooltip-left">
+					<div class="product-thumb">
+						<a class="thumb-link lynessa-product-gallery__image"
+						   href="#"
+						   tabindex="0">
+							<img class="img-responsive wp-post-image"
+								 src="~/Content/client/images/14.jpg"
+								 alt="WIDE PANTS" width="600" height="778">
+						</a>
+						<div class="flash">
+							<span class="onnew"><span class="text">جدید</span></span>
+						</div>
+						<div class="group-button">
+							<div class="yith-wcwl-add-to-wishlist">
+								<div class="yith-wcwl-add-button show">
+									<a href="#" class="add_to_wishlist">علاقه مندی ها</a>
+								</div>
+							</div>
 
-                            <a href="#" class="button yith-wcqv-button">نمایش محصول</a>
-                            <div class="add-to-cart">
-                                <a href="#" class="button product_type_simple add_to_cart_button">سبد خرید</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info equal-elem">
-                        <h3 class="product-name product_title">
-                            <a href="#"
-                               tabindex="-1">رویال</a>
-                        </h3>
-                        <div class="rating-wapper nostar">
-                            <div class="star-rating">
-                                <span style="width:0%">
-                                    Rated <strong class="rating">0</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="review">(0)</span>
-                        </div>
-                        <span class="price">
-                            <span class="lynessa-Price-amount amount">
-                                <span class="lynessa-Price-currencySymbol">$</span>79.00
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-            </div>
-        </div>
-    </div>
+							<a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+							<div class="add-to-cart">
+								<a href="#" class="button product_type_simple add_to_cart_button">سبد خرید</a>
+							</div>
+						</div>
+					</div>
+					<div class="product-info equal-elem">
+						<h3 class="product-name product_title">
+							<a href="#"
+							   tabindex="0">رویال</a>
+						</h3>
+						<div class="rating-wapper nostar">
+							<div class="star-rating">
+								<span style="width:0%">
+									Rated <strong class="rating">0</strong> out of 5
+								</span>
+							</div>
+							<span class="review">(0)</span>
+						</div>
+						<span class="price">
+							<span class="lynessa-Price-amount amount">
+								<span class="lynessa-Price-currencySymbol">$</span>56.00
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="product-item style-01 post-1194 product_variation type-product_variation status-publish has-post-thumbnail product  instock shipping-taxable purchasable product-type-variation ">
+				<div class="product-inner tooltip-left">
+					<div class="product-thumb">
+						<a class="thumb-link"
+						   href="#" tabindex="-1">
+							<img class="img-responsive"
+								 src="~/Content/client/images/12.jpg"
+								 alt="MARIE CAMI" width="600" height="778">
+						</a>
+						<div class="flash">
+							<span class="onnew"><span class="text">جدید</span></span>
+						</div>
+						<div class="group-button">
+							<div class="yith-wcwl-add-to-wishlist">
+								<div class="yith-wcwl-add-button show">
+									<a href="#" class="add_to_wishlist">علاقه مندی ها</a>
+								</div>
+							</div>
+
+							<a href="#" class="button yith-wcqv-button">نمایش محصول</a>
+							<div class="add-to-cart">
+								<a href="#" class="button product_type_simple add_to_cart_button">سبد خرید</a>
+							</div>
+						</div>
+					</div>
+					<div class="product-info equal-elem">
+						<h3 class="product-name product_title">
+							<a href="#"
+							   tabindex="-1">رویال</a>
+						</h3>
+						<div class="rating-wapper nostar">
+							<div class="star-rating">
+								<span style="width:0%">
+									Rated <strong class="rating">0</strong> out of 5
+								</span>
+							</div>
+							<span class="review">(0)</span>
+						</div>
+						<span class="price">
+							<span class="lynessa-Price-amount amount">
+								<span class="lynessa-Price-currencySymbol">$</span>79.00
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>*@
+			</div>
+		</div>
+	</div>
 
 
 
 
 <style>
-    .my-error-class {
-        color: #FF0000; /* red */
-    }
+	.my-error-class {
+		color: #FF0000; /* red */
+	}
 </style>
 @section Scripts {
-    @*@Scripts.Render("~/bundles/jqueryval")*@
-    <script>
-        $("#commentform").validate({
-            errorClass: "my-error-class",
-            rules: {
-                Name: "required",
-                Message: "required",
-                Email: {
-                    required: true,
-                    email: true
-                }
-            },
-            messages: {
-                Name: "نام خود را وارد کنید",
-                Message: "پیام خود را وارد کنید",
-                Email: {
-                    required: "ایمیل خود را وارد کنید",
-                    email: "ایمیل وارد شده معتبر نیست"
-                },
-            }
-        });
-    </script>
-    <script>
-        function AnswerComment(parentId, parentName) {
-            $('#reply-title').html("پاسخ دادن به   " + parentName + "<a class='btn btn-submit text-white' style='margin-right:10px;cursor:pointer' onclick='removePerson()'>حذف</a>");
-            $('#ParentId').val(parentId);
-        }
-        function removePerson() {
-            $('#reply-title').html("نظر بدهید");
-            $('#ParentId').val("");
-        }
-    </script>
-    <script>
-        $(document).ready(function(){
-            $("body").addClass('single');
-        });
-    </script>
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+	<script>
+		$("#commentform").validate({
+			errorClass: "my-error-class",
+			rules: {
+				Name: "required",
+				Message: "required",
+				Email: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				Name: "نام خود را وارد کنید",
+				Message: "پیام خود را وارد کنید",
+				Email: {
+					required: "ایمیل خود را وارد کنید",
+					email: "ایمیل وارد شده معتبر نیست"
+				},
+			}
+		});
+	</script>
+	<script>
+		function AnswerComment(parentId, parentName) {
+			$('#reply-title').html("پاسخ دادن به   " + parentName + "<a class='btn btn-submit text-white' style='margin-right:10px;cursor:pointer' onclick='removePerson()'>حذف</a>");
+			$('#ParentId').val(parentId);
+		}
+		function removePerson() {
+			$('#reply-title').html("نظر بدهید");
+			$('#ParentId').val("");
+		}
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("body").addClass('single');
+		});
+	</script>
 }
