@@ -9,15 +9,14 @@
         @foreach (var group in Model)
         {
             <li class="cat-item cat-item-@group.Id">
-
                 <label>
                     <a href="javascript:void(0);" onclick="UpdateGroup(@group.Id)">
                         <input type="checkbox" id="checkbox-@group.Id"
                                name="cate" value="@group.Id"><span>@group.Title</span>
                             <span class="count">(@group.ProductCount)</span>
-                        </a>
-                    </label>
-                </li>
+                    </a>
+                </label>
+            </li>
             }
 
     </ul>
