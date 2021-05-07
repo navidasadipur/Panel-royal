@@ -120,7 +120,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 var newFileName = Guid.NewGuid() + Path.GetExtension(File.FileName);
                 File.SaveAs(Server.MapPath("/Files/ProductGroupImages/Temp/" + newFileName));
                 // Resize Image
-                ImageResizer image = new ImageResizer(850, 400, true);
+                ImageResizer image = new ImageResizer(600, 600, true);
                 image.Resize(Server.MapPath("/Files/ProductGroupImages/Temp/" + newFileName),
                     Server.MapPath("/Files/ProductGroupImages/Image/" + newFileName));
 
