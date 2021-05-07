@@ -3,28 +3,31 @@
 <div class="section-013 section-001">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model)
+            @if (Model != null)
             {
-                <div class="col-md-4">
-                    <div class="lynessa-banner style-03 left-center">
-                        <div class="banner-inner">
-                            <figure class="banner-thumb">
-                                <img src="~/Files/StaticContentImages/Image/@item.Image"
-                                     class="attachment-full size-full" alt="@item.Title">
-                            </figure>
-                            <div class="banner-info ">
-                                <div class="banner-content">
-                                    <div class="title-wrap">
-                                        <h6 class="title">
-                                            <a target="_self" href="@item.Link"> بیشتر</a>
-                                        </h6>
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="lynessa-banner style-03 left-center">
+                            <div class="banner-inner">
+                                <figure class="banner-thumb">
+                                    <img src="~/Files/StaticContentImages/Image/@item.Image"
+                                         class="attachment-full size-full" alt="@item.Title">
+                                </figure>
+                                <div class="banner-info ">
+                                    <div class="banner-content">
+                                        <div class="title-wrap">
+                                            <h6 class="title">
+                                                <a target="_self" href="@item.Link"> بیشتر</a>
+                                            </h6>
+                                        </div>
+                                        <div class="cate"> @item.Title </div>
                                     </div>
-                                    <div class="cate"> @item.Title </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             }
 
         </div>
