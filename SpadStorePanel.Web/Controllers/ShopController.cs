@@ -293,6 +293,30 @@ namespace SpadCompanyPanel.Web.Controllers
             return View(productDetailsVm);
         }
 
+        [HttpPost]
+        [Route("PostComment")]
+        public ActionResult PostComment(ProductCommentFormViewModel form)
+        {
+            if (ModelState.IsValid)
+            {
+                var comment = new ProductComment()
+                {
+                    ProductId = form.ProductId,
+                    ParentId = form.ParentId,
+                    Name = form.Name,
+                    Email = form.Email,
+                    Message = form.Message,
+                    AddedDate = DateTime.Now,
+                };
+                _productsRepo.AddComment(comment);
+                return RedirectToAction("ContactUsSummary", "Home");
+            }
+
+            var postTitle = _productsRepo.Get(form.ProductId).Title;
+
+            return RedirectToAction("Details", new { id = form.ProductId });
+        }
+
         public ActionResult AddToCartSection(int id)
         {
             //_productsRepo.UpdateProductViewCount(id);
@@ -350,30 +374,6 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return RedirectToAction("Details", new { id = productId, isAddedToCart = isAddedToCart });
         }
-
-        [HttpPost]
-        public ActionResult PostComment(ProductCommentFormViewModel form)
-        {
-            if (ModelState.IsValid)
-            {
-                var comment = new ProductComment()
-                {
-                    ProductId = form.ProductId,
-                    ParentId = form.ParentId,
-                    Name = form.Name,
-                    Email = form.Email,
-                    Message = form.Message,
-                    AddedDate = DateTime.Now,
-                };
-                _productsRepo.AddComment(comment);
-                return RedirectToAction("ContactUsSummary", "Home");
-            }
-
-            var postTitle = _productsRepo.Get(form.ProductId).Title;
-
-            return RedirectToAction("Details", new { id = form.ProductId });
-        }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
