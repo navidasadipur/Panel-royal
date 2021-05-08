@@ -74,12 +74,16 @@
                     </h3>
                     <div class="rating-wapper nostar">
                         <div class="star-rating">
-                            @{var persentageRate = (item.Rate * 100) / 5;}
-                            <span style="width:@persentageRate%">
-                                Rated <strong class="rating">@item.Rate</strong> out of 5
-                            </span>
+                            @{
+                                var rate = (item.Rate < 6 ? item.Rate : 5);
+                                rate = (rate > 0 ? rate : 0);
+                                var ratingPercentage = (item.Rate * 100) / 5;
+                                <span style="width:@ratingPercentage%">
+                                    Rated <strong class="rating">@item.Rate</strong> out of 5
+                                </span>
+                            }
                         </div>
-                        <span class="review">(0)</span>
+                        <span class="review">(@item.CommentCounter)</span>
                     </div>
 
                     <span class="price">

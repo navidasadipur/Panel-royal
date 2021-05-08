@@ -27,6 +27,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ProductGroupsRepository _productGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
         private readonly ProductService _productService;
+        private readonly ProductCommentsRepository _productCommentsRepository;
 
         public ShopController(
             ProductGalleriesRepository productGalleryRepo,
@@ -39,7 +40,8 @@ namespace SpadCompanyPanel.Web.Controllers
             //GalleryVideosRepository galleryVideosRepo,
             ProductGroupsRepository productGroupRepo,
             StaticContentDetailsRepository staticContentDetailsRepo,
-            ProductService productService
+            ProductService productService,
+            ProductCommentsRepository productCommentsRepo
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -53,6 +55,7 @@ namespace SpadCompanyPanel.Web.Controllers
             this._productGroupsRepo = productGroupRepo;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
             this._productService = productService;
+            this._productCommentsRepository = productCommentsRepo;
         }
 
         //public ActionResult Test()
@@ -269,28 +272,74 @@ namespace SpadCompanyPanel.Web.Controllers
         {
             //_productsRepo.UpdateProductViewCount(id);
 
+            //var product = _productsRepo.GetProduct(id);
+            //var productMainFeatures = _productMainFeaturesRepo.GetProductMainFeatures(id);
+
+            //if (product == null)
+            //{
+            //    return new HttpNotFoundResult();
+            //}
+
+            //var productDetailsVm = new ProductDetailsViewModel(product);
+
+            //productDetailsVm.IsAddedToCart = isAddedToCart;
+
             var product = _productsRepo.GetProduct(id);
-
-            if (product == null)
-            {
-                return new HttpNotFoundResult();
-            }
-
-            var productDetailsVm = new ProductDetailsViewModel(product);
-
-            productDetailsVm.IsAddedToCart = isAddedToCart;
-
-            var productComments = _productsRepo.GetProductComments(id);
-
+            var productGallery = _productGalleryRepo.GetProductGalleries(id);
+            var productMainFeatures = _productMainFeaturesRepo.GetProductMainFeatures(id);
+            var productFeatureValues = _productFeatureValuesRepo.GetProductFeatures(id);
+            var price = _productService.GetProductPrice(product);
+            var priceAfterDiscount = _productService.GetProductPriceAfterDiscount(product);
+            var productComments = _productCommentsRepository.GetProductComments(id);
             var productCommentsVm = new List<ProductCommentViewModel>();
+
             foreach (var item in productComments)
                 productCommentsVm.Add(new ProductCommentViewModel(item));
-            productDetailsVm.ProductComments = productCommentsVm;
 
-            var productTags = _productsRepo.GetProductTags(id);
-            productDetailsVm.Tags = productTags;
+            var banner = "";
+            if (product.ProductGroupId != null)
+                banner = _productGroupsRepo.GetProductGroup(product.ProductGroupId.Value).Image;
 
-            return View(productDetailsVm);
+            ViewBag.Banner = banner;
+
+            var vm = new ProductDetailsViewModel()
+            {
+                Product = product,
+                ProductGalleries = productGallery,
+                ProductMainFeatures = productMainFeatures,
+                ProductFeatureValues = productFeatureValues,
+                Price = price,
+                PriceAfterDiscount = priceAfterDiscount,
+                ProductComments = productCommentsVm
+            };
+
+            //var productComments = _productsRepo.GetProductComments(id);
+
+            //var productCommentsVm = new List<ProductCommentViewModel>();
+            //foreach (var item in productComments)
+            //    productCommentsVm.Add(new ProductCommentViewModel(item));
+            //productDetailsVm.ProductComments = productCommentsVm;
+
+            //var productTags = _productsRepo.GetProductTags(id);
+            //productDetailsVm.Tags = productTags;
+            //productDetailsVm.ProductMainFeatures = productMainFeatures;
+
+            return View(vm);
+        }
+
+        [Route("Shop/GetProductPrice")]
+        public string GetProductPrice(int productId, int mainFeatureId)
+        {
+            var product = _productsRepo.Get(productId);
+            var price = _productService.GetProductPrice(product, mainFeatureId);
+            var priceAfterDiscount = _productService.GetProductPriceAfterDiscount(product, mainFeatureId);
+            var result = new
+            {
+                price = price.ToString("##,###"),
+                priceAfterDiscount = priceAfterDiscount.ToString("##,###")
+            };
+            var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+            return jsonStr;
         }
 
         [HttpPost]

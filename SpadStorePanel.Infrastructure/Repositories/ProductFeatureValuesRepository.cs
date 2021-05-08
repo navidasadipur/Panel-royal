@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SpadStorePanel.Infrastructure.Repositories
 {
@@ -23,6 +24,12 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
         //        _context.ProductFeatureValues.Where(p => p.ProductId == id && p.IsDeleted == false).ToList();
         //}
+
+        public List<ProductFeatureValue> GetProductFeatures(int productId)
+        {
+            return _context.ProductFeatureValues.Include(f => f.Feature).Include(f => f.SubFeature)
+                .Where(f => f.IsDeleted == false && f.ProductId == productId)/*.OrderBy(f => f.Feature.OrderPriority)*/.ToList();
+        }
 
 
         public int GetProductsCountBySubFeatureId(int id)

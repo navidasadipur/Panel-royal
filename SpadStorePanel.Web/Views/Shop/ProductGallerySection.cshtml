@@ -5,30 +5,33 @@
 <div class="single-left">
 
     <div class="lynessa-product-gallery lynessa-product-gallery--with-images lynessa-product-gallery--columns-4 images">
-
-        <div class="flex-viewport">
-            <figure class="lynessa-product-gallery__wrapper">
+        @if (Model != null)
+        {
+            <div class="flex-viewport">
+                <figure class="lynessa-product-gallery__wrapper">
+                    @foreach (var item in Model)
+                    {
+                        <div class="lynessa-product-gallery__image">
+                            <a href="~/Files/ProductImages/ProductGallery/@item.Image" data-lightbox="image-@item.Id" class="lynessa-product-gallery__trigger">
+                            </a>
+                            <img alt="@item.Title-img"
+                                 src="~/Files/ProductImages/ProductGallery/@item.Image">
+                        </div>
+                    }
+                </figure>
+            </div>
+            <ol class="flex-control-nav flex-control-thumbs">
                 @foreach (var item in Model)
                 {
-                    <div class="lynessa-product-gallery__image">
-                        <a href="~/Files/ProductImages/ProductGallery/@item.Image" data-lightbox="image-1" class="lynessa-product-gallery__trigger">
-                        </a>
-                        <img alt="img"
-                             src="~/Files/ProductImages/ProductGallery/@item.Image">
-                    </div>
+                    <li>
+                        <img src="~/Files/ProductImages/ProductGallery/@item.Image"
+                             alt="@item.Title">
+                    </li>
                 }
-            </figure>
-        </div>
-        <ol class="flex-control-nav flex-control-thumbs">
-            @foreach (var item in Model)
-            {
-                <li>
-                    <img src="~/Files/ProductImages/ProductGallery/@item.Image"
-                         alt="@item.Title">
-                </li>
-            }
 
-        </ol>
+            </ol>
+        }
+
     </div>
 </div>
 

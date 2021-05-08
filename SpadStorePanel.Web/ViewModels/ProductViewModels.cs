@@ -165,39 +165,51 @@ namespace SpadStorePanel.Web.ViewModels
         public string PersianDate { get; set; }
     }
 
+    //public class ProductDetailsViewModel
+    //{
+    //    public ProductDetailsViewModel()
+    //    {
+
+    //    }
+    //    public ProductDetailsViewModel(Product product)
+    //    {
+    //        Id = product.Id;
+    //        Title = product.Title;
+    //        Image = product.Image;
+    //        ShortDescription = product.ShortDescription;
+    //        Description = product.Description;
+    //        ProductGroup = product.ProductGroup;
+    //        ProductMainFeatures = product.ProductMainFeatures;
+    //        //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
+    //        //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
+    //    }
+    //    public int Id { get; set; }
+    //    public string Title { get; set; }
+    //    public string Image { get; set; }
+    //    public string ShortDescription { get; set; }
+    //    public string Description { get; set; }
+    //    public string Author { get; set; }
+    //    public string PersianDate { get; set; }
+    //    public string SubTitles { get; set; }
+    //    public bool IsAddedToCart { get; set; }
+
+    //    public ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
+    //    public ProductGroup ProductGroup { get; set; }
+    //    public List<ProductTag> Tags { get; set; }
+    //    public List<ProductCommentViewModel> ProductComments { get; set; }
+    //    public ProductCommentFormViewModel CommentForm { get; set; }
+    //}
+
     public class ProductDetailsViewModel
     {
-        public ProductDetailsViewModel()
-        {
-
-        }
-        public ProductDetailsViewModel(Product product)
-        {
-            Id = product.Id;
-            Title = product.Title;
-            Image = product.Image;
-            ShortDescription = product.ShortDescription;
-            Description = product.Description;
-            ProductGroup = product.ProductGroup;
-            ProductMainFeatures = product.ProductMainFeatures;
-            //this.Author = product.User != null ? $"{product.User.FirstName} {product.User.LastName}" : "-";
-            //this.PersianDate = product.AddedDate != null ? new PersianDateTime(product.AddedDate.Value).ToString("dddd d MMMM yyyy") : "-";
-        }
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Image { get; set; }
-        public string ShortDescription { get; set; }
-        public string Description { get; set; }
-        public string Author { get; set; }
-        public string PersianDate { get; set; }
-        public string SubTitles { get; set; }
-        public bool IsAddedToCart { get; set; }
-
-        public ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
-        public ProductGroup ProductGroup { get; set; }
-        public List<ProductTag> Tags { get; set; }
+        public Product Product { get; set; }
+        public List<ProductGallery> ProductGalleries { get; set; }
+        public List<ProductMainFeature> ProductMainFeatures { get; set; }
+        public List<ProductFeatureValue> ProductFeatureValues { get; set; }
+        public long Price { get; set; }
+        public long PriceAfterDiscount { get; set; }
         public List<ProductCommentViewModel> ProductComments { get; set; }
-        public ProductCommentFormViewModel CommentForm { get; set; }
+        public CommentFormViewModel CommentForm { get; set; }
     }
 
     public class AddToCartViewModel
