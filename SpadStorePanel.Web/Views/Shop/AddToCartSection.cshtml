@@ -7,13 +7,13 @@
 
 <form class="variations_form cart" onsubmit="AddToCart(@Model.ProductId); return false">
     
-    @*<table class="variations">
+    <table class="">
         <tbody>
             @foreach (var feature in Model.MainFeatures)
             {
                 <tr>
                     <td class="label"><label> @feature.Title </label></td>
-
+                        
                     <td class="value">
                         <select title="box_style" data-attributetype="box_style"
                                 data-id="pa_color"
@@ -23,12 +23,12 @@
                             <option data-type="" data-pa_color="" value="">
                                 یک گزینه را انتخاب کنید
                             </option>
-                            @foreach (var item in feature.SubFeatures)
+                            @foreach (var item in feature.ProductMainFeatures)
                             {
                                 <option data-width="30" data-height="30" data-type="color" name="subfeatureValue" id="@item.Id"
                                         data-pa_color="#3155e2" value="@item.Id"
                                         class="attached enabled">
-                                    @item.Value
+                                    @item.Value - @item.Price
                                 </option>
                                 //subFeatureId = item.Id;
                             }
@@ -52,16 +52,19 @@
                                         data-pa_color="#e8e120" value="yellow"
                                         class="attached enabled">
                                     زرد
-                                </option>
+                                </option>*@
                         </select>
 
                         <a class="reset_variations" href="#"
                            style="visibility: hidden;">Clear</a>
                     </td>
+                    <td>
+
+                    </td>
                 </tr>
             }
         </tbody>
-    </table>*@
+    </table>
     <div class="single_variation_wrap">
         <div class="lynessa-variation single_variation"></div>
         <div class="lynessa-variation-add-to-cart variations_button ">

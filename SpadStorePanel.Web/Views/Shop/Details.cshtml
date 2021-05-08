@@ -80,20 +80,100 @@
 
                                 </div>
 
+                                <form class="variations_form cart" onsubmit="return false;">
 
-                                @Html.Action("AddToCartSection", "Shop", new { productId = Model.Id })
+                                    <table class="">
+                                        <tbody>
+                                            @foreach (var feature in Model.ProductMainFeatures)
+                                            {
+                                                <tr>
+                                                    <td class="label"><label> @featur </label></td>
+
+                                                    <td class="value">
+                                                        <select title="box_style" data-attributetype="box_style"
+                                                                data-id="pa_color"
+                                                                class="attribute-select " name="feature" id="feature"
+                                                                data-attribute_name="attribute_pa_color"
+                                                                data-show_option_none="yes">
+                                                            <option data-type="" data-pa_color="" value="">
+                                                                یک گزینه را انتخاب کنید
+                                                            </option>
+                                                            @foreach (var item in feature.ProductMainFeatures)
+                                                            {
+                                                                <option data-width="30" data-height="30" data-type="color" name="subfeatureValue" id="@item.Id"
+                                                                        data-pa_color="#3155e2" value="@item.Id"
+                                                                        class="attached enabled">
+                                                                    @item.Value - @item.Price
+                                                                </option>
+                                                                //subFeatureId = item.Id;
+                                                            }
+
+                                                            @*<option data-width="30" data-height="30" data-type="color"
+                                            data-pa_color="#3155e2" value="blue"
+                                            class="attached enabled">
+                                        آبی
+                                    </option>
+                                    <option data-width="30" data-height="30" data-type="color"
+                                            data-pa_color="#ffe59e" value="pink"
+                                            class="attached enabled">
+                                        صورتی
+                                    </option>
+                                    <option data-width="30" data-height="30" data-type="color"
+                                            data-pa_color="#b6b8ba" value="red"
+                                            class="attached enabled">
+                                        قرمز
+                                    </option>
+                                    <option data-width="30" data-height="30" data-type="color"
+                                            data-pa_color="#e8e120" value="yellow"
+                                            class="attached enabled">
+                                        زرد
+                                    </option>*@
+                                                        </select>
+
+                                                        <a class="reset_variations" href="#"
+                                                           style="visibility: hidden;">Clear</a>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <div class="single_variation_wrap">
+                                        <div class="lynessa-variation single_variation"></div>
+                                        <div class="lynessa-variation-add-to-cart variations_button ">
+                                            @*<div class="quantity">
+                        <span class="qty-label">Quantiy:</span>
+                        <div class="control">
+                            <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                            <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                            <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                        </div>
+                    </div>*@
+                                            <button type="submit" onclick="AddToCart(@Model.ProductId, $('#mainFeatureId').val());"
+                                                    class="single_add_to_cart_button button alt lynessa-variation-selection-needed">
+                                                افزودن به سبد خرید
+                                            </button>
+                                            @*<input name="add-to-cart" value="27" type="hidden">*@
+                                            @*<input name="product_id" value="27" type="hidden">*@
+                                            @*<input name="variation_id" class="variation_id" value="0" type="hidden">*@
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                                @*@Html.Action("AddToCartSection", "Shop", new { productId = Model.Id })*@
 
                                 @*<div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" rel="nofollow"
-                                               data-product-id="27" data-product-type="variable" class="add_to_wishlist">
-                                                علاقه مندی ها
-                                            </a>
-                                        </div>
-                                    </div>*@
+            <div class="yith-wcwl-add-button show">
+                <a href="#" rel="nofollow"
+                   data-product-id="27" data-product-type="variable" class="add_to_wishlist">
+                    علاقه مندی ها
+                </a>
+            </div>
+        </div>*@
                                 @*<div class="clear"></div>
-                                    <a href="#"
-                                       class="compare button" data-product_id="27" rel="nofollow">مقایسه</a>*@
+        <a href="#"
+           class="compare button" data-product_id="27" rel="nofollow">مقایسه</a>*@
                                 <div class="product_meta">
                                     <div class="wcml-dropdown product wcml_currency_switcher">
                                         <ul>

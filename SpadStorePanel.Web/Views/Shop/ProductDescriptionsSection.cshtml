@@ -2,10 +2,11 @@
 
 
 
-    <div class="lynessa-Tabs-panel lynessa-Tabs-panel--description panel entry-content lynessa-tab"
-         id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
-        <h2>توضیحات محصول</h2>
-
+<div class="lynessa-Tabs-panel lynessa-Tabs-panel--description panel entry-content lynessa-tab"
+     id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
+    <h2>توضیحات محصول</h2>
+    @if (Model.DescriptionOneTitle != null)
+    {
         <div class="container-table">
             <div class="container-cell">
                 <h2 class="az_custom_heading"> @Model.DescriptionOneTitle </h2>
@@ -18,6 +19,9 @@
                 </div>
             </div>
         </div>
+    }
+    @if (Model.DescriptionTwoTitle != null)
+    {
         <div class="container-table">
             <div class="container-cell">
                 <div class="az_single_image-wrapper az_box_border_grey">
@@ -30,7 +34,9 @@
                 @Html.Raw(Model.DescrriptionTwoShortDescription)
             </div>
         </div>
+    }
+</div>
 
-    </div>
+
 
 
