@@ -164,11 +164,22 @@
                                                         @*<a class="reset_variations" href="#"
                                                            style="visibility: hidden;">Clear</a>*@
                                                     </td>
-                                                    <td class="label text-center align-middle">
+                                                    <td class="label text-center align-middle price-section-wrapper">
+                                                        @{
+
+                                                        }
+
                                                         @if (Model.PriceAfterDiscount < Model.Price)
                                                         {
-                                                            <span class="price"><span id="productPriceAfterDiscount">@Model.PriceAfterDiscount.ToString("##,###")</span> $</span>
-                                                            <del class="price old-price"><span id="productPrice">@Model.Price.ToString("##,###")</span> $</del>
+                                                            @*var discountAmount = Model.Price - Model.PriceAfterDiscount;
+                                                            var discountPercent = (discountAmount % Model.Price) ;
+
+                                                            <div class="sale-label-container">
+                                                                <div class="sale-label"><span> @discountPercent </span></div>
+                                                            </div>*@
+
+                                                        <span class="price"><span id="productPriceAfterDiscount">@Model.PriceAfterDiscount.ToString("##,###") </span> $ با تخفیف</span> 
+                                                            <del class="price old-price" style="color: gray;"><span id="productPrice">@Model.Price.ToString("##,###")</span> $</del>
                                                         }
                                                         else
                                                         {
@@ -655,8 +666,6 @@
                     $("#productPrice").html(obj.price);
                     $("#mainFeatureId").val(mainFeatureId);
                     $("#productPriceAfterDiscount").html(obj.priceAfterDiscount);
-
-
                     //$(".active-color").removeClass("active-color");
                     //var selected = target.getElementsByClassName("spn-product-code")[0];
                     //selected.classList.add("active-color");
