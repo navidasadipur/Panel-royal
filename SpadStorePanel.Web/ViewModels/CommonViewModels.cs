@@ -85,10 +85,15 @@ namespace SpadStorePanel.Web.ViewModels
         public string Message { get; set; }
     }
 
-    public class GalleryPageViewModel
+    public class GalleryViewModel
     {
-        public List<ProductGallery> Images { get; set; }
-        //public List<ProductGalleryVideo> Videos { get; set; }
+        public GalleryViewModel()
+        {
+            GalleryImages = new List<ProductGallery>();
+        }
+
+        public string Image { get; set; }
+        public List<ProductGallery> GalleryImages { get; set; }
     }
 
     public class InstaGalleryViewModel

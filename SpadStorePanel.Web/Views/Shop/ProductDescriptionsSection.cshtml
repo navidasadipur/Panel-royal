@@ -5,7 +5,7 @@
 <div class="lynessa-Tabs-panel lynessa-Tabs-panel--description panel entry-content lynessa-tab"
      id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
     <h2>توضیحات محصول</h2>
-    @if (Model.DescriptionOneTitle != null)
+    @if (Model.DescriptionOneTitle != null || Model.DescrriptionOneShortDescription != null || Model.DescrriptionOneImage != null)
     {
         <div class="container-table">
             <div class="container-cell">
@@ -20,7 +20,7 @@
             </div>
         </div>
     }
-    @if (Model.DescriptionTwoTitle != null)
+    @if (Model.DescriptionTwoTitle != null || Model.DescrriptionTwoShortDescription != null || Model.DescrriptionTwoImage != null)
     {
         <div class="container-table">
             <div class="container-cell">

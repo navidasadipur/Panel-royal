@@ -449,19 +449,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return View();
         }
 
-        [Route("Gallery")]
-        public ActionResult GalleryPage()
-        {
-            var images = _productGalleryRepo.GetAll();
-            //var videos = _productGalleryVideosRepo.GetAll();
-            var vm = new GalleryPageViewModel()
-            {
-                Images = images,
-                //Videos = videos
-            };
-            return View(vm);
-        }
-
         public ActionResult UploadImage(HttpPostedFileBase upload, string CKEditorFuncNum, string CKEditor, string langCode)
         {
             string vImagePath = String.Empty;
@@ -504,9 +491,6 @@ namespace SpadCompanyPanel.Web.Controllers
 
             return PartialView(model);
         }
-
-
-        
 
         public ActionResult PriceSearchSection()
         {
@@ -603,7 +587,10 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult ProductGallerySection(int productId)
         {
-            var model = _productGalleryRepo.GetProductGalleries(productId);
+            var model = new GalleryViewModel();
+
+            model.GalleryImages = _productGalleryRepo.GetProductGalleries(productId);
+            model.Image = _productsRepo.GetProduct(productId).Image;
 
             return PartialView(model);
         }

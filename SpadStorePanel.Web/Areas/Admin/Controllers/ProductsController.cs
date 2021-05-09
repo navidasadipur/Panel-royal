@@ -253,10 +253,10 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         {
                 if (imageName != null)
                 {
-                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Image/" + imageName)))
-                        System.IO.File.Delete(Server.MapPath("/Files/ProductGroupImages/Image/" + imageName));
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductImages/Image/" + imageName)))
+                        System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Image/" + imageName));
 
-                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductGroupImages/Thumb/" + imageName)))
+                    if (System.IO.File.Exists(Server.MapPath("/Files/ProductImages/Thumb/" + imageName)))
                         System.IO.File.Delete(Server.MapPath("/Files/ProductImages/Thumb/" + imageName));
                 }
                 // Saving Temp Image

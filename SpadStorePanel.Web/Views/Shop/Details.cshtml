@@ -34,7 +34,7 @@
                      class="post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock first instock shipping-taxable purchasable product-type-variable has-default-attributes">
                     <div class="main-contain-summary">
                         <div class="contain-left has-gallery">
-                            @Html.Action("ProductGallerySection", "Shop", new { productId = "15" })
+                            @Html.Action("ProductGallerySection", "Shop", new { productId = Model.Product.Id })
                             <div class="summary entry-summary">
                                 <div class="flash">
                                     <span class="onnew"><span class="text">جدید</span></span>
@@ -172,7 +172,7 @@
                                                         }
                                                         else
                                                         {
-                                                            <span class="price"><span id="productPrice">@Model.Price.ToString("##,###")</span> تومان</span>
+                                                            <span class="price"><span id="productPrice">@Model.Price.ToString("##,###")</span> $</span>
                                                         }
                                                     </td>
                                                 </tr>
@@ -652,19 +652,16 @@
                 success: function (data) {
                     var obj = JSON.parse(data);
 
-                    console.log(data);
-
                     $("#productPrice").html(obj.price);
                     $("#mainFeatureId").val(mainFeatureId);
                     $("#productPriceAfterDiscount").html(obj.priceAfterDiscount);
 
 
-                    $(".active-color").removeClass("active-color");
-                    var selected = target.getElementsByClassName("spn-product-code")[0];
-                    console.log(selected);
-                    selected.classList.add("active-color");
+                    //$(".active-color").removeClass("active-color");
+                    //var selected = target.getElementsByClassName("spn-product-code")[0];
+                    //selected.classList.add("active-color");
 
-                    $(".product-side-price-box").LoadingOverlay("hide");
+                    //$(".product-side-price-box").LoadingOverlay("hide");
                 },
                 error: function (data) {
                     console.log("error");

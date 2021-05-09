@@ -156,19 +156,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(staticContent);
         }
 
-        [Route("Gallery")]
-        public ActionResult GalleryPage()
-        {
-            var images = _productGalleryRepo.GetAll();
-            
-            var vm = new GalleryPageViewModel()
-            {
-                Images = images,
-                //Videos = videos
-            };
-            return View(vm);
-        }
-
         public ActionResult About()
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
