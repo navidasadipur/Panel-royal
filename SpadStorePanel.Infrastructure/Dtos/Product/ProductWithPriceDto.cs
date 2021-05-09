@@ -1,4 +1,5 @@
 ﻿using SpadStorePanel.Core.Models;
+using SpadStorePanel.Core.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,10 @@ namespace SpadStorePanel.Infrastructure.Dtos.Product
         public string ProductGroupName { get; set; }
         public long Price { get; set; }
         public long PriceAfterDiscount { get; set; }
+        public long DiscountAmount { get; set; }
         public int DiscountPercentage { get; set; }
         public int Rate { get; set; }
+        public DiscountType DiscountType { get; set; }
     }
 
     public class ProductGroupWithProductCountDto

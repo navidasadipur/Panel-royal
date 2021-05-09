@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SpadStorePanel.Core.Models;
 using SpadStorePanel.Core.Utility;
+using SpadStorePanel.Infrastructure.Dtos.Product;
 using SpadStorePanel.Infrastructure.Extensions;
 using SpadStorePanel.Infrastructure.Helpers;
 using SpadStorePanel.Infrastructure.Repositories;
@@ -111,11 +112,73 @@ namespace SpadCompanyPanel.Web.Controllers
         [Route("FilterProducts/")]
         public ActionResult FilterProducts(FilterModel model)
         {
+            //var products = new List<Product>();
+
+            //var brandsIntArr = new List<int>();
+
+            //if (string.IsNullOrEmpty(grid.brands) == false)
+            //{
+            //    var brandsArr = grid.brands.Split('-').ToList();
+            //    brandsArr.ForEach(b => brandsIntArr.Add(Convert.ToInt32(b)));
+            //}
+
+            //var subFeaturesIntArr = new List<int>();
+            //if (string.IsNullOrEmpty(grid.subFeatures) == false)
+            //{
+            //    var subFeaturesArr = grid.subFeatures.Split('-').ToList();
+            //    subFeaturesArr.ForEach(b => subFeaturesIntArr.Add(Convert.ToInt32(b)));
+            //}
+
+            //products = _productService.GetProductsGrid(grid.categoryId, brandsIntArr, subFeaturesIntArr, grid.priceFrom, grid.priceTo, grid.searchString);
+
+            //#region Sorting
+
+            //if (grid.sort != "date")
+            //{
+            //    switch (grid.sort)
+            //    {
+            //        case "name":
+            //            products = products.OrderBy(p => p.Title).ToList();
+            //            break;
+            //        case "sale":
+            //            products = products.OrderByDescending(p => _productService.GetProductSoldCount(p)).ToList();
+            //            break;
+            //        case "price-high-to-low":
+            //            products = products.OrderByDescending(p => _productService.GetProductPriceAfterDiscount(p)).ToList();
+            //            break;
+            //        case "price-low-to-high":
+            //            products = products.OrderBy(p => _productService.GetProductPriceAfterDiscount(p)).ToList();
+            //            break;
+            //    }
+            //}
+            //#endregion
+
+            //var count = products.Count;
+            //var skip = grid.pageNumber * grid.take - grid.take;
+            //int pageCount = (int)Math.Ceiling((double)count / grid.take);
+            //ViewBag.PageCount = pageCount;
+            //ViewBag.CurrentPage = grid.pageNumber;
+
+            //products = products.Skip(skip).Take(grid.take).ToList();
+
+            //var vm = new List<ProductWithPriceDto>();
+            //foreach (var product in products)
+            //    vm.Add(_productService.CreateProductWithPriceDto(product));
+
+            //return PartialView(vm);
+
+
+
+
+
+
             var allSearchedTargetProducts = new List<Product>();
 
             var targetProductsPriceFilted = new List<Product>();
 
-            var productListVm = new List<ProductListViewModel>();
+            //var productListVm = new List<ProductListViewModel>();
+
+            var vm = new List<ProductWithPriceDto>();
 
             var allTargetProducts = _productsRepo.GetAllProducts();
 
@@ -144,18 +207,26 @@ namespace SpadCompanyPanel.Web.Controllers
                     allTargetProducts = allSearchedTargetProducts;
                 }
 
-                foreach (var item in allTargetProducts)
-                {
-                    var vm = new ProductListViewModel(item);
+                //foreach (var item in allTargetProducts)
+                //{
+                //    var vm = new ProductListViewModel(item);
 
-                    if (item.ProductComments != null)
-                    {
-                        vm.CommentCounter = item.ProductComments.Count();
-                    }
-                    productListVm.Add(vm);
+                //    if (item.ProductComments != null)
+                //    {
+                //        vm.CommentCounter = item.ProductComments.Count();
+                //    }
+                //    productListVm.Add(vm);
+                //}
+
+                foreach (var product in allTargetProducts) {
+
+                    var priceDto = _productService.CreateProductWithPriceDto(product);
+
+                    priceDto.Rate = product.Rate;
+
+                    vm.Add(priceDto);
                 }
-
-                return PartialView(productListVm);
+                return PartialView(vm);
             }
 
             //search by string
@@ -172,18 +243,28 @@ namespace SpadCompanyPanel.Web.Controllers
 
                 allTargetProducts = allSearchedTargetProducts;
 
-                foreach (var item in allTargetProducts)
-                {
-                    var vm = new ProductListViewModel(item);
+                //foreach (var item in allTargetProducts)
+                //{
+                //    var vm = new ProductListViewModel(item);
 
-                    if (item.ProductComments != null)
-                    {
-                        vm.CommentCounter = item.ProductComments.Count();
-                    }
-                    productListVm.Add(vm);
+                //    if (item.ProductComments != null)
+                //    {
+                //        vm.CommentCounter = item.ProductComments.Count();
+                //    }
+                //    productListVm.Add(vm);
+                //}
+
+                foreach (var product in allTargetProducts)
+                {
+
+                    var priceDto = _productService.CreateProductWithPriceDto(product);
+
+                    priceDto.Rate = product.Rate;
+
+                    vm.Add(priceDto);
                 }
 
-                return PartialView(productListVm);
+                return PartialView(vm);
             }
 
             //search by size id
@@ -204,17 +285,27 @@ namespace SpadCompanyPanel.Web.Controllers
                         allTargetProducts = allTargetProducts;
                     }
 
-                    foreach (var item in allTargetProducts)
+                    //foreach (var item in allTargetProducts)
+                    //{
+                    //    var vm = new ProductListViewModel(item);
+
+                    //    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    //    if (item.ProductComments != null)
+                    //    {
+                    //        vm.CommentCounter = item.ProductComments.Count();
+                    //    }
+                    //    productListVm.Add(vm);
+                    //}
+
+                    foreach (var product in allTargetProducts)
                     {
-                        var vm = new ProductListViewModel(item);
 
-                        //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+                        var priceDto = _productService.CreateProductWithPriceDto(product);
 
-                        if (item.ProductComments != null)
-                        {
-                            vm.CommentCounter = item.ProductComments.Count();
-                        }
-                        productListVm.Add(vm);
+                        priceDto.Rate = product.Rate;
+
+                        vm.Add(priceDto);
                     }
                 }
                 //search by size id
@@ -246,23 +337,33 @@ namespace SpadCompanyPanel.Web.Controllers
                         allTargetProducts = allSearchedTargetProducts;
                     }
 
-                    foreach (var item in allTargetProducts)
+                    //foreach (var item in allTargetProducts)
+                    //{
+                    //    var vm = new ProductListViewModel(item);
+
+                    //    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+
+                    //    if (item.ProductComments != null)
+                    //    {
+                    //        vm.CommentCounter = item.ProductComments.Count();
+                    //    }
+                    //    productListVm.Add(vm);
+                    //}
+
+                    foreach (var product in allTargetProducts)
                     {
-                        var vm = new ProductListViewModel(item);
 
-                        //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
+                        var priceDto = _productService.CreateProductWithPriceDto(product);
 
-                        if (item.ProductComments != null)
-                        {
-                            vm.CommentCounter = item.ProductComments.Count();
-                        }
-                        productListVm.Add(vm);
+                        priceDto.Rate = product.Rate;
+
+                        vm.Add(priceDto);
                     }
                 }
 
                 ViewBag.PageCount = 0;
 
-                return PartialView(productListVm);
+                return PartialView(vm);
             }
 
         }
