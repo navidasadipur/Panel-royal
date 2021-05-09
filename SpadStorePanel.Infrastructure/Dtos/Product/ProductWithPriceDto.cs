@@ -17,7 +17,8 @@ namespace SpadStorePanel.Infrastructure.Dtos.Product
     {
         public int Id { get; set; }
         public string Image { get; set; }
-        public string ShortTitle { get; set; }
+        public string Title { get; set; }
+        public string ShortDescription { get; set; }
         public int ProductGroupId { get; set; }
         public string ProductGroupName { get; set; }
         public long Price { get; set; }

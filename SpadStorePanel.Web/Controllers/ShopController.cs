@@ -716,6 +716,8 @@ namespace SpadCompanyPanel.Web.Controllers
         public ActionResult RelatedProductsSection(int productId)
         {
             //its better to use product tags but for this site i use product groups for relatedProducs
+            var model = new List<ProductWithPriceDto>();
+
             var allGroupProducts = new List<Product>();
 
             var product = _productsRepo.GetProduct(productId);
@@ -729,10 +731,16 @@ namespace SpadCompanyPanel.Web.Controllers
 
             foreach (var item in allGroupProducts)
             {
-                ImageResizer image = new ImageResizer(850, 400, true);
+                //ImageResizer image = new ImageResizer(850, 400, true);
+
+                var vm = _productService.CreateProductWithPriceDto(item.Id);
+
+                vm.Rate = item.Rate;
+
+                model.Add(vm);
             }
 
-            return PartialView(allGroupProducts);
+            return PartialView(model);
         }
 
         [Route("Cart")]

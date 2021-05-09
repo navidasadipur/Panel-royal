@@ -71,7 +71,7 @@ namespace SpadStorePanel.Web.Controllers
                         cartItemsModel.Add(new CartItemModel()
                         {
                             Id = product.Id,
-                            ProductName = product.ShortTitle,
+                            ProductName = product.Title,
                             Price = product.PriceAfterDiscount,
                             Quantity = 1,
                             MainFeatureId = mainFeatureId.Value,

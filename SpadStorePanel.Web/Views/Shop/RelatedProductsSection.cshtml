@@ -1,5 +1,4 @@
-﻿
-@model List<SpadStorePanel.Core.Models.Product>
+﻿@model List<SpadStorePanel.Infrastructure.Dtos.Product.ProductWithPriceDto>
 
 
     <div class="col-md-12 col-sm-12 dreaming_related-product">
@@ -12,16 +11,18 @@
         <div class="owl-slick owl-products equal-container better-height"
              data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
              data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
-            @foreach (var product in Model)
+            @foreach (var item in Model)
             {
+                var discountTypeStr = ((int)item.DiscountType) == 1 ? "درصد" : "$";
+
                 <div class="product-item style-01 post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock  instock shipping-taxable purchasable product-type-variable has-default-attributes ">
                     <div class="product-inner tooltip-left">
                         <div class="product-thumb">
                             <a class="thumb-link"
-                               href="/Shop/Details/@product.Id" tabindex="0">
+                               href="/Shop/Details/@item.Id" tabindex="0">
                                 <img class="img-responsive"
-                                     src="~/Files/ProductImages/Image/@product.Image"
-                                     alt=@product.Title width="600" height="778">
+                                     src="~/Files/ProductImages/Image/@item.Image"
+                                     alt=@item.Title width="600" height="778">
                             </a>
                             <div class="flash"><span class="onnew"><span class="text">جدید</span></span></div>
                             <div class="group-button">
@@ -31,30 +32,59 @@
                                     </div>
                                 </div>*@
 
-                                <a href="/Shop/Details/@product.Id" class="button yith-wcqv-button">نمایش محصول</a>
-                                <div class="add-to-cart">
+                                <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
+                                @*<div class="add-to-cart">
                                     <a href="javascript:void(0)" onclick="AddToCart(@product.Id)" class="button product_type_variable add_to_cart_button">سبد خرید</a>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                         <div class="product-info equal-elem">
                             <h3 class="product-name product_title">
-                                <a href="/Shop/Details/@product.Id"
-                                   tabindex="0">@product.Title</a>
+                                <a href="/Shop/Details/@item.Id"
+                                   tabindex="0">@item.Title</a>
                             </h3>
                             <div class="rating-wapper nostar">
                                 <div class="star-rating">
-                                    @{var persentageRate = (product.Rate * 100) / 5;}
-                                    <span style="width:@persentageRate%">
-                                        Rated <strong class="rating">0</strong> out of 5
-                                    </span>
+                                    @{
+                                        var rate = (item.Rate < 6 ? item.Rate : 5);
+                                        rate = (rate > 0 ? rate : 0);
+                                        var ratingPercentage = (item.Rate * 100) / 5;
+                                        <span style="width:@ratingPercentage%">
+                                            Rated <strong class="rating">@item.Rate</strong> out of 5
+                                        </span>
+                                    }
                                 </div>
-                                <span class="review">(@product.Rate)</span>
+                                @*<span class="review">(@item.Rate)</span>*@
                             </div>
                             <span class="price">
-                                <span class="lynessa-Price-amount amount">
-                                    <span class="lynessa-Price-currencySymbol">$</span>60.00 
-                                </span>
+                                @{
+                                    if (item.DiscountAmount > 0)
+                                    {
+                                        <div class="lynessa-Price-amount amount" dir="rtl">
+                                            <span>  @item.DiscountAmount </span><span>  @discountTypeStr تخفیف</span>
+                                        </div>
+                                    }
+                                    if (item.PriceAfterDiscount < item.Price)
+                                    {
+                            <del class="price old-price">$@item.Price.ToString("##,###")  </del>
+                                        <span class="price">|  $@item.PriceAfterDiscount.ToString("##,###") </span>
+                                    }
+                                    else
+                                    {
+                            <span class="price">$@item.Price.ToString("##,###") </span>
+                                    }
+
+                                    @*<span class="lynessa-Price-amount amount">
+                    <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+                </span>
+                if (minPrice != maxPrice)
+                {
+                    <text> – </text>
+                    <span class="lynessa-Price-amount amount">
+                        <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                    </span>
+                }*@
+                                }
                             </span>
                         </div>
                     </div>

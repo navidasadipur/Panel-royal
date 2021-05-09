@@ -641,7 +641,8 @@ namespace SpadStorePanel.Infrastructure.Services
                 var productDto = new ProductWithPriceDto()
                 {
                     Id = product.Id,
-                    ShortTitle = product.Title,
+                    Title = product.Title,
+                    ShortDescription = product.ShortDescription,
                     Image = product.Image,
                     Price = price,
                     PriceAfterDiscount = price - productDiscount.DiscountValue,
@@ -670,7 +671,8 @@ namespace SpadStorePanel.Infrastructure.Services
                 var productDto = new ProductWithPriceDto()
                 {
                     Id = product.Id,
-                    ShortTitle = product.Title,
+                    Title = product.Title,
+                    ShortDescription = product.ShortDescription,
                     Image = product.Image,
                     Price = price,
                     PriceAfterDiscount = priceAfterDiscount
@@ -700,7 +702,8 @@ namespace SpadStorePanel.Infrastructure.Services
         //        var productDto = new ProductWithPriceDto()
         //        {
         //            Id = product.Id,
-        //            ShortTitle = product.Title,
+        //                                Title = product.Title,
+        //ShortDescription = product.ShortDescription,
         //            Image = product.Image,
         //            Price = price,
         //            PriceAfterDiscount = priceAfterDiscount
@@ -726,7 +729,8 @@ namespace SpadStorePanel.Infrastructure.Services
                 var productDto = new ProductWithPriceDto()
                 {
                     Id = product.Id,
-                    ShortTitle = product.Title,
+                    Title = product.Title,
+                    ShortDescription = product.ShortDescription,
                     Image = product.Image,
                     Price = price,
                     PriceAfterDiscount = price - productDiscount.DiscountValue,
@@ -747,7 +751,8 @@ namespace SpadStorePanel.Infrastructure.Services
             var productDto = new ProductWithPriceDto()
             {
                 Id = product.Id,
-                ShortTitle = product.Title,
+                Title = product.Title,
+                ShortDescription = product.ShortDescription,
                 Image = product.Image,
                 Price = price,
                 PriceAfterDiscount = price - productDiscount.DiscountValue,
@@ -765,7 +770,8 @@ namespace SpadStorePanel.Infrastructure.Services
             var productDto = new ProductWithPriceDto()
             {
                 Id = product.Id,
-                ShortTitle = product.Title,
+                Title = product.Title,
+                ShortDescription = product.ShortDescription,
                 Image = product.Image,
                 Price = price,
                 PriceAfterDiscount = price - productDiscount.DiscountValue,
@@ -782,7 +788,8 @@ namespace SpadStorePanel.Infrastructure.Services
             var productDto = new ProductWithPriceDto()
             {
                 Id = product.Id,
-                ShortTitle = product.Title,
+                Title = product.Title,
+                ShortDescription = product.ShortDescription,
                 Image = product.Image,
                 Price = price,
                 PriceAfterDiscount = price - productDiscount.DiscountValue,
@@ -799,7 +806,8 @@ namespace SpadStorePanel.Infrastructure.Services
             var productDto = new ProductWithPriceDto()
             {
                 Id = product.Id,
-                ShortTitle = product.Title,
+                Title = product.Title,
+                ShortDescription = product.ShortDescription,
                 Image = product.Image,
                 Price = price,
                 PriceAfterDiscount = price - productDiscount.DiscountValue,

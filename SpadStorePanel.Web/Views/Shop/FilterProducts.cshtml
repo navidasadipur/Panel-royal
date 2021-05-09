@@ -24,7 +24,7 @@
                         <a class="thumb-link" href="/Shop/Details/@item.Id">
                             <img class="img-responsive"
                                  src="~/Files/ProductImages/Image/@item.Image"
-                                 alt="@item.ShortTitle" width="600" height="300px">
+                                 alt="@item.Title" width="600" height="300px">
                         </a>
                         <div class="flash">
                             <span class="onnew"><span class="text">جدید</span></span>
@@ -75,14 +75,14 @@
                                 </div>*@
 
                             <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
-                            <div class="add-to-cart">
+                            @*<div class="add-to-cart">
                                 <a href="javascript:void(0)" onclick="AddToCart(@item.Id)" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                     <div class="product-info equal-elem">
                         <h3 class="product-name product_title">
-                            <a href="/Shop/Details/@item.Id">@item.ShortTitle</a>
+                            <a href="/Shop/Details/@item.Id">@item.Title</a>
                         </h3>
                         <div class="rating-wapper nostar">
                             <div class="star-rating">
@@ -98,18 +98,19 @@
                             @*<span class="review">(@item.CommentCounter)</span>*@
                         </div>
 
+
                         <span class="price">
-                            @if (item.DiscountAmount > 0)
-                            {
-                                <div class="sale-label-container">
-                                    <div class="sale-label"><span>@item.DiscountAmount @discountTypeStr</span></div>
-                                </div>
-                            }
                             @{
+                                if (item.DiscountAmount > 0)
+                                {
+                                    <div class="sale-label-container sale-label " dir="rtl">
+                                        <span>  @item.DiscountAmount </span><span>  @discountTypeStr تخفیف</span>
+                                    </div>
+                                }
                                 if (item.PriceAfterDiscount < item.Price)
                                 {
-                                    <del class="price old-price">@item.Price.ToString("##,###")</del>
-                                    <span class="price">@item.PriceAfterDiscount.ToString("##,###") $</span>
+                                    <del class="price old-price">@item.Price.ToString("##,###")  $</del>
+                                    <span class="price">|  @item.PriceAfterDiscount.ToString("##,###") $</span>
                                 }
                                 else
                                 {
@@ -117,24 +118,27 @@
                                 }
 
                                 @*<span class="lynessa-Price-amount amount">
-                                        <span class="lynessa-Price-currencySymbol">$</span> @minPrice
-                                    </span>
-                                    if (minPrice != maxPrice)
-                                    {
-                                        <text> – </text>
-                                        <span class="lynessa-Price-amount amount">
-                                            <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
-                                        </span>
-                                    }*@
+                <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+            </span>
+            if (minPrice != maxPrice)
+            {
+                <text> – </text>
+                <span class="lynessa-Price-amount amount">
+                    <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                </span>
+            }*@
                             }
                         </span>
                         <div class="lynessa-product-details__short-description">
-                            @item.ShortTitle
                             <p>توضیحات کامل محصول</p>
+                            @{
+                                var descParts = item.ShortDescription.Split('\n');
+                            }
                             <ul>
-                                <li>پارچه ژاکارد پنبه دوز شده</li>
-                                <li>دارای ساپورت سرتاسری در حد فاصل فنرها</li>
-                                <li>پارچه ژاکارد پنبه دوز شده</li>
+                                @foreach (var desc in descParts)
+                                {
+                                    <li>@desc</li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -147,9 +151,9 @@
                                 </div>*@
 
                             <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button">نمایش محصول</a>
-                            <div class="add-to-cart">
+                            @*<div class="add-to-cart">
                                 <a href="javascript:void(0)" onclick="AddToCart(@item.Id)" class="button product_type_variable add_to_cart_button">افزودن به سبد خرید</a>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>

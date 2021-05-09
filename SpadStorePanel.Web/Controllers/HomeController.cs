@@ -7,7 +7,9 @@ using System.Web.Mvc;
 using SpadCompanyPanel.Infrastructure.Repositories;
 using SpadStorePanel.Core.Models;
 using SpadStorePanel.Core.Utility;
+using SpadStorePanel.Infrastructure.Dtos.Product;
 using SpadStorePanel.Infrastructure.Repositories;
+using SpadStorePanel.Infrastructure.Services;
 using SpadStorePanel.Web.ViewModels;
 
 namespace SpadCompanyPanel.Web.Controllers
@@ -21,6 +23,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly ProductGroupsRepository _prodectGroupsRepo;
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
         private readonly OurTeamRepository _ourTeamRepo;
+        private readonly ProductService _productService;
 
         public HomeController(
             ProductGalleriesRepository productGalleryRepo,
@@ -30,8 +33,8 @@ namespace SpadCompanyPanel.Web.Controllers
             ProductGroupsRepository productGroupRepo,
             Product product,
             StaticContentDetailsRepository staticContentDetailsRepo,
-            OurTeamRepository ourTeamRepo
-            
+            OurTeamRepository ourTeamRepo,
+            ProductService productService
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -41,6 +44,7 @@ namespace SpadCompanyPanel.Web.Controllers
             this._prodectGroupsRepo = productGroupRepo;
             this._staticContentDetailsRepo = staticContentDetailsRepo;
             this._ourTeamRepo = ourTeamRepo;
+            this._productService = productService;
         }
         public ActionResult Index()
         {
@@ -287,7 +291,20 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult LatestProductsSection()
         {
-            var model = _productRepo.Get6NewProducts();
+            var model = new List<ProductWithPriceDto>();
+
+            var products = _productRepo.Get6NewProducts();
+
+            foreach (var item in products)
+            {
+                //ImageResizer image = new ImageResizer(850, 400, true);
+
+                var vm = _productService.CreateProductWithPriceDto(item.Id);
+
+                vm.Rate = item.Rate;
+
+                model.Add(vm);
+            }
 
             return PartialView(model);
         }
