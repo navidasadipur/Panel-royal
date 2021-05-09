@@ -569,17 +569,34 @@ namespace SpadCompanyPanel.Web.Controllers
 
             foreach (var item in allFeatures)
             {
-                var FeaturesVM = new ProductFeatures_SubFeaturesViewModel
+                var featuresVM = new ProductFeatures_SubFeaturesViewModel
                 {
                     Title = item.Title,
                 };
 
-                foreach (var subFeature in item.SubFeatures)
+                //getting predefined subfeatures from SubFeatures table
+                if (item.SubFeatures != null)
                 {
-                    FeaturesVM.SubFeatures.Add(subFeature.Value);
+                    foreach (var subFeature in item.SubFeatures)
+                    {
+                        featuresVM.SubFeatures.Add(subFeature.Value);
+                    }
+
                 }
 
-                model.Add(FeaturesVM);
+                //geting custom(not predefiend) subfeatures from ProductFeaturesValues table
+                if (item.ProductFeatureValues != null)
+                {
+                    foreach (var featureValue in item.ProductFeatureValues)
+                    {
+                        if (featureValue.Value != null)
+                        {
+                            featuresVM.SubFeatures.Add(featureValue.Value);
+                        }
+                    }
+                }
+
+                model.Add(featuresVM);
             }
 
             return PartialView(model);
