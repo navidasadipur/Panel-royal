@@ -152,5 +152,10 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return take != null ? _context.Articles.Where(a => a.IsDeleted == false).OrderByDescending(a => a.AddedDate).Take(take.Value).ToList() : _context.Articles.OrderByDescending(a => a.AddedDate).ToList();
         }
+
+        public List<ArticleHeadLine> GetArticleHeadlines(int articleId)
+        {
+            return _context.ArticleHeadLines.Where(c => c.IsDeleted == false && c.ArticleId == articleId).ToList();
+        }
     }
 }

@@ -106,6 +106,10 @@ namespace SpadStorePanel.Web.Controllers
             articleDetailsVm.ArticleComments = articleCommentsVm;
             var articleTags = _articlesRepo.GetArticleTags(id);
             articleDetailsVm.Tags = articleTags;
+
+            var articleHeadlines = _articlesRepo.GetArticleHeadlines(id);
+            articleDetailsVm.HeadLines = articleHeadlines;
+
             return View(articleDetailsVm);
         }
 

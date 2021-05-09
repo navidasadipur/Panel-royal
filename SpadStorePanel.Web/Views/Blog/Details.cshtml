@@ -27,7 +27,7 @@
                     <div class="single-post-info">
                         <h2 class="post-title">
                             <a href="#">
-                                @Model.Title 
+                                @Model.Title
                             </a>
                         </h2>
                         <div class="post-meta">
@@ -40,10 +40,28 @@
                         </div>
                     </div>
                     <div class="post-content">
+                        @Html.Raw(Model.ShortDescription)
+                    </div>
+                    <p>&nbsp;</p>
+                    <div class="post-content">
                         <div id="output">
+
                             @Html.Raw(Model.Description)
                         </div>
                         <p>&nbsp;</p>
+                        @foreach (var item in Model.HeadLines)
+                        {
+                            <h3 class="">
+                                <a href="#">
+                                    @item.Title
+                                </a>
+                            </h3>
+                            <div id="output">
+
+                                @Html.Raw(item.Description)
+                            </div>
+                        }
+
                         <div id="gallery-1" class="gallery galleryid-195 gallery-columns-2 gallery-size-full">
                             <figure class="gallery-item">
                                 <div class="gallery-icon landscape">
@@ -70,20 +88,20 @@
                         }
                     </div>
                     @*<div class="post-footer">
-                        <div class="lynessa-share-socials">
-                            <h5 class="social-heading">اشتراک گذاری: </h5>
-                            <a target="_blank" class="facebook" href="#"><i class="fa fa-facebook-f"></i></a>
-                            <a target="_blank" class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                            <a target="_blank" class="pinterest" href="#"><i class="fa fa-pinterest"></i></a>
-                            <a target="_blank" class="googleplus" href="#"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                        <div class="categories">
-                            <span>دسته بندی ها: </span>
-                            <a href="#"> دسته 1 </a>,
-                            <a href="#"> دسته 2</a>,
-                            <a href="#"> دسته 3</a>
-                        </div>
-                    </div>*@
+            <div class="lynessa-share-socials">
+                <h5 class="social-heading">اشتراک گذاری: </h5>
+                <a target="_blank" class="facebook" href="#"><i class="fa fa-facebook-f"></i></a>
+                <a target="_blank" class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                <a target="_blank" class="pinterest" href="#"><i class="fa fa-pinterest"></i></a>
+                <a target="_blank" class="googleplus" href="#"><i class="fa fa-google-plus"></i></a>
+            </div>
+            <div class="categories">
+                <span>دسته بندی ها: </span>
+                <a href="#"> دسته 1 </a>,
+                <a href="#"> دسته 2</a>,
+                <a href="#"> دسته 3</a>
+            </div>
+        </div>*@
                 </article>
                 <div id="comments" class="comments-area">
                     <div id="comments">

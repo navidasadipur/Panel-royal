@@ -164,6 +164,7 @@ namespace SpadStorePanel.Web.ViewModels
         public string Author { get; set; }
         public string PersianDate { get; set; }
         public string SubTitles { get; set; }
+        public List<ArticleHeadLine> HeadLines { get; set; }
         public List<ArticleTag> Tags { get; set; }
         public List<ArticleCommentViewModel> ArticleComments { get; set; }
         public CommentFormViewModel CommentForm { get; set; }
