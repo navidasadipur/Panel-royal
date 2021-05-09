@@ -38,7 +38,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     var newFileName = Guid.NewGuid() + Path.GetExtension(OurTeamImage.FileName);
                     OurTeamImage.SaveAs(Server.MapPath("/Files/OurTeamImages/Temp/" + newFileName));
                     // Resize Image
-                    ImageResizer image = new ImageResizer(370, 435, true);
+                    ImageResizer image = new ImageResizer(370, 370, true);
                     image.Resize(Server.MapPath("/Files/OurTeamImages/Temp/" + newFileName),
                         Server.MapPath("/Files/OurTeamImages/" + newFileName));
 
@@ -84,7 +84,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                     var newFileName = Guid.NewGuid() + Path.GetExtension(OurTeamImage.FileName);
                     OurTeamImage.SaveAs(Server.MapPath("/Files/OurTeamImages/Temp/" + newFileName));
                     // Resize Image
-                    ImageResizer image = new ImageResizer(370, 435, true);
+                    ImageResizer image = new ImageResizer(370, 370, true);
                     image.Resize(Server.MapPath("/Files/OurTeamImages/Temp/" + newFileName),
                         Server.MapPath("/Files/OurTeamImages/" + newFileName));
 
