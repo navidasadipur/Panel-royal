@@ -24,22 +24,6 @@
 </div>
 <main class="site-main main-container no-sidebar">
     <div id="CartTable">
-        @Html.Action("CartTable", "Shop", new { area = "" })
+        @Html.Action("CartTable", "Home", new { area = "" })
     </div>
 </main>
-
-@section scripts
-{
-    <script>
-        @*var productQty = @Model*@
-
-    </script>
-    <script>
-    $(document).ready(function () {
-
-
-    }
-
-    </script>
-
-}

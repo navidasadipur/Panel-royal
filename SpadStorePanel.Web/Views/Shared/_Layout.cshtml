@@ -70,7 +70,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js" integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw==" crossorigin="anonymous"></script>
 
-    @RenderSection("scripts", required: false){ 
+    @RenderSection("scripts", required: false){
     }
 
     <script>
@@ -244,8 +244,20 @@
             if (mainFeatureId === null) {
                 $.ajax({
                     type: 'POST',
-                    url: '/Cookie/AddToCart?productId=' + id,
+                    url: '/Cookie/AddToCart?productId=' + id + '&count=' + addCount,
                     success: function (data) {
+                        data = JSON.parse(data);
+
+                        if (data.Message.toLowerCase() == "finished" && addCount > 1) {
+                            toastr.info("این تعداد از محصول در انبار موجود نیست");
+                        }
+                        else if (data.Message.toLowerCase() == "finished") {
+                            toastr.info("محصول در انبار موجود نیست");
+                        }
+                        else if (data.Message.toLowerCase() == "success") {
+                            toastr.success("محصول به سبد اضافه گردید");
+                        }
+
                         GetCart();
                     },
                     error: function (data) {
@@ -261,6 +273,18 @@
                     type: 'POST',
                     url: '/Cookie/AddToCart?productId=' + id + '&mainFeatureId=' + mainFeatureId,
                     success: function (data) {
+                        data = JSON.parse(data);
+
+                        if (data.Message.toLowerCase() == "finished" && addCount > 1) {
+                            toastr.info("این تعداد از محصول در انبار موجود نیست");
+                        }
+                        else if (data.Message.toLowerCase() == "finished") {
+                            toastr.info("محصول در انبار موجود نیست");
+                        }
+                        else if (data.Message.toLowerCase() == "success") {
+                            toastr.success("محصول به سبد اضافه گردید");
+                        }
+
                         GetCart();
                     },
                     error: function (data) {
@@ -283,23 +307,10 @@
         //}
 
 
-        function GetCart() {
-            $.ajax({
-                type: 'GET',
-                url: '/Cookie/CartSection',
-                success: function (data) {
-                    $("#cartSection").html(data);
-                },
-                error: function (data) {
-                    console.log("error");
-                    console.log(data);
-                },
-                complete: function () {
-                }
-            });
-        }
+
 
         function RemoveFromCart(id, mainFeatureId, complete) {
+
             $("#preloader").show();
             $.ajax({
                 type: 'POST',
@@ -337,22 +348,38 @@
         //        complete: function () {
         //        }
         //    });
-        //    if ($("#CartTable") !== undefined) {
-        //        $.ajax({
-        //            type: 'GET',
-        //            url: '/Shop/CartTable',
-        //            success: function (data) {
-        //                $("#CartTable").html(data);
-        //            },
-        //            error: function (data) {
-        //                console.log("error");
-        //                console.log(data);
-        //            },
-        //            complete: function () {
-        //            }
-        //        });
-        //    }
         //}
+
+        function GetCart() {
+            $.ajax({
+                type: 'GET',
+                url: '/Cookie/CartSection',
+                success: function (data) {
+                    $("#cartSection").html(data);
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                }
+            });
+            if ($("#CartTable") !== undefined) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Home/CartTable',
+                    success: function (data) {
+                        $("#CartTable").html(data);
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    },
+                    complete: function () {
+                    }
+                });
+            }
+        }
 
 
         function GetPopup(id) {

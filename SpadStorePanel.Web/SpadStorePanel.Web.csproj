@@ -4872,7 +4872,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shop\ProductGroupSection.cshtml" />
-    <Content Include="Views\Shop\Cart.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Shop\SocialsSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -4898,7 +4898,7 @@
     <Content Include="Views\Shop\Test.cshtml" />
     <Content Include="Views\Cookie\CartSectionMobile.cshtml" />
     <Content Include="Views\Shared\FooterNewsEmailForm.cshtml" />
-    <Content Include="Views\Shop\CartTable.cshtml" />
+    <Content Include="Views\Home\CartTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

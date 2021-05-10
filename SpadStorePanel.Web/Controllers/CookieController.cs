@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SpadStorePanel.Core.Utility;
 using SpadStorePanel.Infrastructure.Dtos.Product;
 using SpadStorePanel.Infrastructure.Repositories;
 using SpadStorePanel.Infrastructure.Services;
@@ -20,165 +21,174 @@ namespace SpadStorePanel.Web.Controllers
 
         private readonly ProductsRepository _productsRepository;
 
-        public CookieController(ProductService productService,ProductMainFeaturesRepository productMainFeaturesRepository,ProductsRepository productsRepository)
+        private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
+
+        public CookieController(
+            ProductService productService,
+            ProductMainFeaturesRepository productMainFeaturesRepository,
+            ProductsRepository productsRepository,
+            StaticContentDetailsRepository staticContentDetailsRepo
+            )
         {
             _productService = productService;
 
             _productMainFeaturesRepo = productMainFeaturesRepository;
 
             _productsRepository = productsRepository;
+
+            _staticContentDetailsRepo = staticContentDetailsRepo;
         }
 
 
-        //[HttpPost]
-        //public string AddToCart(int productId, int? mainFeatureId, int count = 1)
-        //{
-
-        //    CartResponse cartResponse = new CartResponse();
-        //    cartResponse.Message = "success";
-
-        //    count = count <= 0 ? 1 : count;
-        //    var cartModel = new CartModel();
-        //    var cartItemsModel = new List<CartItemModel>();
-
-        //    #region Checking for cookie
-        //    HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
-
-        //    if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
-        //    {
-        //        string cartJsonStr = cartCookie.Values["cart"];
-        //        cartModel = new CartModel(cartJsonStr);
-        //        cartItemsModel = cartModel.CartItems;
-        //    }
-        //    #endregion
-
-        //    ProductWithPriceDto product;
-        //    int productStockCount;
-        //    if (mainFeatureId == null)
-        //    {
-        //        mainFeatureId = _productMainFeaturesRepo.GetByProductId(productId).Id;
-        //    }
-        //    product = _productService.CreateProductWithPriceDto(productId, mainFeatureId.Value);
-        //    productStockCount = _productService.GetProductStockCount(productId, mainFeatureId.Value);
-
-        //    if (productStockCount > 0)
-        //    {
-        //        if (cartItemsModel.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value))
-        //        {
-        //            if (((cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity) + count) <= productStockCount)
-        //            {
-        //                cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity += count;
-        //                cartModel.TotalPrice += (product.PriceAfterDiscount * count);
-        //            }
-        //            else
-        //            {
-        //                cartResponse.Message = "finished";
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (productStockCount >= count)
-        //            {
-        //                cartItemsModel.Add(new CartItemModel()
-        //                {
-        //                    Id = product.Id,
-        //                    ProductName = product.Title,
-        //                    Price = product.PriceAfterDiscount,
-        //                    Quantity = count,
-        //                    MainFeatureId = mainFeatureId.Value,
-        //                    Image = product.Image
-        //                });
-        //                cartModel.TotalPrice += (product.PriceAfterDiscount * count);
-        //            }
-        //            else
-        //            {
-        //                cartResponse.Message = "finished";
-        //            }
-        //        }
-        //        cartModel.CartItems = cartItemsModel;
-        //        var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
-        //        cartCookie.Values.Set("cart", jsonStr);
-
-        //        cartCookie.Expires = DateTime.Now.AddHours(12);
-        //        cartCookie.SameSite = SameSiteMode.Lax;
-
-        //        Response.Cookies.Add(cartCookie);
-        //    }
-
-        //    return Newtonsoft.Json.JsonConvert.SerializeObject(cartResponse);
-        //}
-
         [HttpPost]
-        public void AddToCart(int productId, int? mainFeatureId)
+        public string AddToCart(int productId, int? mainFeatureId, int count = 1)
         {
-            try
+
+            CartResponse cartResponse = new CartResponse();
+            cartResponse.Message = "success";
+
+            count = count <= 0 ? 1 : count;
+            var cartModel = new CartModel();
+            var cartItemsModel = new List<CartItemModel>();
+
+            #region Checking for cookie
+            HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+            if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
             {
-                var cartModel = new CartModel();
-                var cartItemsModel = new List<CartItemModel>();
+                string cartJsonStr = cartCookie.Values["cart"];
+                cartModel = new CartModel(cartJsonStr);
+                cartItemsModel = cartModel.CartItems;
+            }
+            #endregion
 
-                #region Checking for cookie
-                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+            ProductWithPriceDto product;
+            int productStockCount;
+            if (mainFeatureId == null)
+            {
+                mainFeatureId = _productMainFeaturesRepo.GetByProductId(productId).Id;
+            }
+            product = _productService.CreateProductWithPriceDto(productId, mainFeatureId.Value);
+            productStockCount = _productService.GetProductStockCount(productId, mainFeatureId.Value);
 
-                if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+            if (productStockCount > 0)
+            {
+                if (cartItemsModel.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value))
                 {
-                    string cartJsonStr = cartCookie.Values["cart"];
-                    cartModel = new CartModel(cartJsonStr);
-                    cartItemsModel = cartModel.CartItems;
-                }
-                #endregion
-
-                ProductWithPriceDto product;
-                int productStockCount;
-                if (mainFeatureId == null)
-                {
-                    mainFeatureId = _productMainFeaturesRepo.GetByProductId(productId).Id;
-                }
-                product = _productService.CreateProductWithPriceDto(productId, mainFeatureId.Value);
-                productStockCount = _productService.GetProductStockCount(productId, mainFeatureId.Value);
-
-                if (productStockCount > 0)
-                {
-                    if (cartItemsModel.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value))
+                    if (((cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity) + count) <= productStockCount)
                     {
-                        if (cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity < productStockCount)
-                        {
-                            cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity += 1;
-                            cartModel.TotalPrice += product.PriceAfterDiscount;
-                        }
+                        cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity += count;
+                        cartModel.TotalPrice += (product.PriceAfterDiscount * count);
                     }
                     else
+                    {
+                        cartResponse.Message = "finished";
+                    }
+                }
+                else
+                {
+                    if (productStockCount >= count)
                     {
                         cartItemsModel.Add(new CartItemModel()
                         {
                             Id = product.Id,
                             ProductName = product.Title,
                             Price = product.PriceAfterDiscount,
-                            Quantity = 1,
+                            Quantity = count,
                             MainFeatureId = mainFeatureId.Value,
                             Image = product.Image
                         });
-                        cartModel.TotalPrice += product.PriceAfterDiscount;
+                        cartModel.TotalPrice += (product.PriceAfterDiscount * count);
                     }
-                    cartModel.CartItems = cartItemsModel;
-                    var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
-                    cartCookie.Values.Set("cart", jsonStr);
-
-                    cartCookie.Expires = DateTime.Now.AddHours(12);
-                    cartCookie.SameSite = SameSiteMode.Lax;
-                    Response.Cookies.Add(cartCookie);
+                    else
+                    {
+                        cartResponse.Message = "finished";
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
-
-                cartCookie.Values.Set("cart", "");
+                cartModel.CartItems = cartItemsModel;
+                var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
+                cartCookie.Values.Set("cart", jsonStr);
 
                 cartCookie.Expires = DateTime.Now.AddHours(12);
                 cartCookie.SameSite = SameSiteMode.Lax;
+
                 Response.Cookies.Add(cartCookie);
             }
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(cartResponse);
         }
+
+        //[HttpPost]
+        //public void AddToCart(int productId, int? mainFeatureId)
+        //{
+        //    try
+        //    {
+        //        var cartModel = new CartModel();
+        //        var cartItemsModel = new List<CartItemModel>();
+
+        //        #region Checking for cookie
+        //        HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+        //        if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+        //        {
+        //            string cartJsonStr = cartCookie.Values["cart"];
+        //            cartModel = new CartModel(cartJsonStr);
+        //            cartItemsModel = cartModel.CartItems;
+        //        }
+        //        #endregion
+
+        //        ProductWithPriceDto product;
+        //        int productStockCount;
+        //        if (mainFeatureId == null)
+        //        {
+        //            mainFeatureId = _productMainFeaturesRepo.GetByProductId(productId).Id;
+        //        }
+        //        product = _productService.CreateProductWithPriceDto(productId, mainFeatureId.Value);
+        //        productStockCount = _productService.GetProductStockCount(productId, mainFeatureId.Value);
+
+        //        if (productStockCount > 0)
+        //        {
+        //            if (cartItemsModel.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value))
+        //            {
+        //                if (cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity < productStockCount)
+        //                {
+        //                    cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity += 1;
+        //                    cartModel.TotalPrice += product.PriceAfterDiscount;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                cartItemsModel.Add(new CartItemModel()
+        //                {
+        //                    Id = product.Id,
+        //                    ProductName = product.Title,
+        //                    Price = product.PriceAfterDiscount,
+        //                    Quantity = 1,
+        //                    MainFeatureId = mainFeatureId.Value,
+        //                    Image = product.Image
+        //                });
+        //                cartModel.TotalPrice += product.PriceAfterDiscount;
+        //            }
+        //            cartModel.CartItems = cartItemsModel;
+        //            var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
+        //            cartCookie.Values.Set("cart", jsonStr);
+
+        //            cartCookie.Expires = DateTime.Now.AddHours(12);
+        //            cartCookie.SameSite = SameSiteMode.Lax;
+        //            Response.Cookies.Add(cartCookie);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+        //        cartCookie.Values.Set("cart", "");
+
+        //        cartCookie.Expires = DateTime.Now.AddHours(12);
+        //        cartCookie.SameSite = SameSiteMode.Lax;
+        //        Response.Cookies.Add(cartCookie);
+        //    }
+        //}
 
         public ActionResult CartSection()
         {
@@ -472,6 +482,6 @@ namespace SpadStorePanel.Web.Controllers
             }
         }
 
-      
+
     }
 }
