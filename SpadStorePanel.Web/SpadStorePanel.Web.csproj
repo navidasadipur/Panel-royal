@@ -228,7 +228,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CustomerAuthorize.cs" />
+    <Compile Include="Providers\IBankGatewayRepository.cs" />
+    <Compile Include="Providers\ISMSProvider.cs" />
     <Compile Include="Providers\MyRoleProvider.cs" />
+    <Compile Include="Providers\PasargadGatewayRepository.cs" />
+    <Compile Include="Providers\SMSDotIrProvider.cs" />
+    <Compile Include="Providers\StructHelper.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ArticleViewModels.cs" />
@@ -1980,6 +1986,7 @@
     <Content Include="Content\client\js\bootstrap.min.js" />
     <Content Include="Content\client\js\chosen.min.js" />
     <Content Include="Content\client\js\countdown.min.js" />
+    <Content Include="Content\client\js\custom.js" />
     <Content Include="Content\client\js\functions.js" />
     <Content Include="Content\client\js\jquery-1.12.4.min.js" />
     <Content Include="Content\client\js\jquery-ui.min.js" />

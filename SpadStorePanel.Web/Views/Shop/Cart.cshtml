@@ -23,7 +23,9 @@
     </div>
 </div>
 <main class="site-main main-container no-sidebar">
-    @Html.Action("CartTable", "Shop", new { area = "" })
+    <div id="CartTable">
+        @Html.Action("CartTable", "Shop", new { area = "" })
+    </div>
 </main>
 
 @section scripts

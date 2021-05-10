@@ -2,6 +2,7 @@
 using SpadStorePanel.Infrastructure.Dtos.Product;
 using SpadStorePanel.Infrastructure.Repositories;
 using SpadStorePanel.Infrastructure.Services;
+using SpadStorePanel.Web.Providers;
 using SpadStorePanel.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,85 @@ namespace SpadStorePanel.Web.Controllers
 
             _productsRepository = productsRepository;
         }
+
+
+        //[HttpPost]
+        //public string AddToCart(int productId, int? mainFeatureId, int count = 1)
+        //{
+
+        //    CartResponse cartResponse = new CartResponse();
+        //    cartResponse.Message = "success";
+
+        //    count = count <= 0 ? 1 : count;
+        //    var cartModel = new CartModel();
+        //    var cartItemsModel = new List<CartItemModel>();
+
+        //    #region Checking for cookie
+        //    HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+        //    if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+        //    {
+        //        string cartJsonStr = cartCookie.Values["cart"];
+        //        cartModel = new CartModel(cartJsonStr);
+        //        cartItemsModel = cartModel.CartItems;
+        //    }
+        //    #endregion
+
+        //    ProductWithPriceDto product;
+        //    int productStockCount;
+        //    if (mainFeatureId == null)
+        //    {
+        //        mainFeatureId = _productMainFeaturesRepo.GetByProductId(productId).Id;
+        //    }
+        //    product = _productService.CreateProductWithPriceDto(productId, mainFeatureId.Value);
+        //    productStockCount = _productService.GetProductStockCount(productId, mainFeatureId.Value);
+
+        //    if (productStockCount > 0)
+        //    {
+        //        if (cartItemsModel.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value))
+        //        {
+        //            if (((cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity) + count) <= productStockCount)
+        //            {
+        //                cartItemsModel.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId.Value).Quantity += count;
+        //                cartModel.TotalPrice += (product.PriceAfterDiscount * count);
+        //            }
+        //            else
+        //            {
+        //                cartResponse.Message = "finished";
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (productStockCount >= count)
+        //            {
+        //                cartItemsModel.Add(new CartItemModel()
+        //                {
+        //                    Id = product.Id,
+        //                    ProductName = product.Title,
+        //                    Price = product.PriceAfterDiscount,
+        //                    Quantity = count,
+        //                    MainFeatureId = mainFeatureId.Value,
+        //                    Image = product.Image
+        //                });
+        //                cartModel.TotalPrice += (product.PriceAfterDiscount * count);
+        //            }
+        //            else
+        //            {
+        //                cartResponse.Message = "finished";
+        //            }
+        //        }
+        //        cartModel.CartItems = cartItemsModel;
+        //        var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
+        //        cartCookie.Values.Set("cart", jsonStr);
+
+        //        cartCookie.Expires = DateTime.Now.AddHours(12);
+        //        cartCookie.SameSite = SameSiteMode.Lax;
+
+        //        Response.Cookies.Add(cartCookie);
+        //    }
+
+        //    return Newtonsoft.Json.JsonConvert.SerializeObject(cartResponse);
+        //}
 
         [HttpPost]
         public void AddToCart(int productId, int? mainFeatureId)
@@ -181,53 +261,97 @@ namespace SpadStorePanel.Web.Controllers
         }
 
         [HttpPost]
-        public void RemoveFromCart(int productId, int? mainFeatureId, string complete = null)
+        public string RemoveFromCart(int productId, int? mainFeatureId, string complete = null)
         {
-            try
+            var cartModel = new CartModel();
+
+            #region Checking for cookie
+            HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+            if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
             {
-                var cartModel = new CartModel();
-
-                #region Checking for cookie
-                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
-
-                if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
-                {
-                    string cartJsonStr = cartCookie.Values["cart"];
-                    cartModel = new CartModel(cartJsonStr);
-                }
-                #endregion
-
-                if (cartModel.CartItems.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId))
-                {
-                    var itemToRemove = cartModel.CartItems.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId);
-                    if (complete == "true" || itemToRemove.Quantity < 2)
-                    {
-                        cartModel.TotalPrice -= itemToRemove.Price * itemToRemove.Quantity;
-                        cartModel.CartItems.Remove(itemToRemove);
-                    }
-                    else if (complete == "false")
-                    {
-                        cartModel.TotalPrice -= itemToRemove.Price;
-                        cartModel.CartItems.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId).Quantity -= 1;
-                    }
-                }
-                var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
-                cartCookie.Values.Set("cart", jsonStr);
-                cartCookie.Expires = DateTime.Now.AddHours(12);
-                cartCookie.SameSite = SameSiteMode.Lax;
-                Response.Cookies.Add(cartCookie);
+                string cartJsonStr = cartCookie.Values["cart"];
+                cartModel = new CartModel(cartJsonStr);
             }
-            catch (Exception e)
+            #endregion
+
+            if (cartModel.CartItems.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId))
             {
-                HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
-
-                cartCookie.Values.Set("cart", "");
-
-                cartCookie.Expires = DateTime.Now.AddHours(12);
-                cartCookie.SameSite = SameSiteMode.Lax;
-                Response.Cookies.Add(cartCookie);
+                var itemToRemove = cartModel.CartItems.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId);
+                if (complete == "true" || itemToRemove.Quantity < 2)
+                {
+                    cartModel.TotalPrice -= itemToRemove.Price * itemToRemove.Quantity;
+                    cartModel.CartItems.Remove(itemToRemove);
+                }
+                else if (complete == "false")
+                {
+                    cartModel.TotalPrice -= itemToRemove.Price;
+                    cartModel.CartItems.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId).Quantity -= 1;
+                }
             }
+            var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
+            cartCookie.Values.Set("cart", jsonStr);
+            cartCookie.Expires = DateTime.Now.AddHours(12);
+            cartCookie.SameSite = SameSiteMode.Lax;
+            Response.Cookies.Add(cartCookie);
+
+
+
+            CartResponse cartResponse = new CartResponse();
+            cartResponse.Message = "success";
+            cartResponse.CartItemCount = cartModel.CartItems.Count;
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(cartResponse);
         }
+
+        //[HttpPost]
+        //public void RemoveFromCart(int productId, int? mainFeatureId, string complete = null)
+        //{
+        //    try
+        //    {
+        //        var cartModel = new CartModel();
+
+        //        #region Checking for cookie
+        //        HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+        //        if (!string.IsNullOrEmpty(cartCookie.Values["cart"]))
+        //        {
+        //            string cartJsonStr = cartCookie.Values["cart"];
+        //            cartModel = new CartModel(cartJsonStr);
+        //        }
+        //        #endregion
+
+        //        if (cartModel.CartItems.Any(i => i.Id == productId && i.MainFeatureId == mainFeatureId))
+        //        {
+        //            var itemToRemove = cartModel.CartItems.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId);
+        //            if (complete == "true" || itemToRemove.Quantity < 2)
+        //            {
+        //                cartModel.TotalPrice -= itemToRemove.Price * itemToRemove.Quantity;
+        //                cartModel.CartItems.Remove(itemToRemove);
+        //            }
+        //            else if (complete == "false")
+        //            {
+        //                cartModel.TotalPrice -= itemToRemove.Price;
+        //                cartModel.CartItems.FirstOrDefault(i => i.Id == productId && i.MainFeatureId == mainFeatureId).Quantity -= 1;
+        //            }
+        //        }
+        //        var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(cartModel);
+        //        cartCookie.Values.Set("cart", jsonStr);
+        //        cartCookie.Expires = DateTime.Now.AddHours(12);
+        //        cartCookie.SameSite = SameSiteMode.Lax;
+        //        Response.Cookies.Add(cartCookie);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        HttpCookie cartCookie = Request.Cookies["cart"] ?? new HttpCookie("cart");
+
+        //        cartCookie.Values.Set("cart", "");
+
+        //        cartCookie.Expires = DateTime.Now.AddHours(12);
+        //        cartCookie.SameSite = SameSiteMode.Lax;
+        //        Response.Cookies.Add(cartCookie);
+        //    }
+        //}
 
 
         public void AddToWishList(int productId)

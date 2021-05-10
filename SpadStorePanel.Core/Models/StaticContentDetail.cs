@@ -12,6 +12,7 @@ namespace SpadStorePanel.Core.Models
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(600, ErrorMessage = "{0} باید از 600 کارکتر کمتر باشد")]
+        [AllowHtml]
         public string Title { get; set; }
         [Display(Name = "توضیح کوتاه")]
         [DataType(DataType.MultilineText)]
