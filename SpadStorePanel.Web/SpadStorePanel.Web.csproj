@@ -4899,6 +4899,7 @@
     <Content Include="Views\Cookie\CartSectionMobile.cshtml" />
     <Content Include="Views\Shared\FooterNewsEmailForm.cshtml" />
     <Content Include="Views\Home\CartTable.cshtml" />
+    <Content Include="Views\Home\AddEmailSubscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

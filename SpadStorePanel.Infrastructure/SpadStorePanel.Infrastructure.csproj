@@ -117,10 +117,15 @@
     <Compile Include="Migrations\202105100600126_StaticContentModelAllowHtmlAddedToTile.Designer.cs">
       <DependentUpon>202105100600126_StaticContentModelAllowHtmlAddedToTile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105110628194_EmailSubscriptionModelAndRepositoryAdded.cs" />
+    <Compile Include="Migrations\202105110628194_EmailSubscriptionModelAndRepositoryAdded.Designer.cs">
+      <DependentUpon>202105110628194_EmailSubscriptionModelAndRepositoryAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArticleCategoriesRepository.cs" />
+    <Compile Include="Repositories\EmailSubscriptionRepository.cs" />
     <Compile Include="Repositories\ProductTagsRepository.cs" />
     <Compile Include="Repositories\ArticleTagsRepository.cs" />
     <Compile Include="Repositories\ArticleCommentsRepository.cs" />
@@ -197,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105100600126_StaticContentModelAllowHtmlAddedToTile.resx">
       <DependentUpon>202105100600126_StaticContentModelAllowHtmlAddedToTile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105110628194_EmailSubscriptionModelAndRepositoryAdded.resx">
+      <DependentUpon>202105110628194_EmailSubscriptionModelAndRepositoryAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

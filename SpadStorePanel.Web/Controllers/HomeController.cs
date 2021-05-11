@@ -10,6 +10,7 @@ using SpadStorePanel.Core.Utility;
 using SpadStorePanel.Infrastructure.Dtos.Product;
 using SpadStorePanel.Infrastructure.Repositories;
 using SpadStorePanel.Infrastructure.Services;
+using SpadStorePanel.Infratructure.Repositories;
 using SpadStorePanel.Web.ViewModels;
 
 namespace SpadCompanyPanel.Web.Controllers
@@ -24,6 +25,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
         private readonly OurTeamRepository _ourTeamRepo;
         private readonly ProductService _productService;
+        private readonly EmailSubscriptionRepository _emailSubscriptionRepo;
 
         public HomeController(
             ProductGalleriesRepository productGalleryRepo,
@@ -34,7 +36,8 @@ namespace SpadCompanyPanel.Web.Controllers
             Product product,
             StaticContentDetailsRepository staticContentDetailsRepo,
             OurTeamRepository ourTeamRepo,
-            ProductService productService
+            ProductService productService,
+            EmailSubscriptionRepository emailSubscriptionRepo
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -45,6 +48,7 @@ namespace SpadCompanyPanel.Web.Controllers
             this._staticContentDetailsRepo = staticContentDetailsRepo;
             this._ourTeamRepo = ourTeamRepo;
             this._productService = productService;
+            this._emailSubscriptionRepo = emailSubscriptionRepo;
         }
         public ActionResult Index()
         {
@@ -368,6 +372,45 @@ namespace SpadCompanyPanel.Web.Controllers
             ViewBag.Phone = _staticContentDetailsRepo.Get((int)StaticContents.Phone);
 
             return PartialView(cartModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddEmailSubscription(FormCollection collection)
+        {
+            var email = "";
+            var isValid = true;
+            try
+            {
+                email = collection["Email"];
+            }
+            catch
+            {
+
+            }
+
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                isValid = addr.Address == email;
+            }
+            catch
+            {
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                EmailSubscription emailSubscription = new EmailSubscription();
+                emailSubscription.Email = email;
+                emailSubscription.IsDeleted = false;
+                emailSubscription.InsertDate = DateTime.Now;
+
+                _emailSubscriptionRepo.Create(emailSubscription);
+            }
+
+            ViewBag.Added = isValid;
+
+            return View();
         }
     }
 }

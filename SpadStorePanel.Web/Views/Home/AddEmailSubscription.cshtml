@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "AddEmailSubscription";
+}
+
+
+<div class="spacer"></div>
+
+@if(ViewBag.Added)
+{
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-success col-md-12" >
+                <b>با تشکر از شما</b>
+                <div>ایمیل شما با موفقیت در سیستم ثبت شد</div>
+                <div>
+                    <br />
+                    <a href="/">بازگشت به صفحه اصلی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{<div class="container">
+    <div class="row">
+        <div class="alert alert-warning col-md-12">
+            <b>خطا!</b>
+            <div>اطلاعات وارد شده معتبر نمی باشد</div>
+            <div>
+                <br />
+                <a href="/">باز گشت به صفحه اصلی</a>
+            </div>
+        </div>
+    </div>
+</div>
+}
+

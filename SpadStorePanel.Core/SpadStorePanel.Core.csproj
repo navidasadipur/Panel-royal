@@ -80,6 +80,7 @@
     <Compile Include="Models\ArticleCategory.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ArticleHeadLine.cs" />
+    <Compile Include="Models\EmailSubscription.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\ArticleTag.cs" />
     <Compile Include="Models\Brand.cs" />
