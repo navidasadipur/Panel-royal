@@ -267,7 +267,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 image.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileName),
                     Server.MapPath("/Files/ProductImages/Image/" + newFileName));
 
-                ImageResizer thumb = new ImageResizer(600, 300, true);
+                ImageResizer thumb = new ImageResizer();
                 thumb.Resize(Server.MapPath("/Files/ProductImages/Temp/" + newFileName),
                     Server.MapPath("/Files/ProductImages/Thumb/" + newFileName));
 

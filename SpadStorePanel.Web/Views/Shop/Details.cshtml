@@ -192,15 +192,22 @@
                                         <div class="single_variation_wrap">
                                             <div class="lynessa-variation single_variation"></div>
                                             <div class="lynessa-variation-add-to-cart variations_button ">
-                                                @*<div class="quantity">
-                                                        <span class="qty-label">Quantiy:</span>
-                                                        <div class="control">
-                                                            <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                            <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-                                                            <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                                                <div class="quantity">
+                                                    <div class="icon">
+                                                        <div class="multiple-add-section">
+                                                            <div><button class="btnProductCount" onclick="IncreaseProductCount()">+</button></div>
+                                                            <div><span readonly="readonly" id="txtProductCount">1</span></div>
+                                                            <div><button class="btnProductCount" onclick="DecreaseProductCount()">-</button></div>
                                                         </div>
+                                                    </div>
+                                                    @*<span class="qty-label">Quantiy:</span>
+                                                    <div class="control">
+                                                        <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                        <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                                        <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                                                     </div>*@
-                                                <button type="submit" onclick="AddToCart(@Model.Product.Id, $('#feature').val());"
+                                                </div>
+                                                <button type="submit" onclick="AddToCart(@Model.Product.Id, $('#feature').val())"
                                                         class="single_add_to_cart_button button alt lynessa-variation-selection-needed">
                                                     افزودن به سبد خرید
                                                 </button>

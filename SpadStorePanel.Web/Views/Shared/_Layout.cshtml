@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Content/client/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/client/css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/client/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/client/css/chosen.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/client/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/client/css/pe-icon-7-stroke.css" />
@@ -25,10 +24,11 @@
 
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/solid.min.css" integrity="sha512-xIEmv/u9DeZZRfvRS06QVP2C97Hs5i0ePXDooLa5ZPla3jOgPT/w6CzoSMPuRiumP7A/xhnUBxRmgWWwU26ZeQ==" crossorigin="anonymous" />
+
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/solid.min.css" integrity="sha512-xIEmv/u9DeZZRfvRS06QVP2C97Hs5i0ePXDooLa5ZPla3jOgPT/w6CzoSMPuRiumP7A/xhnUBxRmgWWwU26ZeQ==" crossorigin="anonymous" />*@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
-    <link type="image/x-icon" href="/Content/client/images/fav-icon.png" rel="icon">
+    @*<link type="image/x-icon" href="/Content/client/images/fav-icon.png" rel="icon">*@
 
 
     <title>رویال </title>
@@ -51,7 +51,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Content/client/js/jquery-1.12.4.min.js"></script>
-    <script src="~/Content/client/js/bootstrap.min.js"></script>
+    @*<script src="~/Content/client/js/bootstrap.min.js"></script>*@
     <script src="~/Content/client/js/chosen.min.js"></script>
     <script src="~/Content/client/js/countdown.min.js"></script>
     <script src="~/Content/client/js/jquery.scrollbar.min.js"></script>
@@ -68,10 +68,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js" integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw==" crossorigin="anonymous"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js" integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw==" crossorigin="anonymous"></script>*@
 
-    @RenderSection("scripts", required: false){
-    }
+    @RenderSection("scripts", required: false)
 
     <script>
 
@@ -271,7 +270,7 @@
             } else {
                 $.ajax({
                     type: 'POST',
-                    url: '/Cookie/AddToCart?productId=' + id + '&mainFeatureId=' + mainFeatureId,
+                    url: '/Cookie/AddToCart?productId=' + id + '&mainFeatureId=' + mainFeatureId + '&count=' + addCount,
                     success: function (data) {
                         data = JSON.parse(data);
 
