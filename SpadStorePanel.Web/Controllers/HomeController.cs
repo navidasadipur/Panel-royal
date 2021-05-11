@@ -155,15 +155,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(footerContent);
         }
 
-        public ActionResult FooterNewsEmailForm()
-        {
-
-
-            var staticContent = _staticContentDetailsRepo.Get((int)StaticContents.DiscountNews);
-
-            return PartialView(staticContent);
-        }
-
         public ActionResult About()
         {
             ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
@@ -374,43 +365,38 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(cartModel);
         }
 
-        [HttpPost]
-        public ActionResult AddEmailSubscription(FormCollection collection)
+        public ActionResult EmailSubscriptionSection()
         {
-            var email = "";
-            var isValid = true;
+            var model = new EmailSubscriptionViewModel();
+
+            model.DiscountDetails = _staticContentDetailsRepo.Get((int)StaticContents.DiscountNews);
+
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public string EmailSubscriptionSection(string email)
+        {
             try
             {
-                email = collection["Email"];
+                var contactform = new ContactForm();
+
+                contactform.Email = email;
+                contactform.Name = "_";
+                contactform.Message = "دریافت خبرنامه";
+                contactform.Phone = "_";
+
+                contactform.IsDeleted = false;
+                contactform.InsertUser = "_";
+
+                _contactFormRepo.Add(contactform);
+                return "success";
             }
             catch
             {
-
+                return "fail";
             }
 
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                isValid = addr.Address == email;
-            }
-            catch
-            {
-                isValid = false;
-            }
-
-            if (isValid)
-            {
-                EmailSubscription emailSubscription = new EmailSubscription();
-                emailSubscription.Email = email;
-                emailSubscription.IsDeleted = false;
-                emailSubscription.InsertDate = DateTime.Now;
-
-                _emailSubscriptionRepo.Create(emailSubscription);
-            }
-
-            ViewBag.Added = isValid;
-
-            return View();
         }
     }
 }

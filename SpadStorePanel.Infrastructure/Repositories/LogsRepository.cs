@@ -19,11 +19,22 @@ namespace SpadStorePanel.Infrastructure.Repositories
         public Log LogEvent(string TableName,int id, string Action)
         {
             var user = GetCurrentUser();
+
             var log = new Log();
+
+            if (user != null)
+            {
+                log.UserName = user.UserName;
+            }
+            else
+            {
+                log.UserName = "_";
+            }
+
             log.Action = Action;
             log.TableName = TableName;
             log.EntityId = id;
-            log.UserName = user.UserName;
+
             log.ActionDate = DateTime.Now;
             _context.Logs.Add(log);
             _context.SaveChanges();

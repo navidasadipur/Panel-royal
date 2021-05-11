@@ -29,6 +29,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _userStore = new UserStore<User>(_context);
             _userManager = new UserManager<User>(_userStore);
         }
+
         public List<User> GetUsers()
         {
             var usersList = _userManager.Users.ToList();
@@ -44,6 +45,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
             var user = _context.Users.Find(id);
             return user;
         }
+
         public Tuple<User,bool> UpdateUser(User model, string newPassword = null)
         {
             var succeeded = true;
@@ -72,6 +74,16 @@ namespace SpadStorePanel.Infrastructure.Repositories
             var updateModel = new Tuple<User, bool>(model, succeeded);
             return updateModel;
         }
+
+        //public void UpdateVerificationCode(User model, string code)
+        //{
+        //    var user = _context.Users.FirstOrDefault(u => u.PhoneNumber == model.PhoneNumber);
+        //    user.VerificationCode = code;
+
+        //    _context.Entry(user).State = EntityState.Modified;
+        //    _context.SaveChanges();
+        //}
+
         public User CreateUser(User model, string Password)
         {
             model.SecurityStamp = Guid.NewGuid().ToString();
@@ -102,6 +114,8 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.UserRoles.Where(ur => ur.UserId == userId).ToList();
         }
+
+
         public Role GetRole(string roleId)
         {
             return _context.Role.FirstOrDefault(r => r.Id == roleId);
@@ -110,6 +124,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.UserRoles.FirstOrDefault(ur => ur.UserId == userId && ur.RoleId == roleId);
         }
+
         public User DeleteUser(string userId)
         {
             var user = _context.Users.Find(userId);
@@ -125,6 +140,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _context.SaveChanges();
             return user;
         }
+
         public UserRole DeleteUserRole(UserRole userRole)
         {
             _context.UserRoles.Remove(userRole);
@@ -151,7 +167,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
         }
         public bool PhoneNumberExists(string phoneNumber, string id = null)
         {
-            var user = _context.Users.FirstOrDefault(u=>u.PhoneNumber == phoneNumber);
+            var user = _context.Users.FirstOrDefault(u => u.PhoneNumber == phoneNumber);
             if (user == null || user.IsDeleted) return false;
 
             if (string.IsNullOrEmpty(id))
@@ -179,6 +195,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
             var result = await _userManager.AddPasswordAsync(userId, appSettings["UserDefaultPassword"]);
             return result;
         }
+
         public bool EmailExists(string email, string id = null)
         {
             var user = _userManager.FindByEmail(email);
@@ -192,6 +209,7 @@ namespace SpadStorePanel.Infrastructure.Repositories
 
             return false;
         }
+
         protected void Dispose(bool disposing)
         {
             _context.Dispose();
@@ -205,5 +223,35 @@ namespace SpadStorePanel.Infrastructure.Repositories
             _userStore?.Dispose();
             _userManager?.Dispose();
         }
+
+
+
+
+        //public bool CheckVerificationCode(User model)
+        //    {
+        //        var count = _context.Users.Where(u => u.PhoneNumber == model.PhoneNumber && u.VerificationCode == model.VerificationCode && u.IsDeleted == false).ToList().Count;
+        //        if (count > 0)
+        //            return true;
+        //        return false;
+        //    }
+
+        //    public User GetUserByPhoneNumber(string phoneNumber)
+        //    {
+        //        return _context.Users.FirstOrDefault(u => u.PhoneNumber == phoneNumber && u.IsDeleted == false);
+        //    }
+
+
+
+        //    public Customer GetCustomerByUserId(string userId)
+        //    {
+        //        return _context.Customers.FirstOrDefault(c => c.UserId == userId);
+        //    }
+        //    public Customer AddCustomer(Customer model)
+        //    {
+        //        _context.Customers.Add(model);
+        //        _context.SaveChanges();
+        //        return model;
+        //    }
+
     }
 }

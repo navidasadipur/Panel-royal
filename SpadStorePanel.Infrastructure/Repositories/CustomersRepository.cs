@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SpadStorePanel.Core.Models;
+using SpadStorePanel.Infrastructure.Helpers;
 
 namespace SpadStorePanel.Infrastructure.Repositories
 {
@@ -26,6 +27,12 @@ namespace SpadStorePanel.Infrastructure.Repositories
         public Customer GetCustomer(int id)
         {
             return _context.Customers.Include(c=>c.User).FirstOrDefault(c => c.Id == id);
+        }
+
+        public Customer GetCurrentCustomer()
+        {
+            var currentUserId = CheckPermission.GetCurrentUserId();
+            return _context.Customers.Include(c => c.User).Include(c => c.GeoDivision).FirstOrDefault(c => c.UserId == currentUserId);
         }
     }
 }

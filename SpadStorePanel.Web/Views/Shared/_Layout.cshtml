@@ -73,6 +73,52 @@
     @RenderSection("scripts", required: false)
 
     <script>
+        //        function submitEmailSubscriptionForm() {
+        //    // Initiate Variables With Form Content
+
+        //    var email = $("#email").val();
+
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Home/EmailSubscriptionSection",
+        //        data: "email=" + email,
+        //        success: function (text) {
+        //            if (text == "success") {
+
+        //                $("#btnsubmit").css("color", "green");
+        //                $("#email").val("");
+        //            } else {
+        //                $("#btnsubmit").css("color", "red");
+        //            }
+        //        }
+        //    });
+        //}
+
+                function submitEmailSubscriptionForm() {
+            // Initiate Variables With Form Content
+
+            var email = $("#email").val();
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/EmailSubscriptionSection",
+                data: "email=" + email,
+                success: function (text) {
+                    if (text == "success") {
+
+                        $("#btnsubmit").css("background-color", "green");
+                        $("#btnsubmit").text("ثبت شد");
+                        $("#email").val("");
+                    } else {
+                        console.log(email);
+                        $("#btnsubmit").css("background-color", "red");
+                        $("#btnsubmit").text("خطا");
+                    }
+                }
+            });
+        }
 
         $('.timer').each(function () {
             var $this = $(this), finalDate = $(this).data('countdown');

@@ -215,6 +215,9 @@
     <Compile Include="Areas\Admin\Controllers\StaticContentTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubFeaturesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Customer\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Customer\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CookieController.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="ViewModels\CartItemModel.cs" />
     <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\CommonViewModels.cs" />
+    <Compile Include="ViewModels\CustomerViewModels.cs" />
     <Compile Include="ViewModels\FilterModel.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\InvoiceViewModels.cs" />
@@ -254,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\Scripts\kendo.modernizr.custom.js" />
+    <Content Include="Areas\Customer\Views\Shared\Scripts\kendo.modernizr.custom.js" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
     <Content Include="ckeditor\CHANGES.html" />
@@ -2676,6 +2681,16 @@
     <Content Include="Areas\Admin\Views\OurTeam\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\OurTeam\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\OurTeam\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\AccountLogin.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\Login.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\Register.cshtml" />
+    <Content Include="Areas\Customer\Views\Dashboard\EditMyProfile.cshtml" />
+    <Content Include="Areas\Customer\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\Dashboard\Invoices.cshtml" />
+    <Content Include="Areas\Customer\Views\Dashboard\ResetMyPassword.cshtml" />
+    <Content Include="Areas\Customer\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Customer\Views\web.config" />
+    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -4897,7 +4912,7 @@
     <Content Include="Views\Cookie\CartSection.cshtml" />
     <Content Include="Views\Shop\Test.cshtml" />
     <Content Include="Views\Cookie\CartSectionMobile.cshtml" />
-    <Content Include="Views\Shared\FooterNewsEmailForm.cshtml" />
+    <Content Include="Views\Shared\EmailSubscriptionSection.cshtml" />
     <Content Include="Views\Home\CartTable.cshtml" />
     <Content Include="Views\Home\AddEmailSubscription.cshtml" />
   </ItemGroup>

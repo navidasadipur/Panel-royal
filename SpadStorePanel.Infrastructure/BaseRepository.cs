@@ -41,9 +41,13 @@ namespace SpadStorePanel.Infrastructure
             {
                 entity.InsertUser = user.UserName;
             }
+            else
+            {
+                entity.InsertUser = "_";
+            }
 
             entity.InsertDate = DateTime.Now;
-            entity.InsertUser = user.UserName;
+
             var ent = entity.GetType().Name;
 
             context.Set<TEntity>().Add(entity);

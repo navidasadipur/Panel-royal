@@ -157,12 +157,6 @@
     <Compile Include="Services\ProductServices.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpadStorePanel.Core\SpadStorePanel.Core.csproj">
-      <Project>{c6ed4c15-b766-4891-82c7-c1a59b6b30d6}</Project>
-      <Name>SpadStorePanel.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -206,6 +200,12 @@
     <EmbeddedResource Include="Migrations\202105110628194_EmailSubscriptionModelAndRepositoryAdded.resx">
       <DependentUpon>202105110628194_EmailSubscriptionModelAndRepositoryAdded.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpadStorePanel.Core\SpadStorePanel.Core.csproj">
+      <Project>{c6ed4c15-b766-4891-82c7-c1a59b6b30d6}</Project>
+      <Name>SpadStorePanel.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

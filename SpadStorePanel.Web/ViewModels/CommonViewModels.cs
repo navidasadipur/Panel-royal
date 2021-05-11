@@ -120,4 +120,14 @@ namespace SpadStorePanel.Web.ViewModels
         public StaticContentDetail LogoAndButton { get; set; }
     }
 
+    public class EmailSubscriptionViewModel
+    {
+        public StaticContentDetail DiscountDetails;
+        [Display(Name = "ایمیل *")]
+        [Required(ErrorMessage = "لطفا {0} خود را وارد کنید")]
+        [EmailAddress(ErrorMessage = "{0} وارد شده معتبر نیست")]
+        [MaxLength(600)]
+        public string Email { get; set; }
+    }
+
 }
