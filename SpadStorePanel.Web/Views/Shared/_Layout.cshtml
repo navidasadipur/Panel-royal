@@ -36,10 +36,10 @@
 <body style="background-color: #add6dc;">
 
 
-    @Html.Action("Navbar", "Home")
+    @Html.Action("Navbar", "Home", new { Area = "" })
     @RenderBody()
     <!-- footer -->
-    @Html.Action("Footer", "Home")
+    @Html.Action("Footer", "Home", new { Area = "" })
 
 
     <a href="#" class="backtotop active">

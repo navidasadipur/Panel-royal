@@ -2681,9 +2681,9 @@
     <Content Include="Areas\Admin\Views\OurTeam\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\OurTeam\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\OurTeam\Index.cshtml" />
-    <Content Include="Areas\Customer\Views\Auth\AccountLogin.cshtml" />
-    <Content Include="Areas\Customer\Views\Auth\Login.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\LoginPartial.cshtml" />
     <Content Include="Areas\Customer\Views\Auth\Register.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\RegisterPartial.cshtml" />
     <Content Include="Areas\Customer\Views\Dashboard\EditMyProfile.cshtml" />
     <Content Include="Areas\Customer\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Dashboard\Invoices.cshtml" />
@@ -2691,6 +2691,7 @@
     <Content Include="Areas\Customer\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Customer\Views\web.config" />
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -4880,7 +4881,6 @@
     <Content Include="Views\Blog\InstaGalleriesSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\InstaGalleriesSection.cshtml" />
     <Content Include="Views\Home\OurTeamsSection.cshtml" />
     <Content Include="Views\Shop\InstaGalleriesSection.cshtml">
@@ -4905,8 +4905,8 @@
     <Content Include="Views\Shop\AddToCartSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Home\AccountRegisterSection.cshtml" />
-    <Content Include="Views\Home\AccountLoginSection.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\AccountRegisterSection.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\AccountLoginSection.cshtml" />
     <Content Include="Views\Home\HomeSecondSlidersSection.cshtml" />
     <Content Include="Views\Home\HomeLastSlidersSection.cshtml" />
     <Content Include="Views\Cookie\CartSection.cshtml" />

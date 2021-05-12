@@ -95,7 +95,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
                 _usersRepo.CreateUser(userModel, form.Password);
                 _usersRepo.AddUserRole(userModel.Id, StaticVariables.CustomerRoleId);
 
-                var customer = new Customer()
+                var customer = new Core.Models.Customer()
                 {
                     UserId = userModel.Id,
                     IsDeleted = false,

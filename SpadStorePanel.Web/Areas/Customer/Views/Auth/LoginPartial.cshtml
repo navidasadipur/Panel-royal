@@ -1,0 +1,79 @@
+﻿@model SpadStorePanel.Web.ViewModels.LoginViewModel
+
+
+@*<div class="login-page-content-area">
+    <div class="container">
+        <div class="login-page-wrapper ">
+             login page wrapper 
+            <div class="right-contnet-area">
+                <div class="top-content">
+                    <h4 class="title">ورود به حساب</h4>
+                </div>
+                <div class=" bottom-content">
+                    @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "login-form", id = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-element">
+                            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "نام کاربری خود را وارد کنید", @class = "input-field" })
+                            @Html.ValidationMessageFor(m => m.UserName, "")
+                        </div>
+                        <div class="form-element">
+                            @Html.TextBoxFor(m => m.Password, new { @type = "password", @placeholder = "رمز عبور", @class = "input-field" })
+                            @Html.ValidationMessageFor(m => m.Password, "")
+                        </div>
+                        <div class="container">
+                            <div class="row d-flex justify-content-between  align-items-center mx-0">
+                                <div class="col-md-8 col-sm-12 py-2 justify-content-sm-between">
+                                    <button style="background-color: #fe8a71; border-radius: 30px;"
+                                            class="btn btn-lg ">
+                                        <div class="text-white" type="submit">ورود</div>
+                                    </button>
+                                    <div style="background-color: #1375c5;border-radius: 30px ;"
+                                         class="btn btn-lg ">
+                                        <a class="text-white" href="/Customer/Auth/Register">
+                                            ایجاد
+                                            حساب
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+<main class="site-main  main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <div class="lynessa">
+                        <div class="lynessa-notices-wrapper"></div>
+                        <div class="u-columns col2-set" id="customer_login">
+                            @Html.Action("AccountLoginSection", "Auth", new { area = "Customer" })
+
+                            @Html.Action("AccountRegisterSection", "Auth", new { area = "Customer" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<script>
+    $.validator.unobtrusive.parse("#form");
+</script>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@model SpadStorePanel.Web.ViewModels.RegisterCustomerViewModel
+@using (Html.BeginForm("Register", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-register-form", role = "register-form", id = "register-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div >
+        <div>
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName)
+            @Html.ValidationMessageFor(m => m.FirstName, "")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName)
+            @Html.ValidationMessageFor(m => m.LastName, "")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName, "")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email, "")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Password)
+            @Html.TextBoxFor(m => m.Password, new { type = "Password" })
+            @Html.ValidationMessageFor(m => m.Password, "")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.TextBoxFor(m => m.ConfirmPassword, new { type = "Password" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "")
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="button-box">
+            <button type="submit"><span>ثبت نام</span></button>
+        </div>
+    </div>
+}
+<script>
+    $.validator.unobtrusive.parse("#register-form");
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

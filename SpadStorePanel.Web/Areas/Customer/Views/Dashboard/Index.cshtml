@@ -103,7 +103,7 @@
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
             <h3 class="card-label">
-                سفارشات
+                شفارشات
                 <span class="d-block text-muted pt-2 font-size-sm">شما میتوانید در این قست تاریخچه ی تمامی سفارشات خود را مشاهده کنید</span>
             </h3>
         </div>
@@ -125,24 +125,24 @@
             <tbody>
                 @foreach (var item in Model.Invoices)
                 {
-                    <tr>
-                        <td>@item.InvoiceNumber</td>
-                        <td>@item.RegisteredDate</td>
-                        <td>@item.Price تومان</td>
-                        @if (item.IsPayed)
-                        {
-                            <td><span class="text-success">پرداخت موفق</span></td>
-                        }
-                        else if(DateTime.Now.Subtract(item.AddedDate).Days > 1)
-                        { 
-                            <td><span class="text-warning">منقضی شده</span></td>
-                        }
-                        else
-                        {
-                            <td><a href="/Shop/Checkout/?invoiceNumber=@item.InvoiceNumber">پرداخت نشده</a></td>
-                        }
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td>@item.InvoiceNumber</td>
+                    <td>@item.RegisteredDate</td>
+                    <td>@item.Price تومان</td>
+                    @if (item.IsPayed)
+                    {
+                        <td><span class="text-success">پرداخت موفق</span></td>
+                    }
+                    else if (DateTime.Now.Subtract(item.AddedDate).Days > 1)
+                    {
+                        <td><span class="text-warning">منقضی شده</span></td>
+                    }
+                    else
+                    {
+                        <td><a href="/Shop/CheckoutAddress/?invoiceNumber=@item.InvoiceNumber">پرداخت نشده</a></td>
+                    }
+                    <td></td>
+                </tr>
                 }
             </tbody>
         </table>

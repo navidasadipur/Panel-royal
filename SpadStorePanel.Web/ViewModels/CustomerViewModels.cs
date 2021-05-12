@@ -46,9 +46,22 @@ namespace SpadStorePanel.Web.ViewModels
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "{0} را وارد کنید")]
         public string UserName { get; set; }
-        [Display(Name = "شماره موبایل")]
+        [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "{0} را وارد کنید")]
-        [Phone(ErrorMessage = "شماره موبایل وارد شده معتبر نیست")]
-        public string Mobile { get; set; }
+        [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
+        public string Email { get; set; }
+        [Display(Name = "رمز عبور")]
+        [Required(ErrorMessage = "{0} را وارد کنید")]
+        [StringLength(100, ErrorMessage = "{0} باید حداقل 6 کارکتر باشد", MinimumLength = 6)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$",
+            ErrorMessage = "پسورد باید حداقل 6 کارکتر و شامل یک حرف بزرگ یک حرف کوچک یک عدد و یک کارکتر خاص باشد.")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "{0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        [Display(Name = "تکرار رمز عبور")]
+        [Compare("Password", ErrorMessage = "عدم تطابق رمز عبور جدید و تکرار رمز عبور جدید")]
+        public string ConfirmPassword { get; set; }
     }
 }

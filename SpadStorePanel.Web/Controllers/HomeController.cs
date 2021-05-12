@@ -215,43 +215,6 @@ namespace SpadCompanyPanel.Web.Controllers
             return Content(vOutput);
         }
 
-        public ActionResult Account()
-        {
-            ViewBag.BackImage = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.BackGroundImage).Image;
-
-            return View();
-        }
-
-        public ActionResult AccountLoginSection()
-        {
-            var model = new LoginViewModel();
-
-            return PartialView(model);
-        }
-
-        [HttpPost]
-        public ActionResult AccountLoginSection(LoginViewModel model)
-        {
-
-
-            return RedirectToAction("Account");
-        }
-
-        public ActionResult AccountRegisterSection()
-        {
-            var model = new RegisterViewModel();
-
-            return PartialView(model);
-        }
-
-        [HttpPost]
-        public ActionResult AccounRegisterSection(RegisterViewModel model)
-        {
-            
-
-            return RedirectToAction("Account");
-        }
-
         public ActionResult ServicesSection()
         {
             var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.OurServices);
@@ -382,7 +345,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 var contactform = new ContactForm();
 
                 contactform.Email = email;
-                contactform.Name = "_";
+                contactform.Name = "فرم دریافت خبرنامه";
                 contactform.Message = "دریافت خبرنامه";
                 contactform.Phone = "_";
 

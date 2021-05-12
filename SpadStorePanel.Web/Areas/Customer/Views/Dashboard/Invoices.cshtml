@@ -30,24 +30,24 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@item.InvoiceNumber</td>
-                        <td>@item.RegisteredDate</td>
-                        <td>@item.Price تومان</td>
-                        @if (item.IsPayed)
-                        {
-                            <td><span class="text-success">پرداخت موفق</span></td>
-                        }
-                        else if(DateTime.Now.Subtract(item.AddedDate).Days > 1)
-                        { 
-                            <td><span class="text-warning">منقضی شده</span></td>
-                        }
-                        else
-                        {
-                            <td><a href="/Shop/Checkout/?invoiceNumber=@item.InvoiceNumber">پرداخت نشده</a></td>
-                        }
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td>@item.InvoiceNumber</td>
+                    <td>@item.RegisteredDate</td>
+                    <td>@item.Price تومان</td>
+                    @if (item.IsPayed)
+                    {
+                        <td><span class="text-success">پرداخت موفق</span></td>
+                    }
+                    else if (DateTime.Now.Subtract(item.AddedDate).Days > 1)
+                    {
+                        <td><span class="text-warning">منقضی شده</span></td>
+                    }
+                    else
+                    {
+                        <td><a href="/Shop/CheckoutAddress/?invoiceNumber=@item.InvoiceNumber">پرداخت نشده</a></td>
+                    }
+                    <td></td>
+                </tr>
                 }
             </tbody>
         </table>
