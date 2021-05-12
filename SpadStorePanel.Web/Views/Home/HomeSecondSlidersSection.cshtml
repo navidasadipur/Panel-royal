@@ -1,4 +1,4 @@
-﻿@model List<SpadStorePanel.Core.Models.StaticContentDetail>
+﻿@model List<SpadStorePanel.Core.Models.Offer>
 
 
 <div class="section-001 section-004">
@@ -12,7 +12,7 @@
                         <div class="lynessa-banner style-04 left-center">
                             <div class="banner-inner">
                                 <figure class="banner-thumb">
-                                    <img src="~/Files/StaticContentImages/Image/@item.Image"
+                                    <img src="~/Files/OffersImages/@item.Image"
                                          class="attachment-full size-full" alt="img">
                                 </figure>
                                 <div class="banner-info ">
@@ -22,8 +22,8 @@
                                         </div>
                                         <div class="cate"></div>
                                         <div class="button-wrap">
-                                            <div class="subtitle">  @item.ShortDescription</div>
-                                            <a class="button" target="_self" href="@item.Link"><span> خرید</span></a>
+                                            <div class="subtitle">  </div>
+                                            <a class="button" target="_self" href="~/Shop/index?searchstring=@item.Title"><span> خرید</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -32,50 +32,6 @@
                     </div>
                 }
             }
-           
-            @*<div class="col-md-12 col-lg-6">
-            <div class="lynessa-banner style-04 left-center">
-                <div class="banner-inner">
-                    <figure class="banner-thumb">
-                        <img src="~/Content/client/images/7.png"
-                             class="attachment-full size-full" alt="img">
-                    </figure>
-                    <div class="banner-info ">
-                        <div class="banner-content">
-                            <div class="title-wrap">
-                                <h6 class="title">بهترین</h6>
-                            </div>
-                            <div class="cate">کیفیت</div>
-                            <div class="button-wrap">
-                                <div class="subtitle">  بهترین هفته</div>
-                                <a class="button" target="_self" href="#"><span> خرید</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-6">
-            <div class="lynessa-banner style-04 left-center">
-                <div class="banner-inner">
-                    <figure class="banner-thumb">
-                        <img src="~/Content/client/images/6.jpg"
-                             class="attachment-full size-full" alt="img">
-                    </figure>
-                    <div class="banner-info ">
-                        <div class="banner-content">
-                            <div class="title-wrap">
-                                <h6 class="title">فصل </h6>
-                            </div>
-                            <div class="cate">جدید</div>
-                            <div class="button-wrap">
-                                <div class="subtitle"> موجود شد</div>
-                                <a class="button" target="_self" href="#"><span> خرید</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
         </div>
     </div>
 </div>

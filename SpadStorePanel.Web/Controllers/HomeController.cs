@@ -26,6 +26,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly OurTeamRepository _ourTeamRepo;
         private readonly ProductService _productService;
         private readonly EmailSubscriptionRepository _emailSubscriptionRepo;
+        private readonly OffersRepository _offersRepo;
 
         public HomeController(
             ProductGalleriesRepository productGalleryRepo,
@@ -37,7 +38,8 @@ namespace SpadCompanyPanel.Web.Controllers
             StaticContentDetailsRepository staticContentDetailsRepo,
             OurTeamRepository ourTeamRepo,
             ProductService productService,
-            EmailSubscriptionRepository emailSubscriptionRepo
+            EmailSubscriptionRepository emailSubscriptionRepo,
+            OffersRepository offersRepo
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -49,6 +51,7 @@ namespace SpadCompanyPanel.Web.Controllers
             this._ourTeamRepo = ourTeamRepo;
             this._productService = productService;
             this._emailSubscriptionRepo = emailSubscriptionRepo;
+            this._offersRepo = offersRepo;
         }
         public ActionResult Index()
         {
@@ -235,14 +238,21 @@ namespace SpadCompanyPanel.Web.Controllers
 
         public ActionResult HomeSecondSlidersSection()
         {
-            var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.HomeSecondSlider);
+            var model = new List<Offer>();
+
+            model.Add(_offersRepo.Get(1));
+            model.Add(_offersRepo.Get(2));
 
             return PartialView(model);
         }
 
         public ActionResult HomeLastSlidersSection()
         {
-            var model = _staticContentDetailsRepo.GetStaticContentDetailsByStaticContentTypeId((int)StaticContentTypes.HomeLastSlider);
+            var model = new List<Offer>();
+
+            model.Add(_offersRepo.Get(3));
+            model.Add(_offersRepo.Get(4));
+            model.Add(_offersRepo.Get(5));
 
             return PartialView(model);
         }

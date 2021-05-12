@@ -1,4 +1,4 @@
-﻿@model List<SpadStorePanel.Core.Models.StaticContentDetail>
+﻿@model List<SpadStorePanel.Core.Models.Offer>
 
 <div class="section-013 section-001">
     <div class="container">
@@ -11,14 +11,14 @@
                         <div class="lynessa-banner style-03 left-center">
                             <div class="banner-inner">
                                 <figure class="banner-thumb">
-                                    <img src="~/Files/StaticContentImages/Image/@item.Image"
+                                    <img src="~/Files/OffersImages/@item.Image"
                                          class="attachment-full size-full" alt="@item.Title">
                                 </figure>
                                 <div class="banner-info ">
                                     <div class="banner-content">
                                         <div class="title-wrap">
                                             <h6 class="title">
-                                                <a target="_self" href="@item.Link"> بیشتر</a>
+                                                <a target="_self" href="~/Shop?searchstring=@item.Title"> بیشتر</a>
                                             </h6>
                                         </div>
                                         <div class="cate"> @item.Title </div>
