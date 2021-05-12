@@ -144,115 +144,116 @@ namespace SpadStorePanel.Web.Areas.Customer.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public ActionResult AccountLoginSection()
-        {
-            var model = new LoginViewModel();
+        //[AllowAnonymous]
+        //public ActionResult AccountLoginSection()
+        //{
+        //    var model = new LoginViewModel();
 
-            return PartialView(model);
-        }
+        //    return PartialView(model);
+        //}
 
-        //
-        // POST: /Auth/Login
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AccountLoginSection(ViewModels.LoginViewModel model, string returnUrl)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+        ////
+        //// POST: /Auth/Login
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> AccountLoginSection(ViewModels.LoginViewModel model, string returnUrl)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
 
-            // This doesn't count login failures towards Auth lockout
-            // To enable password failures to trigger Auth lockout, change to shouldLockout: true
-            var user = UserManager.FindByName(model.UserName);
-            if (user == null)
-            {
-                ViewBag.LoginError = "نام کاربری وارد شده صحیح نیست.";
-                //ModelState.AddModelError(string.Empty, "نام کاربری وارد شده صحیح نیست.");
-                return RedirectToAction("Login", "Auth", new { returnUrl = "نام کاربری یا رمز عبور وارد شده صحیح نیست." });
-            }
+        //    // This doesn't count login failures towards Auth lockout
+        //    // To enable password failures to trigger Auth lockout, change to shouldLockout: true
+        //    var user = UserManager.FindByName(model.UserName);
+        //    if (user == null)
+        //    {
+        //        ViewBag.LoginError = "نام کاربری وارد شده صحیح نیست.";
+        //        //ModelState.AddModelError(string.Empty, "نام کاربری وارد شده صحیح نیست.");
+        //        //return RedirectToAction("Login", "Auth", new { returnUrl = "نام کاربری یا رمز عبور وارد شده صحیح نیست." });
+        //        return View(model);
+        //    }
 
-            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal("/Customer/Dashboard"); // Or use returnUrl
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ViewBag.LoginError = "نام کاربری یا رمز عبور وارد شده صحیح نیست.";
-                    //ModelState.AddModelError("", "نام کاربری وارد شده صحیح نیست.");
-                    return View(model);
-            }
-        }
+        //    var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+        //    switch (result)
+        //    {
+        //        case SignInStatus.Success:
+        //            return RedirectToLocal("/Customer/Dashboard"); // Or use returnUrl
+        //        case SignInStatus.LockedOut:
+        //            return View("Lockout");
+        //        case SignInStatus.RequiresVerification:
+        //            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+        //        case SignInStatus.Failure:
+        //        default:
+        //            ViewBag.LoginError = "نام کاربری یا رمز عبور وارد شده صحیح نیست.";
+        //            //ModelState.AddModelError("", "نام کاربری وارد شده صحیح نیست.");
+        //            return View(model);
+        //    }
+        //}
 
-        [AllowAnonymous]
-        public ActionResult AccountRegisterSection()
-        {
-            var model = new RegisterCustomerViewModel();
+        //[AllowAnonymous]
+        //public ActionResult AccountRegisterSection()
+        //{
+        //    var model = new RegisterCustomerViewModel();
 
-            return PartialView(model);
-        }
+        //    return PartialView(model);
+        //}
 
-        //
-        // POST: /Auth/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AccountRegisterSection(RegisterCustomerViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                #region Check for duplicate username or email
-                if (UserRepo.UserNameExists(model.UserName))
-                {
-                    ViewBag.RegisterError = "نام کاربری قبلا ثبت شده.";
-                    //ModelState.AddModelError("", "نام کاربری قبلا ثبت شده");
-                    return View(model);
-                }
-                if (UserRepo.EmailExists(model.Email))
-                {
-                    ViewBag.RegisterError = "ایمیل قبلا ثبت شده.";
-                    //ModelState.AddModelError("", "ایمیل قبلا ثبت شده");
-                    return View(model);
-                }
-                #endregion
+        ////
+        //// POST: /Auth/Register
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> AccountRegisterSection(RegisterCustomerViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        #region Check for duplicate username or email
+        //        if (UserRepo.UserNameExists(model.UserName))
+        //        {
+        //            ViewBag.RegisterError = "نام کاربری قبلا ثبت شده.";
+        //            //ModelState.AddModelError("", "نام کاربری قبلا ثبت شده");
+        //            return View(model);
+        //        }
+        //        if (UserRepo.EmailExists(model.Email))
+        //        {
+        //            ViewBag.RegisterError = "ایمیل قبلا ثبت شده.";
+        //            //ModelState.AddModelError("", "ایمیل قبلا ثبت شده");
+        //            return View(model);
+        //        }
+        //        #endregion
 
-                var user = new User { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
-                UserRepo.CreateUser(user, model.Password);
-                if (user.Id != null)
-                {
-                    // Add Customer Role
-                    UserRepo.AddUserRole(user.Id, StaticVariables.CustomerRoleId);
+        //        var user = new User { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+        //        UserRepo.CreateUser(user, model.Password);
+        //        if (user.Id != null)
+        //        {
+        //            // Add Customer Role
+        //            UserRepo.AddUserRole(user.Id, StaticVariables.CustomerRoleId);
 
-                    // Add Customer
-                    var customer = new Core.Models.Customer()
-                    {
-                        UserId = user.Id,
-                        IsDeleted = false,
-                        InsertDate = DateTime.Now
-                    };
-                    UserRepo.AddCustomer(customer);
-                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //            // Add Customer
+        //            var customer = new Core.Models.Customer()
+        //            {
+        //                UserId = user.Id,
+        //                IsDeleted = false,
+        //                InsertDate = DateTime.Now
+        //            };
+        //            UserRepo.AddCustomer(customer);
+        //            //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    // For more information on how to enable Auth confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your Auth", "Please confirm your Auth by clicking <a href=\"" + callbackUrl + "\">here</a>");
+        //            // For more information on how to enable Auth confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+        //            // Send an email with this link
+        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //            // var callbackUrl = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your Auth", "Please confirm your Auth by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Login", "Auth");
-                }
-            }
+        //            return RedirectToAction("Login", "Auth");
+        //        }
+        //    }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
 
 
         //

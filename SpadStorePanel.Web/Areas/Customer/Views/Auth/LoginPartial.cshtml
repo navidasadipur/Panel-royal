@@ -1,54 +1,6 @@
 ﻿@model SpadStorePanel.Web.ViewModels.LoginViewModel
 
 
-@*<div class="login-page-content-area">
-    <div class="container">
-        <div class="login-page-wrapper ">
-             login page wrapper 
-            <div class="right-contnet-area">
-                <div class="top-content">
-                    <h4 class="title">ورود به حساب</h4>
-                </div>
-                <div class=" bottom-content">
-                    @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "login-form", id = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-element">
-                            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "نام کاربری خود را وارد کنید", @class = "input-field" })
-                            @Html.ValidationMessageFor(m => m.UserName, "")
-                        </div>
-                        <div class="form-element">
-                            @Html.TextBoxFor(m => m.Password, new { @type = "password", @placeholder = "رمز عبور", @class = "input-field" })
-                            @Html.ValidationMessageFor(m => m.Password, "")
-                        </div>
-                        <div class="container">
-                            <div class="row d-flex justify-content-between  align-items-center mx-0">
-                                <div class="col-md-8 col-sm-12 py-2 justify-content-sm-between">
-                                    <button style="background-color: #fe8a71; border-radius: 30px;"
-                                            class="btn btn-lg ">
-                                        <div class="text-white" type="submit">ورود</div>
-                                    </button>
-                                    <div style="background-color: #1375c5;border-radius: 30px ;"
-                                         class="btn btn-lg ">
-                                        <a class="text-white" href="/Customer/Auth/Register">
-                                            ایجاد
-                                            حساب
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-
 <main class="site-main  main-container no-sidebar">
     <div class="container">
         <div class="row">
@@ -57,10 +9,53 @@
                     <div class="lynessa">
                         <div class="lynessa-notices-wrapper"></div>
                         <div class="u-columns col2-set" id="customer_login">
-                            @Html.Action("AccountLoginSection", "Auth", new { area = "Customer" })
+                            <div class="u-column1 col-1">
+                                <h2>ورود</h2>
 
-                            @Html.Action("AccountRegisterSection", "Auth", new { area = "Customer" })
+                                @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "lynessa-form lynessa-form-login login", id = "form", role = "login-form" }))
+                                {
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.AntiForgeryToken()
 
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+
+                                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "" })
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "lynessa-Input lynessa-Input--text input-text", @autocomplete = "username", @size = "40" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "wpcf7-form-control-wrap your-name text-danger" })
+                                    </p>
+                                    <p class="lynessa-form-row lynessa-form-row--wide form-row form-row-wide">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "lynessa-Input lynessa-Input--text input-text", @type = "password", @autocomplete = "current-password", @size = "40" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "wpcf7-form-control-wrap your-name text-danger" })
+                                    </p>
+                                    <p class="form-row">
+                                        <input type="hidden" id="lynessa-login-nonce" name="lynessa-login-nonce"
+                                               value="832993cb93"><input type="hidden" name="_wp_http_referer"
+                                                                         value="/lynessa/my-account/">
+                                        <button type="submit" class="lynessa-Button button" name="login"
+                                                value="Log in">
+                                            ورود
+                                        </button>
+                                        <label class="lynessa-form__label lynessa-form__label-for-checkbox inline">
+                                            <input class="lynessa-form__input lynessa-form__input-checkbox"
+                                                   name="rememberme" type="checkbox" id="rememberme" value="forever">
+                                            <span> مرا به خاطر بسپار</span>
+                                        </label>
+                                    </p>
+                                    <p class="lynessa-LostPassword lost_password">
+                                        <a href="#">فراموشی رمز عبور</a>
+                                    </p>
+
+                                }
+                            </div>
+                            <div class="u-column2 col-2">
+                                <h2>پس از ثبت نام وارد سایت شوید</h2>
+                                <form onsubmit=" return false;" class="lynessa-form lynessa-form-register register">
+                                    <p class="form-row">
+                                        <a href="~/Customer/auth/register" class="lynessa-Button button" type="button" name="register" value="Register">ثبت نام</a>
+                                    </p>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,8 +63,6 @@
         </div>
     </div>
 </main>
-
-
 
 <script>
     $.validator.unobtrusive.parse("#form");
