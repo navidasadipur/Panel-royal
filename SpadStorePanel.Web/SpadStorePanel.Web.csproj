@@ -4915,6 +4915,7 @@
     <Content Include="Views\Shared\EmailSubscriptionSection.cshtml" />
     <Content Include="Views\Home\CartTable.cshtml" />
     <Content Include="Views\Home\AddEmailSubscription.cshtml" />
+    <Content Include="Views\Home\FolowOurInsta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

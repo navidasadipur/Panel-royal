@@ -187,6 +187,13 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(model);
         }
 
+        public ActionResult FolowOurInsta()
+        {
+            var model = _staticContentDetailsRepo.GetStaticContentDetail((int)StaticContents.Instagram);
+
+            return PartialView(model);
+        }
+
         public ActionResult UploadImage(HttpPostedFileBase upload, string CKEditorFuncNum, string CKEditor, string langCode)
         {
             string vImagePath = String.Empty;

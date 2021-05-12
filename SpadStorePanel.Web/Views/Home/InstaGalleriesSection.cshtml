@@ -7,18 +7,18 @@
         @foreach (var item in Model.Images)
         {
             <div class="rows-space-0">
-                <a href="#" class="item">
+                <a href="@item.Link" class="item">
                     <img class="img-responsive" src="~/Files/StaticContentImages/Image/@item.Image" alt="@item.Title">
                     <span class="instagram-info">
                         <span class="social-wrap">
-                            <span class="social-info">
+                            @*<span class="social-info">
                                 1                                                
                                 <i class="flaticon-chat"></i>
                             </span>
                             <span class="social-info">
                                 0                                                
                                 <i class="pe-7s-like2"></i>
-                            </span>
+                            </span>*@
                         </span>
                     </span>
                 </a>
