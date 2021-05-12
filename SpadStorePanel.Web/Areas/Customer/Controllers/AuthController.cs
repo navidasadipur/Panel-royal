@@ -139,8 +139,11 @@ namespace SpadStorePanel.Web.Areas.Customer.Controllers
         //
         // GET: /Auth/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string returnUrl)
         {
+
+            ViewBag.LoginError = returnUrl;
+
             return View();
         }
 
@@ -270,14 +273,14 @@ namespace SpadStorePanel.Web.Areas.Customer.Controllers
                 {
                     ViewBag.RegisterError = "نام کاربری قبلا ثبت شده.";
                     //ModelState.AddModelError("", "نام کاربری قبلا ثبت شده");
-                    return View(model);
+                    return RedirectToAction("register", "Auth", new { returnUrl = "نام کاربری قبلا ثبت شده." });
                 }
                 if (UserRepo.EmailExists(model.Email))
                 {
                     ViewBag.RegisterError = "ایمیل قبلا ثبت شده.";
                     //ModelState.AddModelError("", "ایمیل قبلا ثبت شده");
-                    return View(model);
-                }
+                    return RedirectToAction("register", "Auth", new { returnUrl = "ایمیل قبلا ثبت شده." });
+                    }
                 #endregion
 
                 var user = new User { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
