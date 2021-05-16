@@ -45,5 +45,9 @@ namespace SpadStorePanel.Infrastructure.Repositories
         {
             return _context.Discounts.FirstOrDefault(d => d.IsDeleted == false && d.BrandId == brandId);
         }
+        public Discount GetOfferDiscount(int offerId)
+        {
+            return _context.Discounts.FirstOrDefault(d => d.IsDeleted == false && d.OfferId == offerId);
+        }
     }
 }

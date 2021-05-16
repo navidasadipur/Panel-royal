@@ -310,7 +310,7 @@ namespace SpadStorePanel.Web.Areas.Admin.Controllers
         }
         public JsonResult GetProductGroupBrands(int id)
         {
-            var brands = _productGroupRepo.GetProductGroupBrands(id);
+            var brands = _productGroupRepo.GeBrandsByProductGroupId(id);
             var obj = brands.Select(item => new BrandsObjViewModel() { Id = item.Id, Name = item.Name }).ToList();
             return Json(obj, JsonRequestBehavior.AllowGet);
         }

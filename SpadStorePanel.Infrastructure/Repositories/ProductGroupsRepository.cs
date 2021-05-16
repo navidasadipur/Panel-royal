@@ -46,12 +46,34 @@ namespace SpadStorePanel.Infrastructure.Repositories
                 .ToList();
             return pgFeatures.Select(item => _context.Features.Find(item.FeatureId)).ToList();
         }
-        public List<Brand> GetProductGroupBrands(int id)
+
+        public List<Brand> GeBrandsByProductGroupId(int id)
         {
             var pgBrands = _context.ProductGroupBrands.Where(f => f.IsDeleted == false && f.ProductGroupId == id)
                 .ToList();
             return pgBrands.Select(item => _context.Brands.Find(item.BrandId)).ToList();
         }
+
+        public List<ProductGroupBrand> GetProductGroupBrands(int id)
+        {
+            var productGropBrands = new List<ProductGroupBrand>();
+
+            var pgBrands = _context.ProductGroupBrands.Where(f => f.IsDeleted == false && f.ProductGroupId == id)
+                .ToList();
+
+            var allbrandIds = _context.Brands.Where(b => b.IsDeleted == false).Select(b => b.Id).ToList();
+
+            foreach (var pgBrand in pgBrands)
+            {
+                if (allbrandIds.Contains(pgBrand.BrandId))
+                {
+                    productGropBrands.Add(pgBrand);
+                }
+            }
+
+            return productGropBrands;
+        }
+
         public List<Brand> GetBrands()
         {
             return _context.Brands.Where(f => f.IsDeleted == false).ToList();

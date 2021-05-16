@@ -29,6 +29,7 @@ namespace SpadCompanyPanel.Web.Controllers
         private readonly StaticContentDetailsRepository _staticContentDetailsRepo;
         private readonly ProductService _productService;
         private readonly ProductCommentsRepository _productCommentsRepository;
+        private readonly DiscountsRepository _discountRepo;
 
         public ShopController(
             ProductGalleriesRepository productGalleryRepo,
@@ -42,7 +43,9 @@ namespace SpadCompanyPanel.Web.Controllers
             ProductGroupsRepository productGroupRepo,
             StaticContentDetailsRepository staticContentDetailsRepo,
             ProductService productService,
-            ProductCommentsRepository productCommentsRepo
+            ProductCommentsRepository productCommentsRepo,
+            DiscountsRepository discountsRepo
+            //ProductGroupBrandRepository productGroupBrandRepo
             )
         {
             _productGalleryRepo = productGalleryRepo;
@@ -57,6 +60,7 @@ namespace SpadCompanyPanel.Web.Controllers
             this._staticContentDetailsRepo = staticContentDetailsRepo;
             this._productService = productService;
             this._productCommentsRepository = productCommentsRepo;
+            this._discountRepo = discountsRepo;
         }
 
         //public ActionResult Test()
@@ -166,10 +170,6 @@ namespace SpadCompanyPanel.Web.Controllers
             //    vm.Add(_productService.CreateProductWithPriceDto(product));
 
             //return PartialView(vm);
-
-
-
-
 
 
             var allSearchedTargetProducts = new List<Product>();
@@ -743,6 +743,56 @@ namespace SpadCompanyPanel.Web.Controllers
             return PartialView(model);
         }
 
+        [Route("offer")]
+        public ActionResult Offer(int offerId = 0)
+        {
+            int groupId = 0;
+
+            if (offerId == 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var discount = _discountRepo.GetOfferDiscount(offerId);
+
+            if (discount.ProductGroupId != null)
+            {
+                groupId = discount.ProductGroupId.Value;
+            }
+            else if (discount.BrandId != null)
+            {
+                var allGroups = _productGroupsRepo.GetAllProductGroups();
+
+                foreach (var group in allGroups)
+                {
+                    group.ProductGroupBrands = _productGroupsRepo.GetProductGroupBrands(group.Id);
+
+                    var allGorupBrands = group.ProductGroupBrands.Where(gb => gb.IsDeleted == false && gb.BrandId == discount.BrandId).ToList();
+
+                    if (allGorupBrands.Count() != 0)
+                    {
+                        groupId = allGorupBrands.Select(gb => gb.ProductGroupId).FirstOrDefault();
+                    }
+                }
+            }
+            else
+            {
+                var allGroups = _productGroupsRepo.GetAllProductGroups();
+
+                foreach (var group in allGroups)
+                {
+                    var allProducts = group.Products.Where(p => p.IsDeleted == false && p.Id == discount.ProductId).ToList();
+
+                    if (allProducts != null)
+                    {
+                        groupId = allProducts.Select(p => p.ProductGroupId).FirstOrDefault().Value;
+                    }
+                }
+            }
+
+            return RedirectToAction("Index", new { id = groupId });
+        }
+
 
 
         //[Route("CartTable")]
@@ -829,6 +879,9 @@ namespace SpadCompanyPanel.Web.Controllers
             return targetProducts;
         }
         #endregion
+
+
+
 
 
     }
