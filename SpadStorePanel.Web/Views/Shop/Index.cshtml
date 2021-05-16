@@ -6,7 +6,7 @@
 }
 
 @Html.Action("TopProductGroupSection", "Shop")
-   
+
 
 <h1 class="page-title">محصولات</h1>
 <div class="main-container shop-page right-sidebar">
@@ -37,29 +37,29 @@
                         </form>
                     </div>
                     @*<form class="per-page-form">
-                        <label>
-                            <select class="option-perpage">
-                                <option value="12" selected="">
-                                    تعداد نمایش
-                                </option>
-                                <option value="5">
-                                    5
-                                </option>
-                                <option value="10">
-                                    10
-                                </option>
-                                <option value="12">
-                                    12
-                                </option>
-                                <option value="15">
-                                    15
-                                </option>
-                                <option value="20">
-                                    All
-                                </option>
-                            </select>
-                        </label>
-                    </form>*@
+                            <label>
+                                <select class="option-perpage">
+                                    <option value="12" selected="">
+                                        تعداد نمایش
+                                    </option>
+                                    <option value="5">
+                                        5
+                                    </option>
+                                    <option value="10">
+                                        10
+                                    </option>
+                                    <option value="12">
+                                        12
+                                    </option>
+                                    <option value="15">
+                                        15
+                                    </option>
+                                    <option value="20">
+                                        All
+                                    </option>
+                                </select>
+                            </label>
+                        </form>*@
                 </div>
                 <div class=" auto-clear lynessa-products">
                     <div id="grid">
@@ -67,13 +67,13 @@
                     </div>
                 </div>
                 @*<div class="shop-control shop-after-control">
-                    <nav class="lynessa-pagination">
-                        <span class="page-numbers current">1</span>
-                        <a class="page-numbers" href="#">2</a>
-                        <a class="next page-numbers" href="#">بعدی</a>
-                    </nav>
-                    <p class="lynessa-result-count">2 نتیجه از 20 مورد </p>
-                </div>*@
+                        <nav class="lynessa-pagination">
+                            <span class="page-numbers current">1</span>
+                            <a class="page-numbers" href="#">2</a>
+                            <a class="next page-numbers" href="#">بعدی</a>
+                        </nav>
+                        <p class="lynessa-result-count">2 نتیجه از 20 مورد </p>
+                    </div>*@
             </div>
             <div class="sidebar col-xl-3 col-lg-4 col-md-4 col-sm-12 order-md-2 order-1">
                 <div id="widget-area" class="widget-area shop-sidebar">
@@ -123,9 +123,10 @@
 @section scripts
 {
     <script>
-            var sizeId = 0;
-            var groupId = null;
+        var sizeId = 0;
+        var groupId = null;
     var searchString = "";
+    var brands = "";
         var minPrice = @ViewBag.MinPrice;
         var maxPrice = @ViewBag.MaxPrice;
     </script>
@@ -142,6 +143,12 @@
             searchString = "@ViewBag.SearchString";
         </script>
     }
+    @if (ViewBag.Brands != null)
+    {
+        <script>
+            brands = "@ViewBag.Brands";
+        </script>
+    }
 
     <script>
 
@@ -152,7 +159,8 @@
             GroupId: groupId,
             MinPrice: minPrice,
             MaxPrice: maxPrice,
-            SearchString: searchString
+            SearchString: searchString,
+            Brands: brands
         }
 
         $.ajax({
@@ -164,6 +172,7 @@
                 sizeId = 0;
                 groupId = null;
                 searchString = "";
+                brands = "";
             }
         });
     }

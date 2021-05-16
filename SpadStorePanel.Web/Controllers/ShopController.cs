@@ -70,7 +70,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
         [Route("Shop")]
         [Route("Shop/{id}")]
-        public ActionResult Index(int? id, string searchString = null)
+        public ActionResult Index(int? id, string searchString = null, string brands = null)
         {
             var model = new List<Color_SizeSearchViewModel>();
 
@@ -106,6 +106,10 @@ namespace SpadCompanyPanel.Web.Controllers
                 ViewBag.Id = id;
             if (searchString != null)
                 ViewBag.SearchString = searchString;
+            if (brands != null)
+            {
+                ViewBag.Brands = brands;
+            }
 
             return View(model);
         }
@@ -184,6 +188,70 @@ namespace SpadCompanyPanel.Web.Controllers
 
             var maxLimitPrice = _productMainFeaturesRepo.GetMaxPrice();
             var minLimitPrice = _productMainFeaturesRepo.GetMinPrice();
+
+            var brandsIntArr = new List<int>();
+
+            if (string.IsNullOrEmpty(model.brands) == false)
+            {
+                var brandsArr = model.brands.Split('-').ToList();
+                brandsArr.ForEach(b => brandsIntArr.Add(Convert.ToInt32(b)));
+
+                var allGroupBrands = new List<ProductGroupBrand>();
+
+                foreach (var brandId in brandsIntArr)
+                {
+                    var groupBrands = _productGroupsRepo.GetProductGroupBrands(brandId);
+
+                    foreach (var item in groupBrands)
+                    {
+                        if (!allGroupBrands.Contains(item))
+                        {
+                            allGroupBrands.Add(item);
+                        }
+                    }
+                }
+
+                foreach (var groupBrand in allGroupBrands)
+                {
+                    var category = _productGroupsRepo.GetProductGroup(groupBrand.ProductGroupId);
+                    if (category != null)
+                    {
+                        ViewBag.GroupId = groupBrand.ProductGroupId;
+                        ViewBag.BreadCrumb = category.Title;
+
+                        var products = _productsRepo.getProductsByGroupId(groupBrand.ProductGroupId);
+
+                        foreach (var product in products)
+                        {
+                            allSearchedTargetProducts.Add(product);
+                        }
+                    }
+                }
+
+
+                if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
+                {
+                    targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allSearchedTargetProducts);
+
+                    allTargetProducts = targetProductsPriceFilted;
+                }
+                else
+                {
+                    allTargetProducts = allSearchedTargetProducts;
+                }
+
+                foreach (var product in allTargetProducts)
+                {
+
+                    var priceDto = _productService.CreateProductWithPriceDto(product);
+
+                    priceDto.Rate = product.Rate;
+
+                    vm.Add(priceDto);
+                }
+                return PartialView(vm);
+
+            }
 
             //search by group id
             if (model.GroupId != null)
@@ -746,7 +814,12 @@ namespace SpadCompanyPanel.Web.Controllers
         [Route("offer")]
         public ActionResult Offer(int offerId = 0)
         {
+            var allGroupIdsStr = new List<int>();
+
             int groupId = 0;
+            string brandId = "";
+
+            var allProducts = new List<Product>();
 
             if (offerId == 0)
             {
@@ -761,36 +834,41 @@ namespace SpadCompanyPanel.Web.Controllers
             }
             else if (discount.BrandId != null)
             {
-                var allGroups = _productGroupsRepo.GetAllProductGroups();
+                brandId = discount.BrandId.Value.ToString();
+                
+                //var allGroups = _productGroupsRepo.GetAllProductGroups();
 
-                foreach (var group in allGroups)
-                {
-                    group.ProductGroupBrands = _productGroupsRepo.GetProductGroupBrands(group.Id);
+                //foreach (var group in allGroups)
+                //{
+                //    group.ProductGroupBrands = _productGroupsRepo.GetProductGroupBrands(group.Id);
 
-                    var allGorupBrands = group.ProductGroupBrands.Where(gb => gb.IsDeleted == false && gb.BrandId == discount.BrandId).ToList();
+                //    var allGorupBrands = group.ProductGroupBrands.Where(gb => gb.IsDeleted == false && gb.BrandId == discount.BrandId).ToList();
 
-                    if (allGorupBrands.Count() != 0)
-                    {
-                        groupId = allGorupBrands.Select(gb => gb.ProductGroupId).FirstOrDefault();
-                    }
-                }
+                //    if (allGorupBrands.Count() != 0)
+                //    {
+                //        groupId = allGorupBrands.Select(gb => gb.ProductGroupId).FirstOrDefault();
+                //    }
+                //}
             }
             else
             {
-                var allGroups = _productGroupsRepo.GetAllProductGroups();
+                var allGroups = _productGroupsRepo.GetAllProductGroupsWithProducts();
 
                 foreach (var group in allGroups)
                 {
-                    var allProducts = group.Products.Where(p => p.IsDeleted == false && p.Id == discount.ProductId).ToList();
+                    if (group.Products.Count() != 0)
+                    {
+                        allProducts = group.Products.Where(p => p.IsDeleted == false && p.Id == discount.ProductId).ToList();
+                    }
 
-                    if (allProducts != null)
+                    if (allProducts.Count() != 0)
                     {
                         groupId = allProducts.Select(p => p.ProductGroupId).FirstOrDefault().Value;
                     }
                 }
             }
 
-            return RedirectToAction("Index", new { id = groupId });
+            return RedirectToAction("Index", new { id = groupId, brands = brandId });
         }
 
 
