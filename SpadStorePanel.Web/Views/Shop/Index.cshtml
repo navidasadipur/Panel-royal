@@ -126,7 +126,7 @@
         var sizeId = 0;
         var groupId = null;
     var searchString = "";
-    var brands = "";
+    var searchedGroupIds = "";
         var minPrice = @ViewBag.MinPrice;
         var maxPrice = @ViewBag.MaxPrice;
     </script>
@@ -143,10 +143,10 @@
             searchString = "@ViewBag.SearchString";
         </script>
     }
-    @if (ViewBag.Brands != null)
+    @if (ViewBag.SearchedGroupIds != null)
     {
         <script>
-            brands = "@ViewBag.Brands";
+            searchedGroupIds = "@ViewBag.SearchedGroupIds";
         </script>
     }
 
@@ -160,7 +160,7 @@
             MinPrice: minPrice,
             MaxPrice: maxPrice,
             SearchString: searchString,
-            Brands: brands
+            SearchedGroupIds: searchedGroupIds
         }
 
         $.ajax({
@@ -172,7 +172,7 @@
                 sizeId = 0;
                 groupId = null;
                 searchString = "";
-                brands = "";
+                searchedGroupIds = "";
             }
         });
     }
