@@ -29,9 +29,9 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="alert alert-dark">
+        @*<div class="alert alert-dark">
             <p></p>
-        </div>
+        </div>*@
 
 
         <!--begin: Datatable-->
@@ -51,7 +51,6 @@
                                 {
                             <span class="badge badge-sm badge-success">@item.Amount تومان</span>
                                 }
-                        /**/
                         </text>);
   columns.Bound(item => @item.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
                             @<text>
