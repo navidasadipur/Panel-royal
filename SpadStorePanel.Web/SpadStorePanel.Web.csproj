@@ -4865,10 +4865,8 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\LatestArticlesSection.cshtml" />
     <Content Include="Views\Blog\TopArticlesSection.cshtml" />
-    <Content Include="Views\Home\About-old.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\ContactUsSummary.cshtml" />
-    <Content Include="Views\Home\Index-old.cshtml" />
     <Content Include="Views\Home\HomeTopSlidersSection.cshtml" />
     <Content Include="Views\Home\SocialsSection.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
@@ -4905,8 +4903,6 @@
     <Content Include="Views\Shop\AddToCartSection.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Customer\Views\Auth\AccountRegisterSection.cshtml" />
-    <Content Include="Areas\Customer\Views\Auth\AccountLoginSection.cshtml" />
     <Content Include="Views\Home\HomeSecondSlidersSection.cshtml" />
     <Content Include="Views\Home\HomeLastSlidersSection.cshtml" />
     <Content Include="Views\Cookie\CartSection.cshtml" />

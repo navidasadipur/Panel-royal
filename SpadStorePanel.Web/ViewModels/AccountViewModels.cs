@@ -48,8 +48,8 @@ namespace SpadStorePanel.Web.ViewModels
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "نام کاربری یا ایمیل خود را وارد کنید")]
-        [Display(Name = "نام کاربری یا ایمیل: *")]
+        [Required(ErrorMessage = "نام کاربری خود را وارد کنید")]
+        [Display(Name = "نام کاربری: *")]
         //[EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
         public string UserName { get; set; }
 
