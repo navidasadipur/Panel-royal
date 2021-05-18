@@ -65,7 +65,7 @@
                             @<text>
                                 <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/ProductComments/Edit/@item.Comment.Id"><i class='far fa-edit text-primary'></i></a>
                                 <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("productcommentsdelete") ? $"btnDelete({item.Comment.Id})" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
-                                <a class='btn btn-primary btn-sm' onclick="@(CheckPermission.Check("productcommentsanswercomment") ? $"btnAnswerComment({item.Comment.ProductId},{item.Comment.Id})" : "accessDenied()")">پاسخ دادن</a>
+                                @*<a class='btn btn-primary btn-sm' onclick="@(CheckPermission.Check("productcommentsanswercomment") ? $"btnAnswerComment({item.Comment.ProductId},{item.Comment.Id})" : "accessDenied()")">پاسخ دادن</a>*@
                             </text>
                                 ).Width(255);
                         })
