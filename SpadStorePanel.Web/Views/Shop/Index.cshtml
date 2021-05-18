@@ -127,6 +127,7 @@
         var groupId = null;
     var searchString = "";
     var searchedGroupIds = "";
+    var searchedProductIds = "";
         var minPrice = @ViewBag.MinPrice;
         var maxPrice = @ViewBag.MaxPrice;
     </script>
@@ -149,6 +150,12 @@
             searchedGroupIds = "@ViewBag.SearchedGroupIds";
         </script>
     }
+    @if (ViewBag.SearchedProductIds != null)
+    {
+        <script>
+            searchedProductIds = "@ViewBag.SearchedProductIds";
+        </script>
+    }
 
     <script>
 
@@ -160,7 +167,8 @@
             MinPrice: minPrice,
             MaxPrice: maxPrice,
             SearchString: searchString,
-            SearchedGroupIds: searchedGroupIds
+            SearchedGroupIds: searchedGroupIds,
+            SearchedProductIds: searchedProductIds
         }
 
         $.ajax({
@@ -173,6 +181,7 @@
                 groupId = null;
                 searchString = "";
                 searchedGroupIds = "";
+                searchedProductIds = "";
             }
         });
     }

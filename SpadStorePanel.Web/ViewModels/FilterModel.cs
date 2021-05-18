@@ -12,6 +12,7 @@ namespace SpadStorePanel.Web.ViewModels
         public int MinPrice { get; set; }
         public int MaxPrice { get; set; }
         public string SearchString { get; set; }
-        public string searchedGroupIds { get; set; }
+        public string SearchedGroupIds { get; set; }
+        public string SearchedProductIds { get; set; }
     }
 }

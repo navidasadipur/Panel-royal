@@ -70,7 +70,7 @@ namespace SpadCompanyPanel.Web.Controllers
 
         [Route("Shop")]
         [Route("Shop/{id}")]
-        public ActionResult Index(int? id, string searchString = null, string searchedGroupIds = null)
+        public ActionResult Index(int? id, string searchString = null, string searchedGroupIds = null, string searchedProductIds = null)
         {
             var model = new List<Color_SizeSearchViewModel>();
 
@@ -110,6 +110,9 @@ namespace SpadCompanyPanel.Web.Controllers
 
             if (searchedGroupIds != null)
                 ViewBag.searchedGroupIds = searchedGroupIds;
+
+            if (searchedProductIds != null)
+                ViewBag.SearchedProductIds = searchedProductIds;
 
             return View(model);
         }
@@ -189,47 +192,60 @@ namespace SpadCompanyPanel.Web.Controllers
             var maxLimitPrice = _productMainFeaturesRepo.GetMaxPrice();
             var minLimitPrice = _productMainFeaturesRepo.GetMinPrice();
 
-            var groupIdsIntArr = new List<int>();
-
-            //search based on multiple group ids
-            if (string.IsNullOrEmpty(model.searchedGroupIds) == false)
+            if (model.SearchedGroupIds != null || model.SearchedProductIds != null)
             {
-                var groupIdsArr = model.searchedGroupIds.Split('-').ToList();
-                groupIdsArr.ForEach(b => groupIdsIntArr.Add(Convert.ToInt32(b)));
-
-                var allTargetGroups = new List<ProductGroup>();
-
-                foreach (var id in groupIdsIntArr)
+                //search based on multiple group ids
+                if (string.IsNullOrEmpty(model.SearchedGroupIds) == false)
                 {
-                    var group = _productGroupsRepo.GetProductGroup(id);
+                    var groupIdsIntArr = new List<int>();
 
-                    allTargetGroups.Add(group);
+                    var groupIdsArr = model.SearchedGroupIds.Split('-').ToList();
+                    groupIdsArr.ForEach(b => groupIdsIntArr.Add(Convert.ToInt32(b)));
+
+                    var allTargetGroups = new List<ProductGroup>();
+
+                    foreach (var id in groupIdsIntArr)
+                    {
+                        var group = _productGroupsRepo.GetProductGroup(id);
+
+                        allTargetGroups.Add(group);
+                    }
+
+                    foreach (var group in allTargetGroups)
+                    {
+                        if (group != null)
+                        {
+                            var products = _productsRepo.getProductsByGroupId(group.Id);
+
+                            foreach (var product in products)
+                            {
+                                allSearchedTargetProducts.Add(product);
+                            }
+                        }
+                    }
                 }
 
-                foreach (var group in allTargetGroups)
+                //search based on multiple product ids
+                if (string.IsNullOrEmpty(model.SearchedProductIds) == false)
                 {
-                    if (group != null)
-                    {
-                        var products = _productsRepo.getProductsByGroupId(group.Id);
+                    var productIdsIntArr = new List<int>();
 
-                        foreach (var product in products)
+                    var productIdsArr = model.SearchedProductIds.Split('-').ToList();
+                    productIdsArr.ForEach(b => productIdsIntArr.Add(Convert.ToInt32(b)));
+
+                    foreach (var id in productIdsIntArr)
+                    {
+                        var product = _productsRepo.GetProduct(id);
+                        
+                        //if product not found in allSearchedTargetProducts
+                        if (!allSearchedTargetProducts.Contains(product))
                         {
                             allSearchedTargetProducts.Add(product);
                         }
                     }
                 }
 
-
-                if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
-                {
-                    targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allSearchedTargetProducts);
-
-                    allTargetProducts = targetProductsPriceFilted;
-                }
-                else
-                {
-                    allTargetProducts = allSearchedTargetProducts;
-                }
+                allTargetProducts = allSearchedTargetProducts;
 
                 foreach (var product in allTargetProducts)
                 {
@@ -804,7 +820,8 @@ namespace SpadCompanyPanel.Web.Controllers
         [Route("offer")]
         public ActionResult Offer(int offerId = 0)
         {
-            var allProductGroupIds = new List<int>();
+            var allGroupIds = new List<int>();
+            var allProductIds = new List<int>();
 
             if (offerId == 0)
             {
@@ -815,18 +832,15 @@ namespace SpadCompanyPanel.Web.Controllers
 
             foreach (var discount in allOfferDiscounts)
             {
-                if (discount.ProductGroupId != null && !allProductGroupIds.Contains(discount.ProductGroupId.Value))
+                if (discount.ProductGroupId != null)
                 {
-                    allProductGroupIds.Add(discount.ProductGroupId.Value);
+                    allGroupIds.Add(discount.ProductGroupId.Value);
                 }
                 else if(discount.ProductId != null)
                 {
                     var product = _productsRepo.GetProduct(discount.ProductId.Value);
 
-                    if (product.ProductGroupId != null && !allProductGroupIds.Contains(product.ProductGroupId.Value))
-                    {
-                        allProductGroupIds.Add(product.ProductGroupId.Value);
-                    }
+                    allProductIds.Add(product.Id);
                 }
                 
             }
@@ -871,9 +885,11 @@ namespace SpadCompanyPanel.Web.Controllers
             //    }
             //}
 
-            var allProductGroupIdsStr = string.Join("-", allProductGroupIds);
+            var allGroupIdsStr = string.Join("-", allGroupIds);
 
-            return RedirectToAction("Index", new { searchedGroupIds = allProductGroupIdsStr });
+            var allProductIdsStr = string.Join("-", allProductIds);
+
+            return RedirectToAction("Index", new { searchedGroupIds = allGroupIdsStr, searchedProductIds = allProductIdsStr });
         }
 
 
