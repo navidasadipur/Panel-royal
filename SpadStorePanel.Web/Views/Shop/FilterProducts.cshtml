@@ -66,7 +66,7 @@
                                 </tbody>
                             </table>
                         </form>
-                        <a href="#" class="button yith-wcqv-button" data-product_id="24">نمایش محصول</a>
+                        <a href="/Shop/Details/@item.Id" class="button yith-wcqv-button" data-product_id="24">نمایش محصول</a>
                         <div class="group-button">
                             @*<div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
@@ -130,7 +130,7 @@
                             }
                         </span>
                         <div class="lynessa-product-details__short-description">
-                            <p>توضیحات کامل محصول</p>
+                            @*<p>توضیحات کامل محصول</p>*@
                             @{
                                 var descParts = item.ShortDescription.Split('\n');
                             }
