@@ -78,15 +78,17 @@
                                 <div class="lynessa-product-details__short-description">
                                     @Html.Raw(Model.Product.Description)
 
-                                    @{
+                                    @if (Model.Product.ShortDescription != null)
+                                    {
                                         var descParts = Model.Product.ShortDescription.Split('\n');
+                                        <ul>
+                                            @foreach (var desc in descParts)
+                                            {
+                                                <li>@desc</li>
+                                            }
+                                        </ul>
                                     }
-                                    <ul>
-                                        @foreach (var desc in descParts)
-                                        {
-                                            <li>@desc</li>
-                                        }
-                                    </ul>
+
                                 </div>
 
                                 @*@{

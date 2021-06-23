@@ -1,8 +1,5 @@
 ﻿@model SpadStorePanel.Web.ViewModels.FooterViewModel
 
-@{
-    var servicesList = Model.CompanyServices.ShortDescription.Split('-').ToList();
-}
 
 <footer id="footer" class="footer style-04">
     @Html.Action("EmailSubscriptionSection", "Home")
@@ -50,13 +47,20 @@
                         <div class="listitem-inner">
                             <h4 class="title">@Html.Raw(Model.CompanyServices.Title)</h4>
                             <ul class="listitem-list">
-                                @foreach (var service in servicesList)
-                                {
-                                    <li>
-                                        <a href="#" target=" _blank">
-                                            @service
-                                        </a>
-                                    </li>
+                                @{
+                                    if (Model.CompanyServices.ShortDescription != null)
+                                    {
+                                        var servicesList = Model.CompanyServices.ShortDescription.Split('-').ToList();
+
+                                        foreach (var service in servicesList)
+                                        {
+                                            <li>
+                                                <a href="#" target=" _blank">
+                                                    @service
+                                                </a>
+                                            </li>
+                                        }
+                                    }
                                 }
                             </ul>
                         </div>
@@ -160,20 +164,20 @@
             </a>
         </div>
         @*<div class="footer-device-mobile-item device-home device-wishlist">
-            <a href="wishlist.html">
-                <span class="icon">
-                    <span class="pe-7s-like"></span>
-                </span>
-                علاقه مندی ها
-            </a>
-        </div>*@
+                <a href="wishlist.html">
+                    <span class="icon">
+                        <span class="pe-7s-like"></span>
+                    </span>
+                    علاقه مندی ها
+                </a>
+            </div>*@
         <div class="footer-device-mobile-item device-home device-cart">
             <a href="#">
                 <span class="icon">
                     <span class="pe-7s-shopbag"></span>
                     @*<span class="count-icon">
-                        0
-                    </span>*@
+                            0
+                        </span>*@
                 </span>
                 <span class="text">سبد خرید</span>
             </a>

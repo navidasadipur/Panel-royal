@@ -131,15 +131,17 @@
                         </span>
                         <div class="lynessa-product-details__short-description">
                             @*<p>توضیحات کامل محصول</p>*@
-                            @{
+                            @if (item.ShortDescription != null)
+                            { 
                                 var descParts = item.ShortDescription.Split('\n');
+
+                                <ul>
+                                    @foreach (var desc in descParts)
+                                    {
+                                        <li>@desc</li>
+                                    }
+                                </ul>
                             }
-                            <ul>
-                                @foreach (var desc in descParts)
-                                {
-                                    <li>@desc</li>
-                                }
-                            </ul>
                         </div>
                     </div>
                     <div class="group-button">
