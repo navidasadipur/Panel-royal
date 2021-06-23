@@ -49,7 +49,7 @@
                                                         <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/StaticContentDetails/Edit/@item.Id"><i class='far fa-edit text-primary'></i></a>
                                                             }
 
-                                                    @if (item.StaticContentType.Id != (int)StaticContentTypes.About)
+                                                    @if (item.StaticContentType.Id == (int)StaticContentTypes.HomeTopSlider)
                                                             {
                                                         <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("staticcontentdetailsdelete") ? $"btnDelete({item.Id})" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
                                                             }
