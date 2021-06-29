@@ -51,11 +51,11 @@
                                             minPrice = Model.ProductMainFeatures.Min(f => f.Price);
 
                                             <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+                                                <span class="lynessa-Price-currencySymbol">تومان</span> @minPrice
                                             </span>
                                             <text> – </text>
                                             <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                                                <span class="lynessa-Price-currencySymbol">تومان</span> @maxPrice
                                             </span>
                                         }
                                     }
@@ -179,13 +179,13 @@
                                                                 <div class="sale-label-container">
                                                                     <div class="sale-label"><span> @discountPercent </span></div>
                                                                 </div>*@
-                                                            <del class="price old-price " style="color: gray;"><span id="productPrice">@Model.Price.ToString("##,###")</span> $ </del>
-                                                            <span class="price">با تخفیف <span id="productPriceAfterDiscount">  @Model.PriceAfterDiscount.ToString("##,###") </span> $ </span>
+                                                            <del class="price old-price " style="color: gray;"><span id="productPrice">@Model.Price.ToString("##,###")</span> تومان </del>
+                                                            <span class="price">با تخفیف <span id="productPriceAfterDiscount">  @Model.PriceAfterDiscount.ToString("##,###") </span> تومان </span>
 
                                                         }
                                                         else
                                                         {
-                                                            <span class="price"><span id="productPrice">@Model.Price.ToString("##,###")</span> $</span>
+                                                            <span class="price"><span id="productPrice">@Model.Price.ToString("##,###")</span> تومان</span>
                                                         }
                                                     </td>
                                                 </tr>

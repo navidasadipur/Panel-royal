@@ -10,13 +10,13 @@
             @*@using (Html.BeginForm("Search", "Shop", FormMethod.Get, new { id = "form"@*, @class = "wpcf7-form" }))
             {*@
             <div class="price_slider_wrapper">
-                <div data-label-reasult="Range:" data-min="@Model.MinPrice" data-max="@Model.MaxPrice" data-unit="$"
+                <div data-label-reasult="Range:" data-min="@Model.MinPrice" data-max="@Model.MaxPrice" data-unit="تومان"
                      class="price_slider" data-value-min="@Model.MinPrice" data-value-max="@Model.MaxPrice">
                 </div>
                 <div class="price_slider_amount">
                     <button onclick="CheckPriceUpdated()" type="button" class="button" name="Search">فیلتر</button>
                     <div class="price_label">
-                        قیمت: <span class="from">$@Model.MinPrice</span> — <span class="to">$@Model.MaxPrice</span>
+                        قیمت: <span class="from">تومان @Model.MinPrice</span> — <span class="to">تومان @Model.MaxPrice</span>
                     </div>
                 </div>
 

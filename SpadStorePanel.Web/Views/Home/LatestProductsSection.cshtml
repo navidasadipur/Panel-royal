@@ -18,7 +18,7 @@
                  data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
                 @foreach (var item in Model)
                 {
-                    var discountTypeStr = ((int)item.DiscountType) == 1 ? "درصد" : "$";
+                    var discountTypeStr = ((int)item.DiscountType) == 1 ? "درصد" : "تومان ";
 
                     <div class="product-item recent-product style-04 rows-space-0 post-93 product type-product status-publish has-post-thumbnail product_cat-light product_cat-table product_cat-new-arrivals product_tag-table product_tag-sock first instock shipping-taxable purchasable product-type-simple  ">
                         <div class="product-inner tooltip-top tooltip-all-top">
@@ -66,22 +66,22 @@
                                         }
                                         if (item.PriceAfterDiscount < item.Price)
                                         {
-                                            <del class="price old-price" style="color: dimgray">$@item.Price.ToString("##,###")  </del>
-                                            <span class="price">|  $@item.PriceAfterDiscount.ToString("##,###") </span>
+                                            <del class="price old-price" style="color: dimgray">تومان @item.Price.ToString("##,###")  </del>
+                                            <span class="price">|  تومان @item.PriceAfterDiscount.ToString("##,###") </span>
                                         }
                                         else
                                         {
-                                            <span class="price">$@item.Price.ToString("##,###") </span>
+                                            <span class="price">تومان @item.Price.ToString("##,###") </span>
                                         }
 
                                         @*<span class="lynessa-Price-amount amount">
-                <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+                <span class="lynessa-Price-currencySymbol">تومان </span> @minPrice
             </span>
             if (minPrice != maxPrice)
             {
                 <text> – </text>
                 <span class="lynessa-Price-amount amount">
-                    <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                    <span class="lynessa-Price-currencySymbol">تومان </span> @maxPrice
                 </span>
             }*@
                                     }

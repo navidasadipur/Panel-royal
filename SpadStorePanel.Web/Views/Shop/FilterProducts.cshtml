@@ -15,7 +15,7 @@
     <ul class="row products columns-3">
         @foreach (var item in Model)
         {
-            var discountTypeStr = ((int)item.DiscountType) == 1 ? "درصد" : "$";
+            var discountTypeStr = ((int)item.DiscountType) == 1 ? "درصد" : "تومان";
 
             <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-ts-6 style-01 post-24 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-table product_cat-new-arrivals product_tag-light product_tag-hat product_tag-sock first instock featured shipping-taxable purchasable product-type-variable has-default-attributes"
                 data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
@@ -109,22 +109,22 @@
                                 }
                                 if (item.PriceAfterDiscount < item.Price)
                                 {
-                                    <del class="price old-price">@item.Price.ToString("##,###")  $</del>
-                                    <span class="price">|  @item.PriceAfterDiscount.ToString("##,###") $</span>
+                                    <del class="price old-price">@item.Price.ToString("##,###")  تومان</del>
+                                    <span class="price">|  @item.PriceAfterDiscount.ToString("##,###") تومان</span>
                                 }
                                 else
                                 {
-                                    <span class="price">@item.Price.ToString("##,###") $</span>
+                                    <span class="price">@item.Price.ToString("##,###") تومان</span>
                                 }
 
                                 @*<span class="lynessa-Price-amount amount">
-                <span class="lynessa-Price-currencySymbol">$</span> @minPrice
+                <span class="lynessa-Price-currencySymbol">تومان</span> @minPrice
             </span>
             if (minPrice != maxPrice)
             {
                 <text> – </text>
                 <span class="lynessa-Price-amount amount">
-                    <span class="lynessa-Price-currencySymbol">$</span> @maxPrice
+                    <span class="lynessa-Price-currencySymbol">تومان</span> @maxPrice
                 </span>
             }*@
                             }
