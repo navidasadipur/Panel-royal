@@ -50,13 +50,16 @@
                                             maxPrice = Model.ProductMainFeatures.Max(f => f.Price);
                                             minPrice = Model.ProductMainFeatures.Min(f => f.Price);
 
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">تومان</span> @minPrice
-                                            </span>
-                                            <text> – </text>
-                                            <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">تومان</span> @maxPrice
-                                            </span>
+                                                                        <span class="lynessa-Price-amount amount">
+                                                                            <span class="lynessa-Price-currencySymbol">@minPrice.ToString("##,###") </span>تومان
+                                                                        </span>
+                                            if (maxPrice != minPrice)
+                                            {
+                                                <text> – </text>
+                                <span class="lynessa-Price-amount amount">
+                                    <span class="lynessa-Price-currencySymbol">@maxPrice.ToString("##,###") </span> تومان
+                                </span>
+                                            }
                                         }
                                     }
 
@@ -203,11 +206,11 @@
                                                         </div>
                                                     </div>
                                                     @*<span class="qty-label">Quantiy:</span>
-                                                    <div class="control">
-                                                        <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                        <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-                                                        <a class="btn-number qtyplus quantity-plus" href="#">+</a>
-                                                    </div>*@
+                                                        <div class="control">
+                                                            <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                            <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                                            <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                                                        </div>*@
                                                 </div>
                                                 <button type="submit" onclick="AddToCart(@Model.Product.Id, $('#feature').val())"
                                                         class="single_add_to_cart_button button alt lynessa-variation-selection-needed">

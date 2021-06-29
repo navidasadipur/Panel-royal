@@ -24,7 +24,7 @@
             <i class="fa fa-close" style="font-size: 45px;"></i>
 
         </div>
-        <div class="widget_shopping_cart_content">
+        <div class="widget_shopping_cart_content" dir="rtl">
             <h3 class="minicart-title">
                 حساب شما<span class="minicart-number-items">@i</span>
             </h3>
@@ -42,7 +42,7 @@
                                 </a>
                                 <span class="quantity">
                                     @item.Quantity × <span class="lynessa-Price-amount amount">
-                                        <span class="lynessa-Price-currencySymbol">تومان</span>@item.Price
+                                        <span class="lynessa-Price-currencySymbol">@item.Price.ToString("##,###") </span>تومان
                                     </span>
                                 </span>
                             </li>
@@ -53,7 +53,8 @@
             <p class="lynessa-mini-cart__total total">
                 <strong>جمع کل</strong>
                 <span class="lynessa-Price-amount amount">
-                    <span class="lynessa-Price-currencySymbol">تومان</span>@Model.TotalPrice
+                    <span class="lynessa-Price-currencySymbol">@Model.TotalPrice.ToString("##,###")</span>تومان
+
                 </span>
             </p>
             <p class="lynessa-mini-cart__buttons buttons">

@@ -3158,7 +3158,7 @@ th, td {
 }
 .header-nav-inner {
 	display: table;
-	width: 90%;
+	width: 100%;
 	background-color: rgba(0, 0, 0, 0.897);
 	margin:auto;
 	direction: rtl;
@@ -5976,7 +5976,7 @@ body.admin-bar #yith-quick-view-modal {
 .price {
 	display: inline-block;
 	font-size: 14px;
-	color: white;
+	color: black;
 }
 .price del {
 	font-size: 14px;

@@ -16,7 +16,7 @@
                 var discountTypeStr = ((int)item.DiscountType) == 1 ? "درصد" : "تومان ";
 
                 <div class="product-item style-01 post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock  instock shipping-taxable purchasable product-type-variable has-default-attributes ">
-                    <div class="product-inner tooltip-left">
+                    <div class="product-inner tooltip-left" dir="rtl">
                         <div class="product-thumb">
                             <a class="thumb-link"
                                href="/Shop/Details/@item.Id" tabindex="0">
@@ -66,12 +66,12 @@
                                     }
                                     if (item.PriceAfterDiscount < item.Price)
                                     {
-                            <del class="price old-price">تومان @item.Price.ToString("##,###")  </del>
-                                        <span class="price">|  تومان @item.PriceAfterDiscount.ToString("##,###") </span>
+                            <del class="price old-price"> @item.Price.ToString("##,###") تومان </del>
+                            <span class="price">|   @item.PriceAfterDiscount.ToString("##,###") تومان</span>
                                     }
                                     else
                                     {
-                            <span class="price">تومان @item.Price.ToString("##,###") </span>
+                            <span class="price"> @item.Price.ToString("##,###") تومان</span>
                                     }
 
                                     @*<span class="lynessa-Price-amount amount">
