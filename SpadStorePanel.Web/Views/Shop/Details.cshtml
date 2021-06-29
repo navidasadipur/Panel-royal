@@ -50,20 +50,52 @@
                                             maxPrice = Model.ProductMainFeatures.Max(f => f.Price);
                                             minPrice = Model.ProductMainFeatures.Min(f => f.Price);
 
-                                                                        <span class="lynessa-Price-amount amount">
-                                                                            <span class="lynessa-Price-currencySymbol">@minPrice.ToString("##,###") </span>تومان
-                                                                        </span>
+                                            <span class="lynessa-Price-amount amount">
+                                                <span class="lynessa-Price-currencySymbol">@minPrice.ToString("##,###") </span>تومان
+                                            </span>
                                             if (maxPrice != minPrice)
                                             {
                                                 <text> – </text>
-                                <span class="lynessa-Price-amount amount">
-                                    <span class="lynessa-Price-currencySymbol">@maxPrice.ToString("##,###") </span> تومان
-                                </span>
+                                                <span class="lynessa-Price-amount amount">
+                                                    <span class="lynessa-Price-currencySymbol">@maxPrice.ToString("##,###") </span> تومان
+                                                </span>
                                             }
                                         }
                                     }
 
                                 </p>
+                                <div class="product_meta">
+                                    <div class="wcml-dropdown product wcml_currency_switcher">
+                                        <ul>
+                                            <li class="wcml-cs-active-currency">
+                                                <a class="wcml-cs-item-toggle">USD</a>
+                                                <ul class="wcml-cs-submenu">
+                                                    <li>
+                                                        <a>EUR</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <span class="posted_in">
+                                        دسته بندی :
+                                        <a href="#" rel="tag">@Model.Product.ProductGroup.Title</a>
+                                    </span>
+                                    @*<span class="tagged_as">
+                برچسب ها:
+                @{
+                    for (int j = 0; j < Model.Product.Tags.Count; j++)
+                    {
+                        <a href="#" rel="tag"> @Model.Tags[j].Title </a>
+                        if (j < Model.Tags.Count - 1)
+                        {
+                            <text>,</text>
+                        }
+                    }
+                }
+            </span>*@
+                                </div>
                                 <p class="stock in-stock">
                                     @{
                                         var inventory = "نا موجود";
@@ -76,7 +108,7 @@
                                         }
 
                                     }
-                                    موجودی <span> @inventory </span>
+                                    موجودی :<span> @inventory </span>
                                 </p>
                                 <div class="lynessa-product-details__short-description">
                                     @Html.Raw(Model.Product.Description)
@@ -95,35 +127,35 @@
                                 </div>
 
                                 @*@{
-                                        var featureName = Model.ProductMainFeatures.FirstOrDefault().Feature.Title;
-                                        var i = 0;
-                                        <div class="row mb-20" style="position: relative;">
-                                            <div class="col-xl-2 col-md-3 col-sm-12">
-                                                @featureName
-                                            </div>
-                                            <div class="col-xl-10 col-md-9 col-sm-12">
-                                                <div class="colors-wrapper">
-                                                    <select onchange="UpdateProductPrice(this)">
-                                                        @foreach (var item in Model.ProductMainFeatures)
-                                                        {
-                                                            var value = item.SubFeature != null ? item.SubFeature.Value : item.Value;
-                                                            var className = "";
-                                                            i++;
+            var featureName = Model.ProductMainFeatures.FirstOrDefault().Feature.Title;
+            var i = 0;
+            <div class="row mb-20" style="position: relative;">
+                <div class="col-xl-2 col-md-3 col-sm-12">
+                    @featureName
+                </div>
+                <div class="col-xl-10 col-md-9 col-sm-12">
+                    <div class="colors-wrapper">
+                        <select onchange="UpdateProductPrice(this)">
+                            @foreach (var item in Model.ProductMainFeatures)
+                            {
+                                var value = item.SubFeature != null ? item.SubFeature.Value : item.Value;
+                                var className = "";
+                                i++;
 
-                                                            if (i == 1)
-                                                            {
-                                                                className = "active-color";
-                                                            }
+                                if (i == 1)
+                                {
+                                    className = "active-color";
+                                }
 
-                                                            <option value="@item.Id">@value</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="color-notification"></div>
+                                <option value="@item.Id">@value</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="color-notification"></div>
 
-                                        </div>
-                                    }*@
+            </div>
+        }*@
 
                                 @{
                                     var featureName = Model.ProductMainFeatures.FirstOrDefault().Feature.Title;
@@ -143,8 +175,8 @@
                                                                 data-attribute_name="attribute_pa_color"
                                                                 data-show_option_none="yes" onchange="UpdateProductPrice(this)">
                                                             @*<option data-type="" data-pa_color="" value="">
-                                                                    یک گزینه را انتخاب کنید
-                                                                </option>*@
+                                        یک گزینه را انتخاب کنید
+                                    </option>*@
                                                             @foreach (var item in Model.ProductMainFeatures)
                                                             {
                                                                 var value = item.SubFeature != null ? item.SubFeature.Value : item.Value;
@@ -167,7 +199,7 @@
                                                         </select>
 
                                                         @*<a class="reset_variations" href="#"
-                                                            style="visibility: hidden;">Clear</a>*@
+                                style="visibility: hidden;">Clear</a>*@
                                                     </td>
                                                     <td class="label text-center align-middle price-section-wrapper">
                                                         @{
@@ -177,11 +209,11 @@
                                                         @if (Model.PriceAfterDiscount < Model.Price)
                                                         {
                                                             @*var discountAmount = Model.Price - Model.PriceAfterDiscount;
-                                                                var discountPercent = (discountAmount % Model.Price) ;
+                                    var discountPercent = (discountAmount % Model.Price) ;
 
-                                                                <div class="sale-label-container">
-                                                                    <div class="sale-label"><span> @discountPercent </span></div>
-                                                                </div>*@
+                                    <div class="sale-label-container">
+                                        <div class="sale-label"><span> @discountPercent </span></div>
+                                    </div>*@
                                                             <del class="price old-price " style="color: gray;"><span id="productPrice">@Model.Price.ToString("##,###")</span> تومان </del>
                                                             <span class="price">با تخفیف <span id="productPriceAfterDiscount">  @Model.PriceAfterDiscount.ToString("##,###") </span> تومان </span>
 
@@ -197,86 +229,55 @@
                                         <div class="single_variation_wrap">
                                             <div class="lynessa-variation single_variation"></div>
                                             <div class="lynessa-variation-add-to-cart variations_button ">
-                                                <div class="quantity">
-                                                    <div class="icon">
-                                                        <div class="multiple-add-section">
-                                                            <div><button class="btnProductCount" onclick="IncreaseProductCount()">+</button></div>
-                                                            <div><span readonly="readonly" id="txtProductCount">1</span></div>
-                                                            <div><button class="btnProductCount" onclick="DecreaseProductCount()">-</button></div>
-                                                        </div>
-                                                    </div>
-                                                    @*<span class="qty-label">Quantiy:</span>
-                                                        <div class="control">
-                                                            <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                            <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-                                                            <a class="btn-number qtyplus quantity-plus" href="#">+</a>
-                                                        </div>*@
-                                                </div>
-                                                <button type="submit" onclick="AddToCart(@Model.Product.Id, $('#feature').val())"
-                                                        class="single_add_to_cart_button button alt lynessa-variation-selection-needed">
-                                                    افزودن به سبد خرید
-                                                </button>
-                                                @*<input name="add-to-cart" value="27" type="hidden">*@
-                                                @*<input name="product_id" value="27" type="hidden">*@
-                                                @*<input name="variation_id" class="variation_id" value="0" type="hidden">*@
-                                            </div>
-                                        </div>
-                                    </form>
+                                                @*<div class="quantity">
+                        <div class="icon">
+                            <div class="multiple-add-section">
+                                <div><button class="btnProductCount" onclick="IncreaseProductCount()">+</button></div>
+                                <div><span readonly="readonly" id="txtProductCount">1</span></div>
+                                <div><button class="btnProductCount" onclick="DecreaseProductCount()">-</button></div>
+                            </div>
+                        </div>
+                        @*<span class="qty-label">Quantiy:</span>
+                            <div class="control">
+                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                <input type="text" data-step="1" min="0" max="" name="quantity" id="quantity" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                            </div>*@@*
+                        </div>*@
+                            <button type="submit" onclick="AddToCart(@Model.Product.Id, $('#feature').val())"
+                                    class="single_add_to_cart_button button alt lynessa-variation-selection-needed">
+                                افزودن به سبد خرید
+                            </button>
+                            @*<input name="add-to-cart" value="27" type="hidden">*@
+                            @*<input name="product_id" value="27" type="hidden">*@
+                            @*<input name="variation_id" class="variation_id" value="0" type="hidden">*@
+                            </div>
+                            </div>
+                            </form>
                                 }
 
                                 @*@Html.Action("AddToCartSection", "Shop", new { productId = Model.Id })*@
 
                                 @*<div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" rel="nofollow"
-                                               data-product-id="27" data-product-type="variable" class="add_to_wishlist">
-                                                علاقه مندی ها
-                                            </a>
-                                        </div>
-                                    </div>*@
+            <div class="yith-wcwl-add-button show">
+                <a href="#" rel="nofollow"
+                   data-product-id="27" data-product-type="variable" class="add_to_wishlist">
+                    علاقه مندی ها
+                </a>
+            </div>
+        </div>*@
                                 @*<div class="clear"></div>
-                                    <a href="#"
-                                       class="compare button" data-product_id="27" rel="nofollow">مقایسه</a>*@
-                                <div class="product_meta">
-                                    <div class="wcml-dropdown product wcml_currency_switcher">
-                                        <ul>
-                                            <li class="wcml-cs-active-currency">
-                                                <a class="wcml-cs-item-toggle">USD</a>
-                                                <ul class="wcml-cs-submenu">
-                                                    <li>
-                                                        <a>EUR</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
+        <a href="#"
+           class="compare button" data-product_id="27" rel="nofollow">مقایسه</a>*@
 
-                                    <span class="posted_in">
-                                        دسته بندی:
-                                        <a href="#" rel="tag">@Model.Product.ProductGroup.Title</a>
-                                    </span>
-                                    @*<span class="tagged_as">
-                                            برچسب ها:
-                                            @{
-                                                for (int j = 0; j < Model.Product.Tags.Count; j++)
-                                                {
-                                                    <a href="#" rel="tag"> @Model.Tags[j].Title </a>
-                                                    if (j < Model.Tags.Count - 1)
-                                                    {
-                                                        <text>,</text>
-                                                    }
-                                                }
-                                            }
-                                        </span>*@
-                                </div>
                                 @*<div class="row">
-                                        @if (Model.pro.IsAddedToCart)
-                                        {
-                                            <div class="addedToCart col-12" role="alert">
-                                                محصول مورد نظر شما به سبد خرید اظافه شد
-                                            </div>
-                                        }
-                                    </div>*@
+            @if (Model.pro.IsAddedToCart)
+            {
+                <div class="addedToCart col-12" role="alert">
+                    محصول مورد نظر شما به سبد خرید اظافه شد
+                </div>
+            }
+        </div>*@
                                 @Html.Action("SocialsSection", "Shop")
 
                             </div>
@@ -284,16 +285,16 @@
                     </div>
                     <div class="lynessa-tabs lynessa-tabs-wrapper">
                         <ul class="tabs dreaming-tabs" role="tablist">
-                            <li class="description_tab active" id="tab-title-description" role="tab"
-                                aria-controls="tab-description">
-                                <a href="#tab-description">توضیحات محصول</a>
+                            <li class="reviews_tab active" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
+                                <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
                             </li>
                             <li class="additional_information_tab" id="tab-title-additional_information" role="tab"
                                 aria-controls="tab-additional_information">
                                 <a href="#tab-additional_information"> مشخصات</a>
                             </li>
-                            <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
-                                <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
+                            <li class="description_tab" id="tab-title-description" role="tab"
+                                aria-controls="tab-description">
+                                <a href="#tab-description">توضیحات محصول</a>
                             </li>
                         </ul>
                         @Html.Action("ProductDescriptionsSection", "Shop", new { productId = Model.Product.Id })
@@ -368,7 +369,7 @@
                                                     <input id="Email" name="Email" value="" size="30" required=""
                                                            type="email">
                                                 </p>
-                                                <div class="comment-form-rating">
+                                                @*<div class="comment-form-rating">
                                                     <label for="rating">امتیاز شما</label>
                                                     <p class="stars">
                                                         <span>
@@ -388,7 +389,7 @@
                                                         <option value="2">Not that bad</option>
                                                         <option value="1">Very poor</option>
                                                     </select>
-                                                </div>
+                                                </div>*@
                                                 <p class="comment-form-comment">
                                                     <label for="comment">
                                                         نظر شما&nbsp;<span class="required">*</span>
