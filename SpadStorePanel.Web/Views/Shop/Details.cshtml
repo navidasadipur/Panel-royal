@@ -51,13 +51,13 @@
                                             minPrice = Model.ProductMainFeatures.Min(f => f.Price);
 
                                             <span class="lynessa-Price-amount amount">
-                                                <span class="lynessa-Price-currencySymbol">@minPrice.ToString("##,###") </span>تومان
+                                                <span class="lynessa-Price-currencySymbol">@minPrice.ToString("##,###") </span>  تومان
                                             </span>
                                             if (maxPrice != minPrice)
                                             {
                                                 <text> – </text>
                                                 <span class="lynessa-Price-amount amount">
-                                                    <span class="lynessa-Price-currencySymbol">@maxPrice.ToString("##,###") </span> تومان
+                                                    <span class="lynessa-Price-currencySymbol">@maxPrice.ToString("##,###") </span>  تومان
                                                 </span>
                                             }
                                         }
@@ -283,16 +283,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lynessa-tabs lynessa-tabs-wrapper">
-                        <ul class="tabs dreaming-tabs" role="tablist">
-                            <li class="reviews_tab active" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
+                    <div class="lynessa-tabs lynessa-tabs-wrapper ">
+                        <ul class="tabs dreaming-tabs " role="tablist">
+                            <li class="reviews_tab " id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
                                 <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
                             </li>
                             <li class="additional_information_tab" id="tab-title-additional_information" role="tab"
                                 aria-controls="tab-additional_information">
                                 <a href="#tab-additional_information"> مشخصات</a>
                             </li>
-                            <li class="description_tab" id="tab-title-description" role="tab"
+                            <li class="description_tab active" id="tab-title-description" role="tab"
                                 aria-controls="tab-description">
                                 <a href="#tab-description">توضیحات محصول</a>
                             </li>

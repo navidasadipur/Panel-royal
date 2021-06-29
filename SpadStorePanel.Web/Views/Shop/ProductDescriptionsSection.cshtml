@@ -10,7 +10,16 @@
         <div class="container-table">
             <div class="container-cell">
                 <h2 class="az_custom_heading"> @Model.DescriptionOneTitle </h2>
-                @Html.Raw(Model.DescrriptionOneShortDescription)
+                @if (Model.DescrriptionOneShortDescription != null)
+                {
+                    var descParts = Model.DescrriptionTwoShortDescription.Split('\n');
+                    <ul>
+                        @foreach (var desc in descParts)
+                        {
+                            <li>@desc</li>
+                        }
+                    </ul>
+                }
             </div>
             <div class="container-cell">
                 <div class="az_single_image-wrapper az_box_border_grey">
@@ -31,7 +40,16 @@
             </div>
             <div class="container-cell">
                 <h2 class="az_custom_heading">@Model.DescriptionTwoTitle</h2>
-                @Html.Raw(Model.DescrriptionTwoShortDescription)
+                @if (Model.DescrriptionTwoShortDescription != null)
+                {
+                    var descParts = Model.DescrriptionTwoShortDescription.Split('\n');
+                    <ul>
+                        @foreach (var desc in descParts)
+                        {
+                            <li>@desc</li>
+                        }
+                    </ul>
+                }
             </div>
         </div>
     }
