@@ -284,17 +284,17 @@
                         </div>
                     </div>
                     <div class="lynessa-tabs lynessa-tabs-wrapper ">
-                        <ul class="tabs dreaming-tabs " role="tablist">
-                            <li class="reviews_tab " id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
-                                <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
+                        <ul class="tabs dreaming-tabs d-md-flex justify-content-center flex-row-reverse " role="tablist">
+                            <li class="description_tab active" id="tab-title-description" role="tab"
+                                aria-controls="tab-description">
+                                <a href="#tab-description">توضیحات محصول</a>
                             </li>
                             <li class="additional_information_tab" id="tab-title-additional_information" role="tab"
                                 aria-controls="tab-additional_information">
                                 <a href="#tab-additional_information"> مشخصات</a>
                             </li>
-                            <li class="description_tab active" id="tab-title-description" role="tab"
-                                aria-controls="tab-description">
-                                <a href="#tab-description">توضیحات محصول</a>
+                            <li class="reviews_tab " id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
+                                <a href="#tab-reviews">نظرات (@Model.ProductComments.Count()) </a>
                             </li>
                         </ul>
                         @Html.Action("ProductDescriptionsSection", "Shop", new { productId = Model.Product.Id })

@@ -180,12 +180,12 @@ jQuery(function (e) {
             e(".lynessa-tab, .lynessa-tabs .panel:not(.panel .panel)").hide();
             var a = window.location.hash,
                 t = window.location.href,
-                n = e(this).find(".lynessa-tabs, ul.tabs").last();
+                n = e(this).find(".lynessa-tabs, ul.tabs").first();
             0 <= a.toLowerCase().indexOf("comment-") || "#reviews" === a || "#tab-reviews" === a || 0 < t.indexOf("comment-page-") || 0 < t.indexOf("cpage=")
                 ? n.find("li.reviews_tab a").click()
                 : "#tab-additional_information" === a
                 ? n.find("li.additional_information_tab a").click()
-                : n.find("li:last a").click();
+                : n.find("li:first a").click();
         })
         .on("click", ".lynessa-tabs li a, ul.tabs li a", function (a) {
             a.preventDefault();
