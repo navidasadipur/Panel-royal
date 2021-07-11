@@ -12,7 +12,7 @@
                 <h2 class="az_custom_heading"> @Model.DescriptionOneTitle </h2>
                 @if (Model.DescrriptionOneShortDescription != null)
                 {
-                    var descParts = Model.DescrriptionTwoShortDescription.Split('\n');
+                    var descParts = Model.DescrriptionOneShortDescription.Split('\n');
                     <ul>
                         @foreach (var desc in descParts)
                         {
