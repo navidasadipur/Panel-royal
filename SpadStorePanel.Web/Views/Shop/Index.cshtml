@@ -1,8 +1,10 @@
 ﻿
 @model List<SpadStorePanel.Web.ViewModels.Color_SizeSearchViewModel>
 @{
-    ViewBag.Title = "محصولات";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "محصولات";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Html.Action("TopProductGroupSection", "Shop")
@@ -77,6 +79,18 @@
             </div>
             <div class="sidebar col-xl-3 col-lg-4 col-md-4 col-sm-12 order-md-2 order-1">
                 <div id="widget-area" class="widget-area shop-sidebar">
+                    <div class="widget lynessa widget_product_search text-center">
+                        @if (@Request.Url.AbsoluteUri.ToString().EndsWith("hop") || @Request.Url.AbsoluteUri.ToString().EndsWith("hop#"))
+                        {
+                            <a onclick='location.reload(true); return false;' style="color: white">
+                                پاک کردن فیلترها/مشاهده همه محصولات
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0)" class="" id="reload" style="color: white">پاک کردن فیلترها/مشاهده همه محصولات</a>
+                        }
+                    </div>
                     <div id="lynessa_product_search-2" class="widget lynessa widget_product_search">
                         <form class="lynessa-product-search" onsubmit="SearchString();return false">
                             <input id="lynessa-product-search-field-0" class="search-field"
@@ -123,6 +137,12 @@
 @section scripts
 {
     <script>
+        $(document).ready(function() {
+
+            $('#reload').on( "click", reload );
+
+        });
+
         var sizeId = 0;
         var groupId = null;
     var searchString = "";
@@ -251,8 +271,11 @@
         var newMintxt = $('.from').text();
         var newMaxtxt = $('.to').text();
 
-        var newMin = newMintxt.substring(1);
+        var newMin = newMintxt.substring(0);
         var newMax = newMaxtxt.substring(1);
+
+                console.log(newMin);
+        console.log(newMax);
 
         if (newMin != minPrice || newMax != maxPrice) {
             minPrice = newMin;
@@ -264,6 +287,30 @@
             submitForm();
         }
     }
+
+    function reload() {
+        var pageHref = window.location.href;
+        if (pageHref.includes("?")) {
+            window.location = pageHref.split("?")[0];
+            console.log("?");
+        }
+        else {
+            var pageHrefArr = pageHref.split("/");
+
+            if (!pageHrefArr[pageHrefArr.length - 1].endsWith("shop") || !pageHrefArr[pageHrefArr.length - 1].endsWith("shop#")) {
+
+                pageHrefArr.pop();
+
+                var newAdress = pageHrefArr.join('/');
+
+                window.location = newAdress
+            }
+        }
+            }
+
+            //            function reload() {
+            //    window.location = window.location.href.split("?")[0];
+            //}
 
     //// Update Price Range
     //priceSlider.noUiSlider.on('update', function (values, handle) {
