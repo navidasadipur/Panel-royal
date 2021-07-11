@@ -4908,7 +4908,7 @@
     <Content Include="Views\Cookie\CartSection.cshtml" />
     <Content Include="Views\Shop\Test.cshtml" />
     <Content Include="Views\Cookie\CartSectionMobile.cshtml" />
-    <Content Include="Views\Shared\EmailSubscriptionSection.cshtml" />
+    <Content Include="Views\Home\EmailSubscriptionSection.cshtml" />
     <Content Include="Views\Home\CartTable.cshtml" />
     <Content Include="Views\Home\AddEmailSubscription.cshtml" />
     <Content Include="Views\Home\FolowOurInsta.cshtml" />
