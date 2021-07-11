@@ -270,7 +270,7 @@ namespace SpadCompanyPanel.Web.Controllers
                     allSearchedTargetProducts = _productsRepo.getProductsByGroupId(model.GroupId.Value);
                 }
 
-                if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
+                if (model.MaxPrice != 0 && (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice))
                 {
                     targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allSearchedTargetProducts);
 
@@ -317,17 +317,6 @@ namespace SpadCompanyPanel.Web.Controllers
 
                 allTargetProducts = allSearchedTargetProducts;
 
-                //foreach (var item in allTargetProducts)
-                //{
-                //    var vm = new ProductListViewModel(item);
-
-                //    if (item.ProductComments != null)
-                //    {
-                //        vm.CommentCounter = item.ProductComments.Count();
-                //    }
-                //    productListVm.Add(vm);
-                //}
-
                 foreach (var product in allTargetProducts)
                 {
 
@@ -348,7 +337,7 @@ namespace SpadCompanyPanel.Web.Controllers
                 if (model.SizeId == 0)
                 {
 
-                    if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
+                    if (model.MaxPrice != 0 && (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice))
                     {
                         targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allTargetProducts);
 
@@ -358,19 +347,6 @@ namespace SpadCompanyPanel.Web.Controllers
                     {
                         allTargetProducts = allTargetProducts;
                     }
-
-                    //foreach (var item in allTargetProducts)
-                    //{
-                    //    var vm = new ProductListViewModel(item);
-
-                    //    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
-
-                    //    if (item.ProductComments != null)
-                    //    {
-                    //        vm.CommentCounter = item.ProductComments.Count();
-                    //    }
-                    //    productListVm.Add(vm);
-                    //}
 
                     foreach (var product in allTargetProducts)
                     {
@@ -400,7 +376,7 @@ namespace SpadCompanyPanel.Web.Controllers
                         }
                     }
 
-                    if (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice)
+                    if (model.MaxPrice != 0 &&  (model.MinPrice != minLimitPrice || model.MaxPrice != maxLimitPrice))
                     {
                         targetProductsPriceFilted = FilteringByPrice(model.MinPrice, model.MaxPrice, allSearchedTargetProducts);
 
@@ -410,19 +386,6 @@ namespace SpadCompanyPanel.Web.Controllers
                     {
                         allTargetProducts = allSearchedTargetProducts;
                     }
-
-                    //foreach (var item in allTargetProducts)
-                    //{
-                    //    var vm = new ProductListViewModel(item);
-
-                    //    //vm.Role = _articlesRepo.GetAuthorRole(item.UserId);
-
-                    //    if (item.ProductComments != null)
-                    //    {
-                    //        vm.CommentCounter = item.ProductComments.Count();
-                    //    }
-                    //    productListVm.Add(vm);
-                    //}
 
                     foreach (var product in allTargetProducts)
                     {
